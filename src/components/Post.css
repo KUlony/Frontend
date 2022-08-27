@@ -1,0 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&family=Quicksand&display=swap");
+
+* {
+  font-family: "Prompt", sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+
+.PostBox {
+  background-color: Yellow;
+  margin: auto;
+  top: 100px;
+  height: 660px;
+  width: 1040px;
+}
+
+.UserProfile{
+    background-color: black;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+    
+}
+
+.FakeImage {
+  background-color: rgb(175, 175, 175);
+  margin: auto;
+  height: 200px;
+  width: 700px;
+  padding: 20px;
+}
+

@@ -1,6 +1,8 @@
 import React from "react";
 import NavBar from "./components/NavBar";
+import Post from "./components/Post";
 import "./Home.css";
+
 function Home() {
   return (
     <div>
@@ -13,7 +15,10 @@ function Home() {
         </div>
         <div></div>
       </div>
-      <div className="Home_post">koksok</div>
+      <div className="Home_post">koksok
+        <Post />
+      </div>
+
     </div>
   );
 }
