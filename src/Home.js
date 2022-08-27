@@ -1,5 +1,6 @@
 import React from "react";
 import NavBar from "./components/NavBar";
+import Post from "./components/Post";
 import "./Home.css";
 import Think from "./think.png";
 import search from "./search.png";
@@ -26,7 +27,10 @@ function Home() {
           </form>
         </div>
       </div>
-      <div className="Home_post">koksok</div>
+      <div className="Home_post">
+        <Post />
+        <Post />
+      </div>
     </div>
   );
 }
