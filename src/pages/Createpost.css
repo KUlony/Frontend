@@ -1,0 +1,31 @@
+.create {
+  position: absolute;
+  width: 247px;
+  height: 45px;
+  left: 1051px;
+  top: 162px;
+
+  /* H2 */
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  line-height: 45px;
+  /* identical to box height */
+  letter-spacing: 0.03em;
+
+  color: #000000;
+}
+
+.inputTitle {
+  position: absolute;
+  width: 582px;
+  height: 37px;
+  left: 142px;
+  top: 321px;
+
+  /* #F8F5D5 */
+  background-color: #F8F5D5;
+  /* #000000 */
+  border: 1px solid #000000;
+}
