@@ -1,23 +1,61 @@
 .home_search {
   /* position: absolute; */
-  background-color: rgb(227, 0, 0);
-  height: 408px;
+  background-color: rgb(253, 253, 253);
+  height: 300px;
   width: 100%;
+  max-height: 500px;
   overflow: hidden;
 }
 
 .Home_post {
-  background-color: aqua;
-  height: 200px;
-  width: 300px;
+  background-color: #f8f5d5;
+  height: 500px;
+  width: 100%;
+  overflow: scroll;
 }
 
 .home_search_lorem {
-  margin-top: 150px;
-  margin-left: 10%;
-  width: 50%;
+  float: left;
+  margin-top: 100px;
+  margin-left: 7.5%;
+  width: 40%;
 }
 div {
   /* display: none; */
   margin: 0;
+}
+
+.think_img {
+  position: absolute;
+  float: right;
+  right: -60px;
+  margin-right: 10%;
+  margin-top: 10px;
+  width: 350px;
+  height: 350px;
+}
+
+.home_search_input {
+  margin-top: 210px;
+  /* float: inline-end; */
+  float: left;
+  position: absolute;
+  z-index: 3;
+  margin-left: 7.5%;
+  width: 25%;
+}
+
+.search_input {
+  float: left;
+  width: 80%;
+  border: 1.5px solid rgb(0, 0, 0);
+}
+
+.search-button {
+  position: absolute;
+  float: left;
+  border: 1.5px solid rgb(0, 0, 0);
+  height: 22px;
+  width: 22px;
+  background-color: black;
 }
