@@ -4,11 +4,7 @@
   font-family: "Prompt", sans-serif;
   font-family: "Quicksand", sans-serif;
 }
-div {
-  color: white;
-  display: inline-block;
-  height: 99px;
-}
+
 .Container {
   background-color: #339c64;
   height: 99px;
@@ -27,6 +23,9 @@ div {
   padding-right: 35px;
   font-weight: 700;
   font-size: 16px;
+  color: white;
+  display: inline-block;
+  height: 99px;
 }
 
 .CreatePost {
@@ -38,6 +37,9 @@ div {
   align-content: center;
   font-weight: 700;
   font-size: 16px;
+  color: white;
+  display: inline-block;
+  height: 99px;
 }
 
 .Bell {

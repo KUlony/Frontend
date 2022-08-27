@@ -1,0 +1,23 @@
+.home_search {
+  /* position: absolute; */
+  background-color: rgb(227, 0, 0);
+  height: 408px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.Home_post {
+  background-color: aqua;
+  height: 200px;
+  width: 300px;
+}
+
+.home_search_lorem {
+  margin-top: 150px;
+  margin-left: 10%;
+  width: 50%;
+}
+div {
+  /* display: none; */
+  margin: 0;
+}

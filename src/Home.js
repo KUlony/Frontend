@@ -1,12 +1,19 @@
 import React from "react";
 import NavBar from "./components/NavBar";
-
+import "./Home.css";
 function Home() {
   return (
     <div>
-      <NavBar />
-      <div></div>
-      <div></div>
+      <div>
+        <NavBar />
+      </div>
+      <div className="home_search">
+        <div className="home_search_lorem">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+        </div>
+        <div></div>
+      </div>
+      <div className="Home_post">koksok</div>
     </div>
   );
 }
