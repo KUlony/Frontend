@@ -7,8 +7,8 @@ import search from "./search.png";
 
 function Home() {
   return (
-    <div>
-      <div>
+    <div className="Home_page">
+      <div className="Nav">
         <NavBar />
       </div>
       <div className="home_search">
@@ -20,7 +20,12 @@ function Home() {
         <div className="home_search_input">
           <form>
             {/* <label>maikan</label> */}
-            <input type="text" required className="search_input" />
+            <input
+              type="text"
+              required
+              className="search_input"
+              placeholder="Search"
+            />
             <button className="search-button">
               <img src={search} width="10px" height="10px" />
             </button>
@@ -28,6 +33,12 @@ function Home() {
         </div>
       </div>
       <div className="Home_post">
+        <nav className="Nav_topic">
+          <div className="Topic">Discover</div>
+          <div className="Topic">General</div>
+        </nav>
+        <Post />
+        <Post />
         <Post />
         <Post />
       </div>
