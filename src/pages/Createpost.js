@@ -73,6 +73,9 @@ function Createpost() {
           <br></br>
           <div className="bottom">
             <p className="topic">Topic</p>
+            <div className="tagbox">
+              <button className="edittopic">Edit topic</button>
+            </div>
           </div>
           <br></br>
           <div className="btnbottom">

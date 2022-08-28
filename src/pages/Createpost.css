@@ -113,8 +113,27 @@
 }
 
 .bottom {
+  display: flex;
   margin-left: 290px;
   font-size: 25px;
+}
+
+.tagbox {
+  margin-left: 20px;
+}
+
+.edittopic {
+  background: #E7DB73;
+  border-radius: 16px;
+  border: none;
+  height: 35px;
+  width: 80px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.edittopic:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }
 
 .btnbottom {
