@@ -8,7 +8,7 @@ function Post() {
   return (
     <div className="PostBox">
       <div className="Header">
-        <div className="UserProfile">Image</div>
+        <div className="UserProfile"></div>
         {/* <div class="Report">Report</div> */}
         <div className="TitleHead_box">
           <h4 className="TitleHead">
@@ -28,23 +28,30 @@ function Post() {
         “เทคโนโลยีด้านคอมพิวเตอร์” เพราะในอนาคตอันใกล้นี้ เครื่องมือ อุปกรณ์
         เครื่องจักร ยานยนต์ หรือ อื่นๆ จะมีการนำ “เทคโนโลยีด้านคอมพิวเตอร์”
         เข้ามามีบทบาทมากขึ้น เพราะฉะนั้น “สาขาวิศวกรรมศาสตร์”
-        สาขาหนึ่งที่กำลังเป็นที่นิยมเป็นอย่างมากๆ นั้นก็คือ.....
+        สาขาหนึ่งที่กำลังเป็นที่นิยมเป็นอย่างมากๆ นั้นก็คือ
       </p>
 
       <div class="FakeImage">Image</div>
 
-      <h4 class="Topic">Topics : Engineering, รีวิวการเรียน</h4>
-
-      <FcLikePlaceholder class="Like" size={30} />
-      {/* <FcLike class='Liked' size={30}/> */}
-      <div class="LikeCount">123</div>
-
-      <MdOutlineModeComment class="Comment" size={30} />
-      <div class="CommentCount">123</div>
-
-      <AiOutlineShareAlt class="Share" size={30} />
-
-      <div class="More">View more</div>
+      <h4 class="Topic_text">Topics : Engineering, รีวิวการเรียน</h4>
+      <div className="interact">
+        <div className="like_box_value">
+          <FcLikePlaceholder className="Like" size={30} />
+        </div>
+        <div className="like_box">
+          <div class="LikeCount">123</div>
+        </div>
+        <div className="comment_box_value">
+          <MdOutlineModeComment className="Comment" size={30} />
+        </div>
+        <div className="comment_box">
+          <div class="CommentCount">123</div>
+        </div>
+        <div className="share_box">
+          <AiOutlineShareAlt className="Share" size={30} />
+        </div>
+        <div class="More">View more</div>
+      </div>
     </div>
   );
 }

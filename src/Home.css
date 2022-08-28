@@ -24,7 +24,7 @@
   /* float: left; */
   position: absolute;
   margin-top: 75px;
-  margin-left: 22.5%;
+  margin-left: 26.5%;
   /* margin-right: 10%; */
   width: 40%;
   /* overflow: hidden; */
@@ -39,7 +39,7 @@ div {
   /* position: absolute; */
   float: left;
   right: -60px;
-  margin-left: 55%;
+  margin-left: 59%;
   /* padding-right: 15%; */
   /* margin-left: 15%; */
   margin-top: -15px;
@@ -55,7 +55,7 @@ div {
   float: left;
   position: absolute;
   z-index: 3;
-  margin-left: 22.5%;
+  margin-left: 26.5%;
   width: 25%;
 }
 

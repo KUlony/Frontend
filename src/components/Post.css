@@ -15,6 +15,10 @@
   /* position: absolute; */
 }
 
+.Topic_text {
+  margin-top: 40px;
+}
+
 .TitleHead {
   /* position: relative; */
 }
@@ -30,11 +34,11 @@
   top: 100px;
   height: auto;
   width: 60%;
-  max-width: 500px;
+  max-width: 600px;
   margin-top: 30px;
   padding-top: 1%;
-  padding-left: 6%;
-  padding-right: 6%;
+  padding-left: 4%;
+  padding-right: 4%;
   padding-bottom: 1%;
   /* border-radius: 1%; */
   /* box-shadow: 1.5px 1.5px rgb(123, 117, 117); */
@@ -42,13 +46,14 @@
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 8px;
   /* overflow: scroll; */
+  margin-bottom: 10px;
 }
 
 .UserProfile {
   background-color: black;
   border-radius: 50%;
-  height: 60px;
-  width: 60px;
+  height: 40px;
+  width: 40px;
   float: left;
   margin-right: 20px;
 }
@@ -58,11 +63,71 @@
   margin: auto;
   height: 200px;
   width: 100%;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .Content {
   margin-top: 20px;
-  height: 20%;
+  height: auto;
+  max-height: 87px;
+  text-overflow: ellipsis;
   overflow: hidden;
+  white-space: normal;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.like_box_value,
+.comment_box_value,
+.share_box {
+  float: left;
+  margin-left: 10px;
+}
+
+.like_box_value {
+  margin-top: -4px;
+  margin-left: 0px;
+}
+
+.like_box {
+  float: left;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+
+.comment_box {
+  margin-top: 2px;
+  float: left;
+  margin-left: 10px;
+}
+
+.comment_box_value {
+  margin-left: 30px;
+}
+
+.share_box {
+  margin-left: 30px;
+}
+
+.interact {
+  padding-bottom: 26px;
+  width: 100%;
+}
+
+.More {
+  /* margin-top: 1px; */
+  /* float: right; */
+  /* margin-top: -8px; */
+  height: auto;
+  width: auto;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  background-color: #d6ebe0;
+  position: absolute;
+  margin-left: 70%;
+  /* border-radius: 5%; */
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
