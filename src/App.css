@@ -1,5 +1,11 @@
-body {
-  position: center;
+* {
+  font-family: 'Prompt', sans-serif;
+  font-family: 'Quicksand', sans-serif; 
+  /* font-family: 'Quicksand'; */
+  font-style: normal;
+  align-content: center;
+  margin: 0px;
+  padding: 0px;
 }
 
 .App {
