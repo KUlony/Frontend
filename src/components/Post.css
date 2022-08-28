@@ -28,13 +28,20 @@
   background-color: white;
   margin: auto;
   top: 100px;
-  height: 660px;
+  height: auto;
   width: 60%;
+  max-width: 500px;
   margin-top: 30px;
   padding-top: 1%;
   padding-left: 6%;
   padding-right: 6%;
   padding-bottom: 1%;
+  /* border-radius: 1%; */
+  /* box-shadow: 1.5px 1.5px rgb(123, 117, 117); */
+  border: 1px solid #f5f5f5;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 8px;
+  /* overflow: scroll; */
 }
 
 .UserProfile {
@@ -43,12 +50,19 @@
   height: 60px;
   width: 60px;
   float: left;
+  margin-right: 20px;
 }
 
 .FakeImage {
   background-color: rgb(175, 175, 175);
   margin: auto;
   height: 200px;
-  width: 700px;
+  width: 100%;
   padding: 20px;
+}
+
+.Content {
+  margin-top: 20px;
+  height: 20%;
+  overflow: hidden;
 }
