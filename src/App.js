@@ -1,10 +1,11 @@
-import logo from "./logo.svg"
 import "./App.css"
-import Createpost from "./pages/Createpost"
+import NavBar from "./components/NavBar.js"
+import Createpost from "./pages/Createpost.js"
 
 function App() {
   return (
     <div>
+      <NavBar />
       <Createpost />
     </div>
   )

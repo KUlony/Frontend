@@ -1,5 +1,4 @@
 import React from "react"
-// import NavBar from "../components/NavBar"
 import "./Createpost.css"
 
 function Createpost() {
@@ -25,7 +24,6 @@ function Createpost() {
 
   return (
     <div>
-      {/* <NavBar /> */}
       <div className="all">
         <div className="createTitle">
           <h1 className="create">Create a post</h1>
