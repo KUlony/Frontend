@@ -1,0 +1,107 @@
+.home_search {
+  /* position: absolute; */
+  background-color: rgb(253, 253, 253);
+  /* background-color: aqua; */
+  /* height: 200px; */
+  height: 29vh;
+  width: 100%;
+  /* max-height: 500px; */
+  /* overflow: hidden; */
+}
+
+.Nav_home {
+  height: 11vh;
+}
+
+.Home_post {
+  background-color: #f8f5d5;
+  height: 60vh;
+  width: 100%;
+  overflow: scroll;
+}
+
+.home_search_lorem {
+  /* float: left; */
+  position: absolute;
+  margin-top: 75px;
+  margin-left: 26.5%;
+  /* margin-right: 10%; */
+  width: 40%;
+  /* overflow: hidden; */
+  /* padding-right: min(10px, 20%); */
+}
+div {
+  /* display: none; */
+  margin: 0;
+}
+
+.think_img {
+  /* position: absolute; */
+  float: left;
+  right: -60px;
+  margin-left: 59%;
+  /* padding-right: 15%; */
+  /* margin-left: 15%; */
+  margin-top: -15px;
+  width: 250px;
+  height: 250px;
+  /* padding-left: min(100px, 20%); */
+  /* margin-left: clamp(300px, 25vw, 1000000000px); */
+}
+
+.home_search_input {
+  margin-top: 130px;
+  /* float: inline-end; */
+  float: left;
+  position: absolute;
+  z-index: 3;
+  margin-left: 26.5%;
+  width: 25%;
+}
+
+.search_input {
+  float: left;
+  width: 80%;
+  border: 1.5px solid rgb(0, 0, 0);
+}
+
+.search-button {
+  position: absolute;
+  float: left;
+  border: 1.5px solid rgb(0, 0, 0);
+  height: 22px;
+  width: 22px;
+  background-color: black;
+}
+
+.Nav_topic {
+  position: sticky;
+  top: 0;
+  text-align: center;
+  height: 50px;
+  background-color: #f8f5d5;
+  /* background-color: #339c64; */
+  z-index: 2;
+}
+
+.Topic {
+  /* position: absolute; */
+  margin-top: 15px;
+  float: left;
+  width: 6%;
+  /* min-width: 50px; */
+  margin-left: 22%;
+  margin-right: 22%;
+  /* margin: auto; */
+}
+
+.Topic:hover {
+  color: #339c64;
+  border-bottom: 1px solid #339c64;
+  border-width: 2px;
+}
+
+.Home_page {
+  height: 100vh;
+  overflow: hidden;
+}
