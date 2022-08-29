@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt&family=Quicksand&display=swap');
+
+* {
+    font-family: 'Prompt', sans-serif;
+    font-family: 'Quicksand', sans-serif; 
+}
+div {
+    color: white;
+    display: inline-block;
+    height: 99px;
+    
+
+}
+.Container {
+    background-color: #339c64;
+    height: 99px;
+    position: sticky;
+    top: 0;
+    width: 1440px;
+    
+}
+
+.Kulony, .Home, .MyPost, .RequestTopic {
+    font-size: 20px;
+    padding-top: 52px; 
+    padding-left: 35px;
+    padding-right: 35px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.CreatePost {
+    margin-left: 450px;
+    border: 1px solid white;
+    height: 25px;
+    width: 250px;
+    text-align: center;
+    align-content: center;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.Bell {
+    display: inline-block;
+    padding-left: 30px;
+    margin-top: 52px;
+}
