@@ -1,14 +1,14 @@
-import React from "react";
-import NavBar from "./components/NavBar";
-import Post from "./components/Post";
-import "./Home.css";
-import Think from "./think.png";
-import search from "./search.png";
+import React from "react"
+import NavBar from "./components/NavBar"
+import Post from "./components/Post"
+import "./Home.css"
+import Think from "./think.png"
+import search from "./search.png"
 
 function Home() {
   return (
     <div className="Home_page">
-      <div className="Nav">
+      <div className="Nav_home">
         <NavBar />
       </div>
       <div className="home_search">
@@ -47,7 +47,7 @@ function Home() {
         <Post />
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
