@@ -1,9 +1,9 @@
-import React from "react";
-import "./NavBar.css";
-import bell from "../picture/Colorbell.png";
-import vector from "../picture/Vector.png";
-import logo from "../picture/Logo.png";
-import { Link } from "react-router-dom";
+import React from "react"
+import "./NavBar.css"
+import bell from "../picture/Colorbell.png"
+import vector from "../picture/Vector.png"
+import logo from "../picture/Logo.png"
+import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
@@ -23,8 +23,10 @@ function Navbar() {
       </li>
       <li className="request-topic">REQUEST TOPIC</li>
       <li className="space"></li>
-      <li className="create-new-post">
-        <div class="border-create-post">Create new post</div>
+      <li>
+        <Link to="/createnewpost" className="create-new-post">
+          <div class="border-create-post">Create new post</div>
+        </Link>
       </li>
       <li className="bell">
         <img src={bell} width="20px" height="25px" alt="" />
@@ -35,7 +37,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

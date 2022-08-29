@@ -1,9 +1,9 @@
-import React from "react";
-import NavBar from "../components/NavBar";
-import Post from "../components/Post";
-import "./Home.css";
-import Think from "../picture/think.png";
-import search from "../picture/search.png";
+import React from "react"
+import NavBar from "../components/NavBar"
+import Post from "../components/Post"
+import "./Home.css"
+import Think from "../picture/think.png"
+import search from "../picture/search.png"
 
 function Home() {
   return (
@@ -14,7 +14,7 @@ function Home() {
       <div className="home_search">
         <div className="home_search_lorem">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-          samjdnmlaskmdlksadl kaslk dmaslkdmlkasm
+          samjdnml askmdlksadl kaslk dmaslkdmlkasm
         </div>
         <img src={Think} alt="Girl in a jacket" className="think_img"></img>
         <div className="home_search_input">
@@ -47,7 +47,7 @@ function Home() {
         <Post />
       </div>
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home
