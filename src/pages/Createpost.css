@@ -81,7 +81,7 @@
 
 .head {
   display: flex;
-  margin-left: 290px;
+  margin-left: 20%;
 }
 
 .namet {
@@ -90,7 +90,7 @@
 }
 
 .conbody {
-  margin-left: 290px;
+  margin-left: 20%;
 }
 
 .content {
@@ -114,7 +114,7 @@
 
 .bottom {
   display: flex;
-  margin-left: 290px;
+  margin-left: 20%;
   font-size: 25px;
 }
 

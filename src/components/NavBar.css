@@ -12,6 +12,7 @@
   width: 100%;
   height: 99px;
   background-color: #339c64;
+  z-index: 99999;
 }
 
 .kulony {
