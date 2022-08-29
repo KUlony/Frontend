@@ -1,9 +1,9 @@
-import React from "react"
-import NavBar from "./components/NavBar"
-import Post from "./components/Post"
-import "./Home.css"
-import Think from "./think.png"
-import search from "./search.png"
+import React from "react";
+import NavBar from "../components/NavBar";
+import Post from "../components/Post";
+import "./Home.css";
+import Think from "../picture/think.png";
+import search from "../picture/search.png";
 
 function Home() {
   return (
@@ -27,7 +27,7 @@ function Home() {
               placeholder="Search"
             />
             <button className="search-button">
-              <img src={search} width="10px" height="10px" />
+              <img src={search} width="10px" height="10px" alt="" />
             </button>
           </form>
         </div>
@@ -47,7 +47,7 @@ function Home() {
         <Post />
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./Post.css";
-import { FcLike, FcLikePlaceholder } from "react-icons/fc";
+import { FcLikePlaceholder } from "react-icons/fc";
 import { MdOutlineModeComment } from "react-icons/md";
 import { AiOutlineShareAlt } from "react-icons/ai";
 
