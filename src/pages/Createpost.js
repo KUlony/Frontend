@@ -42,7 +42,7 @@ function Createpost() {
                 cols="50"
                 maxLength="70"
               ></textarea>
-              {/* <span id="char_count">70/70</span> */}
+              <span id="char_count">70/70</span>
             </div>
             <div className="allcover">
               <div className="cover">
