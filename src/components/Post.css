@@ -116,6 +116,7 @@
 }
 
 .More {
+  /* list-style-type: none; */
   text-align: center;
   font-size: 100%;
   /* margin-top: 1px; */
@@ -127,7 +128,13 @@
   padding-bottom: 5px;
   padding-left: 3%;
   padding-right: 3%;
+  color: black;
+  font-size: 16px;
+  left: -5%;
+  bottom: 3%;
   background-color: #d6ebe0;
+  text-decoration: none;
+  position: absolute;
   /* position: absolute; */
   margin-right: 10%;
   margin-left: 80%;
