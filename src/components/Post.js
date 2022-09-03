@@ -4,6 +4,7 @@ import { FcLikePlaceholder } from "react-icons/fc";
 import { MdOutlineModeComment, MdTitle } from "react-icons/md";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import Post_generator from "./Post_generator";
+import { Link } from "react-router-dom";
 
 function Post(props) {
   const { title, like, post_content, photo } = props;
@@ -39,7 +40,18 @@ function Post(props) {
         <div className="share_box">
           <AiOutlineShareAlt className="Share" size={30} />
         </div>
-        <div class="More">View more</div>
+        <Link
+          to="/viewpost"
+          className="More"
+          state={{
+            title: { title },
+            like: { like },
+            post_content: { post_content },
+            photo: { photo },
+          }}
+        >
+          viewpost{" "}
+        </Link>
       </div>
     </div>
   );
