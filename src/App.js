@@ -1,6 +1,6 @@
 import "./App.css"
 import NavBar from "./components/NavBar.js"
-import Createpost from "./pages/Createpost.js"
+import Createpost from "./Pages/Createpost.js"
 
 function App() {
   return (

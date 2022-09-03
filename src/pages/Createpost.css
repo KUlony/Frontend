@@ -1,8 +1,8 @@
 .createTitle {
   position: relative;
-  margin-left: 1200px;
+  margin-left: 70%;
   margin-top: 120px;
-  margin-bottom: 50px;  
+  margin-bottom: 50px;
 
   /* H2 */
   /* font-family: 'Quicksand';
@@ -16,16 +16,26 @@
   color: #000000;
 }
 
+
+.all {
+  width: 100%;
+  overflow: hidden;
+}
 /* .allcontent {
   position: relative;
 } */
 
 .cover {
-  position: relative;
+  /* position: relative; */
+  width: 100%;
   display: flex;
   margin-bottom: 20px;
   font-size: 25px;
 }
+
+/* .namec {
+  width: 20%;
+} */
 
 .op {
   margin-left: 10px;
@@ -33,7 +43,8 @@
 }
 
 .allcover {
-  margin-left: 100px;
+  /* margin-left: 10%; */
+  width: 100%;
 }
 
 .btcover {
@@ -52,7 +63,7 @@
 
 .btcontent {
   position: absolute;
-  right: 250px;
+  right: 20%;
   top: 630px;
   width: 120px;
   height: 38px;
@@ -67,13 +78,17 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }
 
+.title {
+  width: 180%;
+}
+
 .inputTitle {
   background: #F8F5D5;
   border: 1px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 582px;
-  height: 16px;
+  width: 80%;
+  height: 50%;
   padding: 10px;
   outline: none;
   border-radius: 5px;
@@ -81,7 +96,9 @@
 
 .head {
   display: flex;
-  margin-left: 290px;
+  margin: auto auto 20px;
+  width: 80%;
+  justify-content: center;
 }
 
 .namet {
@@ -90,7 +107,9 @@
 }
 
 .conbody {
-  margin-left: 290px;
+  margin: auto;
+  width: 80%;
+  /* margin-left: 290px; */
 }
 
 .content {
@@ -99,7 +118,7 @@
 }
 
 .inputContent {
-  width: 980px;
+  width: 80%;
   height: 301px;
   resize: none;
   background: #F8F5D5;
@@ -114,7 +133,8 @@
 
 .bottom {
   display: flex;
-  margin-left: 290px;
+  margin: auto;
+  width: 80%;
   font-size: 25px;
 }
 
