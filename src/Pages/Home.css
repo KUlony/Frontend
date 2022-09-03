@@ -22,11 +22,13 @@
 
 .home_search_lorem {
   /* float: left; */
+
   position: absolute;
-  margin-top: 75px;
+  margin-top: 60px;
   margin-left: 26.5%;
   /* margin-right: 10%; */
   width: 40%;
+  font-size: 30px;
   /* overflow: hidden; */
   /* padding-right: min(10px, 20%); */
 }
