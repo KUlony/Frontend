@@ -1,19 +1,43 @@
-import React from 'react'
-import './NavBar.css'
-import {FaRegBell} from 'react-icons/fa'
+import React from "react"
+import "./NavBar.css"
+import bell from "../picture/Colorbell.png"
+import vector from "../picture/Vector.png"
+import logo from "../picture/Logo.png"
+import { Link } from "react-router-dom"
 
-function NavBar() {
+function Navbar() {
   return (
-    <div className='Container'>
-        <div className='Kulony'>KULONY</div>
-        <div className='Home'>HOME</div>
-        <div className='MyPost'>MY POST</div>
-        <div className='RequestTopic'>REQUEST TOPIC</div>
-        <div className='CreatePost'>Create new post</div>
-        <FaRegBell className='Bell' size={20}/>
-        
-    </div>
+    <ul className="Nav">
+      <li className="kulony">
+        <img src={logo} width="70%" height="60%" alt="" />
+      </li>
+      <li>
+        <Link to="/home" className="home">
+          HOME{" "}
+        </Link>
+      </li>
+      <li>
+        <Link to="/mypost" className="my-post">
+          MY POST{" "}
+        </Link>
+      </li>
+      <li className="request-topic">REQUEST TOPIC</li>
+      <li className="space"></li>
+      <li>
+        <Link to="/createnewpost" className="create-new-post">
+          <div class="border-create-post">Create new post</div>
+        </Link>
+      </li>
+      <li className="bell">
+        <img src={bell} width="20px" height="25px" alt="" />
+      </li>
+      <li>
+        <Link to="/profile" className="vector">
+          <img src={vector} width="40px" height="40px" alt="" />
+        </Link>
+      </li>
+    </ul>
   )
 }
 
-export default NavBar
+export default Navbar
