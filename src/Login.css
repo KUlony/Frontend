@@ -1,41 +1,50 @@
-.talk_img {
-    width: 500px;
-    height: 500px;
+* {
+    font-family: 'Quicksand';
+    font-style: normal;
 }
 
-input {
+.talk_img {
     position: absolute;
-    background: #F8F5D5;
-    border-radius: 16px;
+    width: 800px;
+    height: 800px;
 }
 
 h1 {
     position: absolute;
-    width: 164px;
+    width: 180px;
     height: 60px;
-    left: 892px;
-    top: 239px;
-    font-family: 'Quicksand';
-    font-style: normal;
+    left: 930px;
+    top: 150px;
     font-weight: 700;
     font-size: 48px;
     line-height: 60px;
     color: #339C64;
 }
 
-
-#email {
+input {
+    position: absolute;
+    background: #F8F5D5;
+    border-radius: 16px;
+    font-size: 28px;
     width: 425px;
     height: 70px;
-    left: 761px;
-    top: 401px;
+    left: 800px;
+}
+
+::placeholder {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 0.03em;
+    color: #989898;
+}
+
+#email {
+    top: 300px;
 }
 
 #password {
-    width: 425px;
-    height: 70px;
-    left: 761px;
-    top: 506px;
+    top: 400px;
 }
 
 .login-button {
@@ -49,9 +58,23 @@ h1 {
     position: absolute;
     width: 425px;
     height: 67px;
-    left: 761px;
-    top: 647px;
+    left: 800px;
+    top: 550px;
     background: #339C64;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 32px;
+    font-size: 32px;
+}
+
+.sign-up {
+    position: absolute;
+    width: 425px;
+    height: 35px;
+    left: 850px;
+    top: 680px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+    letter-spacing: 0.03em;
+    color: #000000;
 }
