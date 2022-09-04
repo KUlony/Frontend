@@ -172,6 +172,11 @@
   color: black;
   font-weight: 600;
   font-size: 24px;
+  transition-duration: 0.2s;
+}
+
+.backtohome:hover {
+  color: #339C64;
 }
 
 .postbtn {
