@@ -1,9 +1,9 @@
-import "./App.css";
+import "./App.css"
 // import NavBar from "./components/NavBar";
-import Home from "./Pages/Home";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import MyPost from "./Pages/MyPost";
-import Profile from "./Pages/Profile";
+import Home from "./Pages/Home"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import MyPost from "./Pages/MyPost"
+import Profile from "./Pages/Profile"
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

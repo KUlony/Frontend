@@ -1,9 +1,9 @@
-import React from "react";
-import "./NavBar.css";
-import bell from "../picture/Colorbell.png";
-import vector from "../picture/Vector.png";
-import logo from "../picture/Logo.png";
-import { Link } from "react-router-dom";
+import React from "react"
+import "./NavBar.css"
+import bell from "../picture/Colorbell.png"
+import vector from "../picture/Vector.png"
+import logo from "../picture/Logo.png"
+import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
@@ -35,7 +35,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
