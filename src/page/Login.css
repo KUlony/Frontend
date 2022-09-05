@@ -1,0 +1,84 @@
+.column_login {
+    float: left;
+    box-sizing: border-box;
+    width: 50%;
+    height: 100vh;
+    padding: 50px;
+}
+  
+.row_login:after {
+    display: table;
+    clear: both;
+}
+
+.img_login {
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    margin-top: 10%;
+}
+
+.header_login {
+    font-family: 'Quicksand';
+    font-style: bolder;
+    text-align: center;
+    font-size: 48px;
+    color: #339C64;
+    margin-top: 20%;
+    margin-bottom: 50px;
+}
+
+.input_login {
+    background: #F8F5D5;
+    border-radius: 16px;
+    font-size: 28px;
+    width: 80%;
+    height: 70px;
+    margin-left: 10%;
+    margin-bottom: 50px;
+    padding-left: 20px;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 28px;
+}
+
+.button_login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+    gap: 10px;
+
+    width: 85%;
+    margin-left: 10%;
+    margin-bottom: 50px;
+
+    background-color: #339C64;
+    
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-size: 28px;
+    color: white;
+    font-weight: bolder;
+}
+
+.qa_login {
+    text-align: center;
+
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-size: 20px;
+    color: #000000;
+}
+
+.link_login {
+    color: #339C64;
+    font-weight: bolder;
+    outline: none;
+    text-decoration: none;
+}
