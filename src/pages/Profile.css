@@ -184,6 +184,7 @@
   padding: 10px;
 }
 /* .facultyForm:after {
+  background-color: #000;
   border-left: 6px solid transparent;
   border-right: 6px solid transparent;
   border-top: 6px solid #339c64;
@@ -194,7 +195,7 @@
   z-index: 98;
 } */
 .facultyForm select {
-  width: 120px;
+  width: 150px;
   border: 0;
   position: relative;
   z-index: 99;

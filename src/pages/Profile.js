@@ -10,7 +10,7 @@ import './Profile.css'
 function Profile() {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <div className="profile">
         {/* <div className="user-profile">
           <button> User Profile </button> <br />
@@ -121,7 +121,7 @@ function Profile() {
             </form>
           </div>
         </div>
-        <ul className="user-bot">
+        {/* <ul className="user-bot">
           <li>
             <Link to="/" className="logout">
               <div className="borderLogout">
@@ -146,7 +146,7 @@ function Profile() {
               <div className="borderSave"> SAVE</div>
             </Link>
           </li>
-        </ul>
+        </ul> */}
       </div>
     </div>
   )
