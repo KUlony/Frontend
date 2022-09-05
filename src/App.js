@@ -2,7 +2,7 @@ import "./App.css"
 // import { GoogleLogin, GoogleLogout } from "react-google-login"
 // import { gapi } from "gapi-script"
 // import { useState, useEffect } from "react"
-import Login from "./Login"
+import Login from "./Pages/Login"
 
 function App() {
   // const clientId =
