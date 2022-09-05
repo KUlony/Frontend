@@ -11,7 +11,7 @@ function Register() {
         <input className="input_register" type="email" placeholder="EMAIL"></input>
         <input className="input_register" type="password" placeholder="PASSWORD"></input>
         <input className="input_register" type="password" placeholder="CONFIRM PASSWORD"></input>
-        <button className="button_register" onClick="">SIGN-UP</button>   
+        <button className="button_register" onClick="">SIGN UP</button>   
         <div className="qa_register">
           Already have an account? <Link className="link_register" to='/login'>Log-in</Link>
         </div>
