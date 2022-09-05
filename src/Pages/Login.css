@@ -1,0 +1,80 @@
+* {
+    font-family: 'Quicksand';
+    font-style: normal;
+}
+
+.talk_img {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+}
+
+.logintitle {
+    position: absolute;
+    width: 180px;
+    height: 60px;
+    left: 930px;
+    top: 150px;
+    font-weight: 700;
+    font-size: 48px;
+    line-height: 60px;
+    color: #339C64;
+}
+
+.email,.password{
+    position: absolute;
+    background: #F8F5D5;
+    border-radius: 16px;
+    font-size: 28px;
+    width: 425px;
+    height: 70px;
+    left: 800px;
+}
+
+.email,.password::placeholder {
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 35px;
+    letter-spacing: 0.03em;
+    color: #989898;
+}
+
+#email {
+    top: 300px;
+}
+
+#password {
+    top: 400px;
+}
+
+.login-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 16px 96px;
+    gap: 10px;
+
+    position: absolute;
+    width: 425px;
+    height: 67px;
+    left: 800px;
+    top: 550px;
+    background: #339C64;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    font-size: 32px;
+}
+
+.sign-up {
+    position: absolute;
+    width: 425px;
+    height: 35px;
+    left: 850px;
+    top: 680px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+    letter-spacing: 0.03em;
+    color: #000000;
+}

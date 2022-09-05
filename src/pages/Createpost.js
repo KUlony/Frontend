@@ -39,12 +39,12 @@ function Createpost() {
                 className="inputTitle"
                 id="inputT"
                 type="text"
-                placeholder="Maximum 70 characters"
+                placeholder="Maximum 200 characters"
                 rows="1"
                 cols="50"
-                maxLength="70"
+                maxLength="200"
               ></textarea>
-              <span id="char_count">70/70</span>
+              <span id="char_count">200/200</span>
             </div>
             <div className="allcover">
               <div className="cover">
