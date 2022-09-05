@@ -10,8 +10,18 @@ function Login() {
       <h1 className="logintitle">LOG-IN</h1>
 
       <div className="form-group">
-        <input id="email" type="email" placeholder=" EMAIL"></input>
-        <input id="password" type="password" placeholder=" PASSWORD"></input>
+        <input
+          className="email"
+          id="email"
+          type="email"
+          placeholder=" EMAIL"
+        ></input>
+        <input
+          className="password"
+          id="password"
+          type="password"
+          placeholder=" PASSWORD"
+        ></input>
       </div>
 
       <button className="login-button" onClick="">
