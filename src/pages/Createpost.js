@@ -52,7 +52,7 @@ function Createpost() {
                 <p className="op">(Optional)</p>
               </div>
               <button type="button" className="btcover">
-                Add image
+                Add image <i class="bi bi-image"></i>
               </button>
             </div>
           </div>
@@ -63,18 +63,22 @@ function Createpost() {
               className="inputContent"
               id="inputContent"
               type="text"
+              placeholder="Maximum 5000 characters"
               rows="20"
               cols="100"
+              maxLength="5000"
             ></textarea>
             <button type="button" className="btcontent">
-              Add image
+              Add image <i class="bi bi-image"></i>
             </button>
           </div>
           <br></br>
           <div className="bottom">
             <p className="topic">Topic</p>
             <div className="tagbox">
-              <button className="edittopic">Edit topic</button>
+              <button className="edittopic">
+                Edit topic <i class="bi bi-plus-circle-fill"></i>
+              </button>
             </div>
           </div>
           <br></br>
