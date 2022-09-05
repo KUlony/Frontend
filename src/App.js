@@ -2,9 +2,10 @@ import "./App.css"
 // import { GoogleLogin, GoogleLogout } from "react-google-login"
 // import { gapi } from "gapi-script"
 // import { useState, useEffect } from "react"
+
 import Login from "./page/Login"
 import Register from "./page/Register"
-import { Route, Routes, Navigate } from 'react-router-dom';
+import { Route, Routes, Navigate } from 'react-router-dom'
 
 function App() {
   // const clientId =
