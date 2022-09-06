@@ -33,41 +33,46 @@ function Home() {
   ];
   return (
     <div className="Home_page">
-      <div className="Nav_home">
-        <NavBar />
-      </div>
-      <div className="home_search">
-        <div className="home_search_box">
-          <h1 className="home_search_title">Kulony Best Community</h1>
-          <div className="home_search_input">
-            <form>
-              <input
-                type="text"
-                required
-                className="search_input"
-                placeholder="Search"
-              />
-              <button className="search-button">
-                <img src={search} width="14px" height="14px" alt="" />
-              </button>
-            </form>
+      <div className="home_test">
+        <div className="Nav_home">
+          <NavBar />
+        </div>
+        <div className="home_search">
+          <div className="home_search_box">
+            <h1 className="home_search_title">Kulony Best Community</h1>
+            <div className="home_search_input">
+              <form>
+                <input
+                  type="text"
+                  required
+                  className="search_input"
+                  placeholder="Search"
+                />
+                <button className="search-button">
+                  <img src={search} width="14px" height="14px" alt="" />
+                </button>
+              </form>
+            </div>
+          </div>
+          <div className="think_img_box">
+            <img
+              src={Think}
+              alt="Girl in a jacket"
+              className="think_img_photo"
+            ></img>
           </div>
         </div>
-        <div className="think_img_box">
-          <img
-            src={Think}
-            alt="Girl in a jacket"
-            className="think_img_photo"
-          ></img>
-        </div>
-      </div>
 
-      <div className="Home_post">
-        <nav className="Nav_topic">
-          <div className="Topic">Discover</div>
-          <div className="Topic">General</div>
-        </nav>
-        <Post_generator data={testdata} />
+        <div className="Home_post">
+          <nav className="Nav_topic">
+            <div className="Topic">Discover</div>
+            <div className="Topic">General</div>
+          </nav>
+          <Post_generator data={testdata} />
+          <Post_generator data={testdata} />
+          <Post_generator data={testdata} />
+          {/* <div className="home_block"></div> */}
+        </div>
       </div>
     </div>
   );

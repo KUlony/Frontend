@@ -1,25 +1,42 @@
 .home_search {
-  /* position: absolute; */
-  background-color: rgb(253, 253, 253);
-  /* background-color: aqua; */
-  /* height: 200px; */
-  height: 300px;
+  position: sticky;
+
+  /* height: 600px; */
   width: 100%;
-  max-height: 32vh;
-  padding-top: 25px;
-  /* padding-bottom: 5px; */
-  float: left;
+  /* max-height: 32vh; */
+  /* padding-top: 25px; */
+  /* float: left; */
+  top: 99px;
+  background-color: white;
+  z-index: 3;
 }
 
 .Nav_home {
-  height: 11vh;
+  /* height: 11vh; */
+  /* max-height: 99px;   */
+  height: 99px;
+  position: sticky;
+  z-index: 3;
+}
+
+.home_test {
+  height: 100vh;
+  overflow: scroll;
 }
 
 .Home_post {
   background-color: #f8f5d5;
-  height: 57vh;
+  height: auto;
+  /* max-height: 57vh; */
   width: 100%;
   overflow: scroll;
+  padding-bottom: 30px;
+}
+
+.home_block {
+  background-color: #f8f5d5;
+  height: 100px;
+  width: 100px;
 }
 
 .home_search_lorem {
@@ -43,7 +60,7 @@ div {
   position: absolute;
   left: 20%;
   /* text-align: center; */
-  top: 125px;
+  margin-top: 40px;
 }
 
 .home_search_box {
@@ -101,8 +118,8 @@ div {
   position: absolute;
   float: left;
   border: 1.5px solid rgb(0, 0, 0);
-  height: 30px;
-  width: 30px;
+  height: 28px;
+  width: 28px;
   background-color: black;
 }
 

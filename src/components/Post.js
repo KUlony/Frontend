@@ -17,6 +17,14 @@ function Post(props) {
         <div className="TitleHead_box">
           <h4 className="TitleHead">{title}</h4>
         </div>
+        {/* <div>
+          <button onclick="myFunction()" class="dropbtn">
+            Dropdown
+          </button>
+          <div id="myDropdown" class="dropdown-content">
+            <a href="#">Link 1</a>
+          </div>
+        </div> */}
       </div>
 
       <p className="Content">{post_content}</p>
