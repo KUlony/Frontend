@@ -3,10 +3,12 @@
   background-color: rgb(253, 253, 253);
   /* background-color: aqua; */
   /* height: 200px; */
-  height: 29vh;
+  height: 300px;
   width: 100%;
-  /* max-height: 500px; */
-  /* overflow: hidden; */
+  max-height: 32vh;
+  padding-top: 25px;
+  /* padding-bottom: 5px; */
+  float: left;
 }
 
 .Nav_home {
@@ -15,7 +17,7 @@
 
 .Home_post {
   background-color: #f8f5d5;
-  height: 60vh;
+  height: 57vh;
   width: 100%;
   overflow: scroll;
 }
@@ -37,32 +39,60 @@ div {
   margin: 0;
 }
 
+.home_search_title {
+  position: absolute;
+  left: 20%;
+  /* text-align: center; */
+  top: 125px;
+}
+
+.home_search_box {
+  width: 50%;
+
+  /* overflow: hidden; */
+}
+
 .think_img {
   /* position: absolute; */
   float: left;
   right: -60px;
   margin-left: 59%;
-  /* padding-right: 15%; */
-  /* margin-left: 15%; */
-  margin-top: -15px;
-  width: 250px;
-  height: 250px;
-  /* padding-left: min(100px, 20%); */
-  /* margin-left: clamp(300px, 25vw, 1000000000px); */
+  width: 330px;
+  height: 330px;
+}
+
+.think_img_box {
+  /* position: absolute; */
+  /* background-color: #339c64; */
+  /* margin-top: -140px; */
+  /* right: 3%; */
+  /* float: right; */
+  width: 50%;
+  /* margin-left: 50%; */
+  /* margin-left: min(500px, 50%); */
+  margin-left: max(600px, 50%);
+
+  /* float: left; */
+  /* position: absolute; */
+  /* left: 50%; */
+}
+
+.think_img_photo {
+  width: 322.2px;
+  height: 227.7px;
 }
 
 .home_search_input {
-  margin-top: 130px;
-  /* float: inline-end; */
-  float: left;
+  margin-top: 150px;
   position: absolute;
   z-index: 3;
-  margin-left: 26.5%;
-  width: 25%;
+  margin-left: 20%;
+  width: max(25%, 320px);
 }
 
 .search_input {
   float: left;
+  height: 25px;
   width: 80%;
   border: 1.5px solid rgb(0, 0, 0);
 }
@@ -71,8 +101,8 @@ div {
   position: absolute;
   float: left;
   border: 1.5px solid rgb(0, 0, 0);
-  height: 22px;
-  width: 22px;
+  height: 30px;
+  width: 30px;
   background-color: black;
 }
 
@@ -82,7 +112,6 @@ div {
   text-align: center;
   height: 50px;
   background-color: #f8f5d5;
-  /* background-color: #339c64; */
   z-index: 2;
 }
 
