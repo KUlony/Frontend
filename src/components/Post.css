@@ -150,3 +150,50 @@
   /* margin-bottom: min(15px, 5%); */
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+
+.btn_where3 {
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  border: none;
+  /* opacity: 0; */
+  width: 0px;
+  top: -6px;
+  right: 8px;
+}
+
+.btn_where {
+  position: absolute;
+  display: none;
+}
+
+.btn_where2 {
+  height: 64px;
+  width: 103px;
+
+  position: absolute;
+  top: 4%;
+  background-color: white;
+  z-index: 4;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.test_btn {
+  position: absolute;
+  right: 1%;
+  top: 4%;
+  margin-right: 50px;
+}
+
+.post_report_btn {
+  position: absolute;
+  bottom: 10px;
+  left: 7px;
+  background-color: white;
+  border: none;
+}
+
+.dropdown_iconri {
+  height: 40px;
+  width: 50px;
+}

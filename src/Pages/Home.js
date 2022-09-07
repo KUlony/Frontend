@@ -62,15 +62,13 @@ function Home() {
             ></img>
           </div>
         </div>
-
+        <nav className="Nav_topic">
+          <div className="Topic">Discover</div>
+          <div className="Topic">General</div>
+        </nav>
         <div className="Home_post">
-          <nav className="Nav_topic">
-            <div className="Topic">Discover</div>
-            <div className="Topic">General</div>
-          </nav>
           <Post_generator data={testdata} />
-          <Post_generator data={testdata} />
-          <Post_generator data={testdata} />
+
           {/* <div className="home_block"></div> */}
         </div>
       </div>

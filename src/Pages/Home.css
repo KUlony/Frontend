@@ -1,6 +1,6 @@
 .home_search {
   position: sticky;
-
+  height: 250px;
   /* height: 600px; */
   width: 100%;
   /* max-height: 32vh; */
@@ -20,6 +20,7 @@
 }
 
 .home_test {
+  background-color: #f8f5d5;
   height: 100vh;
   overflow: scroll;
 }
@@ -125,7 +126,7 @@ div {
 
 .Nav_topic {
   position: sticky;
-  top: 0;
+  top: 349px;
   text-align: center;
   height: 50px;
   background-color: #f8f5d5;

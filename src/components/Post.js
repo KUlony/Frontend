@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Post.css";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { MdOutlineModeComment, MdTitle } from "react-icons/md";
 import { AiOutlineShareAlt } from "react-icons/ai";
 import Post_generator from "./Post_generator";
 import { Link } from "react-router-dom";
-
+import { IoIosArrowBack } from "react-icons/io";
+import { RiArrowDropDownLine } from "react-icons/ri";
 function Post(props) {
   const { title, like, post_content, photo } = props;
   console.log(title);
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
+  const report_btn = () => {
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_where2");
+    } else {
+      setreportpost_drop("btn_where");
+    }
+  };
   return (
     <div className="PostBox">
       <div className="Header">
@@ -25,6 +34,14 @@ function Post(props) {
             <a href="#">Link 1</a>
           </div>
         </div> */}
+        <div className="test_btn">
+          <button className="btn_where3" onClick={report_btn}>
+            <RiArrowDropDownLine className="dropdown_iconri" />
+          </button>
+          <div className={reportpost_drop}>
+            <button className="post_report_btn">Report post</button>
+          </div>
+        </div>
       </div>
 
       <p className="Content">{post_content}</p>
