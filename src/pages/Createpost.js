@@ -1,15 +1,19 @@
-import React from "react"
+import React, { useEffect } from "react"
 import "./Createpost.css"
 
 function Createpost() {
-  // let textArea = document.getElementById("intputT")
-  // let characterCounter = document.getElementById("char_count")
-  // const maxNumOfChars = 70
+  useEffect(() => {
+    let textArea = document.getElementById("intputT")
+    let characterCounter = document.getElementById("char_count")
+    const maxNumOfChars = 200
+  })
+
+  // textArea ? console.log("true") : console.log("false")
 
   // const countCharacters = () => {
   //   let numOfEnteredChars = textArea.value.length
   //   let counter = maxNumOfChars - numOfEnteredChars
-  //   characterCounter.textContent = counter + "/70"
+  //   characterCounter.textContent = counter + "/200"
 
   //   if (counter <= 5) {
   //     characterCounter.style.color = "red"
@@ -20,7 +24,23 @@ function Createpost() {
   //   }
   // }
 
-  // textArea.addEventListener("input", countCharacters)
+  // textArea.addEventListener("input", () => {
+  //   console.log("get num")
+  // })
+
+  useEffect(() => {
+    document.getElementById("imagecover").onclick = function (e) {
+      var input = document.createElement("input")
+      input.type = "file"
+      input.onchange = (e) => {}
+    }
+
+    document.getElementById("imagecontent").onclick = function (e) {
+      var input = document.createElement("input")
+      input.type = "file"
+      input.click()
+    }
+  })
 
   return (
     <div>
@@ -36,7 +56,7 @@ function Createpost() {
               <textarea
                 className="inputTitle"
                 id="inputT"
-                type="text"
+                // type="text"
                 placeholder="Maximum 200 characters"
                 rows="1"
                 cols="50"
@@ -49,7 +69,7 @@ function Createpost() {
                 <p className="namec">Cover photo</p>
                 <p className="op">(Optional)</p>
               </div>
-              <button type="button" className="btcover">
+              <button type="button" className="btcover" id="imagecover">
                 Add image <i class="bi bi-image"></i>
               </button>
             </div>
@@ -66,7 +86,7 @@ function Createpost() {
               cols="100"
               maxLength="5000"
             ></textarea>
-            <button type="button" className="btcontent">
+            <button type="button" className="btcontent" id="imagecontent">
               Add image <i class="bi bi-image"></i>
             </button>
           </div>
