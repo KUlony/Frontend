@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import Post from "../components/Post";
 import "./Home.css";
@@ -7,6 +7,7 @@ import search from "../picture/search.png";
 import Post_generator from "../components/Post_generator";
 
 function Home() {
+  const [displayProfile, setdisplayProfile] = useState("none");
   const testdata = [
     {
       post_title:
@@ -31,6 +32,10 @@ function Home() {
       like: 20,
     },
   ];
+
+  const display = () => {
+    setdisplayProfile("open");
+  };
   return (
     <div className="Home_page">
       <div className="home_test">
@@ -54,7 +59,7 @@ function Home() {
               </form>
             </div>
           </div>
-          <div className="think_img_box">
+          <div className="think_img_box" onClick={display}>
             <img
               src={Think}
               alt="Girl in a jacket"
@@ -68,9 +73,11 @@ function Home() {
         </nav>
         <div className="Home_post">
           <Post_generator data={testdata} />
-
-          {/* <div className="home_block"></div> */}
         </div>
+        {/* <div className="testpost">
+          <div className={`home_post_profile ${displayProfile}`}></div>
+        </div>
+        <div className={`cover ${displayProfile}`}></div> */}
       </div>
     </div>
   );

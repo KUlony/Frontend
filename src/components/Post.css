@@ -10,28 +10,9 @@
   min-height: 60px;
 }
 
-.TitleHead_box {
-  /* height: 60px; */
-  /* padding-left: 30px; */
-  /* position: absolute; */
-  /* float: left; */
-  /* position: absolute; */
-  /* font-size: 20px; */
-  /* position: absolute; */
-}
-
 .Topic_text {
   margin-top: 40px;
 }
-
-/* .TitleHead {
-  position: relative;
-}
-.Header {
-  position: absolute;
-  float: left;
-  background-color: black;
-} */
 
 .PostBox {
   background-color: white;
@@ -41,17 +22,13 @@
   width: 60%;
   max-width: 600px;
   margin-top: 30px;
-  padding-top: 1%;
+  padding-top: 3%;
   padding-left: 4%;
   padding-right: 4%;
   padding-bottom: 1%;
-  /* border-radius: 1%; */
-  /* box-shadow: 1.5px 1.5px rgb(123, 117, 117); */
   border: 1px solid #f5f5f5;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 8px;
-  /* overflow: scroll; */
-  /* margin-bottom: 20px; */
 }
 
 .UserProfile {
@@ -121,12 +98,8 @@
 }
 
 .More {
-  /* list-style-type: none; */
   text-align: center;
   font-size: 100%;
-  /* margin-top: 1px; */
-  /* float: right; */
-  /* margin-top: -8px; */
   height: auto;
   width: min(80px, 18%);
   padding-top: 5px;
@@ -140,14 +113,8 @@
   background-color: #d6ebe0;
   text-decoration: none;
   position: absolute;
-  /* position: absolute; */
   margin-right: 10%;
   margin-left: 80%;
-  /* margin-top: -5%; */
-  /* font-size: 50%; */
-  /* margin-right: 10%; */
-  /* border-radius: 5%; */
-  /* margin-bottom: min(15px, 5%); */
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
@@ -156,7 +123,6 @@
   z-index: 5;
   background-color: white;
   border: none;
-  /* opacity: 0; */
   width: 0px;
   top: -6px;
   right: 8px;
@@ -197,3 +163,12 @@
   height: 40px;
   width: 50px;
 }
+
+/* .post_profile {
+  position: absolute;
+  width: 40%;
+  height: 50%;
+  background-color: aqua;
+  left: 30%;
+  top: 25%;
+} */

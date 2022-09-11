@@ -22,18 +22,10 @@ function Post(props) {
     <div className="PostBox">
       <div className="Header">
         <div className="UserProfile"></div>
-        {/* <div class="Report">Report</div> */}
         <div className="TitleHead_box">
           <h4 className="TitleHead">{title}</h4>
         </div>
-        {/* <div>
-          <button onclick="myFunction()" class="dropbtn">
-            Dropdown
-          </button>
-          <div id="myDropdown" class="dropdown-content">
-            <a href="#">Link 1</a>
-          </div>
-        </div> */}
+
         <div className="test_btn">
           <button className="btn_where3" onClick={report_btn}>
             <RiArrowDropDownLine className="dropdown_iconri" />
@@ -78,6 +70,7 @@ function Post(props) {
           viewpost{" "}
         </Link>
       </div>
+      {/* <div className="post_profile"></div> */}
     </div>
   );
 }
