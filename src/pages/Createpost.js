@@ -1,7 +1,25 @@
 import React, { useEffect } from "react"
 import "./Createpost.css"
+import { initializeApp } from "firebase/app"
+import { getAnalytics } from "firebase/analytics"
 
 function Createpost() {
+  var ImgName, ImgUrl
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyBxDBbM9rV1lHYXftLcqt3uwDFwo181H04",
+    authDomain: "kulony-5f1ef.firebaseapp.com",
+    projectId: "kulony-5f1ef",
+    storageBucket: "kulony-5f1ef.appspot.com",
+    messagingSenderId: "50655501627",
+    appId: "1:50655501627:web:7495323b7559c9a7986b1e",
+    measurementId: "G-BPQ130W12B",
+  }
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig)
+  const analytics = getAnalytics(app)
+
   useEffect(() => {
     let textArea = document.getElementById("intputT")
     let characterCounter = document.getElementById("char_count")
@@ -29,10 +47,20 @@ function Createpost() {
   // })
 
   useEffect(() => {
+    var files = []
     document.getElementById("imagecover").onclick = function (e) {
       var input = document.createElement("input")
       input.type = "file"
-      input.onchange = (e) => {}
+
+      input.onchange = (e) => {
+        files = e.target.files
+        var reader = new FileReader()
+        reader.onload = function () {
+          document.getElementById("").src = reader.result
+        }
+        reader.readAsDataURL(files[0])
+      }
+      input.click()
     }
 
     document.getElementById("imagecontent").onclick = function (e) {
