@@ -20,6 +20,7 @@ function App() {
           <Route path="/createnewpost" element={<Createpost />} />
         </Routes>
       </BrowserRouter>
+      <Profile />
     </div>
   )
 }

@@ -1,0 +1,254 @@
+.profile {
+  position: absolute;
+}
+.user-profile {
+  position: absolute;
+  left: 100px;
+  top: 20px;
+}
+
+.user-info {
+  position: absolute;
+  left: 110px;
+}
+.profilePic {
+  position: absolute;
+  left: 500px;
+  top: 130px;
+}
+.username {
+  position: absolute;
+  left: 700px;
+  top: 120px;
+}
+
+.bio {
+  position: absolute;
+  left: 700px;
+  top: 200px;
+}
+
+.firstname {
+  position: absolute;
+  left: 500px;
+  top: 350px;
+}
+
+.lastname {
+  position: absolute;
+  left: 750px;
+  top: 350px;
+}
+.detail {
+  position: absolute;
+  top: 450px;
+  left: 110px;
+}
+.faculty {
+  position: absolute;
+  left: 500px;
+}
+.campus {
+  position: absolute;
+  left: 680px;
+}
+.ku {
+  position: absolute;
+  left: 950px;
+}
+.department {
+  position: absolute;
+  top: 80px;
+  left: 500px;
+}
+
+.user-bot {
+  position: absolute;
+  top: 650px;
+  list-style-type: none;
+}
+.logout {
+  width: 100px;
+  position: absolute;
+  color: black;
+
+  text-decoration: none;
+  left: 200px;
+}
+
+.backToHome {
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  left: 800px;
+  top: 10px;
+  width: 150px;
+}
+
+.save {
+  position: absolute;
+  left: 1000px;
+  color: white;
+  text-decoration: none;
+}
+.borderSave {
+  border-radius: 25px;
+  padding: 10px 10px;
+  background-color: #339c64;
+}
+
+.inputFirstname {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.inputLastname {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.inputBio {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 300px;
+  height: 78px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.inputUser {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+/* .facultyForm {
+  border-radius: 25px;
+  font-size: 16px;
+  width: 120px;
+  overflow: hidden;
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px 0;
+}
+.facultyForm:after {
+  width: 0;
+  height: 0;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #339c64;
+  position: absolute;
+  top: 40%;
+  right: 5px;
+  content: '';
+  z-index: 98;
+}
+.facultyForm select {
+  width: 140px;
+  border: 0;
+  position: relative;
+  z-index: 99;
+  background: none;
+} */
+
+.facultyForm {
+  border-radius: 25px;
+  width: 120px;
+  font-size: 16px;
+  overflow: hidden;
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px;
+}
+/* .facultyForm:after {
+  background-color: #000;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 6px solid #339c64;
+  position: absolute;
+  top: 50%;
+  right: 4px;
+  content: '';
+  z-index: 98;
+} */
+.facultyForm select {
+  width: 150px;
+  border: 0;
+  position: relative;
+  z-index: 99;
+  background: none;
+}
+
+.campusForm {
+  border-radius: 25px;
+  width: 190px;
+  font-size: 16px;
+  /* overflow: hidden; */
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px;
+}
+.campusForm select {
+  width: 190px;
+  border: 0;
+  position: relative;
+  z-index: 99;
+  background: none;
+}
+
+.kuForm {
+  border-radius: 25px;
+  width: 40px;
+  font-size: 16px;
+  /* overflow: hidden; */
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px;
+}
+.kuForm select {
+  width: 40px;
+  border: 0;
+  position: relative;
+  z-index: 99;
+  background: none;
+}
+
+.departmentForm {
+  border-radius: 25px;
+  width: 190px;
+  font-size: 16px;
+  /* overflow: hidden; */
+  border: 1px solid #000;
+  position: relative;
+  padding: 10px;
+}
+.departmentForm select {
+  width: 190px;
+  border: 0;
+  position: relative;
+  z-index: 99;
+  background: none;
+}
