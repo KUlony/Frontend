@@ -35,6 +35,7 @@ function Navbar() {
         <Link to="/profile" className="vector">
           <img src={vector} width="40px" height="40px" alt="" />
         </Link>
+        <div></div>
       </li>
     </ul>
   )
