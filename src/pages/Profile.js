@@ -1,11 +1,11 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../components/NavBar'
-import profileEx from '../picture/profileexample.jpeg'
-import logout from '../picture/logout.png'
+import React from "react"
+import { Link } from "react-router-dom"
+import Navbar from "../components/NavBar"
+import profileEx from "../picture/profileexample.jpeg"
+import logout from "../picture/logout.png"
 
 // import { Navigate } from 'react-router-dom'
-import './Profile.css'
+import "./Profile.css"
 
 function Profile() {
   return (
