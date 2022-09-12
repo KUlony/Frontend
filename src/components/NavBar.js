@@ -43,6 +43,7 @@ function Navbar() {
           <BsPersonCircle size={25} className="vector-icon" />
         </Link>
       </li>
+      <div></div>
     </ul>
   )
 }
