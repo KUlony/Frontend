@@ -113,31 +113,12 @@
   overflow: hidden;
 }
 
-.home_post_profile {
+.testpost {
+  /* position: absolute; */
   position: absolute;
   top: 50%;
   margin-top: -150px;
-  width: 600px;
-  height: 300px;
-  background-color: blue;
-  z-index: 7;
-}
-
-.testpost {
+  width: 100%;
   display: flex;
   justify-content: center;
-}
-
-.cover {
-  position: absolute;
-  top: 0;
-  background-color: white;
-  height: 100vh;
-  width: 100%;
-  z-index: 6;
-  opacity: 0.5;
-}
-
-.none {
-  display: none;
 }

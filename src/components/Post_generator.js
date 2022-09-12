@@ -3,6 +3,7 @@ import Post from "./Post";
 
 function Post_generator(props) {
   const { data } = props;
+
   return (
     <div>
       {data.map((element) => {
