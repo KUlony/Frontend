@@ -11,6 +11,9 @@ function Register() {
         <input className="input_register" type="email" placeholder="EMAIL"></input>
         <input className="input_register" type="password" placeholder="PASSWORD"></input>
         <input className="input_register" type="password" placeholder="CONFIRM PASSWORD"></input>
+        <div className="tp_register">
+          By creating an account you agree to our <Link className="link_register" to='/terms&privacy'>Terms & Privacy.</Link>
+        </div>
         <button className="button_register" onClick="">SIGN UP</button>   
         <div className="qa_register">
           Already have an account? <Link className="link_register" to='/login'>Log-in</Link>

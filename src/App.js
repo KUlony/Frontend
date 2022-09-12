@@ -5,6 +5,7 @@ import "./App.css"
 
 import Login from "./page/Login"
 import Register from "./page/Register"
+import Terms from "./page/Terms"
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/terms&privacy' element={<Terms />} />
         <Route path='*' element={<Navigate to='/' />} />
       </Routes>
     </div>
