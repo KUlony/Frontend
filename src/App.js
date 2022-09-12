@@ -1,5 +1,5 @@
 import './App.css'
-import Profile from './Pages/Profile.js'
+import Profile from './pages/Profile.js'
 import NavBar from './components/NavBar.js'
 
 function App() {
