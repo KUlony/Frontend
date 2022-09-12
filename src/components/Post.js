@@ -80,7 +80,6 @@ function Post(props) {
       </div>
       <div className={`miniprofile_post ${displayProfile ? "none" : null}`}>
         <Miniprofile titlepost={title} display={display} />
-        {title}
       </div>
       <div
         className={`cover ${displayProfile ? "none" : null}`}

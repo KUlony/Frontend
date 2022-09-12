@@ -1,5 +1,6 @@
 import React from "react";
 import "./Miniprofile.css";
+import { AiOutlineClose } from "react-icons/ai";
 
 function Miniprofile(props) {
   const { titlepost, display } = props;
@@ -25,7 +26,9 @@ function Miniprofile(props) {
             <p>Contact: Lorem facebook</p>
             <p className="miniprofile_info_contact">ig</p>
           </footer>
-          <button onClick={display}>exit</button>
+          <button onClick={display} className="miniprofile_info_exit">
+            <AiOutlineClose className="miniprofile_info_exit_icon" />
+          </button>
         </section>
       </div>
     </article>

@@ -88,3 +88,16 @@
   position: relative;
   left: 67px;
 }
+
+.miniprofile_info_exit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border: none;
+}
+
+.miniprofile_info_exit_icon {
+  height: 15px;
+  width: 15px;
+}
