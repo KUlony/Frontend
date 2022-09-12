@@ -159,7 +159,9 @@ function Createpost() {
           <div className="bottom">
             <p className="topic">Topic</p>
             <div className="tagbox">
-              <button className="edittopic">Edit topic</button>
+              <button className="edittopic">
+                Edit topic <i class="bi bi-plus-circle-fill"></i>
+              </button>
             </div>
           </div>
           <br></br>
