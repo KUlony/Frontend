@@ -1,39 +1,46 @@
 import React from "react"
 import "./NavBar.css"
-import bell from "../picture/Colorbell.png"
-import vector from "../picture/Vector.png"
 import logo from "../picture/Logo.png"
+import { BsPersonCircle } from "react-icons/bs"
+import { FaRegBell } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
     <ul className="Nav">
       <li className="kulony">
-        <img src={logo} width="70%" height="60%" alt="" />
+        <img
+          src={logo}
+          width="60%"
+          height="120%"
+          alt=""
+          className="kulony-icon"
+        />
       </li>
       <li>
         <Link to="/home" className="home">
-          HOME{" "}
+          HOME
         </Link>
       </li>
       <li>
         <Link to="/mypost" className="my-post">
-          MY POST{" "}
+          MY POST
         </Link>
       </li>
       <li className="request-topic">REQUEST TOPIC</li>
-      <li className="space"></li>
+      <li className="space"> </li>
       <li>
         <Link to="/createnewpost" className="create-new-post">
           <div class="border-create-post">Create new post</div>
         </Link>
       </li>
       <li className="bell">
-        <img src={bell} width="20px" height="25px" alt="" />
+        <FaRegBell size={25} className="bell-icon" />
       </li>
+      {/* <li className='vector'><img src={vector} width='40px' height='40px' alt=""/></li> */}
       <li>
         <Link to="/profile" className="vector">
-          <img src={vector} width="40px" height="40px" alt="" />
+          <BsPersonCircle size={25} className="vector-icon" />
         </Link>
       </li>
     </ul>

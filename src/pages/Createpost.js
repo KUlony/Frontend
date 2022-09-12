@@ -117,31 +117,22 @@ function Createpost() {
                 className="inputTitle"
                 id="inputT"
                 type="text"
-                placeholder="Maximum 70 characters"
+                placeholder="Maximum 200 characters"
                 rows="1"
                 cols="50"
-                maxLength="70"
+                maxLength="200"
               ></textarea>
-<<<<<<< HEAD
-              <span id="char_count">70/70</span>
-=======
               <span id="char_count_title" className="char_count_title">
                 0/200
               </span>
->>>>>>> 3ea0a5f4429ff739cc52a2e78211a2c7afa3d5da
             </div>
             <div className="allcover">
               <div className="cover">
                 <p className="namec">Cover photo</p>
                 <p className="op">(Optional)</p>
               </div>
-<<<<<<< HEAD
-              <button type="button" className="btcover">
-                Add image
-=======
               <button type="button" className="btcover" id="imagecover">
                 Add image <i class="bi bi-image"></i>
->>>>>>> 3ea0a5f4429ff739cc52a2e78211a2c7afa3d5da
               </button>
             </div>
           </div>
@@ -152,19 +143,16 @@ function Createpost() {
               className="inputContent"
               id="inputC"
               type="text"
+              placeholder="Maximum 5000 characters"
               rows="20"
               cols="100"
+              maxLength="5000"
             ></textarea>
-<<<<<<< HEAD
-            <button type="button" className="btcontent">
-              Add image
-=======
             <span id="char_count_content" className="char_count_content">
               0/5000
             </span>
             <button type="button" className="btcontent" id="imagecontent">
               Add image <i class="bi bi-image"></i>
->>>>>>> 3ea0a5f4429ff739cc52a2e78211a2c7afa3d5da
             </button>
           </div>
           <br></br>
