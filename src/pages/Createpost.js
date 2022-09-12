@@ -4,6 +4,46 @@ import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 
 function Createpost() {
+  useEffect(() => {
+    let textArea = document.getElementById("inputT")
+    let characterCounter = document.getElementById("char_count_title")
+
+    const countCharacters = () => {
+      let numOfEnteredChars = textArea.value.length
+      characterCounter.textContent = numOfEnteredChars + "/200"
+
+      if (numOfEnteredChars >= 195) {
+        characterCounter.style.color = "red"
+      } else if (numOfEnteredChars >= 180) {
+        characterCounter.style.color = "orange"
+      } else {
+        characterCounter.style.color = "black"
+      }
+    }
+
+    textArea.addEventListener("input", countCharacters)
+  })
+
+  useEffect(() => {
+    let textArea = document.getElementById("inputC")
+    let characterCounter = document.getElementById("char_count_content")
+
+    const countCharacters = () => {
+      let numOfEnteredChars = textArea.value.length
+      characterCounter.textContent = numOfEnteredChars + "/5000"
+
+      if (numOfEnteredChars >= 4995) {
+        characterCounter.style.color = "red"
+      } else if (numOfEnteredChars >= 4950) {
+        characterCounter.style.color = "orange"
+      } else {
+        characterCounter.style.color = "black"
+      }
+    }
+
+    textArea.addEventListener("input", countCharacters)
+  })
+
   var ImgName, ImgUrl
 
   const firebaseConfig = {
@@ -21,32 +61,6 @@ function Createpost() {
   const analytics = getAnalytics(app)
 
   useEffect(() => {
-    let textArea = document.getElementById("intputT")
-    let characterCounter = document.getElementById("char_count")
-    const maxNumOfChars = 200
-  })
-
-  // textArea ? console.log("true") : console.log("false")
-
-  // const countCharacters = () => {
-  //   let numOfEnteredChars = textArea.value.length
-  //   let counter = maxNumOfChars - numOfEnteredChars
-  //   characterCounter.textContent = counter + "/200"
-
-  //   if (counter <= 5) {
-  //     characterCounter.style.color = "red"
-  //   } else if (counter < 20) {
-  //     characterCounter.style.color = "orange"
-  //   } else {
-  //     characterCounter.style.color = "black"
-  //   }
-  // }
-
-  // textArea.addEventListener("input", () => {
-  //   console.log("get num")
-  // })
-
-  useEffect(() => {
     var files = []
     document.getElementById("imagecover").onclick = function (e) {
       var input = document.createElement("input")
@@ -54,11 +68,17 @@ function Createpost() {
 
       input.onchange = (e) => {
         files = e.target.files
-        var reader = new FileReader()
-        reader.onload = function () {
-          document.getElementById("").src = reader.result
+        // console.log(files[0].type)
+        if (files[0].type !== "image/jpg") {
+          alert("only .jpg .jpeg .png")
+          return
         }
+        var reader = new FileReader()
+        // reader.onload = function () {
+        //   document.getElementById("").src = reader.result
+        // }
         reader.readAsDataURL(files[0])
+        console.log(files[0])
       }
       input.click()
     }
@@ -66,6 +86,16 @@ function Createpost() {
     document.getElementById("imagecontent").onclick = function (e) {
       var input = document.createElement("input")
       input.type = "file"
+
+      input.onchange = (e) => {
+        files = e.target.files
+        var reader = new FileReader()
+        // reader.onload = function () {
+        //   document.getElementById("").src = reader.result
+        // }
+        reader.readAsDataURL(files[0])
+        console.log(files[0])
+      }
       input.click()
     }
   })
@@ -84,13 +114,15 @@ function Createpost() {
               <textarea
                 className="inputTitle"
                 id="inputT"
-                // type="text"
+                type="text"
                 placeholder="Maximum 200 characters"
                 rows="1"
                 cols="50"
                 maxLength="200"
               ></textarea>
-              <span id="char_count">200/200</span>
+              <span id="char_count_title" className="char_count_title">
+                0/200
+              </span>
             </div>
             <div className="allcover">
               <div className="cover">
@@ -107,13 +139,16 @@ function Createpost() {
             <p className="content">Content</p>
             <textarea
               className="inputContent"
-              id="inputContent"
+              id="inputC"
               type="text"
               placeholder="Maximum 5000 characters"
               rows="20"
               cols="100"
               maxLength="5000"
             ></textarea>
+            <span id="char_count_content" className="char_count_content">
+              0/5000
+            </span>
             <button type="button" className="btcontent" id="imagecontent">
               Add image <i class="bi bi-image"></i>
             </button>
@@ -134,7 +169,7 @@ function Createpost() {
                 BACK TO HOME
               </a>
             </div>
-            <button type="button" className="postbtn">
+            <button type="button" className="postbtn" id="buttonpost">
               POST
             </button>
           </div>

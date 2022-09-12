@@ -95,6 +95,10 @@
   border-radius: 5px;
 }
 
+.char_count_title {
+  margin-left: 1%;
+}
+
 .head {
   display: flex;
   margin: auto auto 20px;
