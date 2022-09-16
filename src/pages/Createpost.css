@@ -26,7 +26,7 @@
   width: 100%;
 } */
 
-.cover {
+.covertitle {
   /* position: relative; */
   width: 100%;
   display: flex;
@@ -34,9 +34,18 @@
   font-size: 25px;
 }
 
-/* .namec {
-  width: 20%;
-} */
+.covercontent {
+  /* position: relative; */
+  width: 100%;
+  display: flex;
+  font-size: 25px;
+}
+
+.uptoten {
+  font-size: medium;
+  margin: auto 0px;
+  color: darkgrey;
+}
 
 .op {
   margin-left: 10px;
@@ -63,9 +72,8 @@
 }
 
 .btcontent {
-  position: absolute;
-  right: 10%;
-  top: 690px;
+  position: relative;
+  margin: 0px 1%;
   width: 120px;
   height: 38px;
   font-size: 15px;
@@ -131,7 +139,6 @@
   border: 1px solid #000000;
   font-size: 16px;
   padding: 10px;
-  /* padding-right: 180px; */
   outline: none;
   border-radius: 5px;
 }
