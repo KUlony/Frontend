@@ -2,6 +2,7 @@ import React, { useEffect } from "react"
 import "./Createpost.css"
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
+import { Link, Router } from "react-router-dom"
 
 function Createpost() {
   useEffect(() => {
@@ -176,9 +177,13 @@ function Createpost() {
                 BACK TO HOME
               </a>
             </div>
+            {/* <div className="backtomypost"> */}
+            {/* <a href="/mypost"> */}
             <button type="button" className="postbtn" id="buttonpost">
               POST
             </button>
+            {/* </a> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
