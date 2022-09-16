@@ -3,16 +3,9 @@
   margin-left: 70%;
   margin-top: 120px;
   margin-bottom: 50px;
-
-  /* H2 */
-  /* font-family: 'Quicksand';
-  font-style: normal; */
   font-weight: 600;
   font-size: 20px;
-  /* line-height: 45px;  */
-  /* identical to box height*/
   letter-spacing: 0.03em;
-
   color: #000000;
 }
 
@@ -26,7 +19,7 @@
   width: 100%;
 } */
 
-.cover {
+.covertitle {
   /* position: relative; */
   width: 100%;
   display: flex;
@@ -34,9 +27,18 @@
   font-size: 25px;
 }
 
-/* .namec {
-  width: 20%;
-} */
+.covercontent {
+  /* position: relative; */
+  width: 100%;
+  display: flex;
+  font-size: 25px;
+}
+
+.uptoten {
+  font-size: medium;
+  margin: auto 0px;
+  color: darkgrey;
+}
 
 .op {
   margin-left: 10px;
@@ -63,9 +65,8 @@
 }
 
 .btcontent {
-  position: absolute;
-  right: 10%;
-  top: 690px;
+  position: relative;
+  margin: 0px 1%;
   width: 120px;
   height: 38px;
   font-size: 15px;
@@ -131,7 +132,6 @@
   border: 1px solid #000000;
   font-size: 16px;
   padding: 10px;
-  /* padding-right: 180px; */
   outline: none;
   border-radius: 5px;
 }
@@ -184,6 +184,7 @@
 }
 
 .postbtn {
+  width: 100%;
   margin-left: 20px;
   font-weight: 600;
   font-size: 24px;
@@ -197,6 +198,14 @@
   cursor: pointer;
 }
 
+/* .backtomypost {
+  margin-left: 10%;
+  overflow: hidden;
+  width: 40%;
+} */
+
 .postbtn:hover {
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+  font-size: 28px;
+  background-color: #2a8052;
 }

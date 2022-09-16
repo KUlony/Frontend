@@ -3,6 +3,7 @@ import "./Createpost.css"
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
 import NavBar from "../components/NavBar"
+// import { Link, Router } from "react-router-dom"
 
 function Createpost() {
   useEffect(() => {
@@ -127,7 +128,7 @@ function Createpost() {
               </span>
             </div>
             <div className="allcover">
-              <div className="cover">
+              <div className="covertitle">
                 <p className="namec">Cover photo</p>
                 <p className="op">(Optional)</p>
               </div>
@@ -151,9 +152,16 @@ function Createpost() {
             <span id="char_count_content" className="char_count_content">
               0/5000
             </span>
-            <button type="button" className="btcontent" id="imagecontent">
-              Add image <i class="bi bi-image"></i>
-            </button>
+            <br></br>
+            <br></br>
+            <div className="covercontent">
+              <p className="namecontentp">Content photo</p>
+              <p className="op">(Optional)</p>
+              <button type="button" className="btcontent" id="imagecontent">
+                Add image <i class="bi bi-image"></i>
+              </button>
+              <p className="uptoten">(Up to 10 Pics)</p>
+            </div>
           </div>
           <br></br>
           <div className="bottom">
@@ -171,9 +179,13 @@ function Createpost() {
                 BACK TO HOME
               </a>
             </div>
+            {/* <div className="backtomypost"> */}
+            {/* <a href="/mypost"> */}
             <button type="button" className="postbtn" id="buttonpost">
               POST
             </button>
+            {/* </a> */}
+            {/* </div> */}
           </div>
         </div>
       </div>
