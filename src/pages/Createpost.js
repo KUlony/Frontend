@@ -1,8 +1,9 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import "./Createpost.css"
 import { initializeApp } from "firebase/app"
 import { getAnalytics } from "firebase/analytics"
-import { Link, Router } from "react-router-dom"
+import storage from "../components/FirebaseConfig"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
 function Createpost() {
   useEffect(() => {
@@ -45,61 +46,83 @@ function Createpost() {
     textArea.addEventListener("input", countCharacters)
   })
 
-  var ImgName, ImgUrl
+  // State to store uploaded file
+  const [file, setFile] = useState("")
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBxDBbM9rV1lHYXftLcqt3uwDFwo181H04",
-    authDomain: "kulony-5f1ef.firebaseapp.com",
-    projectId: "kulony-5f1ef",
-    storageBucket: "kulony-5f1ef.appspot.com",
-    messagingSenderId: "50655501627",
-    appId: "1:50655501627:web:7495323b7559c9a7986b1e",
-    measurementId: "G-BPQ130W12B",
+  // progress
+  const [percent, setPercent] = useState(0)
+
+  // Handle file upload event and update state
+  function handleChange(event) {
+    setFile(event.target.files[0])
   }
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig)
-  const analytics = getAnalytics(app)
+  // function handleChangemult(event) {
+  //   setFile(event.target.files[(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)])
+  // }
 
-  useEffect(() => {
-    var files = []
-    document.getElementById("imagecover").onclick = function (e) {
-      var input = document.createElement("input")
-      input.type = "file"
-
-      input.onchange = (e) => {
-        files = e.target.files
-        // console.log(files[0].type)
-        if (files[0].type !== "image/jpg") {
-          alert("only .jpg .jpeg .png")
-          return
-        }
-        var reader = new FileReader()
-        // reader.onload = function () {
-        //   document.getElementById("").src = reader.result
-        // }
-        reader.readAsDataURL(files[0])
-        console.log(files[0])
-      }
-      input.click()
+  const handleUpload = () => {
+    if (!file) {
+      alert("Please upload an image first!")
     }
 
-    document.getElementById("imagecontent").onclick = function (e) {
-      var input = document.createElement("input")
-      input.type = "file"
+    const storageRef = ref(storage, `/files/${file.name}`)
 
-      input.onchange = (e) => {
-        files = e.target.files
-        var reader = new FileReader()
-        // reader.onload = function () {
-        //   document.getElementById("").src = reader.result
-        // }
-        reader.readAsDataURL(files[0])
-        console.log(files[0])
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        // update progress
+        setPercent(percent)
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url)
+        })
       }
-      input.click()
-    }
-  })
+    )
+  }
+
+  // const handleUploadmult = () => {
+  //   if (!file) {
+  //     alert("Please upload an image first!")
+  //   }
+  //   const promises = []
+  //   const storageRef = ref(storage, `/files/${file.name}`)
+
+  //   // progress can be paused and resumed. It also exposes progress updates.
+  //   // Receives the storage reference and the file to upload.
+  //   const uploadTask = uploadBytesResumable(storageRef, file)
+
+  //   promises.push(uploadTask)
+  //   uploadTask.on(
+  //     "state_changed",
+  //     (snapshot) => {
+  //       const percent = Math.round(
+  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+  //       )
+
+  //       // update progress
+  //       setPercent(percent)
+  //     },
+  //     (err) => console.log(err),
+  //     () => {
+  //       // download url
+  //       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+  //         console.log(url)
+  //       })
+  //     }
+  //   )
+  // }
 
   return (
     <div>
@@ -130,9 +153,21 @@ function Createpost() {
                 <p className="namec">Cover photo</p>
                 <p className="op">(Optional)</p>
               </div>
-              <button type="button" className="btcover" id="imagecover">
-                Add image <i class="bi bi-image"></i>
+              <input
+                type="file"
+                onChange={handleChange}
+                accept=".png,.jpg,.jpeg"
+                className="inputphoto"
+              />
+              <button
+                type="button"
+                className="btcover"
+                id="imagecover"
+                onClick={handleUpload}
+              >
+                Submit
               </button>
+              <p>{percent}% done</p>
             </div>
           </div>
           <br></br>
@@ -155,9 +190,21 @@ function Createpost() {
             <div className="covercontent">
               <p className="namecontentp">Content photo</p>
               <p className="op">(Optional)</p>
-              <button type="button" className="btcontent" id="imagecontent">
-                Add image <i class="bi bi-image"></i>
+              <input
+                type="file"
+                onChange={handleChange}
+                accept=".png,.jpg,.jpeg"
+                className="inputphoto"
+              />
+              <button
+                type="button"
+                className="btcontent"
+                id="imagecontent"
+                onClick={handleUpload}
+              >
+                Submit
               </button>
+              <p>{percent}% done</p>
               <p className="uptoten">(Up to 10 Pics)</p>
             </div>
           </div>
