@@ -8,13 +8,13 @@ import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Miniprofile from "./Miniprofile";
+import Reportpost_popup from "./Reportpost_popup";
 function Post(props) {
   const display = () => {
     setdisplayProfile(!displayProfile);
   };
   const [displayProfile, setdisplayProfile] = useState(true);
   const { title, like, post_content, photo } = props;
-  console.log(title);
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
   const report_btn = () => {
     if (reportpost_drop === "btn_where") {
@@ -85,6 +85,9 @@ function Post(props) {
         className={`cover ${displayProfile ? "none" : null}`}
         onClick={display}
       ></div>
+      <div className="reportpost_popup">
+        <Reportpost_popup />
+      </div>
     </div>
   );
 }

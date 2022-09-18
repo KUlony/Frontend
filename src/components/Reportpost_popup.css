@@ -1,0 +1,26 @@
+.reportpost_popupbox {
+  background-color: #d6ebe0;
+  height: 550px;
+  /* min-height: 600px; */
+  width: 340px;
+  min-width: 300px;
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+}
+
+.reportpost_popupbox h3 {
+  margin-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 35px;
+  letter-spacing: 0.03em;
+  border-bottom: 1px solid black;
+}
+
+.reportpost_box {
+  padding: 25px;
+}
