@@ -40,8 +40,13 @@
   color: darkgrey;
 }
 
+.permult {
+  margin: auto 0px;
+  font-size: 15px;
+}
+
 .op {
-  margin-left: 10px;
+  margin: auto 10px;
   color: #339C64;
 }
 
@@ -54,6 +59,7 @@
   width: 120px;
   height: 38px;
   font-size: 15px;
+  margin-left: 10px;
   background-color: white;
   border: 1px solid #000000;
   transition-duration: 0.2s;

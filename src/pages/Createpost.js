@@ -32,11 +32,11 @@ function Createpost() {
 
     const countCharacters = () => {
       let numOfEnteredChars = textArea.value.length
-      characterCounter.textContent = numOfEnteredChars + "/5000"
+      characterCounter.textContent = numOfEnteredChars + "/25000"
 
-      if (numOfEnteredChars >= 4995) {
+      if (numOfEnteredChars >= 24995) {
         characterCounter.style.color = "red"
-      } else if (numOfEnteredChars >= 4950) {
+      } else if (numOfEnteredChars >= 24950) {
         characterCounter.style.color = "orange"
       } else {
         characterCounter.style.color = "black"
@@ -48,22 +48,36 @@ function Createpost() {
 
   // State to store uploaded file
   const [file, setFile] = useState("")
+  const [filemult, setFileMult] = useState([])
 
   // progress
   const [percent, setPercent] = useState(0)
+  const [percentmult, setPercentMult] = useState(0)
+
+  const [urls, setUrls] = useState([])
 
   // Handle file upload event and update state
   function handleChange(event) {
     setFile(event.target.files[0])
   }
 
-  // function handleChangemult(event) {
-  //   setFile(event.target.files[(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)])
-  // }
+  function handleChangemult(event) {
+    if (event.target.files.length > 10) {
+      alert("Can upload up to 10 pics!!")
+      setFileMult([])
+      return
+    }
+    for (let i = 0; i < event.target.files.length; i++) {
+      const newImage = event.target.files[i]
+      // newImage["id"] = Math.random()
+      setFileMult((prevState) => [...prevState, newImage])
+    }
+  }
 
   const handleUpload = () => {
     if (!file) {
       alert("Please upload an image first!")
+      return
     }
 
     const storageRef = ref(storage, `/files/${file.name}`)
@@ -92,37 +106,47 @@ function Createpost() {
     )
   }
 
-  // const handleUploadmult = () => {
-  //   if (!file) {
-  //     alert("Please upload an image first!")
-  //   }
-  //   const promises = []
-  //   const storageRef = ref(storage, `/files/${file.name}`)
+  const handleUploadmult = () => {
+    if (!filemult) {
+      alert("Please upload an image first!")
+      return
+    }
+    const promises = []
+    filemult.map((file) => {
+      const storageRef = ref(storage, `/files/${file.name}`)
 
-  //   // progress can be paused and resumed. It also exposes progress updates.
-  //   // Receives the storage reference and the file to upload.
-  //   const uploadTask = uploadBytesResumable(storageRef, file)
+      // progress can be paused and resumed. It also exposes progress updates.
+      // Receives the storage reference and the file to upload.
+      const uploadTask = uploadBytesResumable(storageRef, file)
 
-  //   promises.push(uploadTask)
-  //   uploadTask.on(
-  //     "state_changed",
-  //     (snapshot) => {
-  //       const percent = Math.round(
-  //         (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-  //       )
+      promises.push(uploadTask)
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percentmult = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          )
 
-  //       // update progress
-  //       setPercent(percent)
-  //     },
-  //     (err) => console.log(err),
-  //     () => {
-  //       // download url
-  //       getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-  //         console.log(url)
-  //       })
-  //     }
-  //   )
-  // }
+          // update progress
+          setPercentMult(percentmult)
+        },
+        (err) => console.log(err),
+        async () => {
+          // download url
+          await getDownloadURL(uploadTask.snapshot.ref).then((urls) => {
+            setUrls((prevState) => [...prevState, urls])
+            // console.log(urls)
+          })
+        }
+      )
+    })
+    Promise.all(promises)
+      .then(() => alert("ALL images uploaded"))
+      .catch((err) => console.log(err))
+  }
+
+  console.log("image:", filemult)
+  console.log("url", urls)
 
   return (
     <div>
@@ -177,13 +201,13 @@ function Createpost() {
               className="inputContent"
               id="inputC"
               type="text"
-              placeholder="Maximum 5000 characters"
+              placeholder="Maximum 25000 characters"
               rows="20"
               cols="100"
-              maxLength="5000"
+              maxLength="25000"
             ></textarea>
             <span id="char_count_content" className="char_count_content">
-              0/5000
+              0/25000
             </span>
             <br></br>
             <br></br>
@@ -192,20 +216,21 @@ function Createpost() {
               <p className="op">(Optional)</p>
               <input
                 type="file"
-                onChange={handleChange}
+                multiple
+                onChange={handleChangemult}
                 accept=".png,.jpg,.jpeg"
                 className="inputphoto"
               />
+              <p className="uptoten">(Up to 10 Pics)</p>
               <button
                 type="button"
                 className="btcontent"
                 id="imagecontent"
-                onClick={handleUpload}
+                onClick={handleUploadmult}
               >
                 Submit
               </button>
-              <p>{percent}% done</p>
-              <p className="uptoten">(Up to 10 Pics)</p>
+              <p className="permult">{percentmult}% done</p>
             </div>
           </div>
           <br></br>
