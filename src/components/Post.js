@@ -10,34 +10,42 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import Miniprofile from "./Miniprofile";
 import Reportpost_popup from "./Reportpost_popup";
 function Post(props) {
-  const display = () => {
+  const display_profile = () => {
     setdisplayProfile(!displayProfile);
   };
+  const display_report = () => {
+    setdisplayReport(!displayReport);
+  };
+  const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
-  const { title, like, post_content, photo } = props;
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-  const report_btn = () => {
+
+  const { title, like, post_content, photo } = props;
+  const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
       setreportpost_drop("btn_where2");
     } else {
       setreportpost_drop("btn_where");
     }
   };
+
   return (
     <div>
       <div className="PostBox">
         <div className="Header">
-          <div className="UserProfile" onClick={display}></div>
+          <div className="UserProfile" onClick={display_profile}></div>
           <div className="TitleHead_box">
             <h4 className="TitleHead">{title}</h4>
           </div>
 
           <div className="test_btn">
-            <button className="btn_where3" onClick={report_btn}>
+            <button className="btn_dropdown_report" onClick={report_dropdown}>
               <RiArrowDropDownLine className="dropdown_iconri" />
             </button>
             <div className={reportpost_drop}>
-              <button className="post_report_btn">Report post</button>
+              <button className="post_report_btn" onClick={display_report}>
+                Report post
+              </button>
             </div>
           </div>
         </div>
@@ -78,15 +86,21 @@ function Post(props) {
         </div>
         {/* <div className="post_profile"></div> */}
       </div>
-      <div className={`miniprofile_post ${displayProfile ? "none" : null}`}>
-        <Miniprofile titlepost={title} display={display} />
+      <div
+        className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
+      >
+        <Miniprofile titlepost={title} display={display_profile} />
       </div>
       <div
-        className={`cover ${displayProfile ? "none" : null}`}
-        onClick={display}
+        className={`cover ${displayProfile ? "display_none" : null}`}
+        onClick={display_profile}
       ></div>
-      <div className="reportpost_popup">
-        <Reportpost_popup />
+      <div
+        className={`reportpost_popup ${
+          displayReport ? "reportpost_none" : null
+        }`}
+      >
+        <Reportpost_popup display={display_report} />
       </div>
     </div>
   );

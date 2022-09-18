@@ -75,11 +75,6 @@ function Home() {
           <div className="Home_post">
             <Post_generator data={testdata} />
           </div>
-          {/* <div className="testpost">
-          <div className={`home_post_profile ${displayProfile}`}></div>
-        </div>
-        <div className={`cover ${displayProfile}`}></div> */}
-          <div className="testpost">{/* <Miniprofile /> */}</div>
         </div>
       </div>
     </PostData.Provider>

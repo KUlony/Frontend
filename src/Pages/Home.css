@@ -2,13 +2,14 @@
   position: sticky;
   height: 250px;
   width: 100%;
-  top: 99px;
+  top: 70px;
   background-color: white;
   z-index: 3;
+  overflow: hidden;
 }
 
 .Nav_home {
-  height: 99px;
+  height: 70px;
   position: sticky;
   z-index: 3;
 }
@@ -87,7 +88,7 @@
 
 .Nav_topic {
   position: sticky;
-  top: 349px;
+  top: 320px;
   text-align: center;
   height: 50px;
   background-color: #f8f5d5;
@@ -110,6 +111,7 @@
 
 .Home_page {
   height: 100vh;
+  width: 100vw;
   overflow: hidden;
 }
 

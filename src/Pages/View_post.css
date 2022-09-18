@@ -2,24 +2,24 @@
   background-color: #f8f5d5;
   width: 100%;
   height: 100vh;
+  overflow: scroll;
 }
 
 .view_post_nav {
-  height: 11vh;
+  height: 70px;
 }
 
 .view_post_fullpost {
   margin-left: 10%;
   width: 80%;
-  height: 89vh;
-  overflow: scroll;
+  height: auto;
   background-color: white;
 }
 
 .view_post_fullpost_backtohome {
   width: auto;
   margin-left: 2%;
-  margin-top: 40px;
+  padding-top: 40px;
 }
 
 .view_post_fullpost_backtohome_arrow {

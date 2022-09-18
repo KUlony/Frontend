@@ -6,6 +6,7 @@
   min-width: 300px;
   box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
   border-radius: 5px;
+  position: relative;
 }
 
 .reportpost_popupbox h3 {
@@ -23,4 +24,72 @@
 
 .reportpost_box {
   padding: 25px;
+}
+
+.reportpost_exit {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.checkbox-round input[type="checkbox"] {
+  width: 1.3em;
+  height: 1.3em;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 0.15em solid #339c64;
+  appearance: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.checkbox-round label {
+  display: inline-block;
+  margin: 0.3em 0 0.55em 0.7em;
+}
+
+.checkbox-round input:checked {
+  position: relative;
+  left: 0.3em;
+  width: 0.7em;
+  height: 0.7em;
+  background-color: #339c64;
+  box-shadow: 0 0 0 0.15em #d6ebe0, 0 0 0 0.3em #339c64;
+  margin-right: 0.6em;
+}
+
+.report_other {
+  width: 250px;
+  height: 25px;
+  margin-left: 2em;
+  /* display: block; */
+}
+
+.report_display {
+  display: none;
+}
+
+.checkbox-round button {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  background: rgba(231, 219, 115, 1);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  width: 200px;
+  margin-left: -100px;
+  padding: 12px 0;
+  border: none;
+  border-radius: 50px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.checkbox-round button:active {
+  opacity: 0.5;
+}
+
+.reportpost_box h4 {
+  padding-bottom: 20px;
 }

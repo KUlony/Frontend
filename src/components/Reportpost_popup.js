@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Reportpost_popup.css";
-function Reportpost_popup() {
+import { AiOutlineClose } from "react-icons/ai";
+
+function Reportpost_popup(props) {
+  const { display } = props;
   const reportcheckbox = (e) => {
     e.preventDefault();
     console.log(checkArr);
   };
-
   const [checkArr, setcheckArr] = useState([
     false,
     false,
@@ -18,7 +20,7 @@ function Reportpost_popup() {
     false,
   ]);
 
-  const cheackei = (e) => {
+  const checkreport_popup = (e) => {
     setcheckArr((prevState) =>
       prevState.map((item, idx) =>
         idx === Number(e.target.value) ? !item : item
@@ -31,36 +33,42 @@ function Reportpost_popup() {
       <h3>Report post</h3>
       <div className="reportpost_box">
         <h4>Please select an issue :</h4>
-        <form onSubmit={reportcheckbox}>
-          <input type="checkbox" onChange={cheackei} value="0"></input>
+        <form onSubmit={reportcheckbox} className="checkbox-round">
+          <input type="checkbox" onChange={checkreport_popup} value="0"></input>
           <label>Nudity</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="1"></input>
-          <label>Spam</label>
+          <input type="checkbox" onChange={checkreport_popup} value="1"></input>
+          <label className="maikan">Spam</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="2"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="2"></input>
           <label>Violence</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="3"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="3"></input>
           <label>Threat</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="4"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="4"></input>
           <label>Suicide or self-harm</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="5"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="5"></input>
           <label>False information</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="6"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="6"></input>
           <label>Hate speech</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="7"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="7"></input>
           <label>Terrorism</label>
           <br />
-          <input type="checkbox" onChange={cheackei} value="8"></input>
+          <input type="checkbox" onChange={checkreport_popup} value="8"></input>
           <label>Other</label>
           <br />
+          <input
+            className={`report_other ${checkArr[8] ? null : "report_display"}`}
+          ></input>
           <button>SEND ROPORT</button>
         </form>
+      </div>
+      <div className="reportpost_exit" onClick={display}>
+        <AiOutlineClose />
       </div>
     </div>
   );
