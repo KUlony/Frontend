@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react"
 import "./Createpost.css"
-import { initializeApp } from "firebase/app"
-import { getAnalytics } from "firebase/analytics"
 import storage from "../components/FirebaseConfig"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 
@@ -74,9 +72,14 @@ function Createpost() {
     }
   }
 
+  const [statec, setStateC] = useState(false)
+
   const handleUpload = () => {
     if (!file) {
       alert("Please upload an image first!")
+      return
+    } else if (statec) {
+      alert("Already Upload!!")
       return
     }
 
@@ -104,13 +107,21 @@ function Createpost() {
         })
       }
     )
+    setStateC(true)
   }
 
+  const [statem, setStateM] = useState(false)
+
   const handleUploadmult = () => {
-    if (!filemult) {
+    // console.log(filemult)
+    if (filemult.length === 0) {
       alert("Please upload an image first!")
       return
+    } else if (filemult != null && statem) {
+      alert("Already Upload!!")
+      return
     }
+
     const promises = []
     filemult.map((file) => {
       const storageRef = ref(storage, `/files/${file.name}`)
@@ -143,9 +154,10 @@ function Createpost() {
     Promise.all(promises)
       .then(() => alert("ALL images uploaded"))
       .catch((err) => console.log(err))
+    setStateM(true)
+    console.log("image:", filemult)
+    console.log("url", urls)
   }
-
-  console.log("image:", filemult)
   console.log("url", urls)
 
   return (
