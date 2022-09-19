@@ -4,10 +4,6 @@ import { AiOutlineClose } from "react-icons/ai";
 
 function Reportpost_popup(props) {
   const { display } = props;
-  const reportcheckbox = (e) => {
-    e.preventDefault();
-    console.log(checkArr);
-  };
   const [checkArr, setcheckArr] = useState([
     false,
     false,
@@ -19,6 +15,13 @@ function Reportpost_popup(props) {
     false,
     false,
   ]);
+  const [reportOther, setreportOther] = useState("");
+
+  const reportcheckbox = (e) => {
+    e.preventDefault();
+    console.log(checkArr);
+    setreportOther("");
+  };
 
   const checkreport_popup = (e) => {
     setcheckArr((prevState) =>
@@ -62,7 +65,10 @@ function Reportpost_popup(props) {
           <label>Other</label>
           <br />
           <input
+            type="text"
             className={`report_other ${checkArr[8] ? null : "report_display"}`}
+            onChange={(event) => setreportOther(event.target.value)}
+            value={reportOther}
           ></input>
           <button>SEND ROPORT</button>
         </form>

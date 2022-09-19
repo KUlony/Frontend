@@ -15,7 +15,7 @@ function Post_generator(props) {
             photo={element.cover_photo_url}
           />
         );
-      })}
+      })}{" "}
     </div>
   );
 }

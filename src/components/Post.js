@@ -30,7 +30,7 @@ function Post(props) {
   };
 
   return (
-    <div>
+    <div className="maikanza">
       <div className="PostBox">
         <div className="Header">
           <div className="UserProfile" onClick={display_profile}></div>
@@ -64,6 +64,9 @@ function Post(props) {
           </div>
           <div className="comment_box_value">
             <MdOutlineModeComment className="Comment" size={30} />
+            <div className="post_relative">
+              <div className="comment_all">maikan</div>
+            </div>
           </div>
           <div className="comment_box">
             <div class="CommentCount">123</div>
@@ -84,7 +87,6 @@ function Post(props) {
             viewpost{" "}
           </Link>
         </div>
-        {/* <div className="post_profile"></div> */}
       </div>
       <div
         className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
@@ -102,6 +104,7 @@ function Post(props) {
       >
         <Reportpost_popup display={display_report} />
       </div>
+      <div className="post_relative1"></div>
     </div>
   );
 }

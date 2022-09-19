@@ -149,9 +149,6 @@
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
 }
 
-.TitleHead {
-}
-
 .test_btn {
   position: absolute;
   right: 1%;
@@ -223,4 +220,26 @@
 
 .reportpost_none {
   display: none;
+}
+
+.post_relative1 {
+  position: relative;
+  height: 400px;
+}
+
+.post_relative {
+  position: relative;
+}
+
+.comment_all {
+  position: absolute;
+  width: 300px;
+  height: 400px;
+  left: 36%;
+  background-color: aqua;
+  z-index: 7;
+}
+
+.maikanza {
+  height: auto;
 }
