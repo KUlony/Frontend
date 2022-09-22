@@ -2,8 +2,20 @@ import React, { useEffect, useState } from "react"
 import "./Createpost.css"
 import storage from "../components/FirebaseConfig"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
+import Topicselect from "../components/Topicselect"
 
 function Createpost() {
+  const [edittopicheck, seteditTopicCheck] = useState(true)
+  const topicselect = () => {
+    seteditTopicCheck(!edittopicheck)
+    console.log(edittopicheck)
+    // if (edittopicheck === "null") {
+    //   seteditTopicCheck("not")
+    // } else {
+    //   seteditTopicCheck("null")
+    // }
+  }
+
   useEffect(() => {
     let textArea = document.getElementById("inputT")
     let characterCounter = document.getElementById("char_count_title")
@@ -201,7 +213,7 @@ function Createpost() {
                 id="imagecover"
                 onClick={handleUpload}
               >
-                Submit
+                Upload
               </button>
               <p>{percent}% done</p>
             </div>
@@ -240,16 +252,16 @@ function Createpost() {
                 id="imagecontent"
                 onClick={handleUploadmult}
               >
-                Submit
+                Upload
               </button>
               <p className="permult">{percentmult}% done</p>
             </div>
           </div>
           <br></br>
           <div className="bottom">
-            <p className="topic">Topic</p>
+            <p className="topicname">Topic</p>
             <div className="tagbox">
-              <button className="edittopic">
+              <button className="edittopic" onClick={topicselect}>
                 Edit topic <i class="bi bi-plus-circle-fill"></i>
               </button>
             </div>
@@ -270,6 +282,9 @@ function Createpost() {
             {/* </div> */}
           </div>
         </div>
+      </div>
+      <div className={`topicselectcss ${edittopicheck ? "noting" : null}`}>
+        <Topicselect />
       </div>
     </div>
   )

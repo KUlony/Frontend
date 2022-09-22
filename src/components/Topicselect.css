@@ -1,0 +1,87 @@
+.topic {
+  background-color: white;
+  border-radius: 20px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: 50%;
+  height: 500px;
+  padding: 10px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.headtopic {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.choosetopic {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.maxtopic {
+  color: gray;
+}
+
+.contenttopic {
+  display: flex;
+  width: 100%;
+}
+
+.seltopic {
+  margin-left: 10%;
+  
+}
+
+.selcom {
+  margin-left: 15%;
+}
+
+.general {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.general:hover {
+  color: #2a8052;
+}
+
+.study {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.study:hover {
+  color: #2a8052;
+}
+
+.faculty {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.faculty:hover {
+  color: #2a8052;
+}
