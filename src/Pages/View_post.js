@@ -3,6 +3,8 @@ import { Link, useLocation } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import "./View_post.css";
 import { IoIosArrowBack } from "react-icons/io";
+import Comment from "../components/Comment";
+
 function View_post() {
   const location = useLocation();
   const from = location.state;
@@ -31,6 +33,11 @@ function View_post() {
         </div>
         <div className="view_post_fullpost_photo">{photo}</div>
         <div className="view_post_fullpost_content">{post_content}</div>
+        <div className="view_post_comment">
+          <Comment />
+          <Comment />
+          <Comment />
+        </div>
       </div>
     </div>
   );

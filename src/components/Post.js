@@ -2,22 +2,30 @@ import React, { useState } from "react";
 import "./Post.css";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { MdOutlineModeComment, MdTitle } from "react-icons/md";
-import { AiOutlineShareAlt } from "react-icons/ai";
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 import Post_generator from "./Post_generator";
 import { Link } from "react-router-dom";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import Miniprofile from "./Miniprofile";
 import Reportpost_popup from "./Reportpost_popup";
+import Comment from "./Comment";
+
 function Post(props) {
-  const display_profile = () => {
+  const display_profile = (maikan) => {
     setdisplayProfile(!displayProfile);
+    console.log(maikan);
   };
   const display_report = () => {
     setdisplayReport(!displayReport);
   };
+  const display_comment = () => {
+    setdisplatComment(!displayComment);
+  };
+
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
+  const [displayComment, setdisplatComment] = useState(true);
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
 
   const { title, like, post_content, photo } = props;
@@ -30,7 +38,7 @@ function Post(props) {
   };
 
   return (
-    <div className="maikanza">
+    <div className>
       <div className="PostBox">
         <div className="Header">
           <div className="UserProfile" onClick={display_profile}></div>
@@ -50,7 +58,7 @@ function Post(props) {
           </div>
         </div>
 
-        <p className="Content">{post_content}</p>
+        <p className="post_Content">{post_content}</p>
 
         <div class="FakeImage">{photo}</div>
 
@@ -63,9 +71,33 @@ function Post(props) {
             <div class="LikeCount">{like}</div>
           </div>
           <div className="comment_box_value">
-            <MdOutlineModeComment className="Comment" size={30} />
-            <div className="post_relative">
-              <div className="comment_all">maikan</div>
+            <MdOutlineModeComment
+              className="comment_icon"
+              size={30}
+              onClick={display_comment}
+            />
+            <div
+              className={`post_relative ${
+                displayComment ? "display_none" : null
+              }`}
+            >
+              <div className="comment_all">
+                <div className="minicommentbox">
+                  <header className="comment_header">
+                    <p>All comments</p>
+                    <AiOutlineClose
+                      className="comment_exit"
+                      onClick={display_comment}
+                    />
+                  </header>
+                  <div className="comment_content">
+                    <Comment display_profile={display_profile} />
+                    <Comment display_profile={display_profile} />{" "}
+                    <Comment display_profile={display_profile} />{" "}
+                    <Comment display_profile={display_profile} />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div className="comment_box">
@@ -98,13 +130,13 @@ function Post(props) {
         onClick={display_profile}
       ></div>
       <div
-        className={`reportpost_popup ${
-          displayReport ? "reportpost_none" : null
-        }`}
+        className={`reportpost_popup ${displayReport ? "display_none" : null}`}
       >
         <Reportpost_popup display={display_report} />
       </div>
-      <div className="post_relative1"></div>
+      <div
+        className={`post_freespace ${displayComment ? "display_none" : null}`}
+      ></div>
     </div>
   );
 }
