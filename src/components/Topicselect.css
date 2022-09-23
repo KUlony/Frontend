@@ -30,12 +30,18 @@
 }
 
 .seltopic {
-  margin-left: 10%;
-  
+  margin-left: 5%;
 }
 
 .selcom {
-  margin-left: 15%;
+  margin-left: 5%;
+  background: #D6EBE0;
+  width: 70%;
+  height: 220px;
+  /* border-style: solid; */
+  overflow: hidden;
+  text-align: justify;
+  padding: 10px;
 }
 
 .general {
@@ -84,4 +90,31 @@
 
 .faculty:hover {
   color: #2a8052;
+}
+
+.btnconfirm {
+  width: 100%;
+  margin-top: 50px;
+  margin-left: 40%;
+}
+
+.confirm {
+  /* width: 100%; */
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: #339C64;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.confirm:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+  font-size: 28px;
+  background-color: #2a8052;
 }

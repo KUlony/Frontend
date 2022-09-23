@@ -1,5 +1,6 @@
 .createTitle {
   position: relative;
+  display: flex;
   margin-left: 70%;
   margin-top: 100px;
   margin-bottom: 20px;
@@ -9,9 +10,13 @@
   color: #000000;
 }
 
+.create {
+  margin: auto 0px;
+}
 
 .all {
   width: 100%;
+  background: #D6EBE0;
   overflow: hidden;
 }
 
@@ -241,4 +246,15 @@
   left: 50%;
   margin-left: -25%;
   margin-top: -15%;
+}
+
+.close {
+  position: absolute;
+  margin-left: 49%;
+  cursor: pointer;
+}
+
+.picsheet {
+  height: 100px;
+  margin: auto 0px;
 }

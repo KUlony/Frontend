@@ -6,8 +6,8 @@ function Topicselect() {
     <div className="topic">
       <div className="headtopic">
         <div className="choosetopic">Choose topics</div>
-        <br></br>
         <div className="maxtopic">You can choose maximum 5 topics</div>
+        <br></br>
         <br></br>
       </div>
       <div className="contenttopic">
@@ -18,7 +18,22 @@ function Topicselect() {
           <br></br>
           <button className="faculty">faculty</button>
         </div>
-        <div className="selcom">components</div>
+        <div className="selcom">
+          <form>
+            <label for="Agriculture">Agriculture</label>
+            <input
+              type="checkbox"
+              id="Agriculture"
+              name="Agriculture"
+              value="Agriculture"
+            />
+          </form>
+        </div>
+      </div>
+      <div className="btnconfirm">
+        <button type="button" className="confirm" id="buttonokey">
+          CONFIRM
+        </button>
       </div>
     </div>
   )

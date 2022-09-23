@@ -3,17 +3,13 @@ import "./Createpost.css"
 import storage from "../components/FirebaseConfig"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
+import Sheetpost from "../picture/Sheetpost.png"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
   const topicselect = () => {
     seteditTopicCheck(!edittopicheck)
     console.log(edittopicheck)
-    // if (edittopicheck === "null") {
-    //   seteditTopicCheck("not")
-    // } else {
-    //   seteditTopicCheck("null")
-    // }
   }
 
   useEffect(() => {
@@ -176,7 +172,8 @@ function Createpost() {
     <div>
       <div className="all">
         <div className="createTitle">
-          <h1 className="create">Create a post</h1>
+          <h1 className="create">Create a post </h1>
+          <img src={Sheetpost} alt="" className="picsheet"></img>
         </div>
         <br></br>
         <div className="allcontent">
@@ -284,6 +281,9 @@ function Createpost() {
         </div>
       </div>
       <div className={`topicselectcss ${edittopicheck ? "noting" : null}`}>
+        <h1 className="close" onClick={topicselect}>
+          <i class="bi bi-x"></i>
+        </h1>
         <Topicselect />
       </div>
     </div>
