@@ -1,4 +1,5 @@
 import React from "react"
+import Checkbox from "./Checkbox"
 import "./Topicselect.css"
 
 function Topicselect() {
@@ -19,19 +20,47 @@ function Topicselect() {
           <button className="faculty">faculty</button>
         </div>
         <div className="selcom">
-          <form>
+          <div className="scroll">
+            <div className="comleft">
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="kdvknk" label="kdvknk" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+            </div>
+            <div className="comright">
+              {/* <form>
             <label for="Agriculture">Agriculture</label>
             <input
-              type="checkbox"
-              id="Agriculture"
-              name="Agriculture"
-              value="Agriculture"
+            type="checkbox"
+            id="Agriculture"
+            name="Agriculture"
+            value="Agriculture"
             />
-          </form>
+          </form> */}
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+              <Checkbox id="Agriculture" label="Agriculture" />
+            </div>
+          </div>
         </div>
       </div>
       <div className="btnconfirm">
-        <button type="button" className="confirm" id="buttonokey">
+        <button type="button" className="confirm" id="buttonconfirm">
           CONFIRM
         </button>
       </div>

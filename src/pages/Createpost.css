@@ -176,7 +176,8 @@
   border-radius: 16px;
   border: none;
   height: 35px;
-  width: 80px;
+  width: 100px;
+  font-weight: 600;
   transition-duration: 0.2s;
   cursor: pointer;
 }
