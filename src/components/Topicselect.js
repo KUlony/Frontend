@@ -1,8 +1,57 @@
-import React from "react"
-import Checkbox from "./Checkbox"
+import React, { useState } from "react"
+import Createpost from "../Pages/Createpost"
 import "./Topicselect.css"
 
 function Topicselect() {
+  const [itemed, setItemed] = useState([])
+  // const [dis, setDis] = useState(false)
+
+  const itemListleft = [
+    "Agriculture",
+    "Agro-Industry",
+    "Architecture",
+    "Business Administration",
+    "Economics",
+    "Education",
+  ]
+  const itemlistright = [
+    "Environment",
+    "Fisheries",
+    "Forestry",
+    "Humanities",
+    "Science",
+    "Social science",
+  ]
+
+  const handleCheck = (event) => {
+    var updatedList = [...itemed]
+
+    if (event.target.checked) {
+      updatedList = [...itemed, event.target.value]
+    } else {
+      updatedList.splice(itemed.indexOf(event.target.value), 1)
+    }
+    setItemed(updatedList)
+  }
+
+  const checkedItems = itemed.length
+    ? itemed.reduce((total, item) => {
+        return total + ", " + item
+      })
+    : ""
+
+  var isChecked = (item) =>
+    itemed.includes(item) ? "checked-item" : "not-checked-item"
+
+  // $("input:checkbox").click(function () {
+  //   var bol = $("input:checkbox:checked").length >= 5
+  //   $("input:checkbox").not(":checked").attr("disabled", bol)
+  // })
+
+  // const senddata = () => {
+  //   return <Createpost array={setItemed} />
+  // }
+
   return (
     <div className="topic">
       <div className="headtopic">
@@ -22,48 +71,36 @@ function Topicselect() {
         <div className="selcom">
           <div className="scroll">
             <div className="comleft">
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="kdvknk" label="kdvknk" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
+              {itemListleft.map((item, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input value={item} type="checkbox" onChange={handleCheck} />
+                  <span className={isChecked(item)}>{item}</span>
+                </div>
+              ))}
             </div>
             <div className="comright">
-              {/* <form>
-            <label for="Agriculture">Agriculture</label>
-            <input
-            type="checkbox"
-            id="Agriculture"
-            name="Agriculture"
-            value="Agriculture"
-            />
-          </form> */}
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
-              <Checkbox id="Agriculture" label="Agriculture" />
+              {itemlistright.map((items, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input value={items} type="checkbox" onChange={handleCheck} />
+                  <span className="itemname">{items}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
       <div className="btnconfirm">
-        <button type="button" className="confirm" id="buttonconfirm">
+        <button
+          type="button"
+          className="confirm"
+          id="buttonconfirm"
+          // onClick={() => senddata()}
+        >
           CONFIRM
         </button>
+        {/* <Createpost array={setItemed} /> */}
       </div>
+      <div>{`${checkedItems}`}</div>
     </div>
   )
 }

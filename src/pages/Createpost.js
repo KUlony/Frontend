@@ -261,14 +261,7 @@ function Createpost() {
               <button className="edittopic" onClick={topicselect}>
                 Edit topic <i class="bi bi-plus-circle-fill"></i>
               </button>
-              {/* {item.map((element, index) => {
-                return (
-                  <div key={index}>
-                    <p>{element}</p>
-                  </div>
-                )
-              })} */}
-              {/* <p>{item}</p> */}
+              {/* <div>{`${checkedItems}`}</div> */}
             </div>
           </div>
           <br></br>
