@@ -7,10 +7,27 @@ import Sheetpost from "../picture/Sheetpost.png"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
+  const [items, setItems] = useState([])
+
   const topicselect = () => {
     seteditTopicCheck(!edittopicheck)
     console.log(edittopicheck)
   }
+  const topicselectsend = () => {
+    seteditTopicCheck(!edittopicheck)
+    const items = JSON.parse(localStorage.getItem("itemed"))
+    if (items) {
+      console.log(items)
+      setItems(items)
+    }
+    console.log(edittopicheck)
+  }
+
+  const checkedItems = items.length
+    ? items.reduce((total, item) => {
+        return total + ", " + item
+      })
+    : ""
 
   useEffect(() => {
     let textArea = document.getElementById("inputT")
@@ -261,9 +278,10 @@ function Createpost() {
               <button className="edittopic" onClick={topicselect}>
                 Edit topic <i class="bi bi-plus-circle-fill"></i>
               </button>
-              {/* <div>{`${checkedItems}`}</div> */}
             </div>
           </div>
+          <br></br>
+          <div className="topicinpage">{`${checkedItems}`}</div>
           <br></br>
           <div className="btnbottom">
             <div className="bth">
@@ -286,6 +304,16 @@ function Createpost() {
           <i class="bi bi-x"></i>
         </h1>
         <Topicselect />
+        <div className="btnconfirm">
+          <button
+            type="button"
+            className="confirm"
+            id="buttonconfirm"
+            onClick={topicselectsend}
+          >
+            CONFIRM
+          </button>
+        </div>
       </div>
     </div>
   )

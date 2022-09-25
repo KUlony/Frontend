@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import Createpost from "../Pages/Createpost"
 import "./Topicselect.css"
 
@@ -32,25 +32,33 @@ function Topicselect() {
       updatedList.splice(itemed.indexOf(event.target.value), 1)
     }
     setItemed(updatedList)
+    // eventlength(event)
   }
-
-  const checkedItems = itemed.length
-    ? itemed.reduce((total, item) => {
-        return total + ", " + item
-      })
-    : ""
 
   var isChecked = (item) =>
     itemed.includes(item) ? "checked-item" : "not-checked-item"
 
-  // $("input:checkbox").click(function () {
-  //   var bol = $("input:checkbox:checked").length >= 5
+  // console.log(itemed.length)
+
+  useEffect(() => {
+    localStorage.setItem("itemed", JSON.stringify(itemed))
+  }, [itemed])
+
+  useEffect((e) => {
+    if (itemed.length > 5) {
+      alert("You can choose maximum 5 topics")
+      // console.log(e)
+      // event.target.checked = false
+    }
+    console.log(itemed.length)
+  })
+
+  // console.log(itemed)
+
+  // input.checkbox.click(function (input) {
+  //   var bol = input.checkbox.checked.length >= 5
   //   $("input:checkbox").not(":checked").attr("disabled", bol)
   // })
-
-  // const senddata = () => {
-  //   return <Createpost array={setItemed} />
-  // }
 
   return (
     <div className="topic">
@@ -89,18 +97,6 @@ function Topicselect() {
           </div>
         </div>
       </div>
-      <div className="btnconfirm">
-        <button
-          type="button"
-          className="confirm"
-          id="buttonconfirm"
-          // onClick={() => senddata()}
-        >
-          CONFIRM
-        </button>
-        {/* <Createpost array={setItemed} /> */}
-      </div>
-      <div>{`${checkedItems}`}</div>
     </div>
   )
 }
