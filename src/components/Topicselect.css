@@ -46,9 +46,21 @@
   padding: 20px 40px;
 }
 
-.scroll {
+.scrollgeneral {
   display: flex;
   /* margin: 20px 40px; */
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.scrollstudy {
+  display: flex;
+  height: 200px;
+  overflow-y: scroll;
+}
+
+.scrollfaculty {
+  display: flex;
   height: 200px;
   overflow-y: scroll;
 }
@@ -76,6 +88,10 @@
   cursor: pointer;
 }
 
+.generaltog {
+  color: #2a8052;
+}
+
 .general:hover {
   color: #2a8052;
 }
@@ -92,6 +108,10 @@
   cursor: pointer;
 }
 
+.studytog {
+  color: #2a8052;
+}
+
 .study:hover {
   color: #2a8052;
 }
@@ -106,6 +126,10 @@
   border: none;
   transition-duration: 0.2s;
   cursor: pointer;
+}
+
+.facultytog {
+  color: #2a8052;
 }
 
 .faculty:hover {
@@ -126,6 +150,7 @@
   cursor: pointer;
 }
 */
+
 .checkbox-wrapper {
   margin-bottom: 3%;
   /* margin-left: 10%; */
