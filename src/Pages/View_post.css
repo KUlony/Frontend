@@ -70,9 +70,114 @@
   margin-right: 5%;
   font-size: 16px;
   margin-top: 80px;
+  margin-bottom: 80px;
 }
 
 .view_post_comment {
   position: relative;
   margin: 0 5%;
+}
+
+.view_post_fullpost_img {
+  margin: 0 5%;
+  border-bottom: 1px solid black;
+}
+
+.view_post_fullpost_miniimg {
+  /* background: rgb(94, 94, 96); */
+  height: 400px;
+  /* auto ตอนใส่รูป */
+  /* height: auto; */
+  overflow: hidden;
+  width: 40%;
+  margin: 0 5% 80px 5%;
+  display: inline-block;
+}
+
+.post_img {
+  width: 100%;
+  height: auto;
+  /* max-height: 300px; */
+}
+
+.view_post_interact {
+  margin: 0 5%;
+  position: relative;
+  padding-top: 20px;
+}
+
+.view_post_commentbox {
+  display: inline-block;
+  margin-left: 40px;
+}
+
+.view_post_likebox {
+  display: inline-block;
+}
+
+.view_post_reportbox {
+  position: absolute;
+  top: 20px;
+  right: 0;
+  cursor: pointer;
+}
+
+.view_post_commentinputbox {
+  margin: 20px 5% 30px 5%;
+}
+
+.view_post_text {
+  position: relative;
+  display: inline-block;
+  bottom: 9px;
+  margin-left: 15px;
+}
+
+.view_post_comment_input {
+  padding-left: 20px;
+  width: 60%;
+  height: 30px;
+  background-color: #f8f5d5;
+  margin-right: 30px;
+}
+
+.view_post_comment_button {
+  color: #339c64;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+}
+
+.view_post_comment_button:active {
+  opacity: 0.5;
+}
+
+.viewpost_report_popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -275px;
+  margin-left: -170px;
+}
+
+.display_none {
+  display: none;
+}
+
+.view_post_report_icon {
+  cursor: pointer;
+}
+
+.view_post_report_icon:active {
+  opacity: 0.5;
+}
+
+.viewpost_miniprofile_popup {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -335px;
+  margin-top: -150px;
 }

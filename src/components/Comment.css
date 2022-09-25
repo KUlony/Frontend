@@ -67,6 +67,7 @@
   border-radius: 50px;
   background-color: black;
   display: inline-block;
+  cursor: pointer;
 }
 
 .comment_name {
