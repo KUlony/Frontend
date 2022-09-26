@@ -35,6 +35,16 @@ function Home() {
       like: 20,
     },
   ];
+  const [topic, setTopic] = useState([true, false, false, false, false]);
+  const [followtopic, setFollowtopic] = useState(false);
+
+  const topic_select = (topic_number) => {
+    if (topic[topic_number] !== true) {
+      setTopic((prevdata) =>
+        prevdata.map((data, idx) => (idx === topic_number ? true : false))
+      );
+    }
+  };
 
   return (
     <PostData.Provider postdata={testdata}>
@@ -45,7 +55,9 @@ function Home() {
           </div>
           <div className="home_search">
             <div className="home_search_box">
-              <h1 className="home_search_title">Kulony Best Community</h1>
+              <h1 className="home_search_title">
+                Exchange and meet through this endless KU's colony !
+              </h1>
               <div className="home_search_input">
                 <form>
                   <input
@@ -69,11 +81,66 @@ function Home() {
             </div>
           </div>
           <nav className="Nav_topic">
-            <div className="Topic">Discover</div>
-            <div className="Topic">General</div>
+            <div
+              className={`${topic[0] ? "current_topic" : null}`}
+              onClick={() => topic_select(0)}
+            >
+              General
+            </div>
+            <div
+              className={`${topic[1] ? "current_topic" : null}`}
+              onClick={() => topic_select(1)}
+            >
+              Learning
+            </div>
+            <div
+              className={`${topic[2] ? "current_topic" : null}`}
+              onClick={() => topic_select(2)}
+            >
+              News
+            </div>
+            <div
+              className={`${topic[3] ? "current_topic" : null}`}
+              onClick={() => topic_select(3)}
+            >
+              Market
+            </div>
+            <div
+              className={`${topic[4] ? "current_topic" : null}`}
+              onClick={() => topic_select(4)}
+            >
+              Faculty
+            </div>
           </nav>
           <div className="Home_post">
-            <Post_generator data={testdata} />
+            <form
+              className={`home_checkbox ${topic[0] ? "display_none" : null}`}
+            >
+              <input
+                type="checkbox"
+                onClick={() => setFollowtopic(!followtopic)}
+              ></input>
+              <label>Show following topics only</label>
+            </form>
+            <div className={`${topic[4] ? "post_faculty" : null}`}>
+              <Post_generator data={testdata} />
+            </div>
+          </div>
+          <div className="test2">
+            <div>
+              <ul className="select_faculty">
+                <li> Agriculture</li>
+                <li>Agro-Industry</li>
+                <li>Architecture</li>
+                <li>Business Administration</li>
+                <li>Econimics</li>
+                <li>Environment</li>
+                <li>Forestry</li>
+                <li>Humanities</li>
+                <li>Science</li>
+                <li>Social science</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>

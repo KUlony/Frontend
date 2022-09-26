@@ -21,7 +21,7 @@
   margin: auto;
   top: 100px;
   height: auto;
-  width: 60%;
+  /* width: 60%; */
   max-width: 600px;
   margin-top: 30px;
   padding-top: 3%;
@@ -53,7 +53,7 @@
 }
 
 .post_Content {
-  margin-top: 20px;
+  margin: 20px 0;
   height: auto;
   max-height: 87px;
   text-overflow: ellipsis;
@@ -175,15 +175,6 @@
   width: 50px;
 }
 
-/* .post_profile {
-  position: absolute;
-  width: 40%;
-  height: 50%;
-  background-color: aqua;
-  left: 30%;
-  top: 25%;
-} */
-
 .miniprofile_post {
   position: absolute;
   top: 50%;
@@ -280,4 +271,9 @@
 .comment_header {
   padding-bottom: 10px;
   height: 15px;
+}
+
+.TitleHead_box {
+  display: inline-block;
+  width: 80%;
 }
