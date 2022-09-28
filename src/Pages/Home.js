@@ -10,10 +10,12 @@ import Miniprofile from "../components/Miniprofile";
 
 function Home() {
   const [post_data, setPost_data] = useState([]);
+  const [displayload, setDisplayload] = useState(false);
   const componentDidMount = async () => {
     try {
       const response = await fetch(`http://localhost:3000/post/all_post`);
       const json = await response.json();
+      setDisplayload(true);
       setPost_data(json);
     } catch {
       console.error("fail");
@@ -154,6 +156,9 @@ function Home() {
               <label>Show following topics only</label>
             </form>
             <div className={`${topic[4] ? "post_faculty" : null}`}>
+              <div
+                className={`loader ${displayload ? "display_noen" : null}`}
+              ></div>
               <Post_generator data={testdata} />
               {/* <Post_generator data={post_data} /> */}
             </div>
