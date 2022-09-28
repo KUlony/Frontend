@@ -19,10 +19,12 @@ function View_post() {
   const location = useLocation();
   const from = location.state;
   const like = from.like.like;
+  const commentcount = from.comment.comment;
   const title = from.title.title;
   const post_content = from.post_content.post_content;
   const photo = from.photo.photo;
-  const testdata = "35";
+  const profilepic = from.profilepic.profilepic;
+  console.log(from);
   const testimgdata = [
     "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
@@ -68,7 +70,13 @@ function View_post() {
 
           <div className="view_post_fullpost_title">{title}</div>
           <div className="view_post_fullpost_profile">
-            <div className="UserProfile" onClick={display_profile}></div>
+            <div className="UserProfile" onClick={display_profile}>
+              <img
+                src={profilepic}
+                alt="profilemini_img"
+                className="profile_miniimg"
+              />
+            </div>
             <div className="view_post_fullpost_profile_username">
               johnny depp
             </div>
@@ -87,11 +95,11 @@ function View_post() {
           <div className="view_post_interact">
             <div className="view_post_likebox">
               <FcLikePlaceholder size={30} />
-              <p className="view_post_text">{testdata} Likes</p>
+              <p className="view_post_text">{like} Likes</p>
             </div>
             <div className="view_post_commentbox">
               <MdOutlineModeComment size={30} />
-              <p className="view_post_text">{testdata} Comments</p>
+              <p className="view_post_text">{commentcount} Comments</p>
             </div>
             <div className="view_post_reportbox" onClick={display_report}>
               <MdReport size={30} className="view_post_report_icon" />

@@ -34,7 +34,10 @@
 }
 
 .UserProfile {
-  background-color: black;
+  /* background-color: black;
+   */
+
+  overflow: hidden;
   border-radius: 50%;
   height: 40px;
   width: 40px;
@@ -276,4 +279,11 @@
 .TitleHead_box {
   display: inline-block;
   width: 80%;
+}
+
+.profile_miniimg {
+  position: relative;
+  z-index: 10;
+  height: 40px;
+  width: 40px;
 }

@@ -10,9 +10,12 @@ function Post_generator(props) {
         return (
           <Post
             title={element.post_title}
-            like={element.like}
+            like={element.post_like_count}
             post_content={element.post_content}
             photo={element.cover_photo_url}
+            comment={element.post_comment_count}
+            profilepic={element.author.profile_pic_url}
+            post_photo_url={element.post_photo_url}
           />
         );
       })}{" "}

@@ -28,7 +28,7 @@ function Post(props) {
   const [displayComment, setdisplatComment] = useState(true);
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
 
-  const { title, like, post_content, photo } = props;
+  const { title, like, post_content, photo, comment, profilepic } = props;
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
       setreportpost_drop("btn_where2");
@@ -36,12 +36,18 @@ function Post(props) {
       setreportpost_drop("btn_where");
     }
   };
-
+  console.log(profilepic);
   return (
     <div className>
       <div className="PostBox">
         <div className="Header">
-          <div className="UserProfile" onClick={display_profile}></div>
+          <div className="UserProfile" onClick={display_profile}>
+            <img
+              src={profilepic}
+              alt="profilemini_img"
+              className="profile_miniimg"
+            />
+          </div>
           <div className="TitleHead_box">
             <h4 className="TitleHead">{title}</h4>
           </div>
@@ -101,7 +107,7 @@ function Post(props) {
             </div>
           </div>
           <div className="comment_box">
-            <div class="CommentCount">123</div>
+            <div class="CommentCount">{comment}</div>
           </div>
           <div className="share_box">
             <AiOutlineShareAlt className="Share" size={30} />
@@ -114,6 +120,8 @@ function Post(props) {
               like: { like },
               post_content: { post_content },
               photo: { photo },
+              comment: { comment },
+              profilepic: { profilepic },
             }}
           >
             viewpost{" "}
