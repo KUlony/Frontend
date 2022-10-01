@@ -1,11 +1,35 @@
-import React, { useEffect } from "react"
-import "./Createpost.css"
-import { initializeApp } from "firebase/app"
-import { getAnalytics } from "firebase/analytics"
+import React, { useEffect, useState } from "react"
 import NavBar from "../components/NavBar"
-// import { Link, Router } from "react-router-dom"
+import "./Createpost.css"
+import storage from "../components/FirebaseConfig"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
+import Topicselect from "../components/Topicselect"
+import Sheetpost from "../picture/Sheetpost.png"
 
 function Createpost() {
+  const [edittopicheck, seteditTopicCheck] = useState(true)
+  const [items, setItems] = useState([])
+
+  const topicselect = () => {
+    seteditTopicCheck(!edittopicheck)
+    console.log(edittopicheck)
+  }
+  const topicselectsend = () => {
+    seteditTopicCheck(!edittopicheck)
+    const items = JSON.parse(localStorage.getItem("itemed"))
+    if (items) {
+      console.log(items)
+      setItems(items)
+    }
+    console.log(edittopicheck)
+  }
+
+  const checkedItems = items.length
+    ? items.reduce((total, item) => {
+        return total + ", " + item
+      })
+    : ""
+
   useEffect(() => {
     let textArea = document.getElementById("inputT")
     let characterCounter = document.getElementById("char_count_title")
@@ -32,11 +56,11 @@ function Createpost() {
 
     const countCharacters = () => {
       let numOfEnteredChars = textArea.value.length
-      characterCounter.textContent = numOfEnteredChars + "/5000"
+      characterCounter.textContent = numOfEnteredChars + "/25000"
 
-      if (numOfEnteredChars >= 4995) {
+      if (numOfEnteredChars >= 24995) {
         characterCounter.style.color = "red"
-      } else if (numOfEnteredChars >= 4950) {
+      } else if (numOfEnteredChars >= 24950) {
         characterCounter.style.color = "orange"
       } else {
         characterCounter.style.color = "black"
@@ -46,68 +70,129 @@ function Createpost() {
     textArea.addEventListener("input", countCharacters)
   })
 
-  var ImgName, ImgUrl
+  // State to store uploaded file
+  const [file, setFile] = useState("")
+  const [filemult, setFileMult] = useState([])
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBxDBbM9rV1lHYXftLcqt3uwDFwo181H04",
-    authDomain: "kulony-5f1ef.firebaseapp.com",
-    projectId: "kulony-5f1ef",
-    storageBucket: "kulony-5f1ef.appspot.com",
-    messagingSenderId: "50655501627",
-    appId: "1:50655501627:web:7495323b7559c9a7986b1e",
-    measurementId: "G-BPQ130W12B",
+  // progress
+  const [percent, setPercent] = useState(0)
+  const [percentmult, setPercentMult] = useState(0)
+
+  const [urls, setUrls] = useState([])
+
+  // Handle file upload event and update state
+  function handleChange(event) {
+    setFile(event.target.files[0])
   }
 
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig)
-  const analytics = getAnalytics(app)
+  function handleChangemult(event) {
+    if (event.target.files.length > 10) {
+      alert("Can upload up to 10 pics!!")
+      setFileMult([])
+      return
+    }
+    for (let i = 0; i < event.target.files.length; i++) {
+      const newImage = event.target.files[i]
+      // newImage["id"] = Math.random()
+      setFileMult((prevState) => [...prevState, newImage])
+    }
+  }
 
-  useEffect(() => {
-    var files = []
-    document.getElementById("imagecover").onclick = function (e) {
-      var input = document.createElement("input")
-      input.type = "file"
+  const [statec, setStateC] = useState(false)
 
-      input.onchange = (e) => {
-        files = e.target.files
-        // console.log(files[0].type)
-        if (files[0].type !== "image/png") {
-          alert("only .jpg .jpeg .png")
-          return
+  const handleUpload = () => {
+    if (!file) {
+      alert("Please upload an image first!")
+      return
+    } else if (statec) {
+      alert("Already Upload!!")
+      return
+    }
+
+    const storageRef = ref(storage, `/files/${file.name}`)
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        // update progress
+        setPercent(percent)
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url)
+        })
+      }
+    )
+    setStateC(true)
+  }
+
+  const [statem, setStateM] = useState(false)
+
+  const handleUploadmult = () => {
+    // console.log(filemult)
+    if (filemult.length === 0) {
+      alert("Please upload an image first!")
+      return
+    } else if (filemult != null && statem) {
+      alert("Already Upload!!")
+      return
+    }
+
+    const promises = []
+    filemult.map((file) => {
+      const storageRef = ref(storage, `/files/${file.name}`)
+
+      // progress can be paused and resumed. It also exposes progress updates.
+      // Receives the storage reference and the file to upload.
+      const uploadTask = uploadBytesResumable(storageRef, file)
+
+      promises.push(uploadTask)
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percentmult = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          )
+
+          // update progress
+          setPercentMult(percentmult)
+        },
+        (err) => console.log(err),
+        async () => {
+          // download url
+          await getDownloadURL(uploadTask.snapshot.ref).then((urls) => {
+            setUrls((prevState) => [...prevState, urls])
+            // console.log(urls)
+          })
         }
-        var reader = new FileReader()
-        // reader.onload = function () {
-        //   document.getElementById("").src = reader.result
-        // }
-        reader.readAsDataURL(files[0])
-        console.log(files[0])
-      }
-      input.click()
-    }
-
-    document.getElementById("imagecontent").onclick = function (e) {
-      var input = document.createElement("input")
-      input.type = "file"
-
-      input.onchange = (e) => {
-        files = e.target.files
-        var reader = new FileReader()
-        // reader.onload = function () {
-        //   document.getElementById("").src = reader.result
-        // }
-        reader.readAsDataURL(files[0])
-        console.log(files[0])
-      }
-      input.click()
-    }
-  })
+      )
+    })
+    Promise.all(promises)
+      .then(() => alert("ALL images uploaded"))
+      .catch((err) => console.log(err))
+    setStateM(true)
+    console.log("image:", filemult)
+    console.log("url", urls)
+  }
+  console.log("url", urls)
 
   return (
     <div>
       <NavBar />
       <div className="all">
         <div className="createTitle">
-          <h1 className="create">Create a post</h1>
+          <h1 className="create">Create a post </h1>
+          <img src={Sheetpost} alt="" className="picsheet"></img>
         </div>
         <br></br>
         <div className="allcontent">
@@ -132,9 +217,21 @@ function Createpost() {
                 <p className="namec">Cover photo</p>
                 <p className="op">(Optional)</p>
               </div>
-              <button type="button" className="btcover" id="imagecover">
-                Add image <i class="bi bi-image"></i>
+              <input
+                type="file"
+                onChange={handleChange}
+                accept=".png,.jpg,.jpeg"
+                className="inputphoto"
+              />
+              <button
+                type="button"
+                className="btcover"
+                id="imagecover"
+                onClick={handleUpload}
+              >
+                Upload
               </button>
+              <p>{percent}% done</p>
             </div>
           </div>
           <br></br>
@@ -144,34 +241,49 @@ function Createpost() {
               className="inputContent"
               id="inputC"
               type="text"
-              placeholder="Maximum 5000 characters"
+              placeholder="Maximum 25000 characters"
               rows="20"
               cols="100"
-              maxLength="5000"
+              maxLength="25000"
             ></textarea>
             <span id="char_count_content" className="char_count_content">
-              0/5000
+              0/25000
             </span>
             <br></br>
             <br></br>
             <div className="covercontent">
               <p className="namecontentp">Content photo</p>
               <p className="op">(Optional)</p>
-              <button type="button" className="btcontent" id="imagecontent">
-                Add image <i class="bi bi-image"></i>
-              </button>
+              <input
+                type="file"
+                multiple
+                onChange={handleChangemult}
+                accept=".png,.jpg,.jpeg"
+                className="inputphoto"
+              />
               <p className="uptoten">(Up to 10 Pics)</p>
+              <button
+                type="button"
+                className="btcontent"
+                id="imagecontent"
+                onClick={handleUploadmult}
+              >
+                Upload
+              </button>
+              <p className="permult">{percentmult}% done</p>
             </div>
           </div>
           <br></br>
           <div className="bottom">
-            <p className="topic">Topic</p>
+            <p className="topicname">Topic</p>
             <div className="tagbox">
-              <button className="edittopic">
+              <button className="edittopic" onClick={topicselect}>
                 Edit topic <i class="bi bi-plus-circle-fill"></i>
               </button>
             </div>
           </div>
+          <br></br>
+          <div className="topicinpage">{`${checkedItems}`}</div>
           <br></br>
           <div className="btnbottom">
             <div className="bth">
@@ -187,6 +299,22 @@ function Createpost() {
             {/* </a> */}
             {/* </div> */}
           </div>
+        </div>
+      </div>
+      <div className={`topicselectcss ${edittopicheck ? "noting" : null}`}>
+        <h1 className="close" onClick={topicselect}>
+          <i class="bi bi-x"></i>
+        </h1>
+        <Topicselect />
+        <div className="btnconfirm">
+          <button
+            type="button"
+            className="confirm"
+            id="buttonconfirm"
+            onClick={topicselectsend}
+          >
+            CONFIRM
+          </button>
         </div>
       </div>
     </div>

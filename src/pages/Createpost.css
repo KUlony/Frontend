@@ -1,17 +1,22 @@
 .createTitle {
   position: relative;
+  display: flex;
   margin-left: 70%;
-  margin-top: 120px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: 20px;
   font-weight: 600;
   font-size: 20px;
   letter-spacing: 0.03em;
   color: #000000;
 }
 
+.create {
+  margin: auto 0px;
+}
 
 .all {
   width: 100%;
+  background: #D6EBE0;
   overflow: hidden;
 }
 
@@ -40,8 +45,13 @@
   color: darkgrey;
 }
 
+.permult {
+  margin: auto 0px;
+  font-size: 15px;
+}
+
 .op {
-  margin-left: 10px;
+  margin: auto 10px;
   color: #339C64;
 }
 
@@ -54,6 +64,7 @@
   width: 120px;
   height: 38px;
   font-size: 15px;
+  margin-left: 10px;
   background-color: white;
   border: 1px solid #000000;
   transition-duration: 0.2s;
@@ -62,6 +73,11 @@
 
 .btcover:hover {
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.inputphoto {
+  cursor: pointer;
+  margin: auto 0px;
 }
 
 .btcontent {
@@ -119,6 +135,10 @@
   /* margin: auto; */
 }
 
+.namecontentp {
+  margin: auto 0px;
+}
+
 .content {
   margin-bottom: 20px;
   font-size: 25px;
@@ -147,12 +167,17 @@
   margin-left: 20px;
 }
 
+.topicname {
+  margin: auto 0px;
+}
+
 .edittopic {
   background: #E7DB73;
   border-radius: 16px;
   border: none;
   height: 35px;
-  width: 80px;
+  width: 100px;
+  font-weight: 600;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -208,4 +233,62 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
   font-size: 28px;
   background-color: #2a8052;
+}
+
+.noting {
+  display: none;
+}
+
+.topicselectcss {
+  position: absolute;
+  /* border-style: solid; */
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  margin-left: -25%;
+  margin-top: -15%;
+}
+
+.close {
+  position: absolute;
+  margin-left: 49%;
+  cursor: pointer;
+}
+
+.picsheet {
+  height: 100px;
+  margin: auto 0px;
+}
+
+.btnconfirm {
+  position: relative;
+  margin-left: 20%;
+  margin-top: -6%;
+}
+
+.confirm {
+  /* width: 100%; */
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: #339C64;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.confirm:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+  font-size: 28px;
+  background-color: #2a8052;
+}
+
+.topicinpage {
+  width: 100%;
+  margin-left: 10%;
+  font-weight: 600;
 }
