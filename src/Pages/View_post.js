@@ -24,7 +24,8 @@ function View_post() {
   const post_content = from.post_content.post_content;
   const photo = from.photo.photo;
   const profilepic = from.profilepic.profilepic;
-  console.log(from);
+  // const scrollRestoration = History.scrollRestoration;
+  // console.log(scrollRestoration);
   const testimgdata = [
     "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",

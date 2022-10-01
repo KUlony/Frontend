@@ -7,8 +7,10 @@ import search from "../picture/search.png";
 import Post_generator from "../components/Post_generator";
 import PostData from "../PostData";
 import Miniprofile from "../components/Miniprofile";
+// import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
+  // const [havepost]
   const [post_data, setPost_data] = useState([]);
   const [displayload, setDisplayload] = useState(false);
   const componentDidMount = async () => {
@@ -21,7 +23,7 @@ function Home() {
       console.error("fail");
     }
   };
-  componentDidMount();
+  // componentDidMount();
   const testdata = [
     {
       author: {
@@ -68,8 +70,28 @@ function Home() {
       post_comment_count: 2,
     },
   ];
-  const [topic, setTopic] = useState([true, false, false, false, false]);
+  const [category, setCategory] = useState([true, false, false, false, false]);
+  const [topic, setTopic] = useState([
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [followtopic, setFollowtopic] = useState(false);
+
+  const category_select = (category_number) => {
+    if (category[category_number] !== true) {
+      setCategory((prevdata) =>
+        prevdata.map((data, idx) => (idx === category_number ? true : false))
+      );
+    }
+  };
 
   const topic_select = (topic_number) => {
     if (topic[topic_number] !== true) {
@@ -85,6 +107,7 @@ function Home() {
         <div className="home_test">
           <div className="Nav_home">
             <NavBar />
+            {/* <ScrollRestoration /> */}
           </div>
           <div className="home_search">
             <div className="home_search_box">
@@ -115,39 +138,39 @@ function Home() {
           </div>
           <nav className="Nav_topic">
             <div
-              className={`${topic[0] ? "current_topic" : null}`}
-              onClick={() => topic_select(0)}
+              className={`${category[0] ? "current_category" : null}`}
+              onClick={() => category_select(0)}
             >
               General
             </div>
             <div
-              className={`${topic[1] ? "current_topic" : null}`}
-              onClick={() => topic_select(1)}
+              className={`${category[1] ? "current_category" : null}`}
+              onClick={() => category_select(1)}
             >
               Learning
             </div>
             <div
-              className={`${topic[2] ? "current_topic" : null}`}
-              onClick={() => topic_select(2)}
+              className={`${category[2] ? "current_category" : null}`}
+              onClick={() => category_select(2)}
             >
               News
             </div>
             <div
-              className={`${topic[3] ? "current_topic" : null}`}
-              onClick={() => topic_select(3)}
+              className={`${category[3] ? "current_category" : null}`}
+              onClick={() => category_select(3)}
             >
               Market
             </div>
             <div
-              className={`${topic[4] ? "current_topic" : null}`}
-              onClick={() => topic_select(4)}
+              className={`${category[4] ? "current_category" : null}`}
+              onClick={() => category_select(4)}
             >
               Faculty
             </div>
           </nav>
           <div className="Home_post">
             <form
-              className={`home_checkbox ${topic[0] ? "display_none" : null}`}
+              className={`home_checkbox ${category[0] ? "display_none" : null}`}
             >
               <input
                 type="checkbox"
@@ -155,27 +178,80 @@ function Home() {
               ></input>
               <label>Show following topics only</label>
             </form>
-            <div className={`${topic[4] ? "post_faculty" : null}`}>
-              <div
-                className={`loader ${displayload ? "display_noen" : null}`}
-              ></div>
+            <div className={`${category[4] ? "post_faculty" : null}`}>
+              {/* ใส่ตอนมีข้อมูลให้ fetch */}
+              {/* <div
+                className={`loader ${displayload ? "display_none" : null}`}
+              ></div> */}
               <Post_generator data={testdata} />
               {/* <Post_generator data={post_data} /> */}
             </div>
           </div>
-          <div className="test2">
+          <div
+            className={`home_sidebar ${category[4] ? null : "display_none"}`}
+          >
             <div>
               <ul className="select_faculty">
-                <li> Agriculture</li>
-                <li>Agro-Industry</li>
-                <li>Architecture</li>
-                <li>Business Administration</li>
-                <li>Econimics</li>
-                <li>Environment</li>
-                <li>Forestry</li>
-                <li>Humanities</li>
-                <li>Science</li>
-                <li>Social science</li>
+                <li
+                  className={`${topic[0] ? "current_topic" : null}`}
+                  onClick={() => topic_select(0)}
+                >
+                  Agriculture
+                </li>
+                <li
+                  className={`${topic[1] ? "current_topic" : null}`}
+                  onClick={() => topic_select(1)}
+                >
+                  Agro-Industry
+                </li>
+                <li
+                  className={`${topic[2] ? "current_topic" : null}`}
+                  onClick={() => topic_select(2)}
+                >
+                  Architecture
+                </li>
+                <li
+                  className={`${topic[3] ? "current_topic" : null}`}
+                  onClick={() => topic_select(3)}
+                >
+                  Business Administration
+                </li>
+                <li
+                  className={`${topic[4] ? "current_topic" : null}`}
+                  onClick={() => topic_select(4)}
+                >
+                  Econimics
+                </li>
+                <li
+                  className={`${topic[5] ? "current_topic" : null}`}
+                  onClick={() => topic_select(5)}
+                >
+                  Environment
+                </li>
+                <li
+                  className={`${topic[6] ? "current_topic" : null}`}
+                  onClick={() => topic_select(6)}
+                >
+                  Forestry
+                </li>
+                <li
+                  className={`${topic[7] ? "current_topic" : null}`}
+                  onClick={() => topic_select(7)}
+                >
+                  Humanities
+                </li>
+                <li
+                  className={`${topic[8] ? "current_topic" : null}`}
+                  onClick={() => topic_select(8)}
+                >
+                  Science
+                </li>
+                <li
+                  className={`${topic[9] ? "current_topic" : null}`}
+                  onClick={() => topic_select(9)}
+                >
+                  Social science
+                </li>
               </ul>
             </div>
           </div>

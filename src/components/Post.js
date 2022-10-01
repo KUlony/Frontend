@@ -36,7 +36,6 @@ function Post(props) {
       setreportpost_drop("btn_where");
     }
   };
-  console.log(profilepic);
   return (
     <div className>
       <div className="PostBox">
