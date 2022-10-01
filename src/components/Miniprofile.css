@@ -1,0 +1,104 @@
+.home_post_profile {
+  width: 650px;
+  min-width: 650px;
+  height: 280px;
+  max-height: 280px;
+  background-color: #d6ebe0;
+  padding: 10px;
+  z-index: 7;
+  border-radius: 6px;
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.post_miniprofile {
+  background-color: white;
+  height: 280px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 1);
+  border-radius: 6px;
+}
+
+.miniprofile_pic {
+  width: 260px;
+  height: 280px;
+  display: flex;
+  justify-content: center;
+  float: left;
+  border-right: 1px solid rgba(0, 0, 0, 1);
+}
+
+.miniprofile_fakeimg {
+  position: absolute;
+  margin-top: 50px;
+  width: 180px;
+  height: 180px;
+  background-color: white;
+  border-radius: 90px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 1);
+}
+
+.miniprofile_info {
+  width: 339px;
+  padding: 8px 0px 0px 50px;
+  height: 262px;
+  float: left;
+}
+
+.miniprofile_info h3 {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 35px;
+  letter-spacing: 0.03em;
+
+  color: #339c64;
+}
+
+.miniprofile_info button {
+}
+
+.inputbox {
+  background-color: #f8f5d5;
+  width: 220px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 10px;
+  font-size: 15px;
+}
+
+.miniprofile_info_miniheader {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+
+  color: #000000;
+}
+
+.miniprofile_info_university {
+  color: #339c64;
+}
+
+.miniprofile_info_contact {
+  position: relative;
+  left: 67px;
+}
+
+.miniprofile_info_exit {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.miniprofile_info_exit_icon {
+  height: 15px;
+  width: 15px;
+}
