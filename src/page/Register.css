@@ -25,7 +25,6 @@
     font-size: 48px;
     color: #339C64;
     margin-top: 5%;
-    margin-bottom: 50px;
 }
 
 .input_register {
@@ -34,7 +33,7 @@
     font-size: 28px;
     width: 95%;
     height: 70px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     padding-left: 20px;
     font-family: 'Quicksand';
     font-style: normal;
@@ -78,6 +77,8 @@
     font-weight: bolder;
     outline: none;
     text-decoration: none;
+    display: inline;
+    cursor: pointer;
 }
 
 .tp_register {
@@ -87,4 +88,24 @@
     font-size: 20px;
     color: #000000;
     margin-bottom: 40px;
+}
+
+.terms_register {
+    position: absolute;
+    top: 50%;
+    margin-top: -300px;
+    left: 50%;
+    margin-left: -335px;
+}
+
+.verify_register {
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -335px;
+}
+
+.none {
+    display: none;
 }
