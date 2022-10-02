@@ -1,38 +1,33 @@
-import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
-import Navbar from "../components/NavBar";
-import "./View_post.css";
-import { IoIosArrowBack } from "react-icons/io";
-import Comment from "../components/Comment";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
-import { FcLikePlaceholder } from "react-icons/fc";
-import {
-  MdOutlineModeComment,
-  MdTitle,
-  MdReport,
-  MdSend,
-} from "react-icons/md";
-import Reportpost_popup from "../components/Reportpost_popup";
-import Miniprofile from "../components/Miniprofile";
-import Comment_generator from "../components/Comment_generator";
-import Showimg from "../components/Showimg";
+import React, { useState } from "react"
+import { Link, useLocation } from "react-router-dom"
+import Navbar from "../components/NavBar"
+import "./View_post.css"
+import { IoIosArrowBack } from "react-icons/io"
+import Comment from "../components/Comment"
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai"
+import { FcLikePlaceholder } from "react-icons/fc"
+import { MdOutlineModeComment, MdTitle, MdReport, MdSend } from "react-icons/md"
+import Reportpost_popup from "../components/Reportpost_popup"
+import Miniprofile from "../components/Miniprofile"
+import Comment_generator from "../components/Comment_generator"
+import Showimg from "../components/Showimg"
 
 function View_post() {
-  const location = useLocation();
-  const from = location.state;
-  const like = from.like.like;
-  const commentcount = from.comment.comment;
-  const title = from.title.title;
-  const post_content = from.post_content.post_content;
-  const photo = from.photo.photo;
-  const profilepic = from.profilepic.profilepic;
-  const username = from.username.username;
+  const location = useLocation()
+  const from = location.state
+  const like = from.like.like
+  const commentcount = from.comment.comment
+  const title = from.title.title
+  const post_content = from.post_content.post_content
+  const photo = from.photo.photo
+  const profilepic = from.profilepic.profilepic
+  const username = from.username.username
   // const scrollRestoration = History.scrollRestoration;
   // console.log(scrollRestoration);
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [imgurl, setImgurl] = useState("");
-  const [displaypostimg, setDisplayposting] = useState(false);
+  const [displayReport, setdisplayReport] = useState(true)
+  const [displayProfile, setdisplayProfile] = useState(true)
+  const [imgurl, setImgurl] = useState("")
+  const [displaypostimg, setDisplayposting] = useState(false)
   const comment_test_data = [
     {
       comment_content:
@@ -46,37 +41,37 @@ function View_post() {
       comment_content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ",
     },
-  ];
+  ]
   const testimgdata = [
     "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
     "https://images.unsplash.com/photo-1624555130581-1d9cca783bc0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2071&q=80",
     "https://images.unsplash.com/photo-1584714268709-c3dd9c92b378?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2127&q=80",
     "https://images.unsplash.com/photo-1543769657-fcf1236421bc?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1035&q=80",
-  ];
-  const [commentinput, setCommentinput] = useState("");
+  ]
+  const [commentinput, setCommentinput] = useState("")
   const comment = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const comment_input_value = document.querySelector(
       ".view_post_comment_input"
-    );
-    comment_input_value.value = "";
-  };
+    )
+    comment_input_value.value = ""
+  }
   const comment_input = (e) => {
-    setCommentinput(e.target.value);
-  };
+    setCommentinput(e.target.value)
+  }
   const display_report = () => {
-    setdisplayReport(!displayReport);
-  };
+    setdisplayReport(!displayReport)
+  }
   const display_profile = (maikan) => {
-    setdisplayProfile(!displayProfile);
-    console.log(maikan);
-  };
+    setdisplayProfile(!displayProfile)
+    console.log(maikan)
+  }
   const display_postimg = (url) => {
-    setDisplayposting(!displaypostimg);
-    setImgurl(url);
-    setDisplayposting(true);
-  };
+    setDisplayposting(!displaypostimg)
+    setImgurl(url)
+    setDisplayposting(true)
+  }
 
   return (
     <div className="view_post_poup">
@@ -124,7 +119,7 @@ function View_post() {
                     <img src={data} alt="post_img" className="post_img" />
                   </div>
                 </div>
-              );
+              )
             })}
           </div>
           <div className="view_post_interact">
@@ -177,7 +172,7 @@ function View_post() {
       </div>
       ${displaypostimg && <Showimg imgurl={imgurl} />}
     </div>
-  );
+  )
 }
 
-export default View_post;
+export default View_post

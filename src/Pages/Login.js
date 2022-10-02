@@ -1,7 +1,7 @@
-import React from "react";
-import "./Login.css";
+import React from "react"
+import "./Login.css"
 import login_img from "../picture/login.png"
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom"
 
 function Login() {
   return (
@@ -12,14 +12,23 @@ function Login() {
       <div className="column_login">
         <h1 className="header_login">LOG-IN</h1>
         <input className="input_login" type="email" placeholder="EMAIL"></input>
-        <input className="input_login" type="password" placeholder="PASSWORD"></input>
-        <button className="button_login" onClick="">LOG IN</button>   
+        <input
+          className="input_login"
+          type="password"
+          placeholder="PASSWORD"
+        ></input>
+        <button className="button_login" onClick="">
+          LOG IN
+        </button>
         <div className="qa_login">
-          Don’t have an account?  <Link className="link_login" to='/register'>Sign-up</Link>
+          Don’t have an account?{" "}
+          <Link className="link_login" to="/register">
+            Sign-up
+          </Link>
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Login;
+export default Login
