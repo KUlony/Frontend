@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
+// import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
