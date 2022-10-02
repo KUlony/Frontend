@@ -70,10 +70,15 @@
 
 .view_post_fullpost_photo {
   margin-top: 40px;
-  background-color: #4d5250;
+  /* background-color: #4d5250; */
   margin-left: 17.5%;
   width: 65%;
-  height: 371px;
+  /* overflow: hidden; */
+  /* height: 371px; */
+}
+
+.view_post_fullpost_coverimg {
+  width: 100%;
 }
 
 .view_post_fullpost_content {
@@ -95,15 +100,19 @@
 }
 
 .view_post_fullpost_miniimg {
-  /* background: rgb(94, 94, 96); */
   height: 400px;
-
-  /* auto ตอนใส่รูป */
-  /* height: auto; */
-  overflow: hidden;
   width: 40%;
   margin: 0 5% 80px 5%;
   display: inline-block;
+  overflow: hidden;
+}
+
+.view_post_fullpost_miniimg_center {
+  display: flex;
+  align-items: center;
+  height: 400px;
+  width: 100%;
+  overflow: hidden;
 }
 
 .post_img {

@@ -15,6 +15,7 @@ import {
 import Reportpost_popup from "../components/Reportpost_popup";
 import Miniprofile from "../components/Miniprofile";
 import Comment_generator from "../components/Comment_generator";
+import Showimg from "../components/Showimg";
 
 function View_post() {
   const location = useLocation();
@@ -25,12 +26,17 @@ function View_post() {
   const post_content = from.post_content.post_content;
   const photo = from.photo.photo;
   const profilepic = from.profilepic.profilepic;
+  const username = from.username.username;
   // const scrollRestoration = History.scrollRestoration;
   // console.log(scrollRestoration);
+  const [displayReport, setdisplayReport] = useState(true);
+  const [displayProfile, setdisplayProfile] = useState(true);
+  const [imgurl, setImgurl] = useState("");
+  const [displaypostimg, setDisplayposting] = useState(false);
   const comment_test_data = [
     {
       comment_content:
-        "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiiiiqwkdkdklqlk",
+        "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quii",
     },
     {
       comment_content:
@@ -66,9 +72,11 @@ function View_post() {
     setdisplayProfile(!displayProfile);
     console.log(maikan);
   };
-
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
+  const display_postimg = (url) => {
+    setDisplayposting(!displaypostimg);
+    setImgurl(url);
+    setDisplayposting(true);
+  };
 
   return (
     <div className="view_post_poup">
@@ -94,16 +102,27 @@ function View_post() {
               />
             </div>
             <div className="view_post_fullpost_profile_username">
-              johnny depp
+              {username}
             </div>
           </div>
-          <div className="view_post_fullpost_photo">{photo}</div>
+          <div className="view_post_fullpost_photo">
+            <img
+              src={photo}
+              alt="viewpost_cover_img"
+              className="view_post_fullpost_coverimg"
+            />
+          </div>
           <div className="view_post_fullpost_content">{post_content}</div>
           <div className="view_post_fullpost_img">
             {testimgdata.map((data) => {
               return (
                 <div className="view_post_fullpost_miniimg">
-                  <img src={data} alt="post_img" className="post_img" />
+                  <div
+                    className="view_post_fullpost_miniimg_center"
+                    onClick={() => display_postimg(data)}
+                  >
+                    <img src={data} alt="post_img" className="post_img" />
+                  </div>
                 </div>
               );
             })}
@@ -156,6 +175,7 @@ function View_post() {
       >
         <Reportpost_popup display={display_report} />
       </div>
+      ${displaypostimg && <Showimg imgurl={imgurl} />}
     </div>
   );
 }
