@@ -2,8 +2,8 @@
   position: relative;
   display: flex;
   margin-left: 70%;
-  margin-top: 100px;
-  margin-bottom: 20px;
+  margin-top: 70px;
+  /* margin-bottom: 20px; */
   font-weight: 600;
   font-size: 20px;
   letter-spacing: 0.03em;
@@ -17,12 +17,12 @@
 .all {
   width: 100%;
   background: #D6EBE0;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
-/* .allcontent {
+.allcontent {
   width: 100%;
-} */
+}
 
 .covertitle {
   /* position: relative; */
@@ -33,8 +33,6 @@
 }
 
 .covercontent {
-  /* position: relative; */
-  width: 100%;
   display: flex;
   font-size: 25px;
 }
@@ -46,27 +44,29 @@
 }
 
 .permult {
-  margin: auto 0px;
+  margin: auto auto auto 10px;
   font-size: 15px;
+  font-weight: 600;
+  color: #339C64;
 }
 
 .op {
   margin: auto 10px;
   color: #339C64;
+  font-weight: 600;
 }
 
 .allcover {
-  /* margin-left: 10%; */
-  width: 100%;
+  width: 50%;
 }
 
 .btcover {
-  width: 120px;
   height: 38px;
-  font-size: 15px;
+  width: 40px;
   margin-left: 10px;
-  background-color: white;
-  border: 1px solid #000000;
+  background-color: #E7DB73;
+  border: none;
+  border-radius: 100%;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -75,19 +75,36 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }
 
-.inputphoto {
-  cursor: pointer;
-  margin: auto 0px;
+.mb3content {
+  width: 80%;
+  margin-bottom: 10px;
+}
+
+.mb3cover {
+  width: 80%;
+}
+
+.choosefile {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.percentimgtitle {
+  margin: auto auto auto 78%;
+  color: #339C64;
+  font-weight: 600;
 }
 
 .btcontent {
   position: relative;
-  margin: 0px 1%;
-  width: 120px;
-  height: 38px;
-  font-size: 15px;
-  background-color: white;
-  border: 1px solid #000000;
+  font-weight: 600;
+  margin-left: 50%;
+  width: 100px;
+  height: 40px;
+  background-color: #E7DB73;
+  border: none;
+  border-radius: 20px;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -97,7 +114,11 @@
 }
 
 .title {
-  width: 180%;
+  width: 50%;
+}
+
+.titlespan {
+  display: flex;
 }
 
 .inputTitle {
@@ -112,20 +133,30 @@
   border-radius: 5px;
 }
 
-.char_count_title {
-  margin-left: 1%;
+.char_count_title,.char_count_content {
+  color: #339C64;
+  font-weight: 600;
 }
 
 .head {
   display: flex;
-  margin: auto auto 20px;
+  margin: auto;
   width: 80%;
-  justify-content: center;
 }
 
 .namet {
-  margin-bottom: 20px;
+  margin: auto 0px;
   font-size: 25px;
+  font-weight: 600;
+}
+
+.namec {
+  margin: auto 0px;
+  font-weight: 600;
+}
+
+.name {
+  margin: auto 65% 0px;
 }
 
 .conbody {
@@ -137,11 +168,13 @@
 
 .namecontentp {
   margin: auto 0px;
+  font-weight: 600;
 }
 
 .content {
-  margin-bottom: 20px;
+  margin-bottom: 0px;
   font-size: 25px;
+  font-weight: 600;
 }
 
 .inputContent {
@@ -156,27 +189,49 @@
   border-radius: 5px;
 }
 
-.bottom {
+.contentspan {
   display: flex;
-  margin: auto;
-  width: 80%;
-  font-size: 25px;
+  /* width: 100%; */
 }
 
-.tagbox {
-  margin-left: 20px;
+.namecontent {
+  margin: auto auto auto 88%;
+  width: 100%;
+}
+
+.bottom {
+  width: 50%;
+}
+
+.bottomtopic {
+  display: flex;
+}
+
+.bottomphototopic {
+  display: flex;
+  width: 100%;
+}
+
+.btnuploadimg {
+  display: flex;
+}
+
+.allcontentimg {
+  width: 50%;
 }
 
 .topicname {
-  margin: auto 0px;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .edittopic {
   background: #E7DB73;
   border-radius: 16px;
   border: none;
-  height: 35px;
-  width: 100px;
+  margin-left: 20px;
+  height: 40px;
+  width: 120px;
   font-weight: 600;
   transition-duration: 0.2s;
   cursor: pointer;
@@ -223,12 +278,6 @@
   cursor: pointer;
 }
 
-/* .backtomypost {
-  margin-left: 10%;
-  overflow: hidden;
-  width: 40%;
-} */
-
 .postbtn:hover {
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
   font-size: 28px;
@@ -251,12 +300,12 @@
 
 .close {
   position: absolute;
-  margin-left: 49%;
+  margin-left: 47%;
   cursor: pointer;
 }
 
 .picsheet {
-  height: 100px;
+  height: 150px;
   margin: auto 0px;
 }
 
@@ -288,7 +337,5 @@
 }
 
 .topicinpage {
-  width: 100%;
-  margin-left: 10%;
   font-weight: 600;
 }

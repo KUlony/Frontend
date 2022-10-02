@@ -30,16 +30,13 @@
 }
 
 .seltopic {
-  margin-left: 5%;
+  margin: 0px 5%;
 }
 
 .selcom {
-  /* display: flex; */
-  margin-left: 5%;
   background: #D6EBE0;
-  width: 60%;
-  height: 200px;
-  /* border-style: solid; */
+  width: 70%;
+  height: 220px;
   font-size: larger;
   overflow: hidden;
   text-align: justify;
@@ -49,20 +46,23 @@
 .scrollgeneral {
   display: flex;
   /* margin: 20px 40px; */
-  height: 200px;
+  height: 180px;
   overflow-y: scroll;
+  /* border-style: solid; */
 }
 
 .scrollstudy {
   display: flex;
-  height: 200px;
+  height: 180px;
   overflow-y: scroll;
+  /* border-style: solid; */
 }
 
 .scrollfaculty {
   display: flex;
-  height: 200px;
+  height: 180px;
   overflow-y: scroll;
+  /* border-style: solid; */
 }
 
 .comleft {
@@ -166,4 +166,8 @@
 
 .itemname {
   margin-left: 10px;
+}
+
+.noting {
+  display: none;
 }

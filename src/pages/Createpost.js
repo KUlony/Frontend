@@ -4,6 +4,7 @@ import storage from "../components/FirebaseConfig"
 import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
+import uploadicon from "../picture/uploadicon.png"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
@@ -42,7 +43,7 @@ function Createpost() {
       } else if (numOfEnteredChars >= 180) {
         characterCounter.style.color = "orange"
       } else {
-        characterCounter.style.color = "black"
+        characterCounter.style.color = "#339C64"
       }
     }
 
@@ -62,7 +63,7 @@ function Createpost() {
       } else if (numOfEnteredChars >= 24950) {
         characterCounter.style.color = "orange"
       } else {
-        characterCounter.style.color = "black"
+        characterCounter.style.color = "#339C64"
       }
     }
 
@@ -191,13 +192,20 @@ function Createpost() {
       <div className="all">
         <div className="createTitle">
           <h1 className="create">Create a post </h1>
-          <img src={Sheetpost} alt="" className="picsheet"></img>
+          <img src={Sheetpost} alt="picsheet" className="picsheet"></img>
         </div>
         <br></br>
         <div className="allcontent">
           <div className="head">
             <div className="title">
-              <p className="namet">Title</p>
+              <div className="titlespan">
+                <p className="namet">Title</p>
+                <p className="name">
+                  <span id="char_count_title" className="char_count_title">
+                    0/200
+                  </span>
+                </p>
+              </div>
               <textarea
                 className="inputTitle"
                 id="inputT"
@@ -207,35 +215,43 @@ function Createpost() {
                 cols="50"
                 maxLength="200"
               ></textarea>
-              <span id="char_count_title" className="char_count_title">
-                0/200
-              </span>
             </div>
             <div className="allcover">
               <div className="covertitle">
-                <p className="namec">Cover photo</p>
+                <p className="namec">Cover image</p>
                 <p className="op">(Optional)</p>
               </div>
-              <input
-                type="file"
-                onChange={handleChange}
-                accept=".png,.jpg,.jpeg"
-                className="inputphoto"
-              />
-              <button
-                type="button"
-                className="btcover"
-                id="imagecover"
-                onClick={handleUpload}
-              >
-                Upload
-              </button>
-              <p>{percent}% done</p>
+              <div className="choosefile">
+                <div class="mb-3" className="mb3cover">
+                  <input
+                    class="form-control"
+                    type="file"
+                    onChange={handleChange}
+                    accept=".png,.jpg,.jpeg"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className="btcover"
+                  id="imagecover"
+                  onClick={handleUpload}
+                >
+                  <img src={uploadicon} alt=""></img>
+                </button>
+              </div>
+              <p className="percentimgtitle">{percent}% done</p>
             </div>
           </div>
           <br></br>
           <div className="conbody">
-            <p className="content">Content</p>
+            <div className="contentspan">
+              <p className="content">Content</p>
+              <div className="namecontent">
+                <span id="char_count_content" className="char_count_content">
+                  0/25000
+                </span>
+              </div>
+            </div>
             <textarea
               className="inputContent"
               id="inputC"
@@ -245,45 +261,50 @@ function Createpost() {
               cols="100"
               maxLength="25000"
             ></textarea>
-            <span id="char_count_content" className="char_count_content">
-              0/25000
-            </span>
             <br></br>
             <br></br>
-            <div className="covercontent">
-              <p className="namecontentp">Content photo</p>
-              <p className="op">(Optional)</p>
-              <input
-                type="file"
-                multiple
-                onChange={handleChangemult}
-                accept=".png,.jpg,.jpeg"
-                className="inputphoto"
-              />
-              <p className="uptoten">(Up to 10 Pics)</p>
-              <button
-                type="button"
-                className="btcontent"
-                id="imagecontent"
-                onClick={handleUploadmult}
-              >
-                Upload
-              </button>
-              <p className="permult">{percentmult}% done</p>
+            <div className="bottomphototopic">
+              <div className="allcontentimg">
+                <div className="covercontent">
+                  <p className="namecontentp">Content image</p>
+                  <p className="op">(Optional)</p>
+                </div>
+                <br></br>
+                <div>
+                  <div class="mb-3" className="mb3content">
+                    <input
+                      class="form-control"
+                      type="file"
+                      multiple
+                      onChange={handleChangemult}
+                      accept=".png,.jpg,.jpeg"
+                    />
+                  </div>
+                  <p className="uptoten">(Up to 10 Pics)</p>
+                  <div className="btnuploadimg">
+                    <button
+                      type="button"
+                      className="btcontent"
+                      id="imagecontent"
+                      onClick={handleUploadmult}
+                    >
+                      Upload <img src={uploadicon} alt=""></img>
+                    </button>
+                    <p className="permult">{percentmult}% done</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bottom">
+                <div className="bottomtopic">
+                  <p className="topicname">Topic</p>
+                  <button className="edittopic" onClick={topicselect}>
+                    Edit topic <i class="bi bi-plus-circle-fill"></i>
+                  </button>
+                </div>
+                <div className="topicinpage">{`${checkedItems}`}</div>
+              </div>
             </div>
           </div>
-          <br></br>
-          <div className="bottom">
-            <p className="topicname">Topic</p>
-            <div className="tagbox">
-              <button className="edittopic" onClick={topicselect}>
-                Edit topic <i class="bi bi-plus-circle-fill"></i>
-              </button>
-            </div>
-          </div>
-          <br></br>
-          <div className="topicinpage">{`${checkedItems}`}</div>
-          <br></br>
           <div className="btnbottom">
             <div className="bth">
               <a href="/home" className="backtohome">
