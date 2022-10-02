@@ -122,7 +122,6 @@ function Post(props) {
                     />
                   </header>
                   <div className="comment_content">
-                    $
                     {havedata && (
                       <Comment_generator
                         data={comment_test_data}
