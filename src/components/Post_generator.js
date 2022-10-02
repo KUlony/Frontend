@@ -16,6 +16,7 @@ function Post_generator(props) {
             comment={element.post_comment_count}
             profilepic={element.author.profile_pic_url}
             post_photo_url={element.post_photo_url}
+            username={element.author.username}
           />
         );
       })}{" "}

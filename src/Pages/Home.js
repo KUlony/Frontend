@@ -28,7 +28,7 @@ function Home() {
     {
       author: {
         user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kitipongzaza",
+        username: "kitipong tame",
         profile_pic_url:
           "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
       },
@@ -44,7 +44,7 @@ function Home() {
     {
       author: {
         user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kitipongzaza",
+        username: "kanpech ",
         profile_pic_url:
           "https://static.trueplookpanya.com/tppy/member/m_545000_547500/545994/cms/images/2019-Q3/%E0%B9%81%E0%B8%A1%E0%B8%A79%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95.jpg",
       },
@@ -60,7 +60,7 @@ function Home() {
     {
       author: {
         user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kitipongzaza",
+        username: "kankasem",
         profile_pic_url:
           "https://image.sistacafe.com/w800/images/uploads/summary/image/5043/1449106947-Instagrams-most-famous-cat-Nala16__605.jpg",
       },
@@ -87,6 +87,7 @@ function Home() {
     false,
     false,
   ])
+  const maikan = false
   const [followtopic, setFollowtopic] = useState(false)
 
   const category_select = (category_number) => {
@@ -187,6 +188,7 @@ function Home() {
               {/* <div
                 className={`loader ${displayload ? "display_none" : null}`}
               ></div> */}
+
               <Post_generator data={testdata} />
               {/* <Post_generator data={post_data} /> */}
             </div>

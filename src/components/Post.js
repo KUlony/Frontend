@@ -28,14 +28,15 @@ function Post(props) {
   const display_img = () => {
     setdisplayImg(!displayImg);
   };
-  const { title, like, post_content, photo, comment, profilepic } = props;
+  const { title, like, post_content, photo, comment, profilepic, username } =
+    props;
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [displayComment, setdisplatComment] = useState(true);
   const [displayImg, setdisplayImg] = useState(false);
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
   const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-
+  const [havedata, setHavedata] = useState(true);
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
       setreportpost_drop("btn_where2");
@@ -121,10 +122,13 @@ function Post(props) {
                     />
                   </header>
                   <div className="comment_content">
-                    <Comment_generator
-                      data={comment_test_data}
-                      display_profile={display_profile}
-                    />
+                    $
+                    {havedata && (
+                      <Comment_generator
+                        data={comment_test_data}
+                        display_profile={display_profile}
+                      />
+                    )}
                   </div>
                 </div>
               </div>
@@ -146,6 +150,7 @@ function Post(props) {
               photo: { photo },
               comment: { comment },
               profilepic: { profilepic },
+              username: { username },
             }}
           >
             viewpost{" "}
@@ -173,12 +178,7 @@ function Post(props) {
         className={`${displayImg ? null : "display_none"}`}
         onClick={display_img}
       >
-        <Showimg
-          // imgurl={
-          //   "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
-          // }
-          imgurl={imgcoverurl}
-        />
+        <Showimg imgurl={imgcoverurl} />
         <div className={`cover ${displayImg ? null : "display_none"}`}></div>
       </div>
     </div>
