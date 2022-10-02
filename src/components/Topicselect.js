@@ -98,7 +98,6 @@ function Topicselect() {
         <div className="choosetopic">Choose topics</div>
         <div className="maxtopic">You can choose maximum 5 topics</div>
         <br></br>
-        <br></br>
       </div>
       <div className="contenttopic">
         <div className="seltopic">
