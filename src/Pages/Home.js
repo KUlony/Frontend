@@ -1,28 +1,28 @@
-import React, { useState } from "react";
-import NavBar from "../components/NavBar";
-import Post from "../components/Post";
-import "./Home.css";
-import Think from "../picture/think.png";
-import search from "../picture/search.png";
-import Post_generator from "../components/Post_generator";
-import PostData from "../PostData";
-import Miniprofile from "../components/Miniprofile";
+import React, { useState } from "react"
+import NavBar from "../components/NavBar"
+import Post from "../components/Post"
+import "./Home.css"
+import Think from "../picture/think.png"
+import search from "../picture/search.png"
+import Post_generator from "../components/Post_generator"
+import PostData from "../PostData"
+import Miniprofile from "../components/Miniprofile"
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
-  const [post_data, setPost_data] = useState([]);
-  const [displayload, setDisplayload] = useState(false);
+  const [post_data, setPost_data] = useState([])
+  const [displayload, setDisplayload] = useState(false)
   const componentDidMount = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/post/all_post`);
-      const json = await response.json();
-      setDisplayload(true);
-      setPost_data(json);
+      const response = await fetch(`http://localhost:3000/post/all_post`)
+      const json = await response.json()
+      setDisplayload(true)
+      setPost_data(json)
     } catch {
-      console.error("fail");
+      console.error("fail")
     }
-  };
+  }
   // componentDidMount();
   const testdata = [
     {
@@ -73,8 +73,8 @@ function Home() {
       post_like_count: 20,
       post_comment_count: 2,
     },
-  ];
-  const [category, setCategory] = useState([true, false, false, false, false]);
+  ]
+  const [category, setCategory] = useState([true, false, false, false, false])
   const [topic, setTopic] = useState([
     true,
     false,
@@ -86,24 +86,24 @@ function Home() {
     false,
     false,
     false,
-  ]);
-  const [followtopic, setFollowtopic] = useState(false);
+  ])
+  const [followtopic, setFollowtopic] = useState(false)
 
   const category_select = (category_number) => {
     if (category[category_number] !== true) {
       setCategory((prevdata) =>
         prevdata.map((data, idx) => (idx === category_number ? true : false))
-      );
+      )
     }
-  };
+  }
 
   const topic_select = (topic_number) => {
     if (topic[topic_number] !== true) {
       setTopic((prevdata) =>
         prevdata.map((data, idx) => (idx === topic_number ? true : false))
-      );
+      )
     }
-  };
+  }
 
   return (
     <PostData.Provider postdata={testdata}>
@@ -262,7 +262,7 @@ function Home() {
         </div>
       </div>
     </PostData.Provider>
-  );
+  )
 }
 
 export default Home

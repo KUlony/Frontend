@@ -1,6 +1,5 @@
 import "./App.css"
-// import NavBar from "./components/NavBar";
-
+// // import NavBar from "./components/NavBar";
 import Home from "./Pages/Home"
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import MyPost from "./Pages/MyPost"
@@ -8,7 +7,6 @@ import Profile from "./Pages/Profile"
 import View_post from "./Pages/View_post"
 import Createpost from "./Pages/Createpost"
 
-// import ScrollRestoration from "react-scroll-restoration";
 function App() {
   return (
     <div>
