@@ -3,6 +3,7 @@
 }
 .user-profile {
   position: absolute;
+  columns: 1;
   left: 100px;
   top: 20px;
 }
