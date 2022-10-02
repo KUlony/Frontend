@@ -8,6 +8,34 @@ import View_post from "./Pages/View_post"
 import Createpost from "./Pages/Createpost"
 
 function App() {
+  // const clientId =
+  //   "434016079883-16upiqfv4b4gamkgdog1mvg4jeh0bt0b.apps.googleusercontent.com"
+
+  // const [profile, setProfile] = useState(null)
+
+  // useEffect(() => {
+  //   const initClient = () => {
+  //     gapi.clientId.init({
+  //       clientId: clientId,
+  //       scope: "",
+  //     })
+  //   }
+  //   gapi.load("client:auth2", initClient)
+  // }, [])
+
+  // const onSuccess = (res) => {
+  //   setProfile(res.profileObj)
+  //   console.log("success", res)
+  // }
+
+  // const onFailure = (res) => {
+  //   console.log("failed", res)
+  // }
+
+  // const logOut = () => {
+  //   setProfile(null)
+  // }
+
   return (
     <div>
       {/* <NavBa /> */}
