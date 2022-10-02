@@ -18,6 +18,10 @@
   word-wrap: break-word;
 }
 
+.line_clamp {
+  /* -webkit-line-clamp: 3; */
+}
+
 .comment_breakline {
   word-wrap: break-word;
   font-size: 14px;
@@ -84,6 +88,7 @@
 
 .test {
   position: relative;
+  height: auto;
   left: 90px;
   width: 200px;
 }

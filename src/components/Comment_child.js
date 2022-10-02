@@ -12,6 +12,10 @@ function Comment_child(props) {
     commentData ? false : true
   );
 
+  // const getheight = (e) => {
+  //   console.log(e.offsetHeight);
+  // };
+
   return (
     <div className="comment_child_mainbox">
       <div className="comment_child_content">
