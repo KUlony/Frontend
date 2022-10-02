@@ -33,7 +33,8 @@ function View_post() {
   const [displayProfile, setdisplayProfile] = useState(true);
   const [imgurl, setImgurl] = useState("");
   const [displaypostimg, setDisplayposting] = useState(false);
-  const comment_test_data = [
+
+  const [commentdata, setCommentdata] = useState([
     {
       comment_content:
         "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quii",
@@ -46,7 +47,7 @@ function View_post() {
       comment_content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ",
     },
-  ];
+  ]);
   const testimgdata = [
     "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
@@ -60,7 +61,14 @@ function View_post() {
     const comment_input_value = document.querySelector(
       ".view_post_comment_input"
     );
+    const datainput = {
+      comment_content: commentinput,
+    };
+    updatecommentdata(datainput);
+
     comment_input_value.value = "";
+
+    //เดี๊ยวฟังชั่นนี้ต้อง fetch  ก่อนที่จะ updatecommentdata
   };
   const comment_input = (e) => {
     setCommentinput(e.target.value);
@@ -70,14 +78,14 @@ function View_post() {
   };
   const display_profile = (maikan) => {
     setdisplayProfile(!displayProfile);
-    console.log(maikan);
   };
   const display_postimg = (url) => {
     setDisplayposting(!displaypostimg);
     setImgurl(url);
     setDisplayposting(true);
   };
-
+  const updatecommentdata = (data) =>
+    setCommentdata((commentdata) => [...commentdata, data]);
   return (
     <div className="view_post_poup">
       <div className="view_post">
@@ -155,8 +163,9 @@ function View_post() {
           </div>
           <div className="view_post_comment">
             <Comment_generator
-              data={comment_test_data}
+              data={commentdata}
               display_profile={display_profile}
+              display_reply={true}
             />
           </div>
         </div>
@@ -175,7 +184,15 @@ function View_post() {
       >
         <Reportpost_popup display={display_report} />
       </div>
-      ${displaypostimg && <Showimg imgurl={imgurl} />}
+      <div onClick={() => setDisplayposting(!displaypostimg)}>
+        {displaypostimg && <Showimg imgurl={imgurl} />}
+      </div>
+      {displaypostimg && (
+        <div
+          className="cover"
+          onClick={() => setDisplayposting(!displaypostimg)}
+        ></div>
+      )}
     </div>
   );
 }

@@ -14,6 +14,8 @@
 
 .Topic_text {
   margin-top: 40px;
+  position: relative;
+  bottom: 15px;
 }
 
 .PostBox {
@@ -22,7 +24,7 @@
   top: 100px;
   height: auto;
   /* width: 60%; */
-  max-width: 600px;
+  max-width: 900px;
   margin-top: 30px;
   /* padding-top: 3%;
   padding-left: 4%;
@@ -114,6 +116,11 @@
   width: 100%;
 }
 
+.post_viewmorebox {
+  position: relative;
+  right: -90px;
+}
+
 .More {
   text-align: center;
   font-size: 100%;
@@ -202,13 +209,15 @@
 }
 
 .cover {
-  position: absolute;
+  position: fixed;
   top: 0;
   background-color: white;
   height: 100vh;
   width: 100%;
+  border: 250px solid white;
   z-index: 6;
   opacity: 0.5;
+  margin-left: -250px;
 }
 
 .reportpost_popup {
@@ -224,7 +233,8 @@
 
 .post_freespace {
   position: relative;
-  height: 340px;
+  /* height: 340px; */
+  height: 430px;
   z-index: -2;
 }
 
@@ -236,8 +246,10 @@
 
 .comment_all {
   position: absolute;
-  width: 450px;
-  height: 310px;
+  /* width: 460px; */
+  width: 680px;
+  /* height: 310px; */
+  height: 400px;
   left: 36%;
   z-index: 7;
   background-color: white;
@@ -253,7 +265,8 @@
 }
 
 .minicommentbox {
-  height: 310px;
+  /* height: 310px; */
+  height: 400px;
   position: relative;
 }
 
@@ -274,7 +287,7 @@
 
 .comment_content {
   overflow-y: scroll;
-  height: 290px;
+  height: 380px;
 }
 
 .comment_header {

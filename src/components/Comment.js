@@ -1,38 +1,48 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Comment.css";
-import { BiShare } from "react-icons/bi";
+import { BiShare, BiHide, BiShow } from "react-icons/bi";
 import Miniprofile from "./Miniprofile";
 import Comment_child from "./Comment_child";
+import { MdSend } from "react-icons/md";
 
 function Comment(props) {
+  const { display_profile, comment_content, display_reply } = props;
   const containerRef = useRef(null);
-  const { display_profile, comment_content } = props;
-
-  const testCommentChildData = [{ a: 1 }, { a: 2 }, { a: 3 }];
-
+  const [replydata, setReplydata] = useState([]);
+  const [numberofchild, setNumberofchild] = useState(replydata.length);
   const [textHidden, settextHidden] = useState(false);
   const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
-  const [displayreply, setdisplayreply] = useState(true);
+  const [displayreply, setdisplayreply] = useState(display_reply);
+  const [displayshowreply, setDisplayshowreply] = useState(
+    replydata.length === 0 ? true : false
+  );
+  const [displayreplyinput, setDisplayreplyinput] = useState(false);
+  const [displaychild, setDisplaychild] = useState(false);
+  const [replyinput, setReplyinput] = useState("");
   useEffect(() => {
-    console.log(containerRef.current);
-    console.log(containerRef.current.clientHeight);
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
       : setdisplayviewmorecm(true);
     console.log(displayviewmorecm);
     settextHidden(true);
   }, [containerRef]);
-  // const [divHeight, setDivHeight] = useState(0);
 
-  // const ref = useRef(null);
-  // useEffect(() => {
-  //   console.log(ref.current);
-  //   setDivHeight(ref.current.clientHeight);
-  //   console.log("height: ", ref.current.clientHeight);
+  const comment_reply = (e) => {
+    e.preventDefault();
+    const reply_input_value = document.querySelector(".commentreply_input");
+    const replyform = { reply_content: replyinput };
+    reply_input_value.value = "";
+    updatecommentdata(replyform);
+    setNumberofchild(numberofchild + 1);
+    setDisplayshowreply(false);
+  };
 
-  //   console.log("width: ", ref.current.clientWidth);
-  // }, []);
+  const comment_input = (e) => {
+    setReplyinput(e.target.value);
+  };
 
+  const updatecommentdata = (data) =>
+    setReplydata((replydata) => [...replydata, data]);
   return (
     <div className="comment_main">
       <div className="comment_parent">
@@ -40,8 +50,8 @@ function Comment(props) {
           className="comment_profile"
           onClick={() => display_profile("testdata")}
         ></div>
-        <h5 className="comment_name">กัณฑ์เพชร เตชะวิจิตราาาาาาาาาาาาาา</h5>
-        <div className="test" ref={containerRef}>
+        <h5 className="comment_name">elon musk</h5>
+        <div className="comment_parent_context" ref={containerRef}>
           <p
             className={`comment_breakline ${
               textHidden ? "comment_text" : null
@@ -57,18 +67,67 @@ function Comment(props) {
           }`}
           onClick={() => settextHidden(!textHidden)}
         >
-          {textHidden ? "view more" : "show less"}
+          {textHidden ? "show more" : "show less"}
         </button>
       </div>
-      <button
-        className={`comment_reply ${displayreply ? null : "display_none"}`}
-      >
-        <BiShare className="comment_shareimg" /> Reply
-      </button>
-      <div className={`comment_child `}>
-        {testCommentChildData.map(() => (
-          <Comment_child display_profile={display_profile} />
+      <div className={`comment_child ${displaychild ? null : "display_move"}`}>
+        {replydata.map((data) => (
+          <Comment_child
+            display_profile={display_profile}
+            reply_content={data.reply_content}
+          />
         ))}
+      </div>
+      <button
+        className={`comment_reply ${displayreply ? null : "display_none"}  
+        ${displaychild ? null : "comment_reply_nochild"}
+        
+        
+        `}
+        onClick={() => setDisplayreplyinput(!displayreplyinput)}
+      >
+        <BiShare
+          className={`comment_shareimg
+          }`}
+        />{" "}
+        Reply
+      </button>
+      <button
+        className={`comment_showreply ${
+          displayreply ? null : "comment_showreplyfreespace"
+        }
+          ${!displayshowreply ? null : "display_none"}
+           ${displaychild ? null : "comment_showreply_nochild"}  
+        ${displayreply || displaychild || "comment_showreplyhome"}
+        `}
+        onClick={() => setDisplaychild(!displaychild)}
+      >
+        {displaychild ? (
+          <div>
+            <BiHide className={`comment_show_button`} />
+            Hide Reply
+          </div>
+        ) : (
+          <div>
+            <BiShow className={`comment_show_button`} />
+            View {numberofchild} Reply
+          </div>
+        )}{" "}
+      </button>
+      <div>
+        {displayreplyinput && (
+          <form
+            onSubmit={comment_reply}
+            className={`commentreply_form ${
+              displaychild ? "commentreply_move" : null
+            }`}
+          >
+            <input className="commentreply_input" onChange={comment_input} />
+            <button className="commentreply_button">
+              <MdSend size={30} />
+            </button>
+          </form>
+        )}
       </div>
     </div>
   );

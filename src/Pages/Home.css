@@ -11,7 +11,7 @@
 .Nav_home {
   height: 70px;
   position: sticky;
-  z-index: 3;
+  z-index: 8;
 }
 
 .home_test {
@@ -137,8 +137,8 @@
 
 .home_checkbox {
   position: relative;
-  left: 50%;
-  margin-left: -360px;
+  left: max(50%, 640px);
+  margin-left: -390px;
 }
 
 .home_checkbox input[type="checkbox"] {
@@ -179,18 +179,20 @@
 .post_faculty {
   /* margin-left: max(200px, 25%); */
   /* margin: auto; */
+  margin-left: 250px;
 }
 
 .home_sidebar {
   position: absolute;
   top: 450px;
-  width: 25%;
+  width: max(25%, 300px);
   /* width: auto; */
   height: 400px;
   /* background-color: aqua; */
   margin: 0 auto;
   /* text-align: center; */
   overflow: hidden;
+  left: -30px;
 }
 
 .test2 div {
@@ -204,6 +206,8 @@
   list-style-type: none;
   position: relative;
   left: 40%;
+
+  /* z-index: 13; */
 }
 
 .select_faculty li {

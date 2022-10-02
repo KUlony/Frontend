@@ -1,8 +1,8 @@
 .comment_parent {
   position: relative;
   /* width: auto; */
-  width: 300px;
-  /* width: 700px; */
+  /* width: 300px; */
+  width: 520px;
   height: auto;
   padding: 15px;
   border-radius: 8px;
@@ -17,7 +17,9 @@
   -webkit-box-orient: vertical;
   word-wrap: break-word;
 }
-
+.testzazza {
+  height: 200px;
+}
 .line_clamp {
   /* -webkit-line-clamp: 3; */
 }
@@ -32,7 +34,7 @@
   border: none;
   background-color: #d6ebe0;
   position: relative;
-  left: 235px;
+  left: 455px;
   cursor: pointer;
 }
 
@@ -47,7 +49,8 @@
 .comment_reply {
   position: relative;
   bottom: 20px;
-  left: 265px;
+  /* left: 265px; */
+  left: 485px;
   border: none;
   background-color: white;
   color: #339c64;
@@ -79,6 +82,7 @@
   top: 20px;
   left: 60px;
   width: 300px;
+  width: 520px;
   height: 20px;
   /* overflow: hidden;*/
 }
@@ -86,9 +90,82 @@
   display: none;
 }
 
-.test {
+.comment_parent_context {
   position: relative;
   height: auto;
   left: 90px;
-  width: 200px;
+  width: 420px;
+}
+
+.comment_showreply {
+  position: relative;
+  bottom: 20px;
+  /* left: 290px; */
+  left: 510px;
+  border: none;
+  background-color: #fff;
+  color: #339c64;
+  font-size: 15px;
+}
+
+.comment_showreply:hover {
+  text-decoration: underline;
+}
+
+.comment_showreplyfreespace {
+  left: 565px;
+}
+
+.comment_show_button {
+  position: relative;
+
+  height: auto;
+  width: 20px;
+  top: 5px;
+}
+
+.comment_reply_nochild {
+  left: 365px;
+}
+
+.comment_showreply_nochild {
+  left: 390px;
+}
+
+.comment_showreplyhome {
+  left: 450px;
+}
+
+.display_move {
+  position: absolute;
+  left: -99999cm;
+  top: -10000px;
+}
+
+.commentreply_input {
+  padding-left: 20px;
+  width: 530px;
+  height: 30px;
+  background-color: #f8f5d5;
+  margin-right: 30px;
+  border-radius: 6px;
+  border: none;
+}
+
+.commentreply_button {
+  color: #339c64;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+}
+
+.commentreply_move {
+  position: relative;
+  left: 100px;
+}
+
+.commentreply_form {
+  height: 50px;
 }

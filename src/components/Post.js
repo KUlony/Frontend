@@ -126,6 +126,7 @@ function Post(props) {
                       <Comment_generator
                         data={comment_test_data}
                         display_profile={display_profile}
+                        display_reply={false}
                       />
                     )}
                   </div>
@@ -139,21 +140,23 @@ function Post(props) {
           <div className="share_box">
             <AiOutlineShareAlt className="Share" size={30} />
           </div>
-          <Link
-            to="/viewpost"
-            className="More"
-            state={{
-              title: { title },
-              like: { like },
-              post_content: { post_content },
-              photo: { photo },
-              comment: { comment },
-              profilepic: { profilepic },
-              username: { username },
-            }}
-          >
-            viewpost{" "}
-          </Link>
+          <div className="post_viewmorebox">
+            <Link
+              to="/viewpost"
+              className="More"
+              state={{
+                title: { title },
+                like: { like },
+                post_content: { post_content },
+                photo: { photo },
+                comment: { comment },
+                profilepic: { profilepic },
+                username: { username },
+              }}
+            >
+              viewpost{" "}
+            </Link>
+          </div>
         </div>
       </div>
       <div
