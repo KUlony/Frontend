@@ -1,0 +1,20 @@
+.center_img {
+  position: absolute;
+  top: 50%;
+  margin-left: -300px;
+  margin-top: -500px;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  width: 600px;
+  height: 1000px;
+  /* background-color: aqua; */
+  z-index: 7;
+}
+
+.center_img img {
+  width: 600px;
+  height: auto;
+  margin-left: auto;
+  margin-right: auto;
+}

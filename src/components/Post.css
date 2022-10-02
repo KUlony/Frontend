@@ -48,12 +48,21 @@
   cursor: pointer;
 }
 
+.post_img_cover {
+  width: 100%;
+  height: auto;
+}
+
 .FakeImage {
-  background-color: rgb(175, 175, 175);
+  /* background-color: rgb(175, 175, 175); */
   margin: auto;
-  height: 200px;
+  height: 300px;
   width: 100%;
   /* padding: 20px; */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 }
 
 .post_Content {
@@ -212,10 +221,6 @@
   justify-content: center;
   z-index: 7;
 }
-/* 
-.display_none {
-  display: none;
-} */
 
 .post_freespace {
   position: relative;
@@ -287,4 +292,9 @@
   z-index: 10;
   height: 40px;
   width: 40px;
+}
+
+.display_none2 {
+  position: absolute;
+  left: -99999999em;
 }

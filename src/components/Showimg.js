@@ -1,10 +1,11 @@
 import React from "react";
+import "./Showimg.css";
 
 function Showimg(props) {
   const { imgurl } = props;
   return (
-    <div>
-      <img src={imgurl} alt="big_img" className="" />
+    <div className="center_img">
+      <img src={imgurl} alt="big_img" />
     </div>
   );
 }

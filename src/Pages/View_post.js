@@ -14,6 +14,7 @@ import {
 } from "react-icons/md";
 import Reportpost_popup from "../components/Reportpost_popup";
 import Miniprofile from "../components/Miniprofile";
+import Comment_generator from "../components/Comment_generator";
 
 function View_post() {
   const location = useLocation();
@@ -26,6 +27,20 @@ function View_post() {
   const profilepic = from.profilepic.profilepic;
   // const scrollRestoration = History.scrollRestoration;
   // console.log(scrollRestoration);
+  const comment_test_data = [
+    {
+      comment_content:
+        "fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa quiiiiqwkdkdklqlk",
+    },
+    {
+      comment_content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis",
+    },
+    {
+      comment_content:
+        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ",
+    },
+  ];
   const testimgdata = [
     "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
     "https://images.unsplash.com/photo-1591154669695-5f2a8d20c089?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2787&q=80",
@@ -120,9 +135,10 @@ function View_post() {
             </form>
           </div>
           <div className="view_post_comment">
-            <Comment display_profile={display_profile} />
-            <Comment display_profile={display_profile} />
-            <Comment display_profile={display_profile} />
+            <Comment_generator
+              data={comment_test_data}
+              display_profile={display_profile}
+            />
           </div>
         </div>
       </div>
