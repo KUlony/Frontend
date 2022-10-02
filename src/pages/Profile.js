@@ -1,60 +1,80 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
-import Navbar from '../components/NavBar'
-import profileEx from '../picture/profileexample.jpeg'
-import logout from '../picture/logout.png'
-
-// import { Navigate } from 'react-router-dom'
 import './Profile.css'
 import UserInfo from './UserInfo'
+import Favourite from './Favourite'
+import FollowTopic from './FollowTopic'
+import Setting from './Setting'
 
 function Profile() {
-  const componentsUserProfile = [<UserInfo />]
-  const [isShowUserInfo, setIsShowUserInfo] = useState(false)
-  function onClickUserInfo() {
-    setIsShowUserInfo(!isShowUserInfo)
+  const componentsUserProfile = [
+    <UserInfo />,
+    <Favourite />,
+    <FollowTopic />,
+    <Setting />,
+  ]
+  const [isShowProfile, setIsProfile] = useState(componentsUserProfile[0])
+  function onClickProfile(theProfile) {
+    setIsProfile(theProfile)
   }
+
   return (
-    <div>
-      <div className="profile-side-bar">
-        <div className="user-profile">
+    <div className="profile">
+      <div className="profile-top">
+        <div className="profile-sidebar">
           <button> User Profile </button> <br />
-          <button onClick={onClickUserInfo}> User Info </button> <br />
-          {isShowUserInfo && componentsUserProfile[0]}
-          <button> Favourites </button>
+          <button
+            onClick={() => {
+              onClickProfile(componentsUserProfile[0])
+            }}
+          >
+            {' '}
+            User Info{' '}
+          </button>{' '}
           <br />
-          <button> Following topics </button>
+          <button
+            onClick={() => {
+              onClickProfile(componentsUserProfile[1])
+            }}
+          >
+            {' '}
+            Favourites{' '}
+          </button>
           <br />
-          <button> setting </button>
+          <button
+            onClick={() => {
+              onClickProfile(componentsUserProfile[2])
+            }}
+          >
+            {' '}
+            Following topics{' '}
+          </button>
+          <br />
+          <button
+            onClick={() => {
+              onClickProfile(componentsUserProfile[3])
+            }}
+          >
+            {' '}
+            setting{' '}
+          </button>
           <br />
         </div>
+        <div className="profile-content">{isShowProfile}</div>
+      </div>
+      <div className="profile-bottom">
+        <button className="logout-button">
+          <img
+            src={require('../picture/logout.png')}
+            alt="logout"
+            width="15"
+            height="15"
+            className="logout_img"
+          />{' '}
+          Log Out
+        </button>
+        <button className="home-button"> BACK TO HOME </button>
 
-        {/* <ul className="user-bot">
-          <li>
-            <Link to="/" className="logout">
-              <div className="borderLogout">
-                <img
-                  src={logout}
-                  alt="logout"
-                  width="15"
-                  height="15"
-                  className="logout_img"
-                />{' '}
-                Log Out
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="./home" className="backToHome">
-              <div className="borderBackToHome"> BACK TO HOME</div>
-            </Link>
-          </li>
-          <li>
-            <Link to="./" className="save">
-              <div className="borderSave"> SAVE</div>
-            </Link>
-          </li>
-        </ul> */}
+        <button className="save-button">SAVE</button>
       </div>
     </div>
   )

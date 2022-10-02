@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import AddEducation from './AddEducation'
 
 const UserInfo = () => {
+  const [isAddEducation, setIsAddEducation] = useState(null)
+  function onAddEducationClick() {
+    setIsAddEducation(true)
+  }
+  function onBgClick() {
+    setIsAddEducation(null)
+  }
+  let addEducation = null
+  if (!!isAddEducation) {
+    addEducation = <AddEducation onBgClick={onBgClick} />
+  }
   return (
     <div className="user-info">
-      <div className="profilePic">
+      <div className="profile-pic">
         <img
           src={require('../picture/profileexample.jpeg')}
           alt="profileExample"
@@ -55,50 +67,12 @@ const UserInfo = () => {
         ></textarea>
       </div>
       <div className="detail">
-        <div className="faculty">
-          Faculty
-          <form className="facultyForm">
-            <select name="facultySelect">
-              <option value="engineering">Engineering</option>
-              <option value="education">Education</option>
-              <option value="agriculture">Agriculture</option>
-            </select>
-          </form>
-        </div>
-        <div className="campus">
-          Campus
-          <form className="campusForm">
-            <select name="campusSelect">
-              <option value="bangken">Bangken</option>
-              <option value="kamphaengSaen">Kamphaeng Saen</option>
-              <option value="chalermphrakiatSakonNakhonProvince">
-                Chalermphrakiat Sakon Nakhon Province
-              </option>
-              <option value="sriracha">Sriracha </option>
-            </select>
-          </form>
-        </div>
-        <div className="ku">
-          KU
-          <form className="kuForm">
-            <select name="kuSelect">
-              <option value="79">79</option>
-              <option value="80">80</option>
-              <option value="81">81</option>
-              <option value="82">82</option>
-            </select>
-          </form>
-        </div>
-        <div className="department">
-          Department
-          <form className="departmentForm">
-            <select name="departmentSelect">
-              <option value="computer">Computer</option>
-              <option value="mechanics">Mechanics</option>
-            </select>
-          </form>
+        <div className="education">
+          Education
+          <button onClick={onAddEducationClick}>add more</button>
         </div>
       </div>
+      {addEducation}
     </div>
   )
 }
