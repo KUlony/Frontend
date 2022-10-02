@@ -1,27 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Comment.css";
-import { BiShare } from "react-icons/bi";
-import Miniprofile from "./Miniprofile";
-import Comment_child from "./Comment_child";
+import React, { useEffect, useRef, useState } from "react"
+import "./Comment.css"
+import { BiShare } from "react-icons/bi"
+import Miniprofile from "./Miniprofile"
+import Comment_child from "./Comment_child"
 
 function Comment(props) {
-  const containerRef = useRef(null);
-  const { display_profile, comment_content } = props;
+  const containerRef = useRef(null)
+  const { display_profile, comment_content } = props
 
-  const testCommentChildData = [{ a: 1 }, { a: 2 }, { a: 3 }];
+  const testCommentChildData = [{ a: 1 }, { a: 2 }, { a: 3 }]
 
-  const [textHidden, settextHidden] = useState(false);
-  const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
-  const [displayreply, setdisplayreply] = useState(true);
+  const [textHidden, settextHidden] = useState(false)
+  const [displayviewmorecm, setdisplayviewmorecm] = useState(false)
+  const [displayreply, setdisplayreply] = useState(true)
   useEffect(() => {
-    console.log(containerRef.current);
-    console.log(containerRef.current.clientHeight);
+    console.log(containerRef.current)
+    console.log(containerRef.current.clientHeight)
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
-      : setdisplayviewmorecm(true);
-    console.log(displayviewmorecm);
-    settextHidden(true);
-  }, [containerRef]);
+      : setdisplayviewmorecm(true)
+    console.log(displayviewmorecm)
+    settextHidden(true)
+  }, [containerRef])
   // const [divHeight, setDivHeight] = useState(0);
 
   // const ref = useRef(null);
@@ -71,7 +71,7 @@ function Comment(props) {
         ))}
       </div>
     </div>
-  );
+  )
 }
 
-export default Comment;
+export default Comment
