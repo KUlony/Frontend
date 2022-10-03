@@ -6,6 +6,8 @@ import MyPost from "./Pages/MyPost"
 import Profile from "./Pages/Profile"
 import View_post from "./Pages/View_post"
 import Createpost from "./Pages/Createpost"
+import Login from "./Pages/Login"
+import Register from "./Pages/Register"
 
 function App() {
   // const clientId =
@@ -48,6 +50,8 @@ function App() {
           <Route path="/viewpost" element={<View_post />} />
           <Route path="*" element={<Navigate to="/home" />} />
           <Route path="/createnewpost" element={<Createpost />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     </div>
