@@ -42,7 +42,8 @@ function Register() {
       <div className={`verify_register  ${display2? 'none':null }`}>
         <Verify display={display_verify}/>
       </div>
-
+     
+      {(!display1||!display2)&&<div className="cover_register"></div>}
       
 
 

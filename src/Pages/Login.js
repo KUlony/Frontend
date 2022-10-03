@@ -13,7 +13,7 @@ function Login() {
         <h1 className="header_login">LOG-IN</h1>
         <input className="input_login" type="email" placeholder="EMAIL"></input>
         <input className="input_login" type="password" placeholder="PASSWORD"></input>
-        <button className="button_login" onClick="">LOG IN</button>   
+        <Link className="button_login" to='/home'>LOG IN</Link>
         <div className="qa_login">
           Don’t have an account?  <Link className="link_login" to='/register'>Sign-up</Link>
         </div>

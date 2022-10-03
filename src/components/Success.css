@@ -33,6 +33,7 @@
     background: #339C64;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 32px;
+    border: 1px solid black;
     font-size: 24px;
     font-weight: bolder;
     letter-spacing: 0.03em;
