@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import './Profile.css'
-import UserInfo from './UserInfo'
-import Favourite from './Favourite'
-import FollowTopic from './FollowTopic'
-import Setting from './Setting'
+import React, { useState } from "react"
+import "./Profile.css"
+import UserInfo from "./UserInfo"
+import Favourite from "./Favourite"
+import FollowTopic from "./FollowTopic"
+import Setting from "./Setting"
 
 function Profile() {
   const componentsUserProfile = [
@@ -27,17 +27,17 @@ function Profile() {
               onClickProfile(componentsUserProfile[0])
             }}
           >
-            {' '}
-            User Info{' '}
-          </button>{' '}
+            {" "}
+            User Info{" "}
+          </button>{" "}
           <br />
           <button
             onClick={() => {
               onClickProfile(componentsUserProfile[1])
             }}
           >
-            {' '}
-            Favourites{' '}
+            {" "}
+            Favourites{" "}
           </button>
           <br />
           <button
@@ -45,8 +45,8 @@ function Profile() {
               onClickProfile(componentsUserProfile[2])
             }}
           >
-            {' '}
-            Following topics{' '}
+            {" "}
+            Following topics{" "}
           </button>
           <br />
           <button
@@ -54,8 +54,8 @@ function Profile() {
               onClickProfile(componentsUserProfile[3])
             }}
           >
-            {' '}
-            setting{' '}
+            {" "}
+            setting{" "}
           </button>
           <br />
         </div>
@@ -64,12 +64,12 @@ function Profile() {
       <div className="profile-bottom">
         <button className="logout-button">
           <img
-            src={require('../picture/logout.png')}
+            src={require("../picture/logout.png")}
             alt="logout"
             width="15"
             height="15"
             className="logout_img"
-          />{' '}
+          />{" "}
           Log Out
         </button>
         <button className="home-button"> BACK TO HOME </button>

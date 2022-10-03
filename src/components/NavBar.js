@@ -1,8 +1,8 @@
-import React from 'react'
-import './NavBar.css'
-import bell from '../picture/Colorbell.png'
-import vector from '../picture/Vector.png'
-import logo from '../picture/Logo.png'
+import React from "react"
+import "./NavBar.css"
+import bell from "../picture/Colorbell.png"
+import vector from "../picture/Vector.png"
+import logo from "../picture/Logo.png"
 
 function Navbar() {
   return (
