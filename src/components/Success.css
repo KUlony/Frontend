@@ -16,15 +16,6 @@
     padding-top: 140px;
 }
 
-.success_xmark {
-    width: 10px;
-    height: 10px;
-    position: absolute;
-    right: 25px;
-    top: 30px;
-    cursor: pointer;
- }
-
  .success_img {
     position: absolute;
     width: 180px;

@@ -3,8 +3,8 @@ import "./App.css"
 // import { gapi } from "gapi-script"
 // import { useState, useEffect } from "react"
 
-import Login from "./page/Login"
-import Register from "./page/Register"
+import Login from "./Pages/Login"
+import Register from "./Pages/Register"
 import { Route, Routes, Navigate } from 'react-router-dom'
 
 function App() {
