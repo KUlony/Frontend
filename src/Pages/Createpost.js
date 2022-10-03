@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
+import Navbar from "../components/NavBar"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
@@ -190,6 +191,7 @@ function Createpost() {
 
   return (
     <div>
+      <Navbar />
       <div className="all">
         <div className="createTitle">
           <h1 className="create">Create a post </h1>
