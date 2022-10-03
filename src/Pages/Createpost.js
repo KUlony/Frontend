@@ -5,6 +5,7 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
+import Navbar from "../components/NavBar"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
@@ -189,6 +190,7 @@ function Createpost() {
 
   return (
     <div>
+      <Navbar />
       <div className="all">
         <div className="createTitle">
           <h1 className="create">Create a post </h1>
