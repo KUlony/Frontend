@@ -1,14 +1,14 @@
-import React from 'react'
-import './Profile.css'
+import React from "react"
+import "./Profile.css"
 const AddEducation = (props) => {
   const { onBgClick } = props
-  console.log('hello im in add education')
+  console.log("hello im in add education")
   return (
     <div className="add-education">
       <div className="add-education-inner">
         <button onClick={onBgClick}> close</button>
         <div className="school">
-          {' '}
+          {" "}
           school
           <br />
           <textarea
@@ -20,7 +20,7 @@ const AddEducation = (props) => {
           ></textarea>
         </div>
         <div className="degree">
-          {' '}
+          {" "}
           <br />
           <textarea
             class="input-degree"
@@ -31,7 +31,7 @@ const AddEducation = (props) => {
           ></textarea>
         </div>
         <div className="field-of-study">
-          {' '}
+          {" "}
           <br />
           <textarea
             class="input-field"
