@@ -36,6 +36,12 @@
   border-radius: 90px;
   overflow: hidden;
   border: 1px solid rgba(0, 0, 0, 1);
+  display: flex;
+}
+
+.miniprofile_img {
+  width: 180px;
+  height: auto;
 }
 
 .miniprofile_info {

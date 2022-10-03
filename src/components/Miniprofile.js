@@ -3,12 +3,15 @@ import "./Miniprofile.css";
 import { AiOutlineClose } from "react-icons/ai";
 
 function Miniprofile(props) {
-  const { titlepost, display } = props;
+  const { titlepost, display, urlimg } = props;
   return (
     <article className="home_post_profile">
       <div className="post_miniprofile">
         <section className="miniprofile_pic">
-          <div className="miniprofile_fakeimg">url?</div>
+          <div className="miniprofile_fakeimg">
+            {" "}
+            <img src={urlimg} alt="profile_img" className="miniprofile_img" />
+          </div>
         </section>
         <section className="miniprofile_info">
           <header>

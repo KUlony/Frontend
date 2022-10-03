@@ -26,6 +26,7 @@ function Post(props) {
   const [havedata, setHavedata] = useState(true);
   const [likepost, setLikepost] = useState(false);
   const [likecount, setLikecount] = useState(like);
+  const [profileurl, setProfileurl] = useState("");
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
       setreportpost_drop("btn_where2");
@@ -33,9 +34,9 @@ function Post(props) {
       setreportpost_drop("btn_where");
     }
   };
-  const display_profile = (maikan) => {
+  const display_profile = (url) => {
     setdisplayProfile(!displayProfile);
-    console.log(maikan);
+    setProfileurl(url);
   };
   const display_report = () => {
     setdisplayReport(!displayReport);
@@ -71,7 +72,10 @@ function Post(props) {
     <div className>
       <div className="PostBox">
         <div className="Header">
-          <div className="UserProfile" onClick={display_profile}>
+          <div
+            className="UserProfile"
+            onClick={() => display_profile(profilepic)}
+          >
             <img
               src={profilepic}
               alt="profilemini_img"
@@ -173,7 +177,11 @@ function Post(props) {
       <div
         className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
       >
-        <Miniprofile titlepost={title} display={display_profile} />
+        <Miniprofile
+          titlepost={title}
+          display={display_profile}
+          urlimg={profileurl}
+        />
       </div>
       <div
         className={`cover ${displayProfile ? "display_none" : null}`}
