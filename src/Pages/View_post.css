@@ -134,6 +134,7 @@
 }
 
 .view_post_likebox {
+  position: relative;
   display: inline-block;
 }
 

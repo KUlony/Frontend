@@ -87,8 +87,29 @@
 }
 
 .like_box_value {
+  position: relative;
   margin-top: -4px;
   margin-left: 0px;
+  top: 4px;
+  cursor: pointer;
+}
+
+.ikeshadowdrop {
+  color: black;
+}
+
+.like {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #339c64;
+}
+
+.unlike {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #fff;
 }
 
 .like_box {

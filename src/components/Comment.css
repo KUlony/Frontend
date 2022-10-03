@@ -52,9 +52,10 @@
   /* left: 265px; */
   left: 485px;
   border: none;
-  background-color: white;
+  background-color: transparent;
   color: #339c64;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .comment_reply:hover {
@@ -103,9 +104,10 @@
   /* left: 290px; */
   left: 510px;
   border: none;
-  background-color: #fff;
+  background-color: transparent;
   color: #339c64;
   font-size: 15px;
+  cursor: pointer;
 }
 
 .comment_showreply:hover {
@@ -114,6 +116,10 @@
 
 .comment_showreplyfreespace {
   left: 565px;
+}
+
+.removebackground {
+  background-color: transparent;
 }
 
 .comment_show_button {
@@ -154,7 +160,7 @@
 
 .commentreply_button {
   color: #339c64;
-  background-color: white;
+  background-color: transparent;
   border: none;
   cursor: pointer;
   position: relative;
@@ -163,9 +169,81 @@
 
 .commentreply_move {
   position: relative;
-  left: 100px;
+  animation: inputslide 1s forwards 0s;
+  animation-fill-mode: forwards;
+}
+
+.commentreply_moveback {
+  position: relative;
+  animation: inputslideback 2s forwards 0s;
+  animation-fill-mode: forwards;
 }
 
 .commentreply_form {
   height: 50px;
+}
+
+.reply_open {
+  max-height: 0px;
+  overflow: hidden;
+  animation: slide 10s ease-in-out 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.reply_close {
+  animation: slideout 5s ease-in-out 0s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 1;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    opacity: 1;
+    /* height: auto; */
+    max-height: 100000px;
+  }
+}
+
+@keyframes inputslide {
+  0% {
+    position: relative;
+    left: 0px;
+  }
+  100% {
+    position: relative;
+    left: 100px;
+  }
+}
+
+@keyframes inputslideback {
+  0% {
+    position: relative;
+    left: 100px;
+  }
+
+  100% {
+    position: relative;
+    left: 0px;
+  }
+}
+
+@keyframes slideout {
+  0% {
+    max-height: 4000px;
+  }
+  20% {
+    max-height: 0px;
+    overflow: hidden;
+  }
+
+  100% {
+    /* height: auto; */
+    position: absolute;
+    left: -99999cm;
+    top: -10000px;
+  }
 }

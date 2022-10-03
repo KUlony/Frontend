@@ -19,6 +19,9 @@ function Comment(props) {
   const [displayreplyinput, setDisplayreplyinput] = useState(false);
   const [displaychild, setDisplaychild] = useState(false);
   const [replyinput, setReplyinput] = useState("");
+  const [displayanimagoback, setdisplayanimagoback] = useState(true);
+  const [replyfetch, setReplyfetch] = useState(true);
+  const [firsttimeposition, setFirsttimeposition] = useState(false);
   useEffect(() => {
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
@@ -29,16 +32,22 @@ function Comment(props) {
 
   const comment_reply = (e) => {
     e.preventDefault();
-    const reply_input_value = document.querySelector(".commentreply_input");
     const replyform = { reply_content: replyinput };
-    reply_input_value.value = "";
+
     updatecommentdata(replyform);
     setNumberofchild(numberofchild + 1);
     setDisplayshowreply(false);
+    setReplyinput("");
   };
 
   const comment_input = (e) => {
     setReplyinput(e.target.value);
+  };
+
+  const display_child = () => {
+    setDisplaychild(!displaychild);
+    setdisplayanimagoback(!displaychild);
+    setFirsttimeposition(true);
   };
 
   const updatecommentdata = (data) =>
@@ -70,14 +79,22 @@ function Comment(props) {
           {textHidden ? "show more" : "show less"}
         </button>
       </div>
-      <div className={`comment_child ${displaychild ? null : "display_move"}`}>
-        {replydata.map((data) => (
-          <Comment_child
-            display_profile={display_profile}
-            reply_content={data.reply_content}
-          />
-        ))}
-      </div>
+
+      {firsttimeposition && (
+        <div
+          className={`comment_child ${displaychild ? "reply_open" : null} ${
+            displayanimagoback ? null : "reply_close"
+          }`}
+        >
+          {replydata.map((data) => (
+            <Comment_child
+              display_profile={display_profile}
+              reply_content={data.reply_content}
+            />
+          ))}
+        </div>
+      )}
+
       <button
         className={`comment_reply ${displayreply ? null : "display_none"}  
         ${displaychild ? null : "comment_reply_nochild"}
@@ -100,15 +117,15 @@ function Comment(props) {
            ${displaychild ? null : "comment_showreply_nochild"}  
         ${displayreply || displaychild || "comment_showreplyhome"}
         `}
-        onClick={() => setDisplaychild(!displaychild)}
+        onClick={display_child}
       >
         {displaychild ? (
-          <div>
+          <div className="removebackground">
             <BiHide className={`comment_show_button`} />
             Hide Reply
           </div>
         ) : (
-          <div>
+          <div className="removebackground">
             <BiShow className={`comment_show_button`} />
             View {numberofchild} Reply
           </div>
@@ -120,9 +137,15 @@ function Comment(props) {
             onSubmit={comment_reply}
             className={`commentreply_form ${
               displaychild ? "commentreply_move" : null
-            }`}
+            }  ${displayanimagoback ? null : "commentreply_moveback"} `}
           >
-            <input className="commentreply_input" onChange={comment_input} />
+            <input
+              className="commentreply_input"
+              onChange={comment_input}
+              required
+              type="text"
+              value={replyinput}
+            />
             <button className="commentreply_button">
               <MdSend size={30} />
             </button>

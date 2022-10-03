@@ -12,6 +12,7 @@ import {
   MdReport,
   MdSend,
 } from "react-icons/md";
+import { BsFillHeartFill } from "react-icons/bs";
 import Reportpost_popup from "../components/Reportpost_popup";
 import Miniprofile from "../components/Miniprofile";
 import Comment_generator from "../components/Comment_generator";
@@ -19,8 +20,9 @@ import Showimg from "../components/Showimg";
 
 function View_post() {
   const location = useLocation();
+  console.log(location);
   const from = location.state;
-  const like = from.like.like;
+  const like = from.like.likecount;
   const commentcount = from.comment.comment;
   const title = from.title.title;
   const post_content = from.post_content.post_content;
@@ -33,7 +35,8 @@ function View_post() {
   const [displayProfile, setdisplayProfile] = useState(true);
   const [imgurl, setImgurl] = useState("");
   const [displaypostimg, setDisplayposting] = useState(false);
-
+  const [likepost, setLikepost] = useState(false);
+  const [likecount, setLikecount] = useState(like);
   const [commentdata, setCommentdata] = useState([
     {
       comment_content:
@@ -58,15 +61,19 @@ function View_post() {
   const [commentinput, setCommentinput] = useState("");
   const comment = (e) => {
     e.preventDefault();
-    const comment_input_value = document.querySelector(
-      ".view_post_comment_input"
-    );
-    const datainput = {
-      comment_content: commentinput,
-    };
-    updatecommentdata(datainput);
 
-    comment_input_value.value = "";
+    if (commentinput !== "") {
+      const comment_input_value = document.querySelector(
+        ".view_post_comment_input"
+      );
+      const datainput = {
+        comment_content: commentinput,
+      };
+      updatecommentdata(datainput);
+
+      comment_input_value.value = "";
+      setCommentinput("");
+    }
 
     //เดี๊ยวฟังชั่นนี้ต้อง fetch  ก่อนที่จะ updatecommentdata
   };
@@ -86,6 +93,10 @@ function View_post() {
   };
   const updatecommentdata = (data) =>
     setCommentdata((commentdata) => [...commentdata, data]);
+  const likepost_update = () => {
+    setLikecount(likepost ? likecount - 1 : likecount + 1);
+    setLikepost(!likepost);
+  };
   return (
     <div className="view_post_poup">
       <div className="view_post">
@@ -136,9 +147,13 @@ function View_post() {
             })}
           </div>
           <div className="view_post_interact">
-            <div className="view_post_likebox">
-              <FcLikePlaceholder size={30} />
-              <p className="view_post_text">{like} Likes</p>
+            <div className="view_post_likebox" onClick={likepost_update}>
+              <BsFillHeartFill className="likeshadowdrop1" size={28} />
+              <BsFillHeartFill
+                className={`${likepost ? "like" : "unlike"}`}
+                size={22}
+              />
+              <p className="view_post_text">{likecount} Likes</p>
             </div>
             <div className="view_post_commentbox">
               <MdOutlineModeComment size={30} />
@@ -155,6 +170,7 @@ function View_post() {
               <input
                 className="view_post_comment_input"
                 onChange={comment_input}
+                required
               />
               <button className="view_post_comment_button">
                 <MdSend size={30} />

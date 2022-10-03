@@ -12,8 +12,27 @@ import Reportpost_popup from "./Reportpost_popup";
 import Comment from "./Comment";
 import Showimg from "./Showimg";
 import Comment_generator from "./Comment_generator";
+import { BsFillHeartFill } from "react-icons/bs";
 
 function Post(props) {
+  const { title, like, post_content, photo, comment, profilepic, username } =
+    props;
+  const [displayReport, setdisplayReport] = useState(true);
+  const [displayProfile, setdisplayProfile] = useState(true);
+  const [displayComment, setdisplatComment] = useState(true);
+  const [displayImg, setdisplayImg] = useState(false);
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
+  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
+  const [havedata, setHavedata] = useState(true);
+  const [likepost, setLikepost] = useState(false);
+  const [likecount, setLikecount] = useState(like);
+  const report_dropdown = () => {
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_where2");
+    } else {
+      setreportpost_drop("btn_where");
+    }
+  };
   const display_profile = (maikan) => {
     setdisplayProfile(!displayProfile);
     console.log(maikan);
@@ -28,23 +47,6 @@ function Post(props) {
   const display_img = () => {
     setdisplayImg(!displayImg);
   };
-  const { title, like, post_content, photo, comment, profilepic, username } =
-    props;
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [displayComment, setdisplatComment] = useState(true);
-  const [displayImg, setdisplayImg] = useState(false);
-  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-  const [havedata, setHavedata] = useState(true);
-  const report_dropdown = () => {
-    if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_where2");
-    } else {
-      setreportpost_drop("btn_where");
-    }
-  };
-
   const comment_test_data = [
     {
       comment_content:
@@ -59,6 +61,11 @@ function Post(props) {
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ",
     },
   ];
+
+  const likepost_update = () => {
+    setLikecount(likepost ? likecount - 1 : likecount + 1);
+    setLikepost(!likepost);
+  };
 
   return (
     <div className>
@@ -95,11 +102,15 @@ function Post(props) {
 
         <h4 class="Topic_text">Topics : Engineering, รีวิวการเรียน</h4>
         <div className="interact">
-          <div className="like_box_value">
-            <FcLikePlaceholder className="Like" size={30} />
+          <div className="like_box_value" onClick={likepost_update}>
+            <BsFillHeartFill className="likeshadowdrop1" size={28} />
+            <BsFillHeartFill
+              className={`${likepost ? "like" : "unlike"}`}
+              size={22}
+            />
           </div>
           <div className="like_box">
-            <div class="LikeCount">{like}</div>
+            <div class="LikeCount">{likecount}</div>
           </div>
           <div className="comment_box_value">
             <MdOutlineModeComment
@@ -146,7 +157,7 @@ function Post(props) {
               className="More"
               state={{
                 title: { title },
-                like: { like },
+                like: { likecount },
                 post_content: { post_content },
                 photo: { photo },
                 comment: { comment },
