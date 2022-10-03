@@ -19,7 +19,6 @@ function Reportpost_popup(props) {
 
   const reportcheckbox = (e) => {
     e.preventDefault();
-    console.log(checkArr);
     setreportOther("");
   };
 
@@ -70,7 +69,7 @@ function Reportpost_popup(props) {
             onChange={(event) => setreportOther(event.target.value)}
             value={reportOther}
           ></input>
-          <button>SEND ROPORT</button>
+          <button onClick={display}>SEND ROPORT</button>
         </form>
       </div>
       <div className="reportpost_exit" onClick={display}>

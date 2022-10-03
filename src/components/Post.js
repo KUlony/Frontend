@@ -12,11 +12,31 @@ import Reportpost_popup from "./Reportpost_popup";
 import Comment from "./Comment";
 import Showimg from "./Showimg";
 import Comment_generator from "./Comment_generator";
+import { BsFillHeartFill } from "react-icons/bs";
 
 function Post(props) {
-  const display_profile = (maikan) => {
+  const { title, like, post_content, photo, comment, profilepic, username } =
+    props;
+  const [displayReport, setdisplayReport] = useState(true);
+  const [displayProfile, setdisplayProfile] = useState(true);
+  const [displayComment, setdisplatComment] = useState(true);
+  const [displayImg, setdisplayImg] = useState(false);
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
+  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
+  const [havedata, setHavedata] = useState(true);
+  const [likepost, setLikepost] = useState(false);
+  const [likecount, setLikecount] = useState(like);
+  const [profileurl, setProfileurl] = useState("");
+  const report_dropdown = () => {
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_where2");
+    } else {
+      setreportpost_drop("btn_where");
+    }
+  };
+  const display_profile = (url) => {
     setdisplayProfile(!displayProfile);
-    console.log(maikan);
+    setProfileurl(url);
   };
   const display_report = () => {
     setdisplayReport(!displayReport);
@@ -28,23 +48,6 @@ function Post(props) {
   const display_img = () => {
     setdisplayImg(!displayImg);
   };
-  const { title, like, post_content, photo, comment, profilepic, username } =
-    props;
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [displayComment, setdisplatComment] = useState(true);
-  const [displayImg, setdisplayImg] = useState(false);
-  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-  const [havedata, setHavedata] = useState(true);
-  const report_dropdown = () => {
-    if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_where2");
-    } else {
-      setreportpost_drop("btn_where");
-    }
-  };
-
   const comment_test_data = [
     {
       comment_content:
@@ -60,11 +63,19 @@ function Post(props) {
     },
   ];
 
+  const likepost_update = () => {
+    setLikecount(likepost ? likecount - 1 : likecount + 1);
+    setLikepost(!likepost);
+  };
+
   return (
     <div className>
       <div className="PostBox">
         <div className="Header">
-          <div className="UserProfile" onClick={display_profile}>
+          <div
+            className="UserProfile"
+            onClick={() => display_profile(profilepic)}
+          >
             <img
               src={profilepic}
               alt="profilemini_img"
@@ -95,11 +106,15 @@ function Post(props) {
 
         <h4 class="Topic_text">Topics : Engineering, รีวิวการเรียน</h4>
         <div className="interact">
-          <div className="like_box_value">
-            <FcLikePlaceholder className="Like" size={30} />
+          <div className="like_box_value" onClick={likepost_update}>
+            <BsFillHeartFill className="likeshadowdrop1" size={28} />
+            <BsFillHeartFill
+              className={`${likepost ? "like" : "unlike"}`}
+              size={22}
+            />
           </div>
           <div className="like_box">
-            <div class="LikeCount">{like}</div>
+            <div class="LikeCount">{likecount}</div>
           </div>
           <div className="comment_box_value">
             <MdOutlineModeComment
@@ -122,11 +137,11 @@ function Post(props) {
                     />
                   </header>
                   <div className="comment_content">
-                    $
                     {havedata && (
                       <Comment_generator
                         data={comment_test_data}
                         display_profile={display_profile}
+                        display_reply={false}
                       />
                     )}
                   </div>
@@ -140,27 +155,33 @@ function Post(props) {
           <div className="share_box">
             <AiOutlineShareAlt className="Share" size={30} />
           </div>
-          <Link
-            to="/viewpost"
-            className="More"
-            state={{
-              title: { title },
-              like: { like },
-              post_content: { post_content },
-              photo: { photo },
-              comment: { comment },
-              profilepic: { profilepic },
-              username: { username },
-            }}
-          >
-            viewpost{" "}
-          </Link>
+          <div className="post_viewmorebox">
+            <Link
+              to="/viewpost"
+              className="More"
+              state={{
+                title: { title },
+                like: { likecount },
+                post_content: { post_content },
+                photo: { photo },
+                comment: { comment },
+                profilepic: { profilepic },
+                username: { username },
+              }}
+            >
+              viewpost{" "}
+            </Link>
+          </div>
         </div>
       </div>
       <div
         className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
       >
-        <Miniprofile titlepost={title} display={display_profile} />
+        <Miniprofile
+          titlepost={title}
+          display={display_profile}
+          urlimg={profileurl}
+        />
       </div>
       <div
         className={`cover ${displayProfile ? "display_none" : null}`}

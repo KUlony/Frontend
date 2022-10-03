@@ -119,6 +119,7 @@
   width: 100%;
   height: auto;
   /* max-height: 300px; */
+  cursor: pointer;
 }
 
 .view_post_interact {
@@ -133,6 +134,7 @@
 }
 
 .view_post_likebox {
+  position: relative;
   display: inline-block;
 }
 
@@ -155,11 +157,14 @@
 }
 
 .view_post_comment_input {
-  padding-left: 20px;
+  padding: 0 20px;
   width: 60%;
+  /* width: 300px; */
   height: 30px;
   background-color: #f8f5d5;
   margin-right: 30px;
+  border-radius: 6px;
+  border: none;
 }
 
 .view_post_comment_button {
@@ -176,7 +181,7 @@
 }
 
 .viewpost_report_popup {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   margin-top: -275px;
@@ -196,7 +201,7 @@
 }
 
 .viewpost_miniprofile_popup {
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   margin-left: -335px;
@@ -208,4 +213,8 @@
   z-index: 10;
   height: 40px;
   width: 40px;
+}
+
+.cover {
+  position: fixed;
 }

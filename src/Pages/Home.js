@@ -183,7 +183,7 @@ function Home() {
               ></input>
               <label>Show following topics only</label>
             </form>
-            <div className={`${category[4] ? "post_faculty" : null}`}>
+            <div className={`${category[0] ? null : "post_faculty"}`}>
               {/* ใส่ตอนมีข้อมูลให้ fetch */}
               {/* <div
                 className={`loader ${displayload ? "display_none" : null}`}
@@ -194,7 +194,7 @@ function Home() {
             </div>
           </div>
           <div
-            className={`home_sidebar ${category[4] ? null : "display_none"}`}
+            className={`home_sidebar ${category[0] ? "display_none" : null}`}
           >
             <div>
               <ul className="select_faculty">

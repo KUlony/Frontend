@@ -1,21 +1,23 @@
-import React, { useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Comment_child.css";
 import { BiShare } from "react-icons/bi";
 
 function Comment_child(props) {
-  const { display_profile } = props;
-  const commenttestdata =
-    "dsamkldalksdmlkadmlkasldkaskldkaldkaldalkjdlkadjkaldjkalsj";
-  const commentData = commenttestdata.length >= 120;
-  const [textHidden, settextHidden] = useState(true);
-  const [displayviewmorecm, setdisplayviewmorecm] = useState(
-    commentData ? false : true
-  );
+  const { display_profile, reply_content } = props;
 
-  // const getheight = (e) => {
-  //   console.log(e.offsetHeight);
-  // };
+  const [textHidden, settextHidden] = useState(false);
 
+  const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
+  const containerRef = useRef(null);
+  useEffect(() => {
+    console.log(containerRef.current);
+    console.log(containerRef.current.clientHeight);
+    containerRef.current.clientHeight > 53
+      ? setdisplayviewmorecm(false)
+      : setdisplayviewmorecm(true);
+    console.log(displayviewmorecm);
+    settextHidden(true);
+  }, [containerRef]);
   return (
     <div className="comment_child_mainbox">
       <div className="comment_child_content">
@@ -25,14 +27,14 @@ function Comment_child(props) {
               className="comment_profile"
               onClick={() => display_profile("testdata")}
             ></div>
-            <h5 className="comment_name">กัณฑ์เพชร เตชะวิจิตราาาาาาาาาาาาาา</h5>
-            <div className="test">
+            <h5 className="comment_name">สมชาย กินดี</h5>
+            <div className="test" ref={containerRef}>
               <p
                 className={`comment_breakline ${
                   textHidden ? "comment_text" : null
                 }`}
               >
-                {commenttestdata}
+                {reply_content}
               </p>
             </div>
             <button
@@ -41,7 +43,7 @@ function Comment_child(props) {
               }`}
               onClick={() => settextHidden(!textHidden)}
             >
-              {textHidden ? "view more" : "show less"}
+              {textHidden ? "show more" : "show less"}
             </button>
           </div>
         </div>
