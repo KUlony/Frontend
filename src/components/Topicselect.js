@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import "./Topicselect.css"
 
-function Topicselect() {
+function Topicselect(props) {
   const [itemed, setItemed] = useState([])
+  const { sendbtn } = props
 
   const itemgeneralleft = ["general1"]
   const itemgeneralright = ["general2"]
@@ -55,9 +56,9 @@ function Topicselect() {
   useEffect(() => {
     if (itemed.length <= 5) {
       localStorage.setItem("itemed", JSON.stringify(itemed))
-      // event.target.checked = false
+      sendbtn(false)
     } else if (itemed.length > 5) {
-      alert("You can choose maximum 5 topics")
+      sendbtn(true)
     }
   }, [itemed])
 

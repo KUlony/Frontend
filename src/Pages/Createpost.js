@@ -10,6 +10,7 @@ import Navbar from "../components/NavBar"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
+  const [discomferm, setdiscomferm] = useState(false)
   const [items, setItems] = useState([])
 
   const topicselect = () => {
@@ -189,6 +190,12 @@ function Createpost() {
 
   console.log("url", urls)
 
+  function btncondis(e) {
+    setdiscomferm(e)
+  }
+
+  // console.log()
+
   return (
     <div>
       <Navbar />
@@ -328,18 +335,20 @@ function Createpost() {
         <h1 className="close" onClick={topicselect}>
           <i class="bi bi-x"></i>
         </h1>
-        <Topicselect />
+        <Topicselect sendbtn={btncondis} />
         <div className="btnconfirm">
           <button
             type="button"
-            className="confirm"
+            className={`${discomferm ? "discon" : "confirm"}`}
             id="buttonconfirm"
             onClick={topicselectsend}
+            disabled={discomferm}
           >
             CONFIRM
           </button>
         </div>
       </div>
+      {!edittopicheck && <div className="displayback"></div>}
     </div>
   )
 }

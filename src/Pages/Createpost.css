@@ -17,6 +17,7 @@
 .all {
   width: 100%;
   background: #D6EBE0;
+  overflow-y: scroll;
   /* overflow: hidden; */
 }
 
@@ -223,6 +224,7 @@
 .topicname {
   font-size: 25px;
   font-weight: 600;
+  margin: 0px 0px;
 }
 
 .edittopic {
@@ -291,16 +293,19 @@
 .topicselectcss {
   position: absolute;
   /* border-style: solid; */
-  width: 100%;
+  width: 50%;
   top: 50%;
   left: 50%;
   margin-left: -25%;
   margin-top: -15%;
+  /* overflow-x: hidden; */
+  z-index: 3;
 }
 
 .close {
   position: absolute;
-  margin-left: 47%;
+  margin-left: 98%;
+  margin-top: -2px;
   cursor: pointer;
 }
 
@@ -311,8 +316,8 @@
 
 .btnconfirm {
   position: relative;
-  margin-left: 20%;
-  margin-top: -6%;
+  margin-left: 40%;
+  margin-top: -13%;
 }
 
 .confirm {
@@ -336,8 +341,33 @@
   background-color: #2a8052;
 }
 
+.discon {
+  /* width: 100%; */
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.5s;
+}
+
 .topicinpage {
   font-weight: 600;
 }
 
-
+.displayback {
+  /* position: absolute; */
+  position: fixed;
+  top: 0px;
+  
+  /* margin: 0px 0px; */
+  background-color: white;
+  opacity: 0.6;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+}
