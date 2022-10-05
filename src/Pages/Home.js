@@ -7,6 +7,9 @@ import search from "../picture/search.png";
 import Post_generator from "../components/Post_generator";
 import PostData from "../PostData";
 import Miniprofile from "../components/Miniprofile";
+import { Link } from "react-router-dom";
+import { FaPassport } from "react-icons/fa";
+import { HiSearch } from "react-icons/hi";
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
@@ -23,6 +26,7 @@ function Home() {
       console.error("fail");
     }
   };
+  const [showtopic, setShowtopic] = useState(false);
   // componentDidMount();
   const testdata = [
     {
@@ -75,27 +79,237 @@ function Home() {
     },
   ];
   const [category, setCategory] = useState([true, false, false, false, false]);
-  const [topic, setTopic] = useState([
-    true,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-    false,
-  ]);
-  const maikan = false;
+
   const [followtopic, setFollowtopic] = useState(false);
 
+  const [topicarray, setTopicarray] = useState([
+    "Aardvark",
+    "Albatross",
+    "Alligator",
+    "Alpaca",
+    "Ant",
+    "Anteater",
+    "Antelope",
+    "Ape",
+    "Armadillo",
+    "Donkey",
+    "Baboon",
+    "Badger",
+    "Barracuda",
+    "Bat",
+    "Bear",
+    "Beaver",
+    "Bee",
+    "Bison",
+    "Boar",
+    "Buffalo",
+    "Butterfly",
+    "Camel",
+    "Capybara",
+    "Caribou",
+    "Cassowary",
+    "Cat",
+    "Caterpillar",
+    "Cattle",
+    "Chamois",
+    "Cheetah",
+    "Chicken",
+    "Chimpanzee",
+    "Chinchilla",
+    "Chough",
+    "Clam",
+    "Cobra",
+    "Cockroach",
+    "Cod",
+    "Cormorant",
+    "Coyote",
+    "Crab",
+    "Crane",
+    "Crocodile",
+    "Crow",
+    "Curlew",
+    "Deer",
+    "Dinosaur",
+    "Dog",
+    "Dogfish",
+    "Dolphin",
+    "Dotterel",
+    "Dove",
+    "Dragonfly",
+    "Duck",
+    "Dugong",
+    "Dunlin",
+    "Eagle",
+    "Echidna",
+    "Eel",
+    "Eland",
+    "Elephant",
+    "Elk",
+    "Emu",
+    "Falcon",
+    "Ferret",
+    "Finch",
+    "Fish",
+    "Flamingo",
+    "Fly",
+    "Fox",
+    "Frog",
+    "Gaur",
+    "Gazelle",
+    "Gerbil",
+    "Giraffe",
+    "Gnat",
+    "Gnu",
+    "Goat",
+    "Goldfinch",
+    "Goldfish",
+    "Goose",
+    "Gorilla",
+    "Goshawk",
+    "Grasshopper",
+    "Grouse",
+    "Guanaco",
+    "Gull",
+    "Hamster",
+    "Hare",
+    "Hawk",
+    "Hedgehog",
+    "Heron",
+    "Herring",
+    "Hippopotamus",
+    "Hornet",
+    "Horse",
+    "Human",
+    "Hummingbird",
+    "Hyena",
+    "Ibex",
+    "Ibis",
+    "Jackal",
+    "Jaguar",
+    "Jay",
+    "Jellyfish",
+    "Kangaroo",
+    "Kingfisher",
+    "Koala",
+    "Kookabura",
+    "Kouprey",
+    "Kudu",
+    "Lapwing",
+    "Lark",
+    "Lemur",
+    "Leopard",
+    "Lion",
+    "Llama",
+    "Lobster",
+    "Locust",
+    "Loris",
+    "Louse",
+    "Lyrebird",
+    "Magpie",
+    "Mallard",
+    "Manatee",
+    "Mandrill",
+    "Mantis",
+    "Marten",
+    "Meerkat",
+    "Mink",
+    "Mole",
+    "Mongoose",
+    "Monkey",
+    "Moose",
+    "Mosquito",
+    "Mouse",
+    "Mule",
+    "Narwhal",
+    "Newt",
+    "Nightingale",
+    "Octopus",
+    "Okapi",
+    "Opossum",
+    "Oryx",
+    "Ostrich",
+    "Otter",
+    "Owl",
+    "Oyster",
+    "Panther",
+    "Parrot",
+    "Partridge",
+    "Peafowl",
+    "Pelican",
+    "Penguin",
+    "Pheasant",
+    "Pig",
+    "Pigeon",
+    "Pony",
+    "Porcupine",
+    "Porpoise",
+    "Quail",
+    "Quelea",
+    "Quetzal",
+    "Rabbit",
+    "Raccoon",
+    "Rail",
+    "Ram",
+    "Rat",
+    "Raven",
+    "Red deer",
+    "Red panda",
+    "Reindeer",
+    "Rhinoceros",
+    "Rook",
+    "Salamander",
+    "Salmon",
+    "Sand Dollar",
+    "Sandpiper",
+    "Sardine",
+    "Scorpion",
+    "Seahorse",
+    "Seal",
+    "Shark",
+    "Sheep",
+    "Shrew",
+    "Skunk",
+    "Snail",
+    "Snake",
+    "Sparrow",
+    "Spider",
+    "Spoonbill",
+    "Squid",
+    "Squirrel",
+    "Starling",
+    "Stingray",
+    "Stinkbug",
+    "Stork",
+    "Swallow",
+    "Swan",
+    "Tapir",
+    "Tarsier",
+    "Termite",
+    "Tiger",
+    "Toad",
+    "Trout",
+  ]);
+
+  const [topic, setTopic] = useState([]);
+  const [count, setCount] = useState(false);
+  const [searchresult, setSearchresult] = useState("");
   const category_select = (category_number) => {
     if (category[category_number] !== true) {
       setCategory((prevdata) =>
         prevdata.map((data, idx) => (idx === category_number ? true : false))
       );
     }
+
+    // fetchข้อมูลมาก่อนแล้วค่อย set state
+    setTopic(
+      topicarray.map((data, idx) => {
+        if (idx === 0) {
+          return true;
+        } else {
+          return false;
+        }
+      })
+    );
   };
 
   const topic_select = (topic_number) => {
@@ -106,6 +320,16 @@ function Home() {
     }
   };
 
+  const resultinput = (e) => {
+    setSearchresult(e.target.value);
+    setCount(false);
+  };
+
+  const topic_selectbysearch = (data) => {
+    const indexoftext = topicarray.indexOf(data);
+    topic_select(indexoftext);
+  };
+
   return (
     <PostData.Provider postdata={testdata}>
       <div className="Home_page">
@@ -114,12 +338,14 @@ function Home() {
             <NavBar />
             {/* <ScrollRestoration /> */}
           </div>
+
           <div className="home_search">
             <div className="home_search_box">
               <h1 className="home_search_title">
                 Exchange and meet through this endless KU's colony !
               </h1>
               <div className="home_search_input">
+                <Link to="/search">search </Link>
                 <form>
                   <input
                     type="text"
@@ -142,6 +368,8 @@ function Home() {
             </div>
           </div>
           <nav className="Nav_topic">
+            {/* {topicarray.} */}
+
             <div
               className={`${category[0] ? "current_category" : null}`}
               onClick={() => category_select(0)}
@@ -173,92 +401,172 @@ function Home() {
               Faculty
             </div>
           </nav>
-          <div className="Home_post">
-            <form
-              className={`home_checkbox ${category[0] ? "display_none" : null}`}
+          <div className="home_Content">
+            <div
+              className={`home_sidebar ${category[0] ? "display_none" : null}`}
             >
-              <input
-                type="checkbox"
-                onClick={() => setFollowtopic(!followtopic)}
-              ></input>
-              <label>Show following topics only</label>
-            </form>
-            <div className={`${category[0] ? null : "post_faculty"}`}>
-              {/* ใส่ตอนมีข้อมูลให้ fetch */}
-              {/* <div
+              <div>
+                <form
+                  className={`home_checkbox ${
+                    category[0] ? "display_none" : null
+                  }`}
+                >
+                  <input
+                    type="checkbox"
+                    onClick={() => setFollowtopic(!followtopic)}
+                  ></input>
+                  <label>Show following topics only</label>
+                </form>
+                <form className="searchinput_form">
+                  <input
+                    type="text"
+                    value={searchresult}
+                    onChange={resultinput}
+                    className="searchtopic_input"
+                    placeholder="Search topic"
+                  />
+                  <HiSearch className="topic_search_icon" />
+                </form>
+                <ul className="select_faculty">
+                  <div
+                    className={`search_result ${
+                      searchresult === "" ? "display_none" : null
+                    } `}
+                  >
+                    {topicarray
+                      .filter((data, idx) => {
+                        if (searchresult === "") {
+                        } else if (
+                          data
+                            .toLowerCase()
+                            .includes(searchresult.toLowerCase())
+                        ) {
+                          if (!count) {
+                            setCount(true);
+                          }
+                          return data;
+                        }
+                      })
+                      .map((data, idx) => {
+                        const position = data
+                          .toLowerCase()
+                          .indexOf(searchresult.toLowerCase());
+                        const possitionend = data.length;
+
+                        return (
+                          <li onClick={() => topic_selectbysearch(data)}>
+                            {data.slice(0, position)}
+                            <span className="green">
+                              {data.slice(
+                                position,
+                                position + searchresult.length
+                              )}
+                            </span>
+                            {data.slice(
+                              position + searchresult.length,
+                              data.length
+                            )}
+                          </li>
+                        );
+                      })}
+                    <p className={`${count ? "display_none" : null}`}>
+                      No result found
+                    </p>
+                  </div>
+                  {topicarray.map((data, idx) => {
+                    if (idx < 12) {
+                      return (
+                        <li
+                          className={`${topic[idx] ? "current_topic" : null}`}
+                          onClick={() => topic_select(idx)}
+                        >
+                          {data}
+                        </li>
+                      );
+                    } else {
+                      return (
+                        <li
+                          className={`${topic[idx] ? "current_topic" : null}`}
+                          onClick={() => topic_select(idx)}
+                        >
+                          {data}
+                        </li>
+                      );
+                    }
+                  })}
+                  {/* <li
+                    className={`${topic[0] ? "current_topic" : null}`}
+                    onClick={() => topic_select(0)}
+                  >
+                    Agriculture
+                  </li>
+                  <li
+                    className={`${topic[1] ? "current_topic" : null}`}
+                    onClick={() => topic_select(1)}
+                  >
+                    Agro-Industry
+                  </li>
+                  <li
+                    className={`${topic[2] ? "current_topic" : null}`}
+                    onClick={() => topic_select(2)}
+                  >
+                    Architecture
+                  </li>
+                  <li
+                    className={`${topic[3] ? "current_topic" : null}`}
+                    onClick={() => topic_select(3)}
+                  >
+                    Business Administration
+                  </li>
+                  <li
+                    className={`${topic[4] ? "current_topic" : null}`}
+                    onClick={() => topic_select(4)}
+                  >
+                    Econimics
+                  </li>
+                  <li
+                    className={`${topic[5] ? "current_topic" : null}`}
+                    onClick={() => topic_select(5)}
+                  >
+                    Environment
+                  </li>
+                  <li
+                    className={`${topic[6] ? "current_topic" : null}`}
+                    onClick={() => topic_select(6)}
+                  >
+                    Forestry
+                  </li>
+                  <li
+                    className={`${topic[7] ? "current_topic" : null}`}
+                    onClick={() => topic_select(7)}
+                  >
+                    Humanities
+                  </li>
+                  <li
+                    className={`${topic[8] ? "current_topic" : null}`}
+                    onClick={() => topic_select(8)}
+                  >
+                    Science
+                  </li>
+                  <li
+                    className={`${topic[9] ? "current_topic" : null}`}
+                    onClick={() => topic_select(9)}
+                  >
+                    Social science
+                  </li> */}
+                </ul>
+              </div>
+            </div>
+            <div className="Home_post">
+              <div className={`${category[0] ? null : "post_faculty"}`}>
+                {/* ใส่ตอนมีข้อมูลให้ fetch */}
+                {/* <div
                 className={`loader ${displayload ? "display_none" : null}`}
               ></div> */}
 
-              <Post_generator data={testdata} />
-              {/* <Post_generator data={post_data} /> */}
-            </div>
-          </div>
-          <div
-            className={`home_sidebar ${category[0] ? "display_none" : null}`}
-          >
-            <div>
-              <ul className="select_faculty">
-                <li
-                  className={`${topic[0] ? "current_topic" : null}`}
-                  onClick={() => topic_select(0)}
-                >
-                  Agriculture
-                </li>
-                <li
-                  className={`${topic[1] ? "current_topic" : null}`}
-                  onClick={() => topic_select(1)}
-                >
-                  Agro-Industry
-                </li>
-                <li
-                  className={`${topic[2] ? "current_topic" : null}`}
-                  onClick={() => topic_select(2)}
-                >
-                  Architecture
-                </li>
-                <li
-                  className={`${topic[3] ? "current_topic" : null}`}
-                  onClick={() => topic_select(3)}
-                >
-                  Business Administration
-                </li>
-                <li
-                  className={`${topic[4] ? "current_topic" : null}`}
-                  onClick={() => topic_select(4)}
-                >
-                  Econimics
-                </li>
-                <li
-                  className={`${topic[5] ? "current_topic" : null}`}
-                  onClick={() => topic_select(5)}
-                >
-                  Environment
-                </li>
-                <li
-                  className={`${topic[6] ? "current_topic" : null}`}
-                  onClick={() => topic_select(6)}
-                >
-                  Forestry
-                </li>
-                <li
-                  className={`${topic[7] ? "current_topic" : null}`}
-                  onClick={() => topic_select(7)}
-                >
-                  Humanities
-                </li>
-                <li
-                  className={`${topic[8] ? "current_topic" : null}`}
-                  onClick={() => topic_select(8)}
-                >
-                  Science
-                </li>
-                <li
-                  className={`${topic[9] ? "current_topic" : null}`}
-                  onClick={() => topic_select(9)}
-                >
-                  Social science
-                </li>
-              </ul>
+                <Post_generator data={testdata} />
+                {/* <Post_generator data={post_data} /> */}
+              </div>
             </div>
           </div>
         </div>

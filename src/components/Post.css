@@ -10,6 +10,8 @@
   width: 100%;
   min-height: 60px;
   overflow: hidden;
+  margin: 0px;
+  padding: 0px;
 }
 
 .Topic_text {
@@ -24,7 +26,7 @@
   top: 100px;
   height: auto;
   /* width: 60%; */
-  max-width: 900px;
+  max-width: 950px;
   margin-top: 30px;
   /* padding-top: 3%;
   padding-left: 4%;
@@ -34,6 +36,7 @@
   border: 1px solid #f5f5f5;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 8px;
+  border: 1px solid black;
 }
 
 .UserProfile {
@@ -153,7 +156,7 @@
   padding-right: 3%;
   color: black;
   font-size: 16px;
-  left: -5%;
+  left: -4%;
   bottom: 3%;
   background-color: #d6ebe0;
   text-decoration: none;
@@ -217,13 +220,14 @@
 }
 
 .miniprofile_post {
-  position: absolute;
+  position: fixed;
   top: 50%;
   margin-top: -150px;
   left: 50%;
   margin-left: -300px;
   display: flex;
   justify-content: center;
+  z-index: 10;
 }
 .display_none {
   display: none;
@@ -232,17 +236,17 @@
 .cover {
   position: fixed;
   top: 0;
+  left: 0;
   background-color: white;
   height: 100vh;
   width: 100%;
-  border: 250px solid white;
+  /* border: 250px solid white; */
   z-index: 6;
   opacity: 0.5;
-  margin-left: -250px;
 }
 
 .reportpost_popup {
-  position: absolute;
+  position: fixed;
   top: 50%;
   margin-top: -275px;
   left: 50%;
@@ -319,8 +323,14 @@
 .TitleHead_box {
   display: inline-block;
   width: 80%;
+  padding: 0px;
+  margin: 0px;
 }
 
+.TitleHead {
+  margin: 0px;
+  padding: 0px;
+}
 .profile_miniimg {
   position: relative;
   z-index: 10;
