@@ -62,12 +62,15 @@
 }
 
 .btcover {
-  height: 38px;
-  width: 40px;
-  margin-left: 10px;
+  position: relative;
+  font-weight: 600;
+  font-size: 15px;
+  /* margin-left: 50%; */
+  width: 100px;
+  height: 40px;
   background-color: #E7DB73;
   border: none;
-  border-radius: 100%;
+  border-radius: 20px;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -100,6 +103,7 @@
 .btcontent {
   position: relative;
   font-weight: 600;
+  font-size: 15px;
   margin-left: 50%;
   width: 100px;
   height: 40px;
@@ -235,6 +239,7 @@
   height: 40px;
   width: 120px;
   font-weight: 600;
+  font-size: 15px;
   transition-duration: 0.2s;
   cursor: pointer;
 }

@@ -246,7 +246,7 @@ function Createpost() {
                   id="imagecover"
                   onClick={handleUpload}
                 >
-                  <img src={uploadicon} alt=""></img>
+                  Upload <img src={uploadicon} alt=""></img>
                 </button>
               </div>
               <p className="percentimgtitle">{percent}% done</p>
