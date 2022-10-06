@@ -4,7 +4,7 @@
   border-color: black;
   border-style: solid;
   border-width: 1px;
-  width: 50%;
+  width: 100%;
   height: 500px;
   padding: 10px;
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
@@ -35,7 +35,7 @@
 
 .selcom {
   background: #D6EBE0;
-  width: 70%;
+  width: 60%;
   height: 220px;
   font-size: larger;
   overflow: hidden;
@@ -46,21 +46,21 @@
 .scrollgeneral {
   display: flex;
   /* margin: 20px 40px; */
-  height: 180px;
+  height: 220px;
   overflow-y: scroll;
   /* border-style: solid; */
 }
 
 .scrollstudy {
   display: flex;
-  height: 180px;
+  height: 220px;
   overflow-y: scroll;
   /* border-style: solid; */
 }
 
 .scrollfaculty {
   display: flex;
-  height: 180px;
+  height: 220px;
   overflow-y: scroll;
   /* border-style: solid; */
 }
@@ -71,12 +71,12 @@
 }
 
 .comright {
-  margin-left: 5%;
+  /* margin-left: 5%; */
   /* border-style: solid; */
   width: 50%;
 }
 
-.general {
+.generalC {
   width: 100%;
   font-weight: bolder;
   font-size: 23px;
@@ -92,11 +92,11 @@
   color: #2a8052;
 }
 
-.general:hover {
+.generalC:hover {
   color: #2a8052;
 }
 
-.study {
+.studyC {
   width: 100%;
   font-weight: bolder;
   font-size: 23px;
@@ -112,11 +112,11 @@
   color: #2a8052;
 }
 
-.study:hover {
+.studyC:hover {
   color: #2a8052;
 }
 
-.faculty {
+.facultyC {
   width: 100%;
   font-weight: bolder;
   font-size: 23px;
@@ -132,7 +132,7 @@
   color: #2a8052;
 }
 
-.faculty:hover {
+.facultyC:hover {
   color: #2a8052;
 }
 
