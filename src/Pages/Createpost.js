@@ -6,9 +6,11 @@ import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
 import Navbar from "../components/NavBar"
+// import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
+  const [discomferm, setdiscomferm] = useState(false)
   const [items, setItems] = useState([])
 
   const topicselect = () => {
@@ -188,6 +190,12 @@ function Createpost() {
 
   console.log("url", urls)
 
+  function btncondis(e) {
+    setdiscomferm(e)
+  }
+
+  // console.log()
+
   return (
     <div>
       <Navbar />
@@ -238,7 +246,7 @@ function Createpost() {
                   id="imagecover"
                   onClick={handleUpload}
                 >
-                  <img src={uploadicon} alt=""></img>
+                  Upload <img src={uploadicon} alt=""></img>
                 </button>
               </div>
               <p className="percentimgtitle">{percent}% done</p>
@@ -327,18 +335,20 @@ function Createpost() {
         <h1 className="close" onClick={topicselect}>
           <i class="bi bi-x"></i>
         </h1>
-        <Topicselect />
+        <Topicselect sendbtn={btncondis} />
         <div className="btnconfirm">
           <button
             type="button"
-            className="confirm"
+            className={`${discomferm ? "discon" : "confirm"}`}
             id="buttonconfirm"
             onClick={topicselectsend}
+            disabled={discomferm}
           >
             CONFIRM
           </button>
         </div>
       </div>
+      {!edittopicheck && <div className="displayback"></div>}
     </div>
   )
 }
