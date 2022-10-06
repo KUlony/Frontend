@@ -18,7 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route path="/mypost" element={<MyPost />} />
           <Route path="/profile" element={<Profile />} />
-          <Route path="/viewpost" element={<View_post />} />
+          <Route path="/viewpost/:id" element={<View_post />} />
           <Route path="/search" element={<Search />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>

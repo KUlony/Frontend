@@ -55,7 +55,6 @@ function Search() {
       post_comment_count: 2,
     },
   ];
-
   return (
     <div className="search_page">
       <div className="search_page_scoll">

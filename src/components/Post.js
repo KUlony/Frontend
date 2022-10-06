@@ -157,7 +157,7 @@ function Post(props) {
           </div>
           <div className="post_viewmorebox">
             <Link
-              to="/viewpost"
+              to="/viewpost/123"
               className="More"
               state={{
                 title: { title },

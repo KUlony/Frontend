@@ -133,18 +133,14 @@ function Comment(props) {
       </button>
       <div>
         {displayreplyinput && (
-          <form
-            onSubmit={comment_reply}
-            className={`commentreply_form ${
-              displaychild ? "commentreply_move" : null
-            }  ${displayanimagoback ? null : "commentreply_moveback"} `}
-          >
+          <form onSubmit={comment_reply} className={`commentreply_form `}>
             <input
               className="commentreply_input"
               onChange={comment_input}
               required
               type="text"
               value={replyinput}
+              placeholder="Add your reply here"
             />
             <button className="commentreply_button">
               <MdSend size={30} />

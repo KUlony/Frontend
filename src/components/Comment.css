@@ -180,6 +180,8 @@
 }
 
 .commentreply_form {
+  position: relative;
+  left: 110px;
   height: 50px;
 }
 

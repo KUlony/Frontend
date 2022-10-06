@@ -3,6 +3,7 @@ import NavBar from "../components/NavBar";
 import Post from "../components/Post";
 import "./Home.css";
 import Think from "../picture/think.png";
+import Homebackground from "../picture/home_title_background.png";
 import search from "../picture/search.png";
 import Post_generator from "../components/Post_generator";
 import PostData from "../PostData";
@@ -10,6 +11,8 @@ import Miniprofile from "../components/Miniprofile";
 import { Link } from "react-router-dom";
 import { FaPassport } from "react-icons/fa";
 import { HiSearch } from "react-icons/hi";
+import { BsPlusLg } from "react-icons/bs";
+import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
@@ -329,6 +332,7 @@ function Home() {
     const indexoftext = topicarray.indexOf(data);
     topic_select(indexoftext);
   };
+  // <Link to="/search">search </Link>
 
   return (
     <PostData.Provider postdata={testdata}>
@@ -340,31 +344,37 @@ function Home() {
           </div>
 
           <div className="home_search">
-            <div className="home_search_box">
-              <h1 className="home_search_title">
-                Exchange and meet through this endless KU's colony !
-              </h1>
-              <div className="home_search_input">
-                <Link to="/search">search </Link>
-                <form>
-                  <input
-                    type="text"
-                    required
-                    className="search_input"
-                    placeholder="Search"
-                  />
-                  <button className="search-button">
-                    <img src={search} width="14px" height="14px" alt="" />
+            <div className="home_search_center">
+              <div className="home_search_box">
+                <h1 className="home_search_title">Share & Explore</h1>
+                <h3>thorugh this endless KU's community !</h3>
+                <button className="home_create_post_button">
+                  Create new post{" "}
+                  <BsPlusLg className="home_create_post_button_icon" />
+                  <Link to="/"></Link>
+                </button>
+                <Link to="/search">
+                  <button className="home_search_button">
+                    Search
+                    <HiSearch className="home_search_button_icon" />
                   </button>
-                </form>
+                </Link>
               </div>
-            </div>
-            <div className="think_img_box">
-              <img
-                src={Think}
-                alt="Girl in a jacket"
-                className="think_img_photo"
-              ></img>
+              <div className="think_img_box">
+                <img
+                  src={Think}
+                  alt="Girl in a jacket"
+                  className="think_img_photo"
+                ></img>
+              </div>
+              <div>
+                {" "}
+                <img
+                  src={Homebackground}
+                  alt="Girl in a jacket"
+                  className="home_title_background"
+                ></img>
+              </div>
             </div>
           </div>
           <nav className="Nav_topic">
@@ -417,7 +427,10 @@ function Home() {
                   ></input>
                   <label>Show following topics only</label>
                 </form>
-                <form className="searchinput_form">
+                <form
+                  className="searchinput_form"
+                  onSubmit={(e) => e.preventDefault()}
+                >
                   <input
                     type="text"
                     value={searchresult}
@@ -452,9 +465,16 @@ function Home() {
                           .toLowerCase()
                           .indexOf(searchresult.toLowerCase());
                         const possitionend = data.length;
+                        const position_in_topic_array =
+                          topicarray.indexOf(data);
 
                         return (
-                          <li onClick={() => topic_selectbysearch(data)}>
+                          <li
+                            onClick={() => topic_selectbysearch(data)}
+                            className={`${
+                              topic[position_in_topic_array] ? "green" : null
+                            }`}
+                          >
                             {data.slice(0, position)}
                             <span className="green">
                               {data.slice(
@@ -484,9 +504,67 @@ function Home() {
                         </li>
                       );
                     } else {
+                      if (idx === 12) {
+                        return (
+                          <div>
+                            {!showtopic && (
+                              <div>
+                                <button
+                                  className="topic_show_button"
+                                  onClick={() => setShowtopic(!showtopic)}
+                                >
+                                  Show more
+                                </button>
+                                <FiChevronDown
+                                  className="topic_showmore_icon"
+                                  onClick={() => setShowtopic(!showtopic)}
+                                />
+                              </div>
+                            )}
+                            <li
+                              className={`${
+                                topic[idx] ? "current_topic" : null
+                              }  ${showtopic ? null : "display_none"}`}
+                              onClick={() => topic_select(idx)}
+                            >
+                              {data}
+                            </li>
+                          </div>
+                        );
+                      } else if (idx === topicarray.length - 1) {
+                        return (
+                          <div>
+                            <li
+                              className={`${
+                                topic[idx] ? "current_topic" : null
+                              }  ${showtopic ? null : "display_none"}`}
+                              onClick={() => topic_select(idx)}
+                            >
+                              {data}
+                            </li>
+                            {showtopic && (
+                              <div>
+                                <button
+                                  className="topic_show_button"
+                                  onClick={() => setShowtopic(!showtopic)}
+                                >
+                                  Show less
+                                </button>
+                                <FiChevronUp
+                                  className="topic_showless_icon"
+                                  onClick={() => setShowtopic(!showtopic)}
+                                />
+                              </div>
+                            )}
+                          </div>
+                        );
+                      }
+
                       return (
                         <li
-                          className={`${topic[idx] ? "current_topic" : null}`}
+                          className={`${topic[idx] ? "current_topic" : null}  ${
+                            showtopic ? null : "display_none"
+                          }`}
                           onClick={() => topic_select(idx)}
                         >
                           {data}
@@ -494,66 +572,6 @@ function Home() {
                       );
                     }
                   })}
-                  {/* <li
-                    className={`${topic[0] ? "current_topic" : null}`}
-                    onClick={() => topic_select(0)}
-                  >
-                    Agriculture
-                  </li>
-                  <li
-                    className={`${topic[1] ? "current_topic" : null}`}
-                    onClick={() => topic_select(1)}
-                  >
-                    Agro-Industry
-                  </li>
-                  <li
-                    className={`${topic[2] ? "current_topic" : null}`}
-                    onClick={() => topic_select(2)}
-                  >
-                    Architecture
-                  </li>
-                  <li
-                    className={`${topic[3] ? "current_topic" : null}`}
-                    onClick={() => topic_select(3)}
-                  >
-                    Business Administration
-                  </li>
-                  <li
-                    className={`${topic[4] ? "current_topic" : null}`}
-                    onClick={() => topic_select(4)}
-                  >
-                    Econimics
-                  </li>
-                  <li
-                    className={`${topic[5] ? "current_topic" : null}`}
-                    onClick={() => topic_select(5)}
-                  >
-                    Environment
-                  </li>
-                  <li
-                    className={`${topic[6] ? "current_topic" : null}`}
-                    onClick={() => topic_select(6)}
-                  >
-                    Forestry
-                  </li>
-                  <li
-                    className={`${topic[7] ? "current_topic" : null}`}
-                    onClick={() => topic_select(7)}
-                  >
-                    Humanities
-                  </li>
-                  <li
-                    className={`${topic[8] ? "current_topic" : null}`}
-                    onClick={() => topic_select(8)}
-                  >
-                    Science
-                  </li>
-                  <li
-                    className={`${topic[9] ? "current_topic" : null}`}
-                    onClick={() => topic_select(9)}
-                  >
-                    Social science
-                  </li> */}
                 </ul>
               </div>
             </div>

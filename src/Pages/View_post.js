@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import "./View_post.css";
 import { IoIosArrowBack } from "react-icons/io";
@@ -37,6 +37,8 @@ function View_post() {
   const [displaypostimg, setDisplayposting] = useState(false);
   const [likepost, setLikepost] = useState(false);
   const [likecount, setLikecount] = useState(like);
+  const postid = useParams();
+  console.log(postid);
   const [commentdata, setCommentdata] = useState([
     {
       comment_content:
@@ -171,6 +173,7 @@ function View_post() {
                 className="view_post_comment_input"
                 onChange={comment_input}
                 required
+                placeholder="Add your reply here"
               />
               <button className="view_post_comment_button">
                 <MdSend size={30} />

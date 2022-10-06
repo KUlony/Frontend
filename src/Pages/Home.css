@@ -47,17 +47,90 @@
 .home_search_title {
   position: absolute;
   width: 450px;
-  left: 20%;
+  top: -10px;
+  left: 200px;
   margin-top: 40px;
+  font-size: 43px;
 }
 
 .home_search_box {
   width: 50%;
+  position: relative;
+  z-index: 2;
 }
 
+.home_search_box h3 {
+  /* font-family: Quicksand; */
+  position: absolute;
+  font-weight: 500;
+  font-style: Medium;
+  width: 800px;
+  top: 85px;
+  left: 121px;
+  font-size: 27px;
+}
+
+.home_create_post_button {
+  position: absolute;
+  top: 157px;
+  left: 85px;
+  width: 321px;
+  font-weight: 700;
+  font-size: 27px;
+  background-color: #339c64;
+  border: 2.5px solid #339c64;
+  border-radius: 3px;
+  padding: 6.5px 44px 6.5px 0;
+  color: #fff;
+  border-radius: 3px;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.home_create_post_button:hover {
+  background-color: transparent;
+  color: #339c64;
+}
+.home_create_post_button_icon {
+  position: absolute;
+  top: 12px;
+  right: 34px;
+  width: 25px;
+  height: auto;
+}
+
+.home_search_button_icon {
+  position: absolute;
+  top: 10px;
+  right: 28px;
+  width: 26.5px;
+  height: auto;
+}
+.home_search_button {
+  font-size: 27px;
+  font-weight: 700;
+  position: absolute;
+  top: 157px;
+  left: 430px;
+  width: 202px;
+  border: 2.5px solid #339c64;
+  border-radius: 3px;
+  padding: 6.5px 30px 6.5px 0;
+  background-color: transparent;
+  color: #339c64;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.home_search_button:hover {
+  background-color: #339c64;
+  color: #fff;
+}
 .think_img_box {
+  position: relative;
+  top: 10px;
   width: 50%;
-  margin-left: max(650px, 55%);
+  margin-left: max(650px, 70%);
 }
 
 .think_img_photo {
@@ -88,7 +161,6 @@
   width: 28px;
   background-color: black;
 }
-
 .Nav_topic {
   position: sticky;
   top: 320px;
@@ -289,4 +361,48 @@
 .search_result {
   border-bottom: 1px solid black;
   width: 83%;
+}
+
+.topic_show_button {
+  background-color: transparent;
+  border: none;
+  font-size: 17px;
+  font-weight: bold;
+  color: #339c64;
+  cursor: pointer;
+}
+
+.topic_showmore_icon {
+  position: relative;
+  color: #339c64;
+  height: 30px;
+  width: auto;
+  top: 10px;
+  left: 9px;
+  cursor: pointer;
+}
+
+.topic_showless_icon {
+  position: relative;
+  color: #339c64;
+  height: 30px;
+  width: auto;
+  top: 10px;
+  left: 21px;
+  cursor: pointer;
+}
+
+.home_title_background {
+  position: relative;
+  top: -220px;
+  z-index: 1;
+  width: 750px;
+
+  height: auto;
+}
+
+.home_search_center {
+  position: relative;
+  margin: 0 auto;
+  width: 1150px;
 }
