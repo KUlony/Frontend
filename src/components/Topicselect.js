@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react"
 import "./Topicselect.css"
 
-function Topicselect() {
+function Topicselect(props) {
   const [itemed, setItemed] = useState([])
+  const { sendbtn } = props
 
   const itemgeneralleft = ["general1"]
   const itemgeneralright = ["general2"]
@@ -55,9 +56,9 @@ function Topicselect() {
   useEffect(() => {
     if (itemed.length <= 5) {
       localStorage.setItem("itemed", JSON.stringify(itemed))
-      // event.target.checked = false
+      sendbtn(false)
     } else if (itemed.length > 5) {
-      alert("You can choose maximum 5 topics")
+      sendbtn(true)
     }
   }, [itemed])
 
@@ -102,21 +103,21 @@ function Topicselect() {
       <div className="contenttopic">
         <div className="seltopic">
           <button
-            className={`general ${general ? "generaltog" : ""}`}
+            className={`generalC ${general ? "generaltog" : ""}`}
             onClick={togglegeneral}
           >
             general
           </button>
           <br></br>
           <button
-            className={`study ${study ? "studytog" : ""}`}
+            className={`studyC ${study ? "studytog" : ""}`}
             onClick={togglestudy}
           >
             study
           </button>
           <br></br>
           <button
-            className={`faculty ${faculty ? "facultytog" : ""}`}
+            className={`facultyC ${faculty ? "facultytog" : ""}`}
             onClick={togglefaculty}
           >
             faculty
