@@ -6,12 +6,18 @@ import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
 import Navbar from "../components/NavBar"
+import axios from "axios"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
   const [discomferm, setdiscomferm] = useState(false)
+  const [reqtitle, setreqtitle] = useState(true)
+  const [reqcontent, setreqcontent] = useState(true)
+  const [reqtopic, setreqtopic] = useState(true)
   const [items, setItems] = useState([])
+  const [iditem, setIditem] = useState([])
+  const [urlcover, setUrl] = useState("")
 
   const topicselect = () => {
     seteditTopicCheck(!edittopicheck)
@@ -20,11 +26,13 @@ function Createpost() {
   const topicselectsend = () => {
     seteditTopicCheck(!edittopicheck)
     const items = JSON.parse(localStorage.getItem("itemed"))
+    const iditem = JSON.parse(localStorage.getItem("iditemed"))
     if (items) {
       console.log(items)
+      console.log(iditem)
       setItems(items)
+      setIditem(iditem)
     }
-    console.log(edittopicheck)
   }
 
   const checkedItems = items.length
@@ -32,6 +40,14 @@ function Createpost() {
         return total + ", " + item
       })
     : ""
+
+  useEffect(() => {
+    if (items.length) {
+      setreqtopic(false)
+    } else {
+      setreqtopic(true)
+    }
+  })
 
   useEffect(() => {
     let textArea = document.getElementById("inputT")
@@ -72,6 +88,27 @@ function Createpost() {
 
     textArea.addEventListener("input", countCharacters)
   })
+
+  const handlereqT = (e) => {
+    if (e.target.value.trim().length) {
+      setreqtitle(false)
+    } else {
+      setreqtitle(true)
+    }
+  }
+  console.log("title", reqtitle)
+
+  const handlereqC = (e) => {
+    if (e.target.value.trim().length) {
+      setreqcontent(false)
+    } else {
+      setreqcontent(true)
+    }
+  }
+  console.log("content", reqcontent)
+
+  if (checkedItems != null) {
+  }
 
   // State to store uploaded file
   const [file, setFile] = useState("")
@@ -131,9 +168,12 @@ function Createpost() {
       (err) => console.log(err),
       () => {
         // download url
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url)
-        })
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((url) => {
+            setUrl(url)
+            console.log(url)
+          })
+          .then(() => alert("Images uploaded"))
       }
     )
     setStateC(true)
@@ -188,13 +228,31 @@ function Createpost() {
     console.log("url", urls)
   }
 
-  console.log("url", urls)
+  // console.log("url", urls)
 
   function btncondis(e) {
     setdiscomferm(e)
   }
 
   // console.log()
+
+  const senddata = () => {
+    let title = document.getElementById("inputT")
+    let content = document.getElementById("inputC")
+
+    axios
+      .post("//localhost:4000/api/post/create", {
+        topic_id: iditem,
+        post_title: title.value,
+        post_content: content.value,
+        cover_photo_url: urlcover,
+        post_photo_url: urls,
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div>
@@ -209,7 +267,10 @@ function Createpost() {
           <div className="head">
             <div className="title">
               <div className="titlespan">
-                <p className="namet">Title</p>
+                <p className={`namet ${reqtitle ? "nametreq" : ""}`}>
+                  Title
+                  <span className={`${!reqtitle ? "noting" : ""}`}>*</span>
+                </p>
                 <p className="name">
                   <span id="char_count_title" className="char_count_title">
                     0/200
@@ -224,6 +285,7 @@ function Createpost() {
                 rows="1"
                 cols="50"
                 maxLength="200"
+                onChange={handlereqT}
               ></textarea>
             </div>
             <div className="allcover">
@@ -255,7 +317,10 @@ function Createpost() {
           <br></br>
           <div className="conbody">
             <div className="contentspan">
-              <p className="content">Content</p>
+              <p className={`content ${reqcontent ? "contentreq" : ""}`}>
+                Content
+                <span className={`${!reqcontent ? "noting" : ""}`}>*</span>
+              </p>
               <div className="namecontent">
                 <span id="char_count_content" className="char_count_content">
                   0/25000
@@ -270,6 +335,7 @@ function Createpost() {
               rows="20"
               cols="100"
               maxLength="25000"
+              onChange={handlereqC}
             ></textarea>
             <br></br>
             <br></br>
@@ -306,7 +372,10 @@ function Createpost() {
               </div>
               <div className="bottom">
                 <div className="bottomtopic">
-                  <p className="topicname">Topic</p>
+                  <p className={`topicname ${reqtopic ? "topicnamereq" : ""}`}>
+                    Topic
+                    <span className={`${!reqtopic ? "noting" : ""}`}>*</span>
+                  </p>
                   <button className="edittopic" onClick={topicselect}>
                     Edit topic <i class="bi bi-plus-circle-fill"></i>
                   </button>
@@ -321,13 +390,17 @@ function Createpost() {
                 BACK TO HOME
               </a>
             </div>
-            {/* <div className="backtomypost"> */}
-            {/* <a href="/mypost"> */}
-            <button type="button" className="postbtn" id="buttonpost">
+            <button
+              type="button"
+              className={`${
+                reqtitle || reqcontent || reqtopic ? "dispost" : "postbtn"
+              }`}
+              id="buttonpost"
+              onClick={senddata}
+              disabled={reqtitle || reqcontent || reqtopic}
+            >
               POST
             </button>
-            {/* </a> */}
-            {/* </div> */}
           </div>
         </div>
       </div>

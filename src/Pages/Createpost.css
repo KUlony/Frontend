@@ -155,6 +155,10 @@
   font-weight: 600;
 }
 
+.nametreq {
+  color: red;
+}
+
 .namec {
   margin: auto 0px;
   font-weight: 600;
@@ -180,6 +184,10 @@
   margin-bottom: 0px;
   font-size: 25px;
   font-weight: 600;
+}
+
+.contentreq {
+  color: red;
 }
 
 .inputContent {
@@ -229,6 +237,10 @@
   font-size: 25px;
   font-weight: 600;
   margin: 0px 0px;
+}
+
+.topicnamereq {
+  color: red;
 }
 
 .edittopic {
@@ -289,6 +301,20 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
   font-size: 28px;
   background-color: #2a8052;
+}
+
+.dispost {
+  width: 100%;
+  margin-left: 20px;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
 }
 
 .noting {
@@ -362,6 +388,7 @@
 
 .topicinpage {
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .displayback {
