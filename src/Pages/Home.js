@@ -331,6 +331,7 @@ function Home() {
   const topic_selectbysearch = (data) => {
     const indexoftext = topicarray.indexOf(data);
     topic_select(indexoftext);
+    setSearchresult(topicarray[indexoftext]);
   };
   // <Link to="/search">search </Link>
 
@@ -447,7 +448,7 @@ function Home() {
                     } `}
                   >
                     {topicarray
-                      .filter((data, idx) => {
+                      .filter((data, topic_selectbysearchidx) => {
                         if (searchresult === "") {
                         } else if (
                           data

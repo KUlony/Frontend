@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../components/NavBar";
 import Post_generator from "../components/Post_generator";
 import "./Search.css";
@@ -55,6 +55,21 @@ function Search() {
       post_comment_count: 2,
     },
   ];
+  const [searchOutPutData, setSearchOutPutData] = useState([]);
+  const searchsubmit = async (e) => {
+    try {
+      e.preventDefault();
+      // const data =  await fetch("")
+      // datajson = data.json()
+      const data = [1, 2, 3, 4];
+      setSearchOutPutData(data);
+      console.log(searchOutPutData);
+      setSearchresult("");
+    } catch {
+      console.error("fail");
+    }
+  };
+  const [searchResult, setSearchresult] = useState("");
   return (
     <div className="search_page">
       <div className="search_page_scoll">
@@ -63,12 +78,14 @@ function Search() {
         </div>
         <div className="search_page_navbar">
           <nav className="search_page_topic_nav">
-            <form>
+            <form onSubmit={searchsubmit}>
               <input
                 type="text"
                 required
                 className="search_page_input"
                 placeholder="Search"
+                onChange={(e) => setSearchresult(e.target.value)}
+                value={searchResult}
               />
               <button className="search_page_button">
                 <img src={search} width="14px" height="14px" alt="" />
@@ -85,6 +102,7 @@ function Search() {
         </div>
         <div className="search_page_content">
           <Post_generator data={testdata} />
+          {/* <Post_generator data={searchOutPutData} /> */}
         </div>
       </div>
     </div>
