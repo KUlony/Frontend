@@ -55,14 +55,22 @@ function Search() {
       post_comment_count: 2,
     },
   ];
+  const [displayload, setDisplayload] = useState(true);
   const [searchOutPutData, setSearchOutPutData] = useState([]);
   const searchsubmit = async (e) => {
     try {
+      setSearchOutPutData([]);
+      setDisplayload(false);
       e.preventDefault();
-      // const data =  await fetch("")
-      // datajson = data.json()
-      const data = [1, 2, 3, 4];
-      setSearchOutPutData(data);
+      const data = await fetch(
+        `http://localhost:4000/api/search/post?text=${searchResult}`
+      );
+      const datajson = await data.json();
+      console.log(datajson);
+      //   const data = [1, 2, 3, 4];
+      setDisplayload(true);
+      setSearchOutPutData(datajson);
+
       console.log(searchOutPutData);
       setSearchresult("");
     } catch {
@@ -101,8 +109,11 @@ function Search() {
           </nav>
         </div>
         <div className="search_page_content">
-          <Post_generator data={testdata} />
-          {/* <Post_generator data={searchOutPutData} /> */}
+          {/* <Post_generator data={testdata} /> */}
+          <div
+            className={`loader ${displayload ? "display_none" : null}`}
+          ></div>
+          <Post_generator data={searchOutPutData} />
         </div>
       </div>
     </div>
