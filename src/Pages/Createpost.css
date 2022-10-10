@@ -16,7 +16,7 @@
 
 .all {
   width: 100%;
-  background: #D6EBE0;
+  background-color: #D6EBE0; 
   overflow-y: scroll;
   /* overflow: hidden; */
 }
@@ -66,7 +66,7 @@
   font-weight: 600;
   font-size: 15px;
   /* margin-left: 50%; */
-  width: 100px;
+  width: 120px;
   height: 40px;
   background-color: #E7DB73;
   border: none;
@@ -85,7 +85,36 @@
 }
 
 .mb3cover {
-  width: 80%;
+  width: 100%;
+}
+
+.form-control {
+  display: none;
+}
+
+.foruploadfile {
+  font-weight: 600;
+  height: 20px;
+  background-color: white;
+  padding: 8px;
+  border: 1px solid gray;
+  transition-duration: 0.2s;
+}
+
+.foruploadfile:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.displyfile {
+  display: flex;
+  width: 100%;
+}
+
+.filename {
+  margin-left: 20px;
+  background-color: white;
+  padding: 8px;
+  width: 60%;
 }
 
 .choosefile {
@@ -95,16 +124,17 @@
 }
 
 .percentimgtitle {
-  margin: auto auto auto 78%;
+  margin: auto auto auto 85%;
   color: #339C64;
   font-weight: 600;
+  text-align: center;
 }
 
 .btcontent {
   position: relative;
   font-weight: 600;
   font-size: 15px;
-  margin-left: 50%;
+  margin-left: 22%;
   width: 100px;
   height: 40px;
   background-color: #E7DB73;

@@ -26,6 +26,7 @@ function Topicselect(props) {
         for (let i = 0; i < getarray.length; i++) {
           let isinlist = true
           if (getarray[i].catagory_name === "general") {
+            // edit this
             setitemgeneralleft([])
             setitemgeneralright([])
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
@@ -49,7 +50,8 @@ function Topicselect(props) {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "ทั่วไป") {
+          } else if (getarray[i].catagory_name === "study") {
+            // edit this
             setitemstudyleft([])
             setitemstudyright([])
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
@@ -73,7 +75,8 @@ function Topicselect(props) {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "วิศวกรรม") {
+          } else if (getarray[i].catagory_name === "faculty") {
+            // edit this
             setitemfacultyleft([])
             setitemfacultyright([])
             for (let j = 0; j < getarray[i].all_topic.length; j++) {

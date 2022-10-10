@@ -96,7 +96,7 @@ function Createpost() {
       setreqtitle(true)
     }
   }
-  console.log("title", reqtitle)
+  // console.log("title", reqtitle)
 
   const handlereqC = (e) => {
     if (e.target.value.trim().length) {
@@ -105,7 +105,7 @@ function Createpost() {
       setreqcontent(true)
     }
   }
-  console.log("content", reqcontent)
+  // console.log("content", reqcontent)
 
   if (checkedItems != null) {
   }
@@ -126,6 +126,7 @@ function Createpost() {
   }
 
   function handleChangemult(event) {
+    setFileMult([])
     if (event.target.files.length > 10) {
       alert("Can upload up to 10 pics!!")
       setFileMult([])
@@ -228,6 +229,7 @@ function Createpost() {
     console.log("url", urls)
   }
 
+  console.log("image:", filemult)
   // console.log("url", urls)
 
   function btncondis(e) {
@@ -294,13 +296,22 @@ function Createpost() {
                 <p className="op">(Optional)</p>
               </div>
               <div className="choosefile">
-                <div class="mb-3" className="mb3cover">
+                <div className="mb3cover">
                   <input
-                    class="form-control"
+                    className="form-control"
+                    id="uploadfile"
                     type="file"
                     onChange={handleChange}
                     accept=".png,.jpg,.jpeg"
                   />
+                  <div className="displyfile">
+                    <label for="uploadfile" className="foruploadfile">
+                      Browse File <i class="bi bi-file-earmark-plus-fill"></i>
+                    </label>
+                    <div className="filename">
+                      {file.name != null ? file.name : "no file chosen"}
+                    </div>
+                  </div>
                 </div>
                 <button
                   type="button"
@@ -308,10 +319,10 @@ function Createpost() {
                   id="imagecover"
                   onClick={handleUpload}
                 >
-                  Upload <img src={uploadicon} alt=""></img>
+                  UPLOAD <img src={uploadicon} alt=""></img>
                 </button>
               </div>
-              <p className="percentimgtitle">{percent}% done</p>
+              <p className="percentimgtitle">{percent}% Done</p>
             </div>
           </div>
           <br></br>
@@ -347,14 +358,38 @@ function Createpost() {
                 </div>
                 <br></br>
                 <div>
-                  <div class="mb-3" className="mb3content">
+                  <div className="mb3content">
                     <input
-                      class="form-control"
+                      className="form-control"
+                      id="uploadfilemult"
                       type="file"
                       multiple
                       onChange={handleChangemult}
                       accept=".png,.jpg,.jpeg"
                     />
+                    <div className="displyfile">
+                      <label for="uploadfilemult" className="foruploadfile">
+                        Browse File <i class="bi bi-file-earmark-plus-fill"></i>
+                      </label>
+                      <div
+                        className={`filename ${
+                          filemult.length !== 0 ? "" : "noting"
+                        }`}
+                      >
+                        {filemult.map((item, index) => (
+                          <div key={index}>
+                            {filemult.length !== 0 ? item.name : ""}
+                          </div>
+                        ))}
+                      </div>
+                      <div
+                        className={`filename ${
+                          filemult.length !== 0 ? "noting" : ""
+                        }`}
+                      >
+                        no file chosen
+                      </div>
+                    </div>
                   </div>
                   <p className="uptoten">(Up to 10 Pics)</p>
                   <div className="btnuploadimg">
@@ -364,9 +399,9 @@ function Createpost() {
                       id="imagecontent"
                       onClick={handleUploadmult}
                     >
-                      Upload <img src={uploadicon} alt=""></img>
+                      UPLOAD <img src={uploadicon} alt=""></img>
                     </button>
-                    <p className="permult">{percentmult}% done</p>
+                    <p className="permult">{percentmult}% Done</p>
                   </div>
                 </div>
               </div>
@@ -377,7 +412,7 @@ function Createpost() {
                     <span className={`${!reqtopic ? "noting" : ""}`}>*</span>
                   </p>
                   <button className="edittopic" onClick={topicselect}>
-                    Edit topic <i class="bi bi-plus-circle-fill"></i>
+                    EDIT TOPIC <i class="bi bi-plus-circle-fill"></i>
                   </button>
                 </div>
                 <div className="topicinpage">{`${checkedItems}`}</div>
