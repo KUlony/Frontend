@@ -1,6 +1,6 @@
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import "./FollowTopic.css"
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
+import './FollowTopic.css'
 
 const FollowTopic = () => {
   const [itemed, setItemed] = useState([])
@@ -17,14 +17,14 @@ const FollowTopic = () => {
 
   const getdata = () => {
     axios
-      .get("//localhost:4000/api/topic/get_all_catagory_topic")
+      .get('//localhost:4000/api/topic/get_all_catagory_topic')
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data
         console.log(getarray)
         for (let i = 0; i < getarray.length; i++) {
           let isinlist = true
-          if (getarray[i].catagory_name === "general") {
+          if (getarray[i].catagory_name === 'general') {
             // edit this
             setitemgeneralleft([])
             setitemgeneralright([])
@@ -49,7 +49,7 @@ const FollowTopic = () => {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "study") {
+          } else if (getarray[i].catagory_name === 'study') {
             // edit this
             setitemstudyleft([])
             setitemstudyright([])
@@ -74,7 +74,7 @@ const FollowTopic = () => {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "faculty") {
+          } else if (getarray[i].catagory_name === 'faculty') {
             // edit this
             setitemfacultyleft([])
             setitemfacultyright([])
@@ -129,14 +129,14 @@ const FollowTopic = () => {
   }
 
   var isChecked = (item) =>
-    itemed.includes(item) ? "checked-itemfol" : "not-checked-itemfol"
+    itemed.includes(item) ? 'checked-itemfol' : 'not-checked-itemfol'
 
   console.log(iditemed, itemed)
 
   useEffect(() => {
     if (itemed.length <= 5) {
-      localStorage.setItem("itemed", JSON.stringify(itemed))
-      localStorage.setItem("iditemed", JSON.stringify(iditemed))
+      localStorage.setItem('itemed', JSON.stringify(itemed))
+      localStorage.setItem('iditemed', JSON.stringify(iditemed))
     } else if (itemed.length > 5) {
     }
   }, [itemed])
@@ -177,34 +177,34 @@ const FollowTopic = () => {
         <div className="seltopicfollow">
           <div className="inbtn">
             <button
-              className={`followbtn ${general ? "generaltog" : ""}`}
+              className={`followbtn ${general ? 'generaltog' : ''}`}
               onClick={togglegeneral}
             >
               General
             </button>
-            <div className={`${general ? "greentab" : "noting"}`}></div>
+            <div className={`${general ? 'greentab' : 'noting'}`}></div>
           </div>
           <div className="inbtn">
             <button
-              className={`followbtn ${study ? "studytog" : ""}`}
+              className={`followbtn ${study ? 'studytog' : ''}`}
               onClick={togglestudy}
             >
               Study
             </button>
-            <div className={`${study ? "greentab" : "noting"}`}></div>
+            <div className={`${study ? 'greentab' : 'noting'}`}></div>
           </div>
           <div className="inbtn">
             <button
-              className={`followbtn ${faculty ? "facultytog" : ""}`}
+              className={`followbtn ${faculty ? 'facultytog' : ''}`}
               onClick={togglefaculty}
             >
               Faculty
             </button>
-            <div className={`${faculty ? "greentab" : "noting"}`}></div>
+            <div className={`${faculty ? 'greentab' : 'noting'}`}></div>
           </div>
         </div>
         <div className="selcomfol">
-          <div className={`${general ? "scrollgeneralfol" : "noting"}`}>
+          <div className={`${general ? 'scrollgeneralfol' : 'noting'}`}>
             <div className="comleft">
               {itemgeneralleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper-fol">
@@ -232,7 +232,7 @@ const FollowTopic = () => {
               ))}
             </div>
           </div>
-          <div className={`${study ? "scrollstudyfol" : "noting"}`}>
+          <div className={`${study ? 'scrollstudyfol' : 'noting'}`}>
             <div className="comleft">
               {itemstudyleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper-fol">
@@ -260,7 +260,7 @@ const FollowTopic = () => {
               ))}
             </div>
           </div>
-          <div className={`${faculty ? "scrollfacultyfol" : "noting"}`}>
+          <div className={`${faculty ? 'scrollfacultyfol' : 'noting'}`}>
             <div className="comleft">
               {itemfacultyleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper-fol">

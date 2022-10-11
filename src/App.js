@@ -1,9 +1,9 @@
-import "./App.css"
+import './App.css'
 // import NavBar from "./components/NavBar";
 // import Home from "./Pages/Home"
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 // import MyPost from "./Pages/MyPost"
-import Profile from "./Pages/Profile"
+import Profile from './Pages/Profile'
 // import Createpost from "./Pages/Createpost.js"
 
 function App() {
