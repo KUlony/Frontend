@@ -61,21 +61,6 @@ function Profile() {
         </div>
         <div className="profile-content">{isShowProfile}</div>
       </div>
-      <div className="profile-bottom">
-        <button className="logout-button">
-          <img
-            src={require('../picture/logout.png')}
-            alt="logout"
-            width="15"
-            height="15"
-            className="logout_img"
-          />{' '}
-          Log Out
-        </button>
-        <button className="home-button"> BACK TO HOME </button>
-
-        <button className="save-button">SAVE</button>
-      </div>
     </div>
   )
 }

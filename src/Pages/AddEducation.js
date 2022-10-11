@@ -1,49 +1,73 @@
 import React from 'react'
-import './Profile.css'
+import './AddEducation.css'
 const AddEducation = (props) => {
   const { onBgClick } = props
   console.log('hello im in add education')
   return (
     <div className="add-education">
-      <div className="add-education-inner">
-        <button onClick={onBgClick}> close</button>
-        <div className="school">
+      <div className="add-education-bg" onClick={onBgClick}></div>
+      <main className="add-education-inner">
+        <header>
+          Add Education
+          <button onClick={onBgClick}> close</button>
+        </header>
+        <section className="school">
           {' '}
-          school
+          School
           <br />
           <textarea
             class="input-school"
             type="text"
-            placeholder="school"
+            placeholder="Kasetsart University"
             rows="1"
             cols="20"
           ></textarea>
-        </div>
-        <div className="degree">
-          {' '}
+        </section>
+        <section className="degree">
+          <span>Degree </span>
+          <span className="optional">(Optional)</span>
           <br />
           <textarea
             class="input-degree"
             type="text"
-            placeholder="degree"
+            placeholder="Bachelor's degree"
             rows="1"
             cols="20"
           ></textarea>
-        </div>
-        <div className="field-of-study">
-          {' '}
+        </section>
+        <section className="field-of-study">
+          <span>Field of study </span>
+          <span className="optional">(Optional)</span>
           <br />
+
           <textarea
             class="input-field"
             type="text"
-            placeholder="field"
+            placeholder="Computer engineering"
             rows="1"
             cols="20"
           ></textarea>
-        </div>
-        <div className="start-date"> </div>
-        <div className="end-date"> </div>
-      </div>
+        </section>
+        <section className="start-date">
+          <select value="start-date-value">
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+            <option value="january">January</option>
+          </select>
+        </section>
+        <section className="end-date"> </section>
+        <button>Save</button>
+      </main>
+      {/* <div className="cover_page_education" onClick={onBgClick}></div> */}
     </div>
   )
 }
