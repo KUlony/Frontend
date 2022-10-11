@@ -1,6 +1,6 @@
 .user-info {
-  position: absolute;
-  left: 110px;
+  position: relative;
+  /* left: 110px; */
 }
 .profile-pic {
   position: absolute;
@@ -96,15 +96,6 @@
   top: 650px;
   left: 200px;
   list-style-type: none;
-}
-
-.logout-button {
-  width: 100px;
-  position: absolute;
-  color: black;
-
-  text-decoration: none;
-  left: 200px;
 }
 
 .home-button {

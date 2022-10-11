@@ -1,9 +1,83 @@
 .profile {
-  position: absolute;
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.profile-top {
+  margin-top: 70px;
+  display: flex;
+  width: 100%;
 }
 
 .profile-sidebar {
-  position: absolute;
-  left: 200px;
-  top: 200px;
+  width: 30%;
+  border-style: solid;
+}
+
+.profile-content {
+  width: 70%;
+  border-style: solid;
+}
+
+.user_profile {
+  margin-left: 20%;
+  margin-top: 50px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.button_sidebar {
+  margin-left: 30%;
+}
+
+.btn_click {
+  width: 80%;
+  text-align: left;
+  height: 50px;
+  font-weight: 600;
+  font-size: 25px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition-duration: 0.2s;
+}
+
+.buttonstyle {
+  display: flex;
+}
+
+.setgreen {
+  background-color: #D6EBE0;
+}
+
+.setdeepgreen {
+  background: #339C64;
+  width: 7px;
+}
+
+.noting {
+  display: none;
+}
+
+.logout-button {
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 600;
+  color: #339C64;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 120px;
+  margin-left: 20%;
+}
+
+.g1020 {
+  /* position: absolute; */
+  width: 240px;
+  /* left: 180px; */
+  margin-left: 40%;
+  margin-top: -100px;
 }
