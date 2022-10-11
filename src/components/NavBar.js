@@ -1,27 +1,60 @@
-import React from "react"
+import React, { useState } from "react"
 import "./NavBar.css"
-import bell from "../picture/Colorbell.png"
-import vector from "../picture/Vector.png"
 import logo from "../picture/Logo.png"
+import { BsPersonCircle } from "react-icons/bs"
+import { FaRegBell } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import ReqTopic from "./ReqTopic"
+import Notification from "./Notification"
 
 function Navbar() {
+  const [show, setShow] = useState(false)
+
+  const handleReq = (e) => {
+    e.preventDefault()
+  }
+  console.log(show)
+  const handleShow = () => setShow(!show)
   return (
     <ul className="Nav">
+      <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
       <li className="kulony">
-        <img src={logo} width="70%" height="60%" />
+        <img
+          src={logo}
+          width="100px"
+          // height="120%"
+          alt=""
+          className="kulony-icon"
+        />
       </li>
-      <li className="home">HOME</li>
-      <li className="my-post">MY POST</li>
-      <li className="request-topic">REQUEST TOPIC</li>
-      <li className="space"></li>
+      <li>
+        <Link to="/home" className="home-nav">
+          HOME
+        </Link>
+      </li>
+      <li>
+        <Link to="/mypost" className="my-post">
+          MY POST
+        </Link>
+      </li>
+      <li className="request-topic" onClick={handleShow}>
+        REQUEST TOPIC
+      </li>
+      <li className="space"> </li>
       <li className="create-new-post">
-        <div class="border-create-post">Create new post</div>
+        <Link to="/createnewpost" className="create-post-link">
+          <div class="border-create-post">Create new post</div>
+        </Link>
       </li>
       <li className="bell">
-        <img src={bell} width="20px" height="25px" />
+        <Notification />
       </li>
-      <li className="vector">
-        <img src={vector} width="40px" height="40px" />
+      {/* <div><Notification /></div> */}
+      {/* <li className='vector'><img src={vector} width='40px' height='40px' alt=""/></li> */}
+      <li>
+        <Link to="/profile" className="vector">
+          <BsPersonCircle size={25} className="vector-icon" />
+        </Link>
       </li>
     </ul>
   )

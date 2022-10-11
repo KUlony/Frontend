@@ -4,6 +4,7 @@ import UserInfo from "./UserInfo"
 import Favourite from "./Favourite"
 import FollowTopic from "./FollowTopic"
 import Setting from "./Setting"
+import Navbar from "../components/NavBar"
 
 function Profile() {
   const componentsUserProfile = [
@@ -19,6 +20,7 @@ function Profile() {
 
   return (
     <div className="profile">
+      <Navbar />
       <div className="profile-top">
         <div className="profile-sidebar">
           <button> User Profile </button> <br />
