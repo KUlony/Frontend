@@ -1,9 +1,10 @@
 .user-info {
-  position: relative;
-  /* left: 110px; */
+  margin-left: 70px;
 }
 .profile-pic {
   position: absolute;
+  /* margin-left: 200px; */
+  /* margin-top: 10px; */
   left: 500px;
   top: 130px;
 }
@@ -102,7 +103,7 @@
   position: absolute;
   text-decoration: none;
   color: black;
-  left: 800px;
+  left: 500px;
   top: 10px;
   width: 150px;
 }
