@@ -18,6 +18,7 @@
   background-color: #f8f5d5;
   height: 100vh;
   overflow: scroll;
+  /* overflow: hidden; */
 }
 
 .Home_post {

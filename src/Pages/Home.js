@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import NavBar from "../components/NavBar";
 import Post from "../components/Post";
 import "./Home.css";
@@ -31,6 +31,37 @@ function Home() {
   };
   const [showtopic, setShowtopic] = useState(false);
   // componentDidMount();
+
+  // useEffect(() => {
+  //   window.addEventListener("scroll", () => {
+  //     console.log(window.scrollY);
+  //   });
+  // });
+
+  // const [pagecount, setPagecount] = useState(1);
+
+  const ref = useRef(null);
+  // const [testcount, setTestCount] = useState(0);
+  // const pagecount = useRef(1);
+  // useEffect(() => {
+  //   setTestCount(testcount + 1);
+  //   const element = ref.current;
+  //   element.addEventListener("scroll", () => {
+  //     // setScollposition(element.scrollTop);
+  //     // console.log(element.scrollTop);
+  //     const scroll = element.scrollTop;
+  //     console.log(scroll);
+  //     const countscroll = scroll / 500;
+  //     // console.log(countscroll);
+  //     // setPagecount(countscroll);
+  //     if (countscroll >= pagecount.current + 1) {
+  //       pagecount.current++;
+  //     }
+
+  //     console.log(pagecount);
+  //   });
+  // }, [testcount]);
+
   const testdata = [
     {
       author: {
@@ -338,7 +369,7 @@ function Home() {
   return (
     <PostData.Provider postdata={testdata}>
       <div className="Home_page">
-        <div className="home_test">
+        <div className="home_test" ref={ref}>
           <div className="Nav_home">
             <NavBar />
             {/* <ScrollRestoration /> */}
