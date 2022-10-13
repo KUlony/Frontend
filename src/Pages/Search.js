@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import Navbar from "../components/NavBar";
 import Post_generator from "../components/Post_generator";
 import "./Search.css";
@@ -6,28 +6,82 @@ import search from "../picture/search.png";
 import Post from "../components/Post";
 
 function Search() {
+  const [keepresult, setKeepresult] = useState("");
+  const [searchResult, setSearchresult] = useState("");
+  const [pagecount, setPageCount] = useState(1);
   const [displayload, setDisplayload] = useState(true);
   const [searchOutPutData, setSearchOutPutData] = useState([]);
+  const [havemore, setHavemore] = useState(true);
   const observer = useRef();
-  const lastSearchelement = useCallback();
+  const loadmore = async (e) => {
+    try {
+      setDisplayload(false);
+      const loadmoredata = await fetch(
+        `http://localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0`,
+          },
+        }
+      );
+      const loadmoredatajson = await loadmoredata.json();
+      setDisplayload(true);
+      setSearchOutPutData([...searchOutPutData, ...loadmoredatajson]);
+
+      if (loadmoredatajson.length === 0) {
+        setHavemore(false);
+      }
+    } catch {
+      console.error("fail to load more");
+    }
+  };
+  const lastSearchelement = useCallback(
+    (node) => {
+      if (!displayload) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setPageCount((pagecount) => pagecount + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [displayload]
+  );
+
+  useEffect(() => {
+    if (pagecount !== 1 && havemore) {
+      loadmore();
+    }
+  }, [pagecount]);
+
+  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0
 
   const searchsubmit = async (e) => {
     try {
+      setHavemore(true);
+      setPageCount(1);
       setSearchOutPutData([]);
       setDisplayload(false);
       e.preventDefault();
       const data = await fetch(
-        `http://localhost:4000/api/search/post?text=${searchResult}`
+        `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0`,
+          },
+        }
       );
       const datajson = await data.json();
       setDisplayload(true);
       setSearchOutPutData(datajson);
+      setKeepresult(searchResult);
       setSearchresult("");
     } catch {
       console.error("fail");
     }
   };
-  const [searchResult, setSearchresult] = useState("");
+
   return (
     <div className="search_page">
       <div className="search_page_scoll">
@@ -60,25 +114,43 @@ function Search() {
         </div>
         <div className="search_page_content">
           {/* <Post_generator data={testdata} /> */}
-          <div
-            className={`loader ${displayload ? "display_none" : null}`}
-          ></div>
+
           <div>
-            {searchOutPutData.map((element) => {
-              return (
-                <Post
-                  title={element.post_title}
-                  like={element.post_like_count}
-                  post_content={element.post_content}
-                  photo={element.cover_photo_url}
-                  comment={element.post_comment_count}
-                  profilepic={element.author.profile_pic_url}
-                  post_photo_url={element.post_photo_url}
-                  username={element.author.username}
-                />
-              );
+            {searchOutPutData.map((element, index) => {
+              if (searchOutPutData.length === index + 1) {
+                return (
+                  <div ref={lastSearchelement}>
+                    <Post
+                      title={element.post_title}
+                      like={element.post_like_count}
+                      post_content={element.post_content}
+                      photo={element.cover_photo_url}
+                      comment={element.post_comment_count}
+                      profilepic={element.author.profile_pic_url}
+                      post_photo_url={element.post_photo_url}
+                      username={element.author.username}
+                    />
+                  </div>
+                );
+              } else {
+                return (
+                  <Post
+                    title={element.post_title}
+                    like={element.post_like_count}
+                    post_content={element.post_content}
+                    photo={element.cover_photo_url}
+                    comment={element.post_comment_count}
+                    profilepic={element.author.profile_pic_url}
+                    post_photo_url={element.post_photo_url}
+                    username={element.author.username}
+                  />
+                );
+              }
             })}{" "}
           </div>
+          <div
+            className={`loadersearch ${displayload ? "display_none" : null}`}
+          ></div>
         </div>
       </div>
     </div>

@@ -5,6 +5,9 @@
   font-family: "Quicksand", sans-serif;
 }
 
+.LikeCount {
+  width: 15px;
+}
 .Header {
   height: auto;
   width: 100%;
@@ -86,7 +89,7 @@
 .comment_box_value,
 .share_box {
   float: left;
-  margin-left: 10px;
+  margin-left: 8px;
 }
 
 .like_box_value {
