@@ -100,7 +100,8 @@
 } */
 
 .kulony {
-  width: 12%;
+  overflow: hidden;
+  padding: 0px 30px;
 }
 
 .home-nav,

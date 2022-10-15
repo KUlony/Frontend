@@ -1,30 +1,27 @@
-import React, {useState} from "react"
-import "./NavBar.css"
-import logo from "../picture/Logo.png"
-import { BsPersonCircle } from "react-icons/bs"
-import { FaRegBell } from "react-icons/fa"
-import { Link } from "react-router-dom"
-import ReqTopic from "./ReqTopic"
-import Notification from "./Notification"
-
-
+import React, { useState } from 'react';
+import './NavBar.css';
+import logo from '../picture/Logo.png';
+import { BsPersonCircle } from 'react-icons/bs';
+import { FaRegBell } from 'react-icons/fa';
+import { Link } from 'react-router-dom';
+import ReqTopic from './ReqTopic';
+import Notification from './Notification';
 
 function Navbar() {
-  const [show,setShow] = useState(false)
-  
+  const [show, setShow] = useState(false);
+
   const handleReq = (e) => {
-    e.preventDefault()
-  }
-  console.log(show)
-  const handleShow = () => setShow(!show)
+    e.preventDefault();
+  };
+  console.log(show);
+  const handleShow = () => setShow(!show);
   return (
-    
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
       <li className="kulony">
         <img
           src={logo}
-          width="100px"
+          width="120px"
           // height="120%"
           alt=""
           className="kulony-icon"
@@ -43,10 +40,12 @@ function Navbar() {
           MY POST
         </Link>
       </li>
-      <li className="request-topic" onClick={handleShow}>REQUEST TOPIC</li>
+      <li className="request-topic" onClick={handleShow}>
+        REQUEST TOPIC
+      </li>
       <li className="space"> </li>
       <li className="create-new-post">
-        <Link to="/createnewpost"className="create-post-link" >
+        <Link to="/createnewpost" className="create-post-link">
           <div class="border-create-post">Create new post +</div>
         </Link>
       </li>
@@ -60,9 +59,8 @@ function Navbar() {
           <BsPersonCircle size={25} className="vector-icon" />
         </Link>
       </li>
-      
     </ul>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
