@@ -25,7 +25,7 @@ function Topicselect(props) {
         console.log(getarray)
         for (let i = 0; i < getarray.length; i++) {
           let isinlist = true
-          if (getarray[i].catagory_name === "general") {
+          if (getarray[i].catagory_name === "General") {
             // edit this
             setitemgeneralleft([])
             setitemgeneralright([])
@@ -50,7 +50,7 @@ function Topicselect(props) {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "study") {
+          } else if (getarray[i].catagory_name === "Study") {
             // edit this
             setitemstudyleft([])
             setitemstudyright([])
@@ -75,7 +75,7 @@ function Topicselect(props) {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "faculty") {
+          } else if (getarray[i].catagory_name === "Faculty") {
             // edit this
             setitemfacultyleft([])
             setitemfacultyright([])
