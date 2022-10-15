@@ -6,7 +6,14 @@ import Comment_child from "./Comment_child";
 import { MdSend } from "react-icons/md";
 
 function Comment(props) {
-  const { display_profile, comment_content, display_reply } = props;
+  const {
+    display_profile,
+    comment_content,
+    display_reply,
+    comment_id,
+    user_id,
+    user_name,
+  } = props;
   const containerRef = useRef(null);
   const [replydata, setReplydata] = useState([]);
   const [numberofchild, setNumberofchild] = useState(replydata.length);
@@ -22,6 +29,7 @@ function Comment(props) {
   const [displayanimagoback, setdisplayanimagoback] = useState(true);
   const [replyfetch, setReplyfetch] = useState(true);
   const [firsttimeposition, setFirsttimeposition] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
@@ -30,14 +38,58 @@ function Comment(props) {
     settextHidden(true);
   }, [containerRef]);
 
-  const comment_reply = (e) => {
-    e.preventDefault();
-    const replyform = { reply_content: replyinput };
+  // console.log(comment_id);
+  const [commentdata, setCommentdata] = useState();
+  const replydata_fetch = async () => {
+    try {
+      setLoading(false);
+      const response_replydata = await fetch(
+        `http://localhost:4000/api/reply/634b0b9822ef3cd0bc45f6c2`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+          },
+        }
+      );
+      const jsonresponse_replydate = await response_replydata.json();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  useEffect(() => {
+    if (loading) {
+      // replydata_fetch();
+    }
+  }, []);
+  const comment_reply = async (e) => {
+    try {
+      e.preventDefault();
+      const response_reply = await fetch(
+        `http://localhost:4000/api/reply/create`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+          },
+          body: JSON.stringify({
+            comment_id: comment_id,
+            reply_content: replyinput,
+          }),
+        }
+      );
+      if (!response_reply.ok) {
+        throw new Error("fail");
+      }
+      const replyform = { reply_content: replyinput };
 
-    updatecommentdata(replyform);
-    setNumberofchild(numberofchild + 1);
-    setDisplayshowreply(false);
-    setReplyinput("");
+      updatecommentdata(replyform);
+      setNumberofchild(numberofchild + 1);
+      setDisplayshowreply(false);
+      setReplyinput("");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const comment_input = (e) => {
@@ -57,9 +109,9 @@ function Comment(props) {
       <div className="comment_parent">
         <div
           className="comment_profile"
-          onClick={() => display_profile("testdata")}
+          onClick={() => display_profile(user_id)}
         ></div>
-        <h5 className="comment_name">elon musk</h5>
+        <h5 className="comment_name">{user_name}</h5>
         <div className="comment_parent_context" ref={containerRef}>
           <p
             className={`comment_breakline ${

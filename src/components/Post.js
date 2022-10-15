@@ -15,8 +15,17 @@ import Comment_generator from "./Comment_generator";
 import { BsFillHeartFill } from "react-icons/bs";
 
 function Post(props) {
-  const { title, like, post_content, photo, comment, profilepic, username } =
-    props;
+  const {
+    title,
+    like,
+    post_content,
+    photo,
+    comment,
+    profilepic,
+    username,
+    post_time,
+    post_id,
+  } = props;
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [displayComment, setdisplatComment] = useState(true);
@@ -68,6 +77,35 @@ function Post(props) {
     setLikepost(!likepost);
   };
 
+  const timepost = post_time.split("T");
+  const day = timepost[0].split("-").reverse().join("/");
+  const timearray = timepost[1].split(".");
+  const time = timearray[0];
+
+  let inttime = parseFloat(time.split(":").join("."));
+
+  let datetime = "";
+
+  if (inttime >= 12 && inttime < 24) {
+    if (inttime === 12) {
+      datetime = "12:00 PM, " + day;
+    } else {
+      const min = inttime.toString().split(".");
+      inttime -= 12;
+
+      const date = inttime.toString().split(".");
+      // console.log(date);
+      datetime = date[0] + ":" + min[1] + " PM, " + day;
+    }
+  } else {
+    if (inttime === 24) {
+      datetime = "12:00 AM, " + day;
+    } else {
+      datetime = time + " AM, " + day;
+    }
+  }
+  // console.log(datetime);
+
   return (
     <div className>
       <div className="PostBox">
@@ -84,6 +122,7 @@ function Post(props) {
           </div>
           <div className="TitleHead_box">
             <h4 className="TitleHead">{title}</h4>
+            <p>{datetime}</p>
           </div>
 
           <div className="test_btn">
@@ -97,13 +136,13 @@ function Post(props) {
             </div>
           </div>
         </div>
-
         <p className="post_Content">{post_content}</p>
 
-        <div class="FakeImage" onClick={display_img}>
-          <img src={photo} alt="profilemini_img" className="post_img_cover" />
-        </div>
-
+        {photo && (
+          <div class="FakeImage" onClick={display_img}>
+            <img src={photo} alt="profilemini_img" className="post_img_cover" />
+          </div>
+        )}
         <h4 class="Topic_text">Topics : Engineering, รีวิวการเรียน</h4>
         <div className="interact">
           <div className="like_box_value" onClick={likepost_update}>
@@ -137,13 +176,13 @@ function Post(props) {
                     />
                   </header>
                   <div className="comment_content">
-                    {havedata && (
+                    {/* {havedata && (
                       <Comment_generator
                         data={comment_test_data}
                         display_profile={display_profile}
                         display_reply={false}
                       />
-                    )}
+                    )} */}
                   </div>
                 </div>
               </div>
@@ -156,19 +195,7 @@ function Post(props) {
             <AiOutlineShareAlt className="Share" size={30} />
           </div>
           <div className="post_viewmorebox">
-            <Link
-              to="/viewpost/123"
-              className="More"
-              state={{
-                title: { title },
-                like: { likecount },
-                post_content: { post_content },
-                photo: { photo },
-                comment: { comment },
-                profilepic: { profilepic },
-                username: { username },
-              }}
-            >
+            <Link to={`/viewpost/${post_id}`} className="More">
               viewpost{" "}
             </Link>
           </div>
@@ -177,11 +204,11 @@ function Post(props) {
       <div
         className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
       >
-        <Miniprofile
+        {/* <Miniprofile
           titlepost={title}
           display={display_profile}
           urlimg={profileurl}
-        />
+        /> */}
       </div>
       <div
         className={`cover ${displayProfile ? "display_none" : null}`}
@@ -190,7 +217,7 @@ function Post(props) {
       <div
         className={`reportpost_popup ${displayReport ? "display_none" : null}`}
       >
-        <Reportpost_popup display={display_report} />
+        {/* <Reportpost_popup display={display_report} /> */}
       </div>
       <div
         className={`post_freespace ${displayComment ? "display_none" : null}`}

@@ -17,19 +17,19 @@
 }
 
 .search_page_navbar {
-  position: sticky;
+  position: fixed;
   top: 70px;
-  background-color: #f8f5d5;
-  height: 120px;
+  background-color: #fff;
+  height: 110px;
   width: 100%;
-  z-index: 3;
+  z-index: 1;
 }
 
 .search_page_content {
   background-color: #f8f5d5;
   height: auto;
   z-index: 1;
-  padding: 40px 0;
+  padding: 200px 0 60px 0px;
   /* overflow: hidden; */
 }
 

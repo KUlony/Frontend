@@ -35,7 +35,7 @@
   padding-left: 4%;
   padding-right: 4%;
   padding-bottom: 1%; */
-  padding: 3% 60px 1% 60px;
+  padding: 40px 60px;
   border: 1px solid #f5f5f5;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   border-radius: 8px;
@@ -146,12 +146,14 @@
 .post_viewmorebox {
   position: relative;
   right: -90px;
+  top: 24px;
 }
 
 .More {
+  font-weight: bold;
   text-align: center;
   font-size: 100%;
-  height: auto;
+  height: 24px;
   width: min(80px, 18%);
   padding-top: 5px;
   padding-bottom: 5px;
@@ -344,4 +346,10 @@
 .display_none2 {
   position: absolute;
   left: -99999999em;
+}
+
+.TitleHead_box p {
+  color: #339c64;
+  font-size: 14px;
+  margin-top: 3px;
 }

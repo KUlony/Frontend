@@ -1,5 +1,5 @@
 .view_post_poup {
-  background-color: #f8f5d5;
+  background-color: #d6ebe0;
   width: 100%;
   height: 100vh;
   overflow: scroll;
@@ -136,6 +136,7 @@
 .view_post_likebox {
   position: relative;
   display: inline-block;
+  cursor: pointer;
 }
 
 .view_post_reportbox {
@@ -146,7 +147,8 @@
 }
 
 .view_post_commentinputbox {
-  margin: 20px 5% 30px 5%;
+  margin: 20px 5% 0 5%;
+  padding-bottom: 30px;
 }
 
 .view_post_text {

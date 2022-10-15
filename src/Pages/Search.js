@@ -20,7 +20,7 @@ function Search() {
         `http://localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
           },
         }
       );
@@ -68,7 +68,7 @@ function Search() {
         `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
           },
         }
       );
@@ -129,6 +129,8 @@ function Search() {
                       profilepic={element.author.profile_pic_url}
                       post_photo_url={element.post_photo_url}
                       username={element.author.username}
+                      post_time={element.post_time}
+                      post_id={element.post_id}
                     />
                   </div>
                 );
@@ -143,6 +145,8 @@ function Search() {
                     profilepic={element.author.profile_pic_url}
                     post_photo_url={element.post_photo_url}
                     username={element.author.username}
+                    post_time={element.post_time}
+                    post_id={element.post_id}
                   />
                 );
               }
