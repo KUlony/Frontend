@@ -136,9 +136,15 @@ function View_post() {
         if (!response_comment.ok) {
           throw new Error("fail");
         }
-
+        const json_comment = await response_comment.json();
         const datainput = {
           comment_content: commentinput,
+          comment_id: "eiei",
+          author: {
+            user_id: json_comment.user_id,
+            username: json_comment.username,
+            profile_pic_url: null,
+          },
         };
         updatecommentdata(datainput);
         setCommentcount(commentcount + 1);
