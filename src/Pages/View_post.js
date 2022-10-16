@@ -6,6 +6,7 @@ import { IoIosArrowBack } from "react-icons/io";
 import Comment from "../components/Comment";
 import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 import { FcLikePlaceholder } from "react-icons/fc";
+import profileimg from "../picture/profile.png";
 import {
   MdOutlineModeComment,
   MdTitle,
@@ -99,8 +100,6 @@ function View_post() {
         }
       );
       const comment_json = await comment_fetch_respone.json();
-      console.log(comment_json);
-      console.log("as");
       setCommentdata(comment_json);
       setLoadingcomment(false);
     } catch (err) {
@@ -138,14 +137,29 @@ function View_post() {
         if (!response_comment.ok) {
           throw new Error("fail");
         }
+
         const json_comment = await response_comment.json();
+        // console.log(`json_comment `, json_comment);
+
+        const userdata = await fetch(
+          `http://localhost:4000/api/user/${json_comment.user_id}/profile`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const jsonuserdata = await userdata.json();
+
         const datainput = {
           comment_content: commentinput,
-          comment_id: "eiei",
+          comment_id: json_comment._id,
+          comment_reply_count: 0,
+          comment_time: json_comment.comment_time,
           author: {
             user_id: json_comment.user_id,
-            username: json_comment.username,
-            profile_pic_url: null,
+            username: jsonuserdata.user_name,
+            profile_pic_url: jsonuserdata.profile_pic_url,
           },
         };
         updatecommentdata(datainput);
@@ -226,11 +240,19 @@ function View_post() {
               className="UserProfile"
               onClick={() => display_profile(postdataarray.author.user_id)}
             >
-              <img
-                src={profilepic}
-                alt="profilemini_img"
-                className="profile_miniimg"
-              />
+              {profilepic ? (
+                <img
+                  src={profilepic}
+                  alt="profilemini_img"
+                  className="profile_miniimg"
+                />
+              ) : (
+                <img
+                  src={profileimg}
+                  alt="profilemini_img"
+                  className="profile_miniimg"
+                />
+              )}
             </div>
 
             <div className="view_post_fullpost_profile_username">
@@ -268,7 +290,9 @@ function View_post() {
                 className={`${user_like_status ? "like" : "unlike"}`}
                 size={22}
               />
-              <p className="view_post_text">{likecount} Likes</p>
+              <p className="view_post_text">
+                <p>{likecount}</p> Likes
+              </p>
             </div>
             <div className="view_post_commentbox">
               <MdOutlineModeComment size={30} />

@@ -4,7 +4,7 @@ import { BiShare, BiHide, BiShow } from "react-icons/bi";
 import Miniprofile from "./Miniprofile";
 import Comment_child from "./Comment_child";
 import { MdSend } from "react-icons/md";
-
+import profileimg from "../picture/profile.png";
 function Comment(props) {
   const {
     display_profile,
@@ -14,6 +14,7 @@ function Comment(props) {
     user_id,
     user_name,
     reply_count,
+    profile_pic_url,
   } = props;
   const token = localStorage.getItem("token");
   const containerRef = useRef(null);
@@ -39,7 +40,7 @@ function Comment(props) {
     // console.log(displayviewmorecm);
     settextHidden(true);
   }, [containerRef]);
-  console.log(comment_id);
+  // console.log(comment_id);
   const [commentdata, setCommentdata] = useState();
   const replydata_fetch = async () => {
     try {
@@ -98,7 +99,28 @@ function Comment(props) {
       if (!response_reply.ok) {
         throw new Error("fail");
       }
-      const replyform = { reply_content: replyinput };
+      const json_reply = await response_reply.json();
+      // console.log("json_reply", json_reply);
+      const userdata = await fetch(
+        `http://localhost:4000/api/user/${json_reply.user_id}/profile`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      const jsonuserdata = await userdata.json();
+      const replyform = {
+        author: {
+          user_id: json_reply.user_id,
+          username: jsonuserdata.user_name,
+          profile_pic_url: jsonuserdata.profile_pic_url,
+        },
+        reply_id: json_reply._id,
+        reply_content: json_reply.reply_content,
+        reply_like_count: 0,
+        reply_time: json_reply.reply_time,
+      };
 
       updatecommentdata(replyform);
       setNumberofchild(numberofchild + 1);
@@ -127,7 +149,21 @@ function Comment(props) {
         <div
           className="comment_profile"
           onClick={() => display_profile(user_id)}
-        ></div>
+        >
+          {profile_pic_url ? (
+            <img
+              src={profile_pic_url}
+              alt="profile_img"
+              className="comment_profile_pic"
+            />
+          ) : (
+            <img
+              src={profileimg}
+              alt="profile_img"
+              className="comment_profile_pic"
+            />
+          )}
+        </div>
         <h5 className="comment_name">{user_name}</h5>
         <div className="comment_parent_context" ref={containerRef}>
           <p
@@ -160,7 +196,7 @@ function Comment(props) {
               {replydata.map((data) => (
                 <Comment_child
                   display_profile={display_profile}
-                  reply_content={data.reply_content}
+                  reply_data={data}
                 />
               ))}
             </div>

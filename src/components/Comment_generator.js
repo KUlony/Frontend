@@ -17,6 +17,7 @@ function Comment_generator(props) {
             user_id={element.author.user_id}
             user_name={element.author.username}
             reply_count={element.comment_reply_count}
+            profile_pic_url={element.author.profile_pic_url}
             // comment_id ={element.}
           />
         );

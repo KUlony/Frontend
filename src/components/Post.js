@@ -13,7 +13,7 @@ import Comment from "./Comment";
 import Showimg from "./Showimg";
 import Comment_generator from "./Comment_generator";
 import { BsFillHeartFill } from "react-icons/bs";
-
+import profileimg from "../picture/profile.png";
 function Post(props) {
   const {
     title,
@@ -158,11 +158,19 @@ function Post(props) {
       <div className="PostBox">
         <div className="Header">
           <div className="UserProfile" onClick={() => display_profile(user_id)}>
-            <img
-              src={profilepic}
-              alt="profilemini_img"
-              className="profile_miniimg"
-            />
+            {profilepic ? (
+              <img
+                src={profilepic}
+                alt="profilemini_img"
+                className="profile_miniimg"
+              />
+            ) : (
+              <img
+                src={profileimg}
+                alt="profilemini_img"
+                className="profile_miniimg"
+              />
+            )}
           </div>
           <div className="TitleHead_box">
             <h4 className="TitleHead">{title}</h4>
@@ -248,7 +256,7 @@ function Post(props) {
       <div
         className={`miniprofile_post ${displayProfile ? "display_none" : null}`}
       >
-        <Miniprofile display={display_profile} user_id={user_id} />
+        <Miniprofile display={display_profile} user_id={miniprofileid} />
       </div>
       <div
         className={`cover ${displayProfile ? "display_none" : null}`}

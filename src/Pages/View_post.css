@@ -158,6 +158,10 @@
   margin-left: 15px;
 }
 
+.view_post_text p {
+  display: inline-block;
+  width: 15px;
+}
 .view_post_comment_input {
   padding: 0 20px;
   width: 60%;
