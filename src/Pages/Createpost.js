@@ -5,9 +5,10 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
-import backtohome from "../picture/back.png"
+import { IoIosArrowBack } from "react-icons/io"
 import Navbar from "../components/NavBar"
 import axios from "axios"
+import { Link } from "react-router-dom"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
@@ -259,10 +260,10 @@ function Createpost() {
       <Navbar />
       <div className="all">
         <div className="bth">
-          <a href="/home" className="backtohome">
-            <img alt="" src={backtohome} className="picback" />
+          <Link to="/home" className="backtohome">
+            <IoIosArrowBack className="picback" />
             Back to home
-          </a>
+          </Link>
         </div>
         <div className="createTitle">
           <h1 className="create">Create a post </h1>

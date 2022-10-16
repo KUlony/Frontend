@@ -305,6 +305,7 @@
 }
 
 .backtohome {
+  display: flex;
   text-decoration: none;
   color: #339C64;
   font-weight: 600;
@@ -317,9 +318,8 @@
 }
 
 .picback {
-  width: 10px;
-  margin-right: 10px;
   margin-left: 5%;
+  margin: auto 0px auto 5%;
 }
 
 .postbtn {
