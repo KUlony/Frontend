@@ -17,6 +17,7 @@ import Reportpost_popup from "../components/Reportpost_popup";
 import Miniprofile from "../components/Miniprofile";
 import Comment_generator from "../components/Comment_generator";
 import Showimg from "../components/Showimg";
+import Checklogin from "../components/Checklogin";
 
 function View_post() {
   // const location = useLocation();
@@ -52,6 +53,7 @@ function View_post() {
   const [user_like_status, setUser_like_status] = useState(false);
   const [userminiprofile, setUserminiprofile] = useState("");
   const [commentdata, setCommentdata] = useState([]);
+  const token = localStorage.getItem("token");
   // console.log(post_id.id);
 
   const postfetch = async () => {
@@ -60,7 +62,7 @@ function View_post() {
         `http://localhost:4000/api/post/${post_id.id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -92,7 +94,7 @@ function View_post() {
         `http://localhost:4000/api/comment/${post_id.id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -125,7 +127,7 @@ function View_post() {
             method: "POST",
             headers: {
               "Content-Type": "application/json",
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+              Authorization: `${token}`,
             },
             body: JSON.stringify({
               post_id: post_id.id,
@@ -181,7 +183,7 @@ function View_post() {
           {
             method: "DELETE",
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+              Authorization: `${token}`,
             },
           }
         );
@@ -191,7 +193,7 @@ function View_post() {
           {
             method: "POST",
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+              Authorization: `${token}`,
             },
           }
         );
@@ -205,6 +207,7 @@ function View_post() {
   };
   return (
     <div className="view_post_poup">
+      <Checklogin />
       <div className="view_post">
         <div className="view_post_nav">
           <Navbar />

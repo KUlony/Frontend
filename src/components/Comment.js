@@ -14,6 +14,7 @@ function Comment(props) {
     user_id,
     user_name,
   } = props;
+  const token = localStorage.getItem("token");
   const containerRef = useRef(null);
   const [replydata, setReplydata] = useState([]);
   const [numberofchild, setNumberofchild] = useState(replydata.length);
@@ -47,7 +48,7 @@ function Comment(props) {
         `http://localhost:4000/api/reply/634b0b9822ef3cd0bc45f6c2`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -70,7 +71,7 @@ function Comment(props) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
           body: JSON.stringify({
             comment_id: comment_id,

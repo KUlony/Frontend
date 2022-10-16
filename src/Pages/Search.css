@@ -82,3 +82,12 @@
   animation: spin 2s linear infinite;
   margin: 250px auto;
 }
+
+.search_select {
+  color: #339c64;
+  text-decoration: underline;
+}
+
+.search_page_nav_topic li {
+  cursor: pointer;
+}

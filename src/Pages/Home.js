@@ -8,15 +8,19 @@ import search from "../picture/search.png";
 import Post_generator from "../components/Post_generator";
 import PostData from "../PostData";
 import Miniprofile from "../components/Miniprofile";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaPassport } from "react-icons/fa";
 import { HiSearch } from "react-icons/hi";
 import { BsPlusLg } from "react-icons/bs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import Checklogin from "../components/Checklogin";
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
+  // localStorage.removeItem("token");
+
+
   const [post_data, setPost_data] = useState([]);
   const [displayload, setDisplayload] = useState(false);
   const componentDidMount = async () => {
@@ -375,6 +379,7 @@ function Home() {
   return (
     <PostData.Provider postdata={testdata}>
       <div className="Home_page">
+        <Checklogin />;
         <div className="home_test" ref={ref}>
           <div className="Nav_home">
             <NavBar />

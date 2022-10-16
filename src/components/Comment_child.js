@@ -18,6 +18,7 @@ function Comment_child(props) {
     console.log(displayviewmorecm);
     settextHidden(true);
   }, [containerRef]);
+
   return (
     <div className="comment_child_mainbox">
       <div className="comment_child_content">

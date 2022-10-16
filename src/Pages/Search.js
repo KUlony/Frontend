@@ -4,6 +4,7 @@ import Post_generator from "../components/Post_generator";
 import "./Search.css";
 import search from "../picture/search.png";
 import Post from "../components/Post";
+import Checklogin from "../components/Checklogin";
 
 function Search() {
   const [keepresult, setKeepresult] = useState("");
@@ -13,6 +14,8 @@ function Search() {
   const [searchOutPutData, setSearchOutPutData] = useState([]);
   const [havemore, setHavemore] = useState(true);
   const observer = useRef();
+  const token = localStorage.getItem("token");
+  const [searchtype, setSearchtype] = useState([true, false, false]);
   const loadmore = async (e) => {
     try {
       setDisplayload(false);
@@ -20,7 +23,7 @@ function Search() {
         `http://localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
         }
       );
@@ -57,26 +60,36 @@ function Search() {
 
   //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0
 
+  const updatesearchselect = (position) => {
+    console.log(position);
+    setSearchtype((prev) =>
+      prev.map((data, idx) => (idx === position ? true : false))
+    );
+  };
+
   const searchsubmit = async (e) => {
     try {
-      setHavemore(true);
-      setPageCount(1);
-      setSearchOutPutData([]);
-      setDisplayload(false);
       e.preventDefault();
-      const data = await fetch(
-        `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
-        {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-          },
-        }
-      );
-      const datajson = await data.json();
-      setDisplayload(true);
-      setSearchOutPutData(datajson);
-      setKeepresult(searchResult);
-      setSearchresult("");
+      if (searchtype[0]) {
+        setHavemore(true);
+        setPageCount(1);
+        setSearchOutPutData([]);
+        setDisplayload(false);
+        const data = await fetch(
+          `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const datajson = await data.json();
+        setDisplayload(true);
+        setSearchOutPutData(datajson);
+        setKeepresult(searchResult);
+        setSearchresult("");
+      } else if (searchtype[1]) {
+      }
     } catch {
       console.error("fail");
     }
@@ -84,6 +97,7 @@ function Search() {
 
   return (
     <div className="search_page">
+      <Checklogin />
       <div className="search_page_scoll">
         <div className="search_page_navkulony">
           <Navbar />
@@ -105,9 +119,24 @@ function Search() {
             </form>
             <div className="search_page_nav_topic">
               <ul>
-                <li>Post</li>
-                <li>User</li>
-                <li>Topics</li>
+                <li
+                  className={`${searchtype[0] ? "search_select" : null}`}
+                  onClick={() => updatesearchselect(0)}
+                >
+                  Post
+                </li>
+                <li
+                  className={`${searchtype[1] ? "search_select" : null}`}
+                  onClick={() => updatesearchselect(1)}
+                >
+                  User
+                </li>
+                <li
+                  className={`${searchtype[2] ? "search_select" : null}`}
+                  onClick={() => updatesearchselect(2)}
+                >
+                  Topics
+                </li>
               </ul>
             </div>
           </nav>

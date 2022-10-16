@@ -40,7 +40,7 @@ function Login() {
       navigate("/home");
     } catch (err) {
       // console.log("catch");
-      navigate("/home");
+      // navigate("/home");
       console.log(err.message);
     }
   };
@@ -52,32 +52,32 @@ function Login() {
       </div>
       <div className="login_column">
         <h1 className="login_header">LOG-IN</h1>
-        <input
-          className="login_input"
-          type="email"
-          placeholder="EMAIL"
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        ></input>
-        <input
-          className="login_input"
-          type="password"
-          placeholder="PASSWORD"
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        ></input>
-        <p className={`login_forgot`} onClick={display_forgot}>
-          Forgot password?
-        </p>
+        <form onSubmit={login}>
+          <input
+            className="login_input"
+            type="email"
+            placeholder="EMAIL"
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          ></input>
+          <input
+            className="login_input"
+            type="password"
+            placeholder="PASSWORD"
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          ></input>
+          <p className={`login_forgot`} onClick={display_forgot}>
+            Forgot password?
+          </p>
 
-        {/* <Link className="login_button" to='/home'>LOG IN</Link> */}
-        <button className="login_button" onClick={login}>
-          LOG IN
-        </button>
+          {/* <Link className="login_button" to='/home'>LOG IN</Link> */}
+          <button className="login_button">LOG IN</button>
+        </form>
 
         <div className="login_qa">
           Don’t have an account?{" "}

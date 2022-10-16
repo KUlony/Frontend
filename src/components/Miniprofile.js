@@ -7,6 +7,7 @@ function Miniprofile(props) {
   console.log(user_id);
   const [userdata, setUserdata] = useState();
   const [loading, setLoading] = useState(true);
+  const token = localStorage.getItem("token");
   const user_info = async () => {
     try {
       setLoading(true);
@@ -14,7 +15,7 @@ function Miniprofile(props) {
         `http://localhost:4000/api/user/${user_id}/profile`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
         }
       );

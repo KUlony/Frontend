@@ -17,7 +17,7 @@ function Reportpost_popup(props) {
     false,
   ]);
   const [reportOther, setreportOther] = useState("");
-
+  const token = localStorage.getItem("token");
   const reportcheckbox = (e) => {
     e.preventDefault();
     setreportOther("");
@@ -67,7 +67,7 @@ function Reportpost_popup(props) {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
+            Authorization: `${token}`,
           },
           body: JSON.stringify({ report_type: reporttype }),
         }
