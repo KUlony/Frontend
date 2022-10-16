@@ -14,25 +14,36 @@ import { HiSearch } from "react-icons/hi";
 import { BsPlusLg } from "react-icons/bs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Checklogin from "../components/Checklogin";
+
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
   // localStorage.removeItem("token");
-
-
+  const token = localStorage.getItem("token");
   const [post_data, setPost_data] = useState([]);
   const [displayload, setDisplayload] = useState(false);
   const componentDidMount = async () => {
     try {
-      // const response = await fetch(`http://localhost:3000/post/all_post`);
-      // const json = await response.json();
-      // setDisplayload(true);
-      // setPost_data(json);
+      const response = await fetch(
+        `http://localhost:4000/api/post/all_post?page=1`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      const json = await response.json();
+      setDisplayload(true);
+      setPost_data(json);
     } catch {
       console.error("fail");
     }
   };
+  useEffect(() => {
+    componentDidMount();
+  }, []);
+
   const [showtopic, setShowtopic] = useState(false);
   // componentDidMount();
 
@@ -379,7 +390,6 @@ function Home() {
   return (
     <PostData.Provider postdata={testdata}>
       <div className="Home_page">
-        <Checklogin />;
         <div className="home_test" ref={ref}>
           <div className="Nav_home">
             <NavBar />
@@ -621,16 +631,17 @@ function Home() {
             <div className="Home_post">
               <div className={`${category[0] ? null : "post_faculty"}`}>
                 {/* ใส่ตอนมีข้อมูลให้ fetch */}
-                {/* <div
-                className={`loader ${displayload ? "display_none" : null}`}
-              ></div> */}
+                <div
+                  className={`loader ${displayload ? "display_none" : null}`}
+                ></div>
 
-                <Post_generator data={testdata} />
-                {/* <Post_generator data={post_data} /> */}
+                {/* <Post_generator data={testdata} /> */}
+                <Post_generator data={post_data} />
               </div>
             </div>
           </div>
         </div>
+        <Checklogin />;
       </div>
     </PostData.Provider>
   );

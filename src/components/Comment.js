@@ -13,16 +13,17 @@ function Comment(props) {
     comment_id,
     user_id,
     user_name,
+    reply_count,
   } = props;
   const token = localStorage.getItem("token");
   const containerRef = useRef(null);
   const [replydata, setReplydata] = useState([]);
-  const [numberofchild, setNumberofchild] = useState(replydata.length);
+  const [numberofchild, setNumberofchild] = useState(reply_count);
   const [textHidden, settextHidden] = useState(false);
   const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
   const [displayreply, setdisplayreply] = useState(display_reply);
   const [displayshowreply, setDisplayshowreply] = useState(
-    replydata.length === 0 ? true : false
+    reply_count === 0 ? true : false
   );
   const [displayreplyinput, setDisplayreplyinput] = useState(false);
   const [displaychild, setDisplaychild] = useState(false);
@@ -35,33 +36,48 @@ function Comment(props) {
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
       : setdisplayviewmorecm(true);
-    console.log(displayviewmorecm);
+    // console.log(displayviewmorecm);
     settextHidden(true);
   }, [containerRef]);
-
-  // console.log(comment_id);
+  console.log(comment_id);
   const [commentdata, setCommentdata] = useState();
   const replydata_fetch = async () => {
     try {
-      setLoading(false);
-      const response_replydata = await fetch(
-        `http://localhost:4000/api/reply/634b0b9822ef3cd0bc45f6c2`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
+      if (loading) {
+        const response_replydata = await fetch(
+          `http://localhost:4000/api/reply/${comment_id}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        if (!response_replydata.ok) {
+          throw new Error("error");
         }
-      );
-      const jsonresponse_replydate = await response_replydata.json();
+        const jsonresponse_replydate = await response_replydata.json();
+        // console.log(jsonresponse_replydate);
+
+        setReplydata(jsonresponse_replydate);
+        setLoading(false);
+        console.log("ok");
+      }
+      display_child();
     } catch (err) {
       console.error(err);
     }
   };
+
   useEffect(() => {
-    if (loading) {
-      // replydata_fetch();
+    if (!loading) {
+      setDisplayshowreply(replydata.length === 0 ? true : false);
+      setNumberofchild(replydata.length);
     }
-  }, []);
+  }, [replydata]);
+
+  // useEffect(() => {
+  //   replydata_fetch();
+  // }, []);
   const comment_reply = async (e) => {
     try {
       e.preventDefault();
@@ -139,12 +155,16 @@ function Comment(props) {
             displayanimagoback ? null : "reply_close"
           }`}
         >
-          {replydata.map((data) => (
-            <Comment_child
-              display_profile={display_profile}
-              reply_content={data.reply_content}
-            />
-          ))}
+          {!loading && (
+            <div>
+              {replydata.map((data) => (
+                <Comment_child
+                  display_profile={display_profile}
+                  reply_content={data.reply_content}
+                />
+              ))}
+            </div>
+          )}
         </div>
       )}
 
@@ -170,7 +190,7 @@ function Comment(props) {
            ${displaychild ? null : "comment_showreply_nochild"}  
         ${displayreply || displaychild || "comment_showreplyhome"}
         `}
-        onClick={display_child}
+        onClick={replydata_fetch}
       >
         {displaychild ? (
           <div className="removebackground">

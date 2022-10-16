@@ -3,8 +3,7 @@ import "./Miniprofile.css";
 import { AiOutlineClose } from "react-icons/ai";
 
 function Miniprofile(props) {
-  const { titlepost, display, urlimg, user_id } = props;
-  console.log(user_id);
+  const { display, user_id } = props;
   const [userdata, setUserdata] = useState();
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
@@ -35,7 +34,7 @@ function Miniprofile(props) {
           <section className="miniprofile_pic">
             <div className="miniprofile_fakeimg">
               {" "}
-              <img src={urlimg} alt="profile_img" className="miniprofile_img" />
+              <img src={null} alt="profile_img" className="miniprofile_img" />
             </div>
           </section>
           <section className="miniprofile_info">

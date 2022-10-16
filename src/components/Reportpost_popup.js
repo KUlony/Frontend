@@ -38,7 +38,6 @@ function Reportpost_popup(props) {
         }
       })
     );
-    console.log(checkArr);
   };
 
   const arrayofreport = [
