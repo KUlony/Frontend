@@ -1,15 +1,13 @@
-import React from "react";
-import Navbar from "../components/NavBar";
+import React from "react"
+import NavBar from "../components/NavBar"
 
 function MyPost() {
   return (
     <div>
-      <div>
-        <Navbar />
-      </div>
-      <div>Mypost</div>
+      <NavBar />
+      MyPost
     </div>
-  );
+  )
 }
 
-export default MyPost;
+export default MyPost

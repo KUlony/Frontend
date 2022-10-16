@@ -1,24 +1,24 @@
-import React, { useEffect, useRef, useState } from "react";
-import NavBar from "../components/NavBar";
-import Post from "../components/Post";
-import "./Home.css";
-import Think from "../picture/think.png";
-import Homebackground from "../picture/home_title_background.png";
-import search from "../picture/search.png";
-import Post_generator from "../components/Post_generator";
-import PostData from "../PostData";
-import Miniprofile from "../components/Miniprofile";
-import { Link } from "react-router-dom";
-import { FaPassport } from "react-icons/fa";
-import { HiSearch } from "react-icons/hi";
-import { BsPlusLg } from "react-icons/bs";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
+import React, { useEffect, useRef, useState } from "react"
+import NavBar from "../components/NavBar"
+import Post from "../components/Post"
+import "./Home.css"
+import Think from "../picture/think.png"
+import Homebackground from "../picture/home_title_background.png"
+import search from "../picture/search.png"
+import Post_generator from "../components/Post_generator"
+import PostData from "../PostData"
+import Miniprofile from "../components/Miniprofile"
+import { Link } from "react-router-dom"
+import { FaPassport } from "react-icons/fa"
+import { HiSearch } from "react-icons/hi"
+import { BsPlusLg } from "react-icons/bs"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
-  const [post_data, setPost_data] = useState([]);
-  const [displayload, setDisplayload] = useState(false);
+  const [post_data, setPost_data] = useState([])
+  const [displayload, setDisplayload] = useState(false)
   const componentDidMount = async () => {
     try {
       // const response = await fetch(`http://localhost:3000/post/all_post`);
@@ -26,10 +26,10 @@ function Home() {
       // setDisplayload(true);
       // setPost_data(json);
     } catch {
-      console.error("fail");
+      console.error("fail")
     }
-  };
-  const [showtopic, setShowtopic] = useState(false);
+  }
+  const [showtopic, setShowtopic] = useState(false)
   // componentDidMount();
 
   // useEffect(() => {
@@ -40,7 +40,7 @@ function Home() {
 
   // const [pagecount, setPagecount] = useState(1);
 
-  const ref = useRef(null);
+  const ref = useRef(null)
   // const [testcount, setTestCount] = useState(0);
   // const pagecount = useRef(1);
   // useEffect(() => {
@@ -117,10 +117,10 @@ function Home() {
       post_time: "2022-10-12T12:36:41.773Z",
       post_id: "6346bc19c52c86c6ccbb0f88",
     },
-  ];
-  const [category, setCategory] = useState([true, false, false, false, false]);
+  ]
+  const [category, setCategory] = useState([true, false, false, false, false])
 
-  const [followtopic, setFollowtopic] = useState(false);
+  const [followtopic, setFollowtopic] = useState(false)
 
   const [topicarray, setTopicarray] = useState([
     "Aardvark",
@@ -328,48 +328,48 @@ function Home() {
     "Tiger",
     "Toad",
     "Trout",
-  ]);
+  ])
 
-  const [topic, setTopic] = useState([]);
-  const [count, setCount] = useState(false);
-  const [searchresult, setSearchresult] = useState("");
+  const [topic, setTopic] = useState([])
+  const [count, setCount] = useState(false)
+  const [searchresult, setSearchresult] = useState("")
   const category_select = (category_number) => {
     if (category[category_number] !== true) {
       setCategory((prevdata) =>
         prevdata.map((data, idx) => (idx === category_number ? true : false))
-      );
+      )
     }
 
     // fetchข้อมูลมาก่อนแล้วค่อย set state
     setTopic(
       topicarray.map((data, idx) => {
         if (idx === 0) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       })
-    );
-  };
+    )
+  }
 
   const topic_select = (topic_number) => {
     if (topic[topic_number] !== true) {
       setTopic((prevdata) =>
         prevdata.map((data, idx) => (idx === topic_number ? true : false))
-      );
+      )
     }
-  };
+  }
 
   const resultinput = (e) => {
-    setSearchresult(e.target.value);
-    setCount(false);
-  };
+    setSearchresult(e.target.value)
+    setCount(false)
+  }
 
   const topic_selectbysearch = (data) => {
-    const indexoftext = topicarray.indexOf(data);
-    topic_select(indexoftext);
-    setSearchresult(topicarray[indexoftext]);
-  };
+    const indexoftext = topicarray.indexOf(data)
+    topic_select(indexoftext)
+    setSearchresult(topicarray[indexoftext])
+  }
   // <Link to="/search">search </Link>
 
   return (
@@ -493,18 +493,17 @@ function Home() {
                             .includes(searchresult.toLowerCase())
                         ) {
                           if (!count) {
-                            setCount(true);
+                            setCount(true)
                           }
-                          return data;
+                          return data
                         }
                       })
                       .map((data, idx) => {
                         const position = data
                           .toLowerCase()
-                          .indexOf(searchresult.toLowerCase());
-                        const possitionend = data.length;
-                        const position_in_topic_array =
-                          topicarray.indexOf(data);
+                          .indexOf(searchresult.toLowerCase())
+                        const possitionend = data.length
+                        const position_in_topic_array = topicarray.indexOf(data)
 
                         return (
                           <li
@@ -525,7 +524,7 @@ function Home() {
                               data.length
                             )}
                           </li>
-                        );
+                        )
                       })}
                     <p className={`${count ? "display_none" : null}`}>
                       No result found
@@ -540,7 +539,7 @@ function Home() {
                         >
                           {data}
                         </li>
-                      );
+                      )
                     } else {
                       if (idx === 12) {
                         return (
@@ -568,7 +567,7 @@ function Home() {
                               {data}
                             </li>
                           </div>
-                        );
+                        )
                       } else if (idx === topicarray.length - 1) {
                         return (
                           <div>
@@ -595,7 +594,7 @@ function Home() {
                               </div>
                             )}
                           </div>
-                        );
+                        )
                       }
 
                       return (
@@ -607,7 +606,7 @@ function Home() {
                         >
                           {data}
                         </li>
-                      );
+                      )
                     }
                   })}
                 </ul>
@@ -628,7 +627,7 @@ function Home() {
         </div>
       </div>
     </PostData.Provider>
-  );
+  )
 }
 
-export default Home;
+export default Home

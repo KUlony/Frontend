@@ -1,0 +1,64 @@
+.allpostreport {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.contentreportpost {
+  width: 80%;
+  height: 500px;
+  padding: 10px;
+  border: 1px solid;
+  margin: 0px auto;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  background-color: #F8F5D5;
+}
+
+.headcard {
+  display: flex;
+  width: 90%;
+  margin: 10px auto 20px auto;
+  /* border: solid; */
+}
+
+.topname {
+  font-size: 16px;
+  font-weight: 600;
+  margin: auto 0px;
+}
+
+.greenspan {
+  color: #339C64;
+}
+
+.discardbtnpost {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 30%;
+  width: 200px;
+  background-color: #F8F5D5;
+  color: #339C64;
+  border: 2px solid #339C64;
+  transition-duration: 0.2s;
+}
+
+.discardbtnpost:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.deletebtnpost {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 1%;
+  width: 200px;
+  background-color: #339C64;
+  color: white;
+  border: 2px solid #339C64;
+  transition-duration: 0.2s;
+}
+
+.deletebtnpost:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}

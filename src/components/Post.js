@@ -1,18 +1,18 @@
-import React, { useState } from "react";
-import "./Post.css";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { MdOutlineModeComment, MdTitle } from "react-icons/md";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
-import Post_generator from "./Post_generator";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Miniprofile from "./Miniprofile";
-import Reportpost_popup from "./Reportpost_popup";
-import Comment from "./Comment";
-import Showimg from "./Showimg";
-import Comment_generator from "./Comment_generator";
-import { BsFillHeartFill } from "react-icons/bs";
+import React, { useState } from "react"
+import "./Post.css"
+import { FcLikePlaceholder } from "react-icons/fc"
+import { MdOutlineModeComment, MdTitle } from "react-icons/md"
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai"
+import Post_generator from "./Post_generator"
+import { Link } from "react-router-dom"
+import { IoIosArrowBack } from "react-icons/io"
+import { RiArrowDropDownLine } from "react-icons/ri"
+import Miniprofile from "./Miniprofile"
+import Reportpost_popup from "./Reportpost_popup"
+import Comment from "./Comment"
+import Showimg from "./Showimg"
+import Comment_generator from "./Comment_generator"
+import { BsFillHeartFill } from "react-icons/bs"
 
 function Post(props) {
   const {
@@ -25,38 +25,38 @@ function Post(props) {
     username,
     post_time,
     post_id,
-  } = props;
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [displayComment, setdisplatComment] = useState(true);
-  const [displayImg, setdisplayImg] = useState(false);
-  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-  const [havedata, setHavedata] = useState(true);
-  const [likepost, setLikepost] = useState(false);
-  const [likecount, setLikecount] = useState(like);
-  const [profileurl, setProfileurl] = useState("");
+  } = props
+  const [displayReport, setdisplayReport] = useState(true)
+  const [displayProfile, setdisplayProfile] = useState(true)
+  const [displayComment, setdisplatComment] = useState(true)
+  const [displayImg, setdisplayImg] = useState(false)
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where")
+  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`)
+  const [havedata, setHavedata] = useState(true)
+  const [likepost, setLikepost] = useState(false)
+  const [likecount, setLikecount] = useState(like)
+  const [profileurl, setProfileurl] = useState("")
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_where2");
+      setreportpost_drop("btn_where2")
     } else {
-      setreportpost_drop("btn_where");
+      setreportpost_drop("btn_where")
     }
-  };
+  }
   const display_profile = (url) => {
-    setdisplayProfile(!displayProfile);
-    setProfileurl(url);
-  };
+    setdisplayProfile(!displayProfile)
+    setProfileurl(url)
+  }
   const display_report = () => {
-    setdisplayReport(!displayReport);
-  };
+    setdisplayReport(!displayReport)
+  }
   const display_comment = () => {
-    setdisplatComment(!displayComment);
-  };
+    setdisplatComment(!displayComment)
+  }
 
   const display_img = () => {
-    setdisplayImg(!displayImg);
-  };
+    setdisplayImg(!displayImg)
+  }
   const comment_test_data = [
     {
       comment_content:
@@ -70,38 +70,38 @@ function Post(props) {
       comment_content:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum ",
     },
-  ];
+  ]
 
   const likepost_update = () => {
-    setLikecount(likepost ? likecount - 1 : likecount + 1);
-    setLikepost(!likepost);
-  };
+    setLikecount(likepost ? likecount - 1 : likecount + 1)
+    setLikepost(!likepost)
+  }
 
-  const timepost = post_time.split("T");
-  const day = timepost[0].split("-").reverse().join("/");
-  const timearray = timepost[1].split(".");
-  const time = timearray[0];
+  const timepost = post_time.split("T")
+  const day = timepost[0].split("-").reverse().join("/")
+  const timearray = timepost[1].split(".")
+  const time = timearray[0]
 
-  let inttime = parseFloat(time.split(":").join("."));
+  let inttime = parseFloat(time.split(":").join("."))
 
-  let datetime = "";
+  let datetime = ""
 
   if (inttime >= 12 && inttime < 24) {
     if (inttime === 12) {
-      datetime = "12:00 PM, " + day;
+      datetime = "12:00 PM, " + day
     } else {
-      const min = inttime.toString().split(".");
-      inttime -= 12;
+      const min = inttime.toString().split(".")
+      inttime -= 12
 
-      const date = inttime.toString().split(".");
+      const date = inttime.toString().split(".")
       // console.log(date);
-      datetime = date[0] + ":" + min[1] + " PM, " + day;
+      datetime = date[0] + ":" + min[1] + " PM, " + day
     }
   } else {
     if (inttime === 24) {
-      datetime = "12:00 AM, " + day;
+      datetime = "12:00 AM, " + day
     } else {
-      datetime = time + " AM, " + day;
+      datetime = time + " AM, " + day
     }
   }
   // console.log(datetime);
@@ -230,7 +230,7 @@ function Post(props) {
         <div className={`cover ${displayImg ? null : "display_none"}`}></div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Post;
+export default Post

@@ -1,0 +1,80 @@
+.allcomreport {
+  margin-top: 10px;
+  width: 100%;
+}
+
+.contentreportcom {
+  width: 80%;
+  height: 300px;
+  padding: 10px;
+  border: 1px solid;
+  margin: 0px auto;
+  margin-bottom: 30px;
+  border-radius: 15px;
+  background-color: #F8F5D5;
+}
+
+.headcardcom {
+  display: flex;
+  width: 90%;
+  margin: 10px auto 20px auto;
+  /* border: solid; */
+}
+
+.deteil {
+  width: 50%;
+}
+
+.topnamecom {
+  font-size: 16px;
+  font-weight: 600;
+  margin: auto 0px;
+}
+
+.greenspan {
+  color: #339C64;
+}
+
+.discardbtncom {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 30%;
+  width: 200px;
+  background-color: #F8F5D5;
+  color: #339C64;
+  border: 2px solid #339C64;
+  transition-duration: 0.2s;
+}
+
+.discardbtncom:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.deletebtncom {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 5px;
+  margin-left: 1%;
+  width: 220px;
+  background-color: #339C64;
+  color: white;
+  border: 2px solid #339C64;
+  transition-duration: 0.2s;
+}
+
+.deletebtncom:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.buttondis {
+  display: flex;
+  width: 50%;
+}
+
+.viewpost {
+  text-decoration: none;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}

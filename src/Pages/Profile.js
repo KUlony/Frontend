@@ -1,12 +1,13 @@
-import React from "react";
-import Navbar from "../components/NavBar";
+import React from "react"
+import NavBar from "../components/NavBar"
 
 function Profile() {
   return (
     <div>
-      <Navbar />
+      <NavBar />
+      Profile
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile
