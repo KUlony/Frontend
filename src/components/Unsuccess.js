@@ -1,21 +1,18 @@
 import React from "react";
 import "./Unsuccess.css";
-// import unsuccess_img from "../picture/unsuccess.png"
-import { Link } from 'react-router-dom';
+import unsuccess_img from "../picture/unsuccess.png"
 
 function Unsuccess(probs) {
-  const {display} = probs;
+  const {display_unsuc,display_ver} = probs;
+
   return (
     <div className="unsuccess_container">
-      {/* <img className="success_img" src={unsuccess_img} alt="unhappyface_img" onClick={display}></img> */}
-      <h2 className="unsuccess_header">Email verification successful</h2>
+      <img className="unsuccess_img" src={unsuccess_img} alt="unhappyface_img"></img>
+      <h2 className="unsuccess_header">Incorrect verification code</h2>
 
-
-
+      <p className="unsuccess_cancle" onClick={display_ver}>CANCLE</p>
     
-      <p className="verify_resend">CANCLE</p>
-    
-      <button className="verify_button" onClick={display}>TRY AGAIN</button>
+      <button className="unsuccess_button" onClick={display_unsuc}>TRY AGAIN</button>
 
     </div>
     
