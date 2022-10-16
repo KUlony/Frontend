@@ -179,7 +179,7 @@ function Search() {
                     post_time={element.post_time}
                     post_id={element.post_id}
                     user_id={element.author.user_id}
-                    user_like_status_post={element.user_like_status}
+                    user_like_status={element.user_like_status}
                   />
                 );
               }

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import NavBar from "../components/NavBar";
 import Post from "../components/Post";
 import "./Home.css";
@@ -45,95 +45,17 @@ function Home() {
   }, []);
 
   const [showtopic, setShowtopic] = useState(false);
-  // componentDidMount();
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     console.log(window.scrollY);
-  //   });
-  // });
-
-  // const [pagecount, setPagecount] = useState(1);
 
   const ref = useRef(null);
-  // const [testcount, setTestCount] = useState(0);
-  // const pagecount = useRef(1);
-  // useEffect(() => {
-  //   setTestCount(testcount + 1);
-  //   const element = ref.current;
-  //   element.addEventListener("scroll", () => {
-  //     // setScollposition(element.scrollTop);
-  //     // console.log(element.scrollTop);
-  //     const scroll = element.scrollTop;
-  //     console.log(scroll);
-  //     const countscroll = scroll / 500;
-  //     // console.log(countscroll);
-  //     // setPagecount(countscroll);
-  //     if (countscroll >= pagecount.current + 1) {
-  //       pagecount.current++;
-  //     }
 
-  //     console.log(pagecount);
-  //   });
-  // }, [testcount]);
-
-  const testdata = [
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kitipong tame",
-        profile_pic_url:
-          "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      },
-      post_title:
-        "    โครงสร้างของบทความวิจัย  (research paper) มีดังนี้ บางบทความใช้เลขหมายกำกับ หรือเขียนอภิปรายตามหัวข้อปัญหาวิจัย หรือคำถามวิจัย (research questions)",
-      cover_photo_url:
-        "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      post_content:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac sad as dqw as dx wqdq deqw e wq ewq ewq e wq eqw edqw eqw q  qw wqturpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 45,
-      post_comment_count: 2112,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kanpech ",
-        profile_pic_url:
-          "https://static.trueplookpanya.com/tppy/member/m_545000_547500/545994/cms/images/2019-Q3/%E0%B9%81%E0%B8%A1%E0%B8%A79%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95.jpg",
-      },
-      post_title:
-        "สวัสดีครับ2 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla ",
-      cover_photo_url:
-        "https://static.thairath.co.th/media/dFQROr7oWzulq5FZYSepvl9DB1i50K00ibBJqUkYfxOBstWhhRdHMHEXFnVVFNc9GiG.webp",
-      post_content:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 23,
-      post_comment_count: 212,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kankasem",
-        profile_pic_url:
-          "https://image.sistacafe.com/w800/images/uploads/summary/image/5043/1449106947-Instagrams-most-famous-cat-Nala16__605.jpg",
-      },
-      post_title:
-        "สวัสดีครับ3Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla ",
-      cover_photo_url:
-        "https://www.central.co.th/e-shopping/storage/2020/12/CUTE-KITTY.jpg",
-      post_content:
-        "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla elementum lectus. Quisque et pharetra ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non turpis ac mauris commodo scelerisque. Maecenas ut sem sed diam placerat facilisis. Phasellus aliquet vehicula tortor pretium viverra. Morbi tincidunt imperdiet purus, a lobortis nisi auctor eget. Sed pulvinar sollicitudin erat feugiat dictum. Cras purus nisi, sagittis non accumsan id, volutpat nec ipsum. Nunc blandit ante ac velit dictum pretium. Integer neque dui, mattis eu diam sit amet, scelerisque dignissim lacus.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 20,
-      post_comment_count: 2,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-  ];
-  const [category, setCategory] = useState([true, false, false, false, false]);
+  const [category, setCategory] = useState([
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
 
   const [followtopic, setFollowtopic] = useState(false);
 
@@ -386,264 +308,346 @@ function Home() {
     setSearchresult(topicarray[indexoftext]);
   };
   // <Link to="/search">search </Link>
+  const observer = useRef();
+  const [pagecount, setPageCount] = useState(1);
+  const [havemore, setHavemore] = useState(true);
+
+  const lastSearchelement = useCallback(
+    (node) => {
+      if (!displayload) return;
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setPageCount((pagecount) => pagecount + 1);
+        }
+      });
+      if (node) observer.current.observe(node);
+    },
+    [displayload]
+  );
+  const loadmore = async (e) => {
+    try {
+      setDisplayload(false);
+      const loadmoredata = await fetch(
+        `http://localhost:4000/api/post/all_post?page=${pagecount}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      const loadmoredatajson = await loadmoredata.json();
+      setDisplayload(true);
+      setPost_data([...post_data, ...loadmoredatajson]);
+
+      if (loadmoredatajson.length === 0) {
+        setHavemore(false);
+      }
+    } catch {
+      console.error("fail to load more");
+    }
+  };
+  useEffect(() => {
+    if (pagecount !== 1 && havemore) {
+      loadmore();
+    }
+  }, [pagecount]);
 
   return (
-    <PostData.Provider postdata={testdata}>
-      <div className="Home_page">
-        <div className="home_test" ref={ref}>
-          <div className="Nav_home">
-            <NavBar />
-            {/* <ScrollRestoration /> */}
-          </div>
+    <div className="Home_page">
+      <div className="home_test" ref={ref}>
+        <div className="Nav_home">
+          <NavBar />
+          {/* <ScrollRestoration /> */}
+        </div>
 
-          <div className="home_search">
-            <div className="home_search_center">
-              <div className="home_search_box">
-                <h1 className="home_search_title">Share & Explore</h1>
-                <h3>thorugh this endless KU's community !</h3>
-                <button className="home_create_post_button">
-                  Create new post{" "}
-                  <BsPlusLg className="home_create_post_button_icon" />
-                  <Link to="/"></Link>
+        <div className="home_search">
+          <div className="home_search_center">
+            <div className="home_search_box">
+              <h1 className="home_search_title">Share & Explore</h1>
+              <h3>thorugh this endless KU's community !</h3>
+              <button className="home_create_post_button">
+                Create new post{" "}
+                <BsPlusLg className="home_create_post_button_icon" />
+                <Link to="/"></Link>
+              </button>
+              <Link to="/search">
+                <button className="home_search_button">
+                  Search
+                  <HiSearch className="home_search_button_icon" />
                 </button>
-                <Link to="/search">
-                  <button className="home_search_button">
-                    Search
-                    <HiSearch className="home_search_button_icon" />
-                  </button>
-                </Link>
-              </div>
-              <div className="think_img_box">
-                <img
-                  src={Think}
-                  alt="Girl in a jacket"
-                  className="think_img_photo"
-                ></img>
-              </div>
-              <div>
-                {" "}
-                <img
-                  src={Homebackground}
-                  alt="Girl in a jacket"
-                  className="home_title_background"
-                ></img>
-              </div>
+              </Link>
             </div>
-          </div>
-          <nav className="Nav_topic">
-            {/* {topicarray.} */}
-
-            <div
-              className={`${category[0] ? "current_category" : null}`}
-              onClick={() => category_select(0)}
-            >
-              General
+            <div className="think_img_box">
+              <img
+                src={Think}
+                alt="Girl in a jacket"
+                className="think_img_photo"
+              ></img>
             </div>
-            <div
-              className={`${category[1] ? "current_category" : null}`}
-              onClick={() => category_select(1)}
-            >
-              Learning
-            </div>
-            <div
-              className={`${category[2] ? "current_category" : null}`}
-              onClick={() => category_select(2)}
-            >
-              News
-            </div>
-            <div
-              className={`${category[3] ? "current_category" : null}`}
-              onClick={() => category_select(3)}
-            >
-              Market
-            </div>
-            <div
-              className={`${category[4] ? "current_category" : null}`}
-              onClick={() => category_select(4)}
-            >
-              Faculty
-            </div>
-          </nav>
-          <div className="home_Content">
-            <div
-              className={`home_sidebar ${category[0] ? "display_none" : null}`}
-            >
-              <div>
-                <form
-                  className={`home_checkbox ${
-                    category[0] ? "display_none" : null
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    onClick={() => setFollowtopic(!followtopic)}
-                  ></input>
-                  <label>Show following topics only</label>
-                </form>
-                <form
-                  className="searchinput_form"
-                  onSubmit={(e) => e.preventDefault()}
-                >
-                  <input
-                    type="text"
-                    value={searchresult}
-                    onChange={resultinput}
-                    className="searchtopic_input"
-                    placeholder="Search topic"
-                  />
-                  <HiSearch className="topic_search_icon" />
-                </form>
-                <ul className="select_faculty">
-                  <div
-                    className={`search_result ${
-                      searchresult === "" ? "display_none" : null
-                    } `}
-                  >
-                    {topicarray
-                      .filter((data, topic_selectbysearchidx) => {
-                        if (searchresult === "") {
-                        } else if (
-                          data
-                            .toLowerCase()
-                            .includes(searchresult.toLowerCase())
-                        ) {
-                          if (!count) {
-                            setCount(true);
-                          }
-                          return data;
-                        }
-                      })
-                      .map((data, idx) => {
-                        const position = data
-                          .toLowerCase()
-                          .indexOf(searchresult.toLowerCase());
-                        const possitionend = data.length;
-                        const position_in_topic_array =
-                          topicarray.indexOf(data);
-
-                        return (
-                          <li
-                            onClick={() => topic_selectbysearch(data)}
-                            className={`${
-                              topic[position_in_topic_array] ? "green" : null
-                            }`}
-                          >
-                            {data.slice(0, position)}
-                            <span className="green">
-                              {data.slice(
-                                position,
-                                position + searchresult.length
-                              )}
-                            </span>
-                            {data.slice(
-                              position + searchresult.length,
-                              data.length
-                            )}
-                          </li>
-                        );
-                      })}
-                    <p className={`${count ? "display_none" : null}`}>
-                      No result found
-                    </p>
-                  </div>
-                  {topicarray.map((data, idx) => {
-                    if (idx < 12) {
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      );
-                    } else {
-                      if (idx === 12) {
-                        return (
-                          <div>
-                            {!showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show more
-                                </button>
-                                <FiChevronDown
-                                  className="topic_showmore_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                          </div>
-                        );
-                      } else if (idx === topicarray.length - 1) {
-                        return (
-                          <div>
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                            {showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show less
-                                </button>
-                                <FiChevronUp
-                                  className="topic_showless_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                          </div>
-                        );
-                      }
-
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}  ${
-                            showtopic ? null : "display_none"
-                          }`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      );
-                    }
-                  })}
-                </ul>
-              </div>
-            </div>
-            <div className="Home_post">
-              <div className={`${category[0] ? null : "post_faculty"}`}>
-                {/* ใส่ตอนมีข้อมูลให้ fetch */}
-                <div
-                  className={`loader ${displayload ? "display_none" : null}`}
-                ></div>
-
-                {/* <Post_generator data={testdata} /> */}
-                <Post_generator data={post_data} />
-              </div>
+            <div>
+              {" "}
+              <img
+                src={Homebackground}
+                alt="Girl in a jacket"
+                className="home_title_background"
+              ></img>
             </div>
           </div>
         </div>
-        <Checklogin />;
+        <nav className="Nav_topic">
+          {/* {topicarray.} */}
+
+          <div
+            className={`${category[0] ? "current_category" : null}`}
+            onClick={() => category_select(0)}
+          >
+            Discover
+          </div>
+          <div
+            className={`${category[1] ? "current_category" : null}`}
+            onClick={() => category_select(1)}
+          >
+            General
+          </div>
+          <div
+            className={`${category[2] ? "current_category" : null}`}
+            onClick={() => category_select(2)}
+          >
+            Learning
+          </div>
+          <div
+            className={`${category[3] ? "current_category" : null}`}
+            onClick={() => category_select(3)}
+          >
+            News
+          </div>
+          <div
+            className={`${category[4] ? "current_category" : null}`}
+            onClick={() => category_select(4)}
+          >
+            Market
+          </div>
+          <div
+            className={`${category[5] ? "current_category" : null}`}
+            onClick={() => category_select(5)}
+          >
+            Faculty
+          </div>
+        </nav>
+        <div className="home_Content">
+          <form
+            className={`home_checkbox ${category[0] ? null : "display_none"}`}
+          >
+            <input
+              type="checkbox"
+              onClick={() => setFollowtopic(!followtopic)}
+            ></input>
+            <label>Show following topics only</label>
+          </form>
+          <div
+            className={`home_sidebar ${category[0] ? "display_none" : null}`}
+          >
+            <div>
+              <form
+                className="searchinput_form"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="text"
+                  value={searchresult}
+                  onChange={resultinput}
+                  className="searchtopic_input"
+                  placeholder="Search topic"
+                />
+                <HiSearch className="topic_search_icon" />
+              </form>
+              <ul className="select_faculty">
+                <div
+                  className={`search_result ${
+                    searchresult === "" ? "display_none" : null
+                  } `}
+                >
+                  {topicarray
+                    .filter((data, topic_selectbysearchidx) => {
+                      if (searchresult === "") {
+                      } else if (
+                        data.toLowerCase().includes(searchresult.toLowerCase())
+                      ) {
+                        if (!count) {
+                          setCount(true);
+                        }
+                        return data;
+                      }
+                    })
+                    .map((data, idx) => {
+                      const position = data
+                        .toLowerCase()
+                        .indexOf(searchresult.toLowerCase());
+                      const possitionend = data.length;
+                      const position_in_topic_array = topicarray.indexOf(data);
+
+                      return (
+                        <li
+                          onClick={() => topic_selectbysearch(data)}
+                          className={`${
+                            topic[position_in_topic_array] ? "green" : null
+                          }`}
+                        >
+                          {data.slice(0, position)}
+                          <span className="green">
+                            {data.slice(
+                              position,
+                              position + searchresult.length
+                            )}
+                          </span>
+                          {data.slice(
+                            position + searchresult.length,
+                            data.length
+                          )}
+                        </li>
+                      );
+                    })}
+                  <p className={`${count ? "display_none" : null}`}>
+                    No result found
+                  </p>
+                </div>
+                {topicarray.map((data, idx) => {
+                  if (idx < 12) {
+                    return (
+                      <li
+                        className={`${topic[idx] ? "current_topic" : null}`}
+                        onClick={() => topic_select(idx)}
+                      >
+                        {data}
+                      </li>
+                    );
+                  } else {
+                    if (idx === 12) {
+                      return (
+                        <div>
+                          {!showtopic && (
+                            <div>
+                              <button
+                                className="topic_show_button"
+                                onClick={() => setShowtopic(!showtopic)}
+                              >
+                                Show more
+                              </button>
+                              <FiChevronDown
+                                className="topic_showmore_icon"
+                                onClick={() => setShowtopic(!showtopic)}
+                              />
+                            </div>
+                          )}
+                          <li
+                            className={`${
+                              topic[idx] ? "current_topic" : null
+                            }  ${showtopic ? null : "display_none"}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
+                        </div>
+                      );
+                    } else if (idx === topicarray.length - 1) {
+                      return (
+                        <div>
+                          <li
+                            className={`${
+                              topic[idx] ? "current_topic" : null
+                            }  ${showtopic ? null : "display_none"}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
+                          {showtopic && (
+                            <div>
+                              <button
+                                className="topic_show_button"
+                                onClick={() => setShowtopic(!showtopic)}
+                              >
+                                Show less
+                              </button>
+                              <FiChevronUp
+                                className="topic_showless_icon"
+                                onClick={() => setShowtopic(!showtopic)}
+                              />
+                            </div>
+                          )}
+                        </div>
+                      );
+                    }
+
+                    return (
+                      <li
+                        className={`${topic[idx] ? "current_topic" : null}  ${
+                          showtopic ? null : "display_none"
+                        }`}
+                        onClick={() => topic_select(idx)}
+                      >
+                        {data}
+                      </li>
+                    );
+                  }
+                })}
+              </ul>
+            </div>
+          </div>
+          <div className="Home_post">
+            <div className={`${category[0] ? null : "post_faculty"}`}>
+              {/* ใส่ตอนมีข้อมูลให้ fetch */}
+
+              {/* <Post_generator data={testdata} /> */}
+              {/* <Post_generator data={post_data} /> */}
+              {post_data.map((element, index) => {
+                if (post_data.length === index + 1) {
+                  return (
+                    <div ref={lastSearchelement}>
+                      <Post
+                        title={element.post_title}
+                        like={element.post_like_count}
+                        post_content={element.post_content}
+                        photo={element.cover_photo_url}
+                        comment={element.post_comment_count}
+                        profilepic={element.author.profile_pic_url}
+                        post_photo_url={element.post_photo_url}
+                        username={element.author.username}
+                        post_time={element.post_time}
+                        post_id={element.post_id}
+                        user_id={element.author.user_id}
+                        user_like_status_post={element.user_like_status}
+                      />
+                    </div>
+                  );
+                } else {
+                  return (
+                    <Post
+                      title={element.post_title}
+                      like={element.post_like_count}
+                      post_content={element.post_content}
+                      photo={element.cover_photo_url}
+                      comment={element.post_comment_count}
+                      profilepic={element.author.profile_pic_url}
+                      post_photo_url={element.post_photo_url}
+                      username={element.author.username}
+                      post_time={element.post_time}
+                      post_id={element.post_id}
+                      user_id={element.author.user_id}
+                      user_like_status_post={element.user_like_status}
+                    />
+                  );
+                }
+              })}
+              <div
+                className={`loader ${displayload ? "display_none" : null}`}
+              ></div>
+            </div>
+          </div>
+        </div>
       </div>
-    </PostData.Provider>
+      <Checklogin />;
+    </div>
   );
 }
 
