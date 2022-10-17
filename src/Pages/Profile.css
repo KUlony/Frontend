@@ -1,283 +1,88 @@
 .profile {
-  position: absolute;
-}
-.user-profile {
-  position: absolute;
-  left: 100px;
-  top: 20px;
-}
-.profile-sidebar {
-  position: absolute;
-  left: 200px;
-  top: 200px;
-}
-.user-info {
-  position: absolute;
-  left: 110px;
-}
-.profile-pic {
-  position: absolute;
-  left: 500px;
-  top: 130px;
-}
-.username {
-  position: absolute;
-  left: 700px;
-  top: 120px;
-}
-
-.bio {
-  position: absolute;
-  left: 700px;
-  top: 200px;
-}
-
-.firstname {
-  position: absolute;
-  left: 500px;
-  top: 350px;
-}
-
-.lastname {
-  position: absolute;
-  left: 750px;
-  top: 350px;
-}
-.detail {
-  position: absolute;
-  top: 450px;
-}
-.education {
-  position: absolute;
-  left: 500px;
-}
-
-.profile-bottom {
   position: relative;
-  top: 650px;
-  left: 200px;
-  list-style-type: none;
-}
-.logout {
-  width: 100px;
-  position: absolute;
-  color: black;
-
-  text-decoration: none;
-  left: 200px;
-}
-
-.backToHome {
-  position: absolute;
-  text-decoration: none;
-  color: black;
-  left: 800px;
-  top: 10px;
-  width: 150px;
-}
-
-.save-button {
-  position: relative;
-  left: 500px;
-  border-radius: 25px;
-  padding: 10px 10px;
-  background-color: #339c64;
-  border: none;
-}
-
-.inputFirstname {
-  background: #f8f5d5;
-  border: 1px solid #000000;
-  resize: none;
-  font-size: 16px;
-  width: 210px;
-  height: 18px;
-  padding: 10px;
-  outline: none;
-  border-radius: 5px;
-}
-
-.inputLastname {
-  background: #f8f5d5;
-  border: 1px solid #000000;
-  resize: none;
-  font-size: 16px;
-  width: 210px;
-  height: 18px;
-  padding: 10px;
-  outline: none;
-  border-radius: 5px;
-}
-
-.inputBio {
-  background: #f8f5d5;
-  border: 1px solid #000000;
-  resize: none;
-  font-size: 16px;
-  width: 300px;
-  height: 78px;
-  padding: 10px;
-  outline: none;
-  border-radius: 5px;
-}
-
-.inputUser {
-  background: #f8f5d5;
-  border: 1px solid #000000;
-  resize: none;
-  font-size: 16px;
-  width: 210px;
-  height: 18px;
-  padding: 10px;
-  outline: none;
-  border-radius: 5px;
-}
-
-/* .facultyForm {
-  border-radius: 25px;
-  font-size: 16px;
-  width: 120px;
-  overflow: hidden;
-  border: 1px solid #000;
-  position: relative;
-  padding: 10px 0;
-}
-.facultyForm:after {
-  width: 0;
-  height: 0;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #339c64;
-  position: absolute;
-  top: 40%;
-  right: 5px;
-  content: '';
-  z-index: 98;
-}
-.facultyForm select {
-  width: 140px;
-  border: 0;
-  position: relative;
-  z-index: 99;
-  background: none;
-} */
-
-.facultyForm {
-  border-radius: 25px;
-  width: 120px;
-  font-size: 16px;
-  overflow: hidden;
-  border: 1px solid #000;
-  position: relative;
-  padding: 10px;
-}
-/* .facultyForm:after {
-  background-color: #000;
-  border-left: 6px solid transparent;
-  border-right: 6px solid transparent;
-  border-top: 6px solid #339c64;
-  position: absolute;
-  top: 50%;
-  right: 4px;
-  content: '';
-  z-index: 98;
-} */
-.facultyForm select {
-  width: 150px;
-  border: 0;
-  position: relative;
-  z-index: 99;
-  background: none;
-}
-
-.campusForm {
-  border-radius: 25px;
-  width: 190px;
-  font-size: 16px;
-  /* overflow: hidden; */
-  border: 1px solid #000;
-  position: relative;
-  padding: 10px;
-}
-.campusForm select {
-  width: 190px;
-  border: 0;
-  position: relative;
-  z-index: 99;
-  background: none;
-}
-
-.kuForm {
-  border-radius: 25px;
-  width: 40px;
-  font-size: 16px;
-  /* overflow: hidden; */
-  border: 1px solid #000;
-  position: relative;
-  padding: 10px;
-}
-.kuForm select {
-  width: 40px;
-  border: 0;
-  position: relative;
-  z-index: 99;
-  background: none;
-}
-
-.departmentForm {
-  border-radius: 25px;
-  width: 190px;
-  font-size: 16px;
-  /* overflow: hidden; */
-  border: 1px solid #000;
-  position: relative;
-  padding: 10px;
-}
-.departmentForm select {
-  width: 190px;
-  border: 0;
-  position: relative;
-  z-index: 99;
-  background: none;
-}
-
-.add-education {
-  position: fixed;
-  top: 0;
-  left: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgb(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.profile-top {
+  margin-top: 70px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.add-education-bg {
-  background-color: black;
-  position: relative;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-}
-
-.add-education-inner {
-  position: relative;
-  padding: 32px;
   width: 100%;
-  max-width: 640px;
-  background-color: yellow;
+  height: 100%;
 }
 
-.input-school .input-degree .input-field {
-  background: white;
-  border: 1px solid #000000;
-  resize: none;
-  font-size: 16px;
-  width: 210px;
-  height: 18px;
+.profile-sidebar {
+  width: 30%;
+  border-style: solid;
+}
+
+.profile-content {
+  width: 70%;
+  border-style: solid;
+}
+
+.user_profile {
+  margin-left: 20%;
+  margin-top: 50px;
+  font-size: 36px;
+  font-weight: 600;
+}
+
+.button_sidebar {
+  margin-left: 30%;
+}
+
+.btn_click {
+  width: 80%;
+  text-align: left;
+  height: 50px;
+  font-weight: 600;
+  font-size: 25px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
   padding: 10px;
-  outline: none;
-  border-radius: 5px;
+  transition-duration: 0.2s;
+}
+
+.btn_click:hover {
+  color: #339C64;
+}
+
+.buttonstyle {
+  display: flex;
+}
+
+.setgreen {
+  background-color: #D6EBE0;
+}
+
+.setdeepgreen {
+  background: #339C64;
+  width: 7px;
+}
+
+.noting {
+  display: none;
+}
+
+.logout-button {
+  padding: 10px;
+  font-size: 25px;
+  font-weight: 600;
+  color: #339C64;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 30%;
+  margin-left: 20%;
+}
+
+.g1020 {
+  /* position: absolute; */
+  width: 240px;
+  /* left: 180px; */
+  margin-left: 40%;
+  margin-top: -100px;
 }
