@@ -79,5 +79,6 @@
 }
 
 .trashreq {
-  margin: auto 0px auto 10px;
+  margin: auto 0px auto 20px;
+  cursor: pointer;
 }
