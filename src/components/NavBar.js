@@ -5,19 +5,23 @@ import { BsPersonCircle } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import ReqTopic from './ReqTopic';
 import Notification from './Notification';
+import CreateTopic from './CreateTopic';
 
 function Navbar() {
   const [show, setShow] = useState(false);
   const handleReq = (e) => {
     e.preventDefault();
   };
+  const [showCreateTopic,setShowCreateTopic] = useState(false)
   console.log(show);
   const handleShow = () => setShow(!show);
+  const handleShow2 = () => setShowCreateTopic(!showCreateTopic)
 
   const isAdmin = !false;
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
+      <CreateTopic handleShow2={handleShow2} handleReq={handleReq} show={showCreateTopic}/>
       <li className="kulony">
         <img
           src={logo}
@@ -62,7 +66,7 @@ function Navbar() {
       <li className="space"> </li>
       <li className="create-new-post">
         {isAdmin ? (
-          <div className="border-create-post" onClick={handleShow}>Create new topic +</div>
+          <div className="border-create-post" onClick={handleShow2}>Create new topic +</div>
         ) : (
           <Link to="/createnewpost" className="create-post-link">
             <div class="border-create-post">Create new post +</div>
