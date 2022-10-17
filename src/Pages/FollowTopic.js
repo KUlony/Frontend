@@ -1,5 +1,6 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import Checklogin from "../components/Checklogin"
 import "./FollowTopic.css"
 
 const FollowTopic = () => {
@@ -309,6 +310,7 @@ const FollowTopic = () => {
           SAVE
         </button>
       </div>
+      <Checklogin />
     </div>
   )
 }

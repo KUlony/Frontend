@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import AddEducation from './AddEducation'
-import './UserInfo.css'
+import React, { useState } from "react"
+import Checklogin from "../components/Checklogin"
+import AddEducation from "./AddEducation"
+import "./UserInfo.css"
 
 const UserInfo = () => {
   const [isAddEducation, setIsAddEducation] = useState(null)
@@ -18,7 +19,7 @@ const UserInfo = () => {
     <main className="user-info">
       <section className="profile-pic">
         <img
-          src={require('../picture/temp-profile.png')}
+          src={require("../picture/temp-profile.png")}
           alt="profileExample"
           width="150"
           height="150"
@@ -70,7 +71,7 @@ const UserInfo = () => {
 
       <section
         className="education"
-        style={{ display: 'inline', whiteSpace: 'nowrap' }}
+        style={{ display: "inline", whiteSpace: "nowrap" }}
       >
         Education
         <button onClick={onAddEducationClick}>add more</button>
@@ -80,15 +81,15 @@ const UserInfo = () => {
         <article className="instagram">
           <div
             className="ig-box"
-            style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            style={{ display: "inline", whiteSpace: "nowrap" }}
           >
             <img
               className="ig-img"
-              src={require('../picture/ig-icon.png')}
+              src={require("../picture/ig-icon.png")}
               alt="instagram"
               width="20"
               height="20"
-              style={{ 'vertical-align': 'middle' }}
+              style={{ "vertical-align": "middle" }}
             />
             <input
               type="text"
@@ -101,15 +102,15 @@ const UserInfo = () => {
         <article className="facebook">
           <div
             className="fb-box"
-            style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            style={{ display: "inline", whiteSpace: "nowrap" }}
           >
             <img
               className="fb-img"
-              src={require('../picture/fb-icon.png')}
+              src={require("../picture/fb-icon.png")}
               alt="facebook"
               width="20"
               height="20"
-              style={{ 'vertical-align': 'middle' }}
+              style={{ "vertical-align": "middle" }}
             />
             <input
               type="text"
@@ -129,6 +130,7 @@ const UserInfo = () => {
         </article>
       </section>
       {addEducation}
+      <Checklogin />
     </main>
   )
 }

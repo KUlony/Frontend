@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
-import Navbar from "../components/NavBar";
-import Post from "../components/Post";
-import Post_generator from "../components/Post_generator";
-import "./MyPost.css";
+import React, { useEffect, useState } from "react"
+import Checklogin from "../components/Checklogin"
+import Navbar from "../components/NavBar"
+import Post from "../components/Post"
+import Post_generator from "../components/Post_generator"
+import "./MyPost.css"
 
 function MyPost() {
-  const token = localStorage.getItem("token");
-  const [loading, setLoading] = useState(true);
-  const [mypostdata, setMypostdata] = useState([]);
-  const [userinfo, setUserinfo] = useState();
+  const token = localStorage.getItem("token")
+  const [loading, setLoading] = useState(true)
+  const [mypostdata, setMypostdata] = useState([])
+  const [userinfo, setUserinfo] = useState()
 
   const mypostfetch = async () => {
     try {
@@ -16,19 +17,19 @@ function MyPost() {
         headers: {
           Authorization: `${token}`,
         },
-      });
-      const json = await response.json();
-      setUserinfo(json.author);
-      setMypostdata(json.post);
-      setLoading(false);
+      })
+      const json = await response.json()
+      setUserinfo(json.author)
+      setMypostdata(json.post)
+      setLoading(false)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
-    mypostfetch();
-  }, []);
+    mypostfetch()
+  }, [])
 
   return (
     <div className="mypost">
@@ -53,10 +54,11 @@ function MyPost() {
                 user_id={userinfo.user_id}
                 user_like_status_post={element.user_like_status}
               />
-            );
+            )
           })}
         </div>
       )}
+      <Checklogin />
     </div>
   )
 }

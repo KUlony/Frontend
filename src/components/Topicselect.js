@@ -19,7 +19,7 @@ function Topicselect(props) {
   const getdata = () => {
     const token = localStorage.getItem("token")
     axios
-      .get("http://localhost:4000/api/topic/get_all_catagory_topic", {
+      .get("//localhost:4000/api/topic/get_all_catagory_topic", {
         headers: { Authorization: `${token}` },
       })
       .then((res) => {

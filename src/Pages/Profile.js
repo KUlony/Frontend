@@ -10,6 +10,7 @@ import g1020 from "../picture/g1020.png"
 
 // import { Navigate } from 'react-router-dom'
 import "./Profile.css"
+import Checklogin from "../components/Checklogin"
 
 function Profile() {
   const componentsUserProfile = [
@@ -132,6 +133,7 @@ function Profile() {
         </div>
         <div className="profile-content">{isShowProfile}</div>
       </div>
+      <Checklogin />
     </div>
   )
 }

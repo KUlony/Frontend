@@ -1,24 +1,24 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Navbar from "../components/NavBar";
-import Post_generator from "../components/Post_generator";
-import "./Search.css";
-import search from "../picture/search.png";
-import Post from "../components/Post";
-import Checklogin from "../components/Checklogin";
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import Navbar from "../components/NavBar"
+import Post_generator from "../components/Post_generator"
+import "./Search.css"
+import search from "../picture/search.png"
+import Post from "../components/Post"
+import Checklogin from "../components/Checklogin"
 
 function Search() {
-  const [keepresult, setKeepresult] = useState("");
-  const [searchResult, setSearchresult] = useState("");
-  const [pagecount, setPageCount] = useState(1);
-  const [displayload, setDisplayload] = useState(true);
-  const [searchOutPutData, setSearchOutPutData] = useState([]);
-  const [havemore, setHavemore] = useState(true);
-  const observer = useRef();
-  const token = localStorage.getItem("token");
-  const [searchtype, setSearchtype] = useState([true, false, false]);
+  const [keepresult, setKeepresult] = useState("")
+  const [searchResult, setSearchresult] = useState("")
+  const [pagecount, setPageCount] = useState(1)
+  const [displayload, setDisplayload] = useState(true)
+  const [searchOutPutData, setSearchOutPutData] = useState([])
+  const [havemore, setHavemore] = useState(true)
+  const observer = useRef()
+  const token = localStorage.getItem("token")
+  const [searchtype, setSearchtype] = useState([true, false, false])
   const loadmore = async (e) => {
     try {
-      setDisplayload(false);
+      setDisplayload(false)
       const loadmoredata = await fetch(
         `http://localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
         {
@@ -26,55 +26,55 @@ function Search() {
             Authorization: `${token}`,
           },
         }
-      );
-      const loadmoredatajson = await loadmoredata.json();
-      setDisplayload(true);
-      setSearchOutPutData([...searchOutPutData, ...loadmoredatajson]);
+      )
+      const loadmoredatajson = await loadmoredata.json()
+      setDisplayload(true)
+      setSearchOutPutData([...searchOutPutData, ...loadmoredatajson])
 
       if (loadmoredatajson.length === 0) {
-        setHavemore(false);
+        setHavemore(false)
       }
     } catch {
-      console.error("fail to load more");
+      console.error("fail to load more")
     }
-  };
+  }
   const lastSearchelement = useCallback(
     (node) => {
-      if (!displayload) return;
-      if (observer.current) observer.current.disconnect();
+      if (!displayload) return
+      if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageCount((pagecount) => pagecount + 1);
+          setPageCount((pagecount) => pagecount + 1)
         }
-      });
-      if (node) observer.current.observe(node);
+      })
+      if (node) observer.current.observe(node)
     },
     [displayload]
-  );
+  )
 
   useEffect(() => {
     if (pagecount !== 1 && havemore) {
-      loadmore();
+      loadmore()
     }
-  }, [pagecount]);
+  }, [pagecount])
 
   //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0
 
   const updatesearchselect = (position) => {
-    console.log(position);
+    console.log(position)
     setSearchtype((prev) =>
       prev.map((data, idx) => (idx === position ? true : false))
-    );
-  };
+    )
+  }
 
   const searchsubmit = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       if (searchtype[0]) {
-        setHavemore(true);
-        setPageCount(1);
-        setSearchOutPutData([]);
-        setDisplayload(false);
+        setHavemore(true)
+        setPageCount(1)
+        setSearchOutPutData([])
+        setDisplayload(false)
         const data = await fetch(
           `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
           {
@@ -82,19 +82,19 @@ function Search() {
               Authorization: `${token}`,
             },
           }
-        );
-        const datajson = await data.json();
-        console.log("data", datajson);
-        setDisplayload(true);
-        setSearchOutPutData(datajson);
-        setKeepresult(searchResult);
-        setSearchresult("");
+        )
+        const datajson = await data.json()
+        console.log("data", datajson)
+        setDisplayload(true)
+        setSearchOutPutData(datajson)
+        setKeepresult(searchResult)
+        setSearchresult("")
       } else if (searchtype[1]) {
       }
     } catch {
-      console.error("fail");
+      console.error("fail")
     }
-  };
+  }
 
   return (
     <div className="search_page">
@@ -165,7 +165,7 @@ function Search() {
                       user_like_status_post={element.user_like_status}
                     />
                   </div>
-                );
+                )
               } else {
                 return (
                   <Post
@@ -182,7 +182,7 @@ function Search() {
                     user_id={element.author.user_id}
                     user_like_status_post={element.user_like_status}
                   />
-                );
+                )
               }
             })}{" "}
           </div>
@@ -192,7 +192,7 @@ function Search() {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search

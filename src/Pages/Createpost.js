@@ -9,6 +9,7 @@ import { IoIosArrowBack } from "react-icons/io"
 import Navbar from "../components/NavBar"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import Checklogin from "../components/Checklogin"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
@@ -467,6 +468,7 @@ function Createpost() {
         </div>
       </div>
       {!edittopicheck && <div className="displayback"></div>}
+      <Checklogin />
     </div>
   )
 }
