@@ -87,6 +87,7 @@
   font-size: 16px;
   margin-top: 80px;
   margin-bottom: 80px;
+  word-wrap: break-word;
 }
 
 .view_post_comment {

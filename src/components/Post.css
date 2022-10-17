@@ -81,6 +81,7 @@
   overflow: hidden;
   white-space: normal;
   display: -webkit-box !important;
+  word-wrap: break-word;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
 }

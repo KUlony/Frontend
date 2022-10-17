@@ -36,7 +36,6 @@ function Login() {
       const token = postdata_json.token;
       // console.log(token)
       localStorage.setItem("token", token);
-      console.log(localStorage.getItem("token"));
       navigate("/home");
     } catch (err) {
       // console.log("catch");

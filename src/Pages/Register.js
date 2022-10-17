@@ -50,6 +50,7 @@ function Register() {
           }),
         }
       );
+
       // const json = await postdata.json()
       // console.log(postdata)
       if (!postdata.ok) {
