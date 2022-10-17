@@ -71,7 +71,8 @@ function Reportpost_popup(props) {
           body: JSON.stringify({ report_type: reporttype }),
         }
       );
-      console.log("ok");
+      setcheckArr((prev) => prev.map((data) => false));
+      display();
     } catch (err) {
       console.error(err);
     }

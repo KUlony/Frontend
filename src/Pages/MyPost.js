@@ -9,6 +9,7 @@ function MyPost() {
   const [loading, setLoading] = useState(true);
   const [mypostdata, setMypostdata] = useState([]);
   const [userinfo, setUserinfo] = useState();
+
   const mypostfetch = async () => {
     try {
       const response = await fetch(`http://localhost:4000/api/user/mypost`, {
@@ -17,7 +18,6 @@ function MyPost() {
         },
       });
       const json = await response.json();
-      console.log(json);
       setUserinfo(json.author);
       setMypostdata(json.post);
       setLoading(false);
