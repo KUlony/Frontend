@@ -15,7 +15,21 @@ const UserInfo = () => {
   if (!!isAddEducation) {
     addEducation = <AddEducation onBgClick={onBgClick} />
   }
+  //check if local not defined
+  if (localStorage.getItem('allEducation') === null) {
+    localStorage.setItem('allEducation', JSON.stringify([]))
+  }
 
+  const allEduForm = JSON.parse(localStorage.getItem('allEducation'))
+  const eduElements = allEduForm.map((theEdu) => {
+    return (
+      <div className="education-main">
+        <div>{theEdu.school}</div>
+        <div>{theEdu.degree}</div>
+        <div>{theEdu.field}</div>
+      </div>
+    )
+  })
   return (
     <main className="user-info">
       <section className="profile-pic">
@@ -77,6 +91,7 @@ const UserInfo = () => {
       >
         Education
         <button onClick={onAddEducationClick}>add more</button>
+        {eduElements}
       </section>
       <section className="contact">
         contact

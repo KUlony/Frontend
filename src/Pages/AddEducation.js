@@ -11,7 +11,17 @@ const AddEducation = (props) => {
     // start: '',
     // end: '',
   })
-  const [allEduForm, setallEduForm] = useState([])
+  //check if local not defined
+  if (localStorage.getItem('allEducation') === null) {
+    localStorage.setItem('allEducation', JSON.stringify([]))
+  }
+
+  const objInLocalStorage = JSON.parse(localStorage.getItem('allEducation'))
+  const [allEduForm, setallEduForm] = useState(objInLocalStorage)
+  useEffect(() => {
+    localStorage.setItem('allEducation', JSON.stringify(allEduForm))
+  }, [allEduForm])
+
   function onEduFormChange(event) {
     const { name, value } = event.target
     setEduForm((prevEduForm) => {
@@ -20,7 +30,6 @@ const AddEducation = (props) => {
         [name]: value,
       }
     })
-    console.log(eduForm)
   }
 
   function onEduFormSubmit(event) {
@@ -29,18 +38,6 @@ const AddEducation = (props) => {
       return [...prevAllEduForm, eduForm]
     })
   }
-  useEffect(() => {
-    console.log(allEduForm)
-  }, [allEduForm])
-  const eduElements = allEduForm.map((theEdu) => {
-    return (
-      <div className="education-main">
-        <div>{theEdu.school}</div>
-        <div>{theEdu.degree}</div>
-        <div>{theEdu.field}</div>
-      </div>
-    )
-  })
 
   return (
     <form className="add-education">
@@ -169,7 +166,6 @@ const AddEducation = (props) => {
             SAVE
           </button>
         </div>
-        {eduElements}
       </main>
     </form>
   )
