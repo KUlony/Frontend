@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './AddEducation.css'
 import { dateMonth, dateYear } from './data/monthYear'
+import { FiTrash } from 'react-icons/fi'
 const AddEducation = (props) => {
   const { onBgClick } = props
   const [eduForm, setEduForm] = useState({
@@ -134,7 +135,7 @@ const AddEducation = (props) => {
         </section>
         <section className="end-date-box">
           <div className="end-box">
-            <span>End date </span>
+            <span>End date / Expected end date </span>
             <span className="optional">(Optional)</span>
           </div>
           <select name="end-month">
