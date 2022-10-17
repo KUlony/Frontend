@@ -1,13 +1,48 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './AddEducation.css'
 import { dateMonth, dateYear } from './data/monthYear'
 const AddEducation = (props) => {
   const { onBgClick } = props
-  const handleChange = (event) => {
-    console.log(event.target.value)
+  const [eduForm, setEduForm] = useState({
+    school: '',
+    degree: '',
+    field: '',
+    // start: '',
+    // end: '',
+  })
+  const [allEduForm, setallEduForm] = useState([])
+  function onEduFormChange(event) {
+    const { name, value } = event.target
+    setEduForm((prevEduForm) => {
+      return {
+        ...prevEduForm,
+        [name]: value,
+      }
+    })
+    console.log(eduForm)
   }
+
+  function onEduFormSubmit(event) {
+    event.preventDefault()
+    setallEduForm((prevAllEduForm) => {
+      return [...prevAllEduForm, eduForm]
+    })
+  }
+  useEffect(() => {
+    console.log(allEduForm)
+  }, [allEduForm])
+  const eduElements = allEduForm.map((theEdu) => {
+    return (
+      <div className="education-main">
+        <div>{theEdu.school}</div>
+        <div>{theEdu.degree}</div>
+        <div>{theEdu.field}</div>
+      </div>
+    )
+  })
+
   return (
-    <div className="add-education">
+    <form className="add-education">
       <div className="add-education-bg" onClick={onBgClick}></div>
       <main className="add-education-inner">
         <header>
@@ -32,61 +67,64 @@ const AddEducation = (props) => {
             />
           </button>
         </header>
-        <section className="school">
+        <section className="school-box">
           {' '}
           School
           <br />
-          <textarea
+          <input
             class="input-school"
             type="text"
             placeholder="Kasetsart University"
             rows="1"
             cols="20"
-          ></textarea>
+            name="school"
+            value={eduForm.school}
+            onChange={onEduFormChange}
+            required
+          />
         </section>
-        <section className="degree">
+        <section className="degree-box">
           <span>Degree </span>
           <span className="optional">(Optional)</span>
           <br />
-          <textarea
+          <input
             class="input-degree"
             type="text"
             placeholder="Bachelor's degree"
             rows="1"
             cols="20"
-          ></textarea>
+            name="degree"
+            value={eduForm.degree}
+            onChange={onEduFormChange}
+          />
         </section>
-        <section className="field-of-study">
-          <div className="field-box">
-            <span>Field of study </span>
-            <span className="optional">(Optional)</span>
-          </div>
-          <textarea
+        <section className="field-of-study-box">
+          <span>Field of study </span>
+          <span className="optional">(Optional)</span>
+          <br />
+          <input
             class="input-field"
             type="text"
             placeholder="Computer engineering"
             rows="1"
             cols="20"
-          ></textarea>
+            name="field"
+            value={eduForm.field}
+            onChange={onEduFormChange}
+          />
         </section>
-        <section className="start-date">
-          <div className="start-box">
-            <span>Start date </span>
-            <span className="optional">(Optional)</span>
-          </div>
-          <select
-            onChange={handleChange}
-            name="start-date-month"
-            value="start-date-month"
-            id="start-month"
-          >
+        <section className="start-date-box">
+          <span>Start date </span>
+          <span className="optional">(Optional)</span>
+          <br />
+          <select name="start-month">
             {dateMonth.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
               </option>
             ))}
           </select>{' '}
-          <select value="start-date-year" id="start-year">
+          <select name="start-year">
             {dateYear.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
@@ -94,19 +132,19 @@ const AddEducation = (props) => {
             ))}
           </select>
         </section>
-        <section className="end-date">
+        <section className="end-date-box">
           <div className="end-box">
             <span>End date </span>
             <span className="optional">(Optional)</span>
           </div>
-          <select value="end-date-month" name="end-month">
+          <select name="end-month">
             {dateMonth.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
               </option>
             ))}
           </select>{' '}
-          <select value="end-date-year" name="end-year">
+          <select name="end-year">
             {dateYear.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
@@ -114,10 +152,12 @@ const AddEducation = (props) => {
             ))}
           </select>
         </section>
-        <button>Save</button>
+        <button type="submit" onClick={onEduFormSubmit}>
+          Save
+        </button>
+        {eduElements}
       </main>
-      {/* <div className="cover_page_education" onClick={onBgClick}></div> */}
-    </div>
+    </form>
   )
 }
 

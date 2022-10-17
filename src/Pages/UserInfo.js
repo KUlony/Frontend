@@ -4,6 +4,7 @@ import './UserInfo.css'
 
 const UserInfo = () => {
   const [isAddEducation, setIsAddEducation] = useState(null)
+  //Education
   function onAddEducationClick() {
     setIsAddEducation(true)
   }
@@ -14,6 +15,7 @@ const UserInfo = () => {
   if (!!isAddEducation) {
     addEducation = <AddEducation onBgClick={onBgClick} />
   }
+
   return (
     <main className="user-info">
       <section className="profile-pic">
@@ -32,6 +34,7 @@ const UserInfo = () => {
           placeholder="User"
           rows="1"
           cols="20"
+          disabled={false}
         ></textarea>
       </section>
       <section className="bio">
