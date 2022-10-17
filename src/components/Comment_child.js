@@ -46,7 +46,7 @@ function Comment_child(props) {
             <h5 className="comment_name">{reply_data.author.username}</h5>
             <div className="test" ref={containerRef}>
               <p
-                className={`comment_breakline ${
+                className={`comment_breakline reply_content ${
                   textHidden ? "comment_text" : null
                 }`}
               >
