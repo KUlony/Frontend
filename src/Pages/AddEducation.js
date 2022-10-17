@@ -1,12 +1,12 @@
-import React from 'react';
-import './AddEducation.css';
-import { dateMonth, dateYear } from './data/monthYear';
-import { FiTrash } from 'react-icons/fi';
+import React from "react"
+import "./AddEducation.css"
+import { dateMonth, dateYear } from "./data/monthYear"
+import { FiTrash } from "react-icons/fi"
 const AddEducation = (props) => {
-  const { onBgClick } = props;
+  const { onBgClick } = props
   const handleChange = (event) => {
-    console.log(event.target.value);
-  };
+    console.log(event.target.value)
+  }
   return (
     <div className="add-education">
       <div className="add-education-bg" onClick={onBgClick}></div>
@@ -16,20 +16,20 @@ const AddEducation = (props) => {
           <button
             onClick={onBgClick}
             style={{
-              width: '16px',
-              height: '16px',
-              border: 'none',
-              background: 'none',
+              width: "16px",
+              height: "16px",
+              border: "none",
+              background: "none",
             }}
           >
             {/* <img src={require('../picture/pencil.png')} alt='pencil' className='pencil-pic'/> */}
             <img
-              src={require('../picture/close.png')}
+              src={require("../picture/close.png")}
               alt="close"
               style={{
-                width: '16px',
-                height: '16px',
-                cursor: 'pointer',
+                width: "16px",
+                height: "16px",
+                cursor: "pointer",
               }}
               className="close-add-edu"
             />
@@ -88,7 +88,7 @@ const AddEducation = (props) => {
                 {option.text}
               </option>
             ))}
-          </select>{' '}
+          </select>{" "}
           <select
             value="start-date-year"
             id="start-year"
@@ -112,7 +112,7 @@ const AddEducation = (props) => {
                 {option.text}
               </option>
             ))}
-          </select>{' '}
+          </select>{" "}
           <select value="end-date-year" name="end-year" className="end-year">
             {dateYear.map((option, index) => (
               <option key={index} value={option.value}>
@@ -123,16 +123,15 @@ const AddEducation = (props) => {
         </section>
         <div className="footer-box">
           <div className="add-edu-delete-edu">
-          <div className="add-edu-delete-text">
-            Delete Education 
-          </div><FiTrash size={18}></FiTrash>
+            <div className="add-edu-delete-text">Delete Education</div>
+            <FiTrash size={18}></FiTrash>
           </div>
           <button className="add-edu-save-button">SAVE</button>
         </div>
       </main>
       {/* <div className="cover_page_education" onClick={onBgClick}></div> */}
     </div>
-  );
-};
+  )
+}
 
-export default AddEducation;
+export default AddEducation

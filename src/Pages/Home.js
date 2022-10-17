@@ -366,11 +366,12 @@ function Home() {
             <div className="home_search_box">
               <h1 className="home_search_title">Share & Explore</h1>
               <h3>thorugh this endless KU's community !</h3>
-              <button className="home_create_post_button">
-                Create new post{" "}
-                <BsPlusLg className="home_create_post_button_icon" />
-                <Link to="/"></Link>
-              </button>
+              <Link to="/createnewpost">
+                <button className="home_create_post_button">
+                  Create new post{" "}
+                  <BsPlusLg className="home_create_post_button_icon" />
+                </button>
+              </Link>
               <Link to="/search">
                 <button className="home_search_button">
                   Search
