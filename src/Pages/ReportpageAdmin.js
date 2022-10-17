@@ -1,11 +1,11 @@
 import React, { useState } from "react"
 import Navbar from "../components/NavBar"
-import "./Report_post.css"
+import "./ReportpageAdmin.css"
 import bad from "../picture/n0404 1.png"
-import Postreport from "./Postreport"
-import Commentreport from "./Commentreport"
+import PostreportAdmin from "./PostreportAdmin"
+import ComreportAdmin from "./ComreportAdmin"
 
-function Report_post() {
+function ReportpageAdmin() {
   const [togpost, setTogpost] = useState(true)
   const [togcom, setTogcom] = useState(false)
 
@@ -60,10 +60,10 @@ function Report_post() {
           </select>
         </div>
       </div>
-      {togpost && <Postreport />}
-      {togcom && <Commentreport />}
+      {togpost && <PostreportAdmin />}
+      {togcom && <ComreportAdmin />}
     </div>
   )
 }
 
-export default Report_post
+export default ReportpageAdmin

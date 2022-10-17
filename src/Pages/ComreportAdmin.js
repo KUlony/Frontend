@@ -1,7 +1,7 @@
 import React from "react"
-import "./Commentreport.css"
+import "./ComreportAdmin.css"
 
-function Commentreport() {
+function ComreportAdmin() {
   const data = [
     { people: 3, date: "09/09/9099", postid: 1 },
     { people: 2, date: "10/10/1011", postid: 2 },
@@ -41,4 +41,4 @@ function Commentreport() {
   )
 }
 
-export default Commentreport
+export default ComreportAdmin

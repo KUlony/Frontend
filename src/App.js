@@ -7,7 +7,8 @@ import MyPost from "./Pages/MyPost"
 import Profile from "./Pages/Profile"
 import View_post from "./Pages/View_post"
 import Search from "./Pages/Search"
-import Report_post from "./Pages/Report_post"
+import ReportpageAdmin from "./Pages/ReportpageAdmin"
+import ReqtopicAdmin from "./Pages/ReqtopicAdmin"
 // import ScrollRestoration from "react-scroll-restoration";
 function App() {
   return (
@@ -22,7 +23,8 @@ function App() {
           <Route path="/viewpost/:id" element={<View_post />} />
           <Route path="/search" element={<Search />} />
           <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/reportpost" element={<Report_post />} />
+          <Route path="/admin/reportpost" element={<ReportpageAdmin />} />
+          <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>
