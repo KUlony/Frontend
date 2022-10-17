@@ -84,7 +84,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar
