@@ -21,7 +21,7 @@ function Navbar() {
       <li className="kulony">
         <img
           src={logo}
-          width="100px"
+          width="120px"
           // height="120%"
           alt=""
           className="kulony-icon"
@@ -31,6 +31,9 @@ function Navbar() {
         <Link to="/home" className="home-nav">
           HOME
         </Link>
+      </li>
+      <li>
+        <div className="search-nav">SEARCH</div>
       </li>
       <li>
         <Link to="/mypost" className="my-post">
@@ -43,7 +46,7 @@ function Navbar() {
       <li className="space"> </li>
       <li className="create-new-post">
         <Link to="/createnewpost" className="create-post-link">
-          <div class="border-create-post">Create new post</div>
+          <div class="border-create-post">Create new post +</div>
         </Link>
       </li>
       <li className="bell">
