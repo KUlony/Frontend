@@ -11,7 +11,7 @@ function CreateTopic(props) {
 
   return (
     <Modal show={show} onHide={handleShow2} className="pop-up topic-con">
-      <div className="create-topic-container">
+      <form className="create-topic-container" onSubmit={handleReq}>
         <div className="create-topic-text">Create new topic</div>
         <div>
           Topic :
@@ -24,6 +24,7 @@ function CreateTopic(props) {
         <div className="select-cate">
           Add this topic to :
           <select className="dropdown-cate" name="categories" required>
+            <option value="categories">Categories</option>
             <option value="a">a</option>
             <option value="b">b</option>
           </select>
@@ -32,11 +33,15 @@ function CreateTopic(props) {
           <div className="create-topic-cancle" onClick={handleShow2}>
             CANCEL
           </div>
-          <div type="submit" className="create-topic-confirm">
+          <div
+            type="submit"
+            className="create-topic-confirm"
+            onClick={handleShow2}
+          >
             CONFIRM
           </div>
         </div>
-      </div>
+      </form>
     </Modal>
   );
 }

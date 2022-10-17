@@ -9,10 +9,10 @@ import CreateTopic from './CreateTopic';
 
 function Navbar() {
   const [show, setShow] = useState(false);
+  const [showCreateTopic,setShowCreateTopic] = useState(false)
   const handleReq = (e) => {
     e.preventDefault();
   };
-  const [showCreateTopic,setShowCreateTopic] = useState(false)
   console.log(show);
   const handleShow = () => setShow(!show);
   const handleShow2 = () => setShowCreateTopic(!showCreateTopic)

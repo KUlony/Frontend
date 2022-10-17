@@ -277,6 +277,9 @@
   background: #ffffff;
   box-shadow: 2px 2px 8px #979797;
   border-radius: 4px;
+  font-weight: lighter;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
 }
 
 .create-topic-footer {
