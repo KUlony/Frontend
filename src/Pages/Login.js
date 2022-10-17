@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Login.css";
 import login_img from "../picture/login.png"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Forgot from "../components/Forgot";
 
 function Login() {
@@ -12,7 +12,8 @@ function Login() {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
+  const navigate = useNavigate();
+  
   const login = async (e)=>{
     try{
       e.preventDefault()
@@ -35,7 +36,8 @@ function Login() {
       const token = postdata_json.token
       // console.log(token)
       localStorage.setItem("token", token);
-      console.log(localStorage.getItem("token"))
+      // console.log(localStorage.getItem("token"))
+      navigate("/home");
     }
     catch(err){
       // console.log("catch")
@@ -51,12 +53,13 @@ function Login() {
       </div>
       <div className="login_column">
         <h1 className="login_header">LOG-IN</h1>
-        <input className="login_input" type="email" placeholder="EMAIL" value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
-        <input className="login_input" type="password" placeholder="PASSWORD" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-        <p className={`login_forgot`} onClick={display_forgot}>Forgot password?</p>
 
-        {/* <Link className="login_button" to='/home'>LOG IN</Link> */}
-        <button className="login_button" onClick={login}>LOG IN</button>
+        <form onSubmit={login}>
+          <input className="login_input" type="email" placeholder="EMAIL" value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
+          <input className="login_input" type="password" placeholder="PASSWORD" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+          <p className={`login_forgot`} onClick={display_forgot}>Forgot password?</p>
+          <button className="login_button" onClick={login}>LOG IN</button>
+        </form>
 
         <div className="login_qa">
           Don’t have an account?  <Link className="login_link" to='/register'>Sign-up</Link>

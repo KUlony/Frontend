@@ -24,9 +24,7 @@ function Register() {
 
   const [display5,setdisplay5] = useState(true);
   const display_checked = () =>{
-    if (display5 === false) {
-      setdisplay5(!display5)
-    }
+    setdisplay5(!display5)
   }
 
   const [email, setEmail] = useState('')
@@ -63,6 +61,8 @@ function Register() {
     <div className="register_row">
       <div className="register_column">
         <h1 className="register_header">SIGN-UP</h1>
+
+        
         <input className="register_input" type="email" placeholder="EMAIL" value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
         <input className="register_input" type="password" placeholder="PASSWORD" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
         <input className="register_input" type="password" placeholder="CONFIRM PASSWORD" value={confirmpassword} onChange={(e)=>{setConfirmpassword(e.target.value)}}></input>
@@ -70,13 +70,14 @@ function Register() {
         <div className="register_tp">
           <input className="register_check" type="checkbox" ref={ref} onClick={display_checked}></input>
           I agree to the KUlony <p className={`register_link`} onClick={display_terms}>term of service</p>
-          <div className={`register_checked  ${display5? 'none':null }`}>
+          {/* <div className={`register_checked  ${display5? null:'none' }`}>
           Plese confirm you have read the term of service
-          </div>
+          </div> */}
         </div>
         
-        {/* <button className="register_button" onClick={display_verify}>SIGN UP</button>    */}
-        <button className="register_button" onClick={register}>SIGN UP</button>
+        <button className={`register_button_before  ${display5? null:'none' }`} >SIGN UP</button>
+        <button className={`register_button_after  ${display5? 'none':null }`} onClick={register}>SIGN UP</button>
+
         <div className="register_qa">
           Already have an account? <Link className="register_link" to='/login'>Log-in</Link>
         </div>

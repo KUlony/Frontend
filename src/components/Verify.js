@@ -1,6 +1,6 @@
 import React,{ useState } from "react";
 import "./Verify.css";
-import xmark_img from "../picture/Xmark.png"
+// import xmark_img from "../picture/Xmark.png"
 import Success from "./Success";
 import Unsuccess from "./Unsuccess";
 
@@ -60,7 +60,7 @@ function Verify(probs) {
 
   return (
     <div className="verify_container">
-      <img className="verify_xmark" src={xmark_img} alt="xmark_img" onClick={display}></img>
+      {/* <img className="verify_xmark" src={xmark_img} alt="xmark_img" onClick={display}></img> */}
       <h2 className="verify_header">Verify your identity</h2>
       <h5 className="verify_subheader">Enter the code we sent to your email</h5>
       <div class="verify_code_container">
