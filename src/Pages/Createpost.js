@@ -1,9 +1,12 @@
-import React from 'react'
-import NavBar from '../components/NavBar'
+import React from "react"
+import NavBar from "../components/NavBar"
 
 function Createpost() {
   return (
-    <div><NavBar />Createpost</div>
+    <div>
+      <NavBar />
+      Createpost
+    </div>
   )
 }
 
