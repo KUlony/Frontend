@@ -2,19 +2,19 @@ import React, { useState } from 'react';
 import './NavBar.css';
 import logo from '../picture/Logo.png';
 import { BsPersonCircle } from 'react-icons/bs';
-import { FaRegBell } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import ReqTopic from './ReqTopic';
 import Notification from './Notification';
 
 function Navbar() {
   const [show, setShow] = useState(false);
-
   const handleReq = (e) => {
     e.preventDefault();
   };
   console.log(show);
   const handleShow = () => setShow(!show);
+
+  const isAdmin = !false;
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
@@ -33,21 +33,41 @@ function Navbar() {
         </Link>
       </li>
       <li>
-        <div className="search-nav">SEARCH</div>
+        {isAdmin ? (
+          <Link to="/admin/reportpost" className="reportpost-nav">
+            REPORT
+          </Link>
+        ) : (
+          <div className="search-nav">SEARCH</div>
+        )}
       </li>
       <li>
-        <Link to="/mypost" className="my-post">
-          MY POST
-        </Link>
+        {isAdmin ? (
+          <Link to="/admin/requesttopic" className="topic-req-nav">
+            TOPIC REQUEST
+          </Link>
+        ) : (
+          <Link to="/mypost" className="my-post">
+            MY POST
+          </Link>
+        )}
       </li>
-      <li className="request-topic" onClick={handleShow}>
-        REQUEST TOPIC
-      </li>
+      {isAdmin ? (
+        <div className="free-box"></div>
+      ) : (
+        <li className="request-topic" onClick={handleShow}>
+          REQUEST TOPIC
+        </li>
+      )}
       <li className="space"> </li>
       <li className="create-new-post">
-        <Link to="/createnewpost" className="create-post-link">
-          <div class="border-create-post">Create new post +</div>
-        </Link>
+        {isAdmin ? (
+          <div className="border-create-post" onClick={handleShow}>Create new topic +</div>
+        ) : (
+          <Link to="/createnewpost" className="create-post-link">
+            <div class="border-create-post">Create new post +</div>
+          </Link>
+        )}
       </li>
       <li className="bell">
         <Notification />

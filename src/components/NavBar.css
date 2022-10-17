@@ -107,9 +107,20 @@
 .home-nav,
 .search-nav,
 .my-post,
-.request-topic {
+.request-topic,
+.reportpost-nav,
+.topic-req-nav {
   list-style-type: none;
   width: 10%;
+}
+
+.topic-req-nav,
+.reportpost-nav {
+  width: 13%;
+}
+
+.topic-req-nav {
+  margin-right: 4%;
 }
 
 .create-new-post {
@@ -123,7 +134,10 @@
 .request-topic,
 .create-new-post,
 .bell,
-.vector {
+.vector,
+.reportpost-nav,
+.topic-req-nav,
+.free-box {
   float: left;
   color: #000000;
   text-decoration: none;
@@ -200,7 +214,9 @@
 .search-nav:hover,
 .my-post:hover,
 .request-topic:hover,
-.border-create-post:hover {
+.border-create-post:hover,
+.reportpost-nav:hover,
+.topic-req-nav:hover {
   background-color: #dedede;
 }
 
