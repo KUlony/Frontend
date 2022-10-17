@@ -15,9 +15,13 @@ const FollowTopic = () => {
   const [itemfacultyleft, setitemfacultyleft] = useState([])
   const [itemfacultyright, setitemfacultyright] = useState([])
 
+  const token = localStorage.getItem("token")
+
   const getdata = () => {
     axios
-      .get("//localhost:4000/api/topic/get_all_catagory_topic")
+      .get("//localhost:4000/api/topic/get_all_catagory_topic", {
+        headers: { Authorization: token },
+      })
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data

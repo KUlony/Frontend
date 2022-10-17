@@ -237,18 +237,26 @@ function Createpost() {
 
   // console.log()
 
+  const token = localStorage.getItem("token")
+
   const senddata = () => {
     let title = document.getElementById("inputT")
     let content = document.getElementById("inputC")
 
     axios
-      .post("//localhost:4000/api/post/create", {
-        topic_id: iditem,
-        post_title: title.value,
-        post_content: content.value,
-        cover_photo_url: urlcover,
-        post_photo_url: urls,
-      })
+      .post(
+        "//localhost:4000/api/post/create",
+        {
+          topic_id: iditem,
+          post_title: title.value,
+          post_content: content.value,
+          cover_photo_url: urlcover,
+          post_photo_url: urls,
+        },
+        {
+          headers: { Authorization: token },
+        }
+      )
       .then((res) => {
         console.log(res.data)
       })
