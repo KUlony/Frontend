@@ -1,28 +1,28 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import NavBar from "../components/NavBar";
-import Post from "../components/Post";
-import "./Home.css";
-import Think from "../picture/think.png";
-import Homebackground from "../picture/home_title_background.png";
-import search from "../picture/search.png";
-import Post_generator from "../components/Post_generator";
-import PostData from "../PostData";
-import Miniprofile from "../components/Miniprofile";
-import { Link, useNavigate } from "react-router-dom";
-import { FaPassport } from "react-icons/fa";
-import { HiSearch } from "react-icons/hi";
-import { BsPlusLg } from "react-icons/bs";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import Checklogin from "../components/Checklogin";
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import NavBar from "../components/NavBar"
+import Post from "../components/Post"
+import "./Home.css"
+import Think from "../picture/think.png"
+import Homebackground from "../picture/home_title_background.png"
+import search from "../picture/search.png"
+import Post_generator from "../components/Post_generator"
+import PostData from "../PostData"
+import Miniprofile from "../components/Miniprofile"
+import { Link, useNavigate } from "react-router-dom"
+import { FaPassport } from "react-icons/fa"
+import { HiSearch } from "react-icons/hi"
+import { BsPlusLg } from "react-icons/bs"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
+import Checklogin from "../components/Checklogin"
 
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
-  // localStorage.removeItem("token");
-  const token = localStorage.getItem("token");
-  const [post_data, setPost_data] = useState([]);
-  const [displayload, setDisplayload] = useState(false);
+  // localStorage.removeItem("token")
+  const token = localStorage.getItem("token")
+  const [post_data, setPost_data] = useState([])
+  const [displayload, setDisplayload] = useState(false)
   const componentDidMount = async () => {
     try {
       const response = await fetch(
@@ -32,21 +32,21 @@ function Home() {
             Authorization: `${token}`,
           },
         }
-      );
-      const json = await response.json();
-      setDisplayload(true);
-      setPost_data(json);
+      )
+      const json = await response.json()
+      setDisplayload(true)
+      setPost_data(json)
     } catch {
       console.error("fail")
     }
-  };
+  }
   useEffect(() => {
-    componentDidMount();
-  }, []);
+    componentDidMount()
+  }, [])
 
-  const [showtopic, setShowtopic] = useState(false);
+  const [showtopic, setShowtopic] = useState(false)
 
-  const ref = useRef(null);
+  const ref = useRef(null)
 
   const [category, setCategory] = useState([
     true,
@@ -55,9 +55,9 @@ function Home() {
     false,
     false,
     false,
-  ]);
+  ])
 
-  const [followtopic, setFollowtopic] = useState(false);
+  const [followtopic, setFollowtopic] = useState(false)
 
   const [topicarray, setTopicarray] = useState([
     "Aardvark",
@@ -265,11 +265,11 @@ function Home() {
     "Tiger",
     "Toad",
     "Trout",
-  ]);
+  ])
 
-  const [topic, setTopic] = useState([]);
-  const [count, setCount] = useState(false);
-  const [searchresult, setSearchresult] = useState("");
+  const [topic, setTopic] = useState([])
+  const [count, setCount] = useState(false)
+  const [searchresult, setSearchresult] = useState("")
   const category_select = (category_number) => {
     if (category[category_number] !== true) {
       setCategory((prevdata) =>
@@ -281,53 +281,53 @@ function Home() {
     setTopic(
       topicarray.map((data, idx) => {
         if (idx === 0) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       })
-    );
-  };
+    )
+  }
 
   const topic_select = (topic_number) => {
     if (topic[topic_number] !== true) {
       setTopic((prevdata) =>
         prevdata.map((data, idx) => (idx === topic_number ? true : false))
-      );
+      )
     }
-  };
+  }
 
   const resultinput = (e) => {
-    setSearchresult(e.target.value);
-    setCount(false);
-  };
+    setSearchresult(e.target.value)
+    setCount(false)
+  }
 
   const topic_selectbysearch = (data) => {
-    const indexoftext = topicarray.indexOf(data);
-    topic_select(indexoftext);
-    setSearchresult(topicarray[indexoftext]);
-  };
+    const indexoftext = topicarray.indexOf(data)
+    topic_select(indexoftext)
+    setSearchresult(topicarray[indexoftext])
+  }
   // <Link to="/search">search </Link>
-  const observer = useRef();
-  const [pagecount, setPageCount] = useState(1);
-  const [havemore, setHavemore] = useState(true);
+  const observer = useRef()
+  const [pagecount, setPageCount] = useState(1)
+  const [havemore, setHavemore] = useState(true)
 
   const lastSearchelement = useCallback(
     (node) => {
-      if (!displayload) return;
-      if (observer.current) observer.current.disconnect();
+      if (!displayload) return
+      if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageCount((pagecount) => pagecount + 1);
+          setPageCount((pagecount) => pagecount + 1)
         }
-      });
-      if (node) observer.current.observe(node);
+      })
+      if (node) observer.current.observe(node)
     },
     [displayload]
-  );
+  )
   const loadmore = async (e) => {
     try {
-      setDisplayload(false);
+      setDisplayload(false)
       const loadmoredata = await fetch(
         `http://localhost:4000/api/post/all_post?page=${pagecount}`,
         {
@@ -335,23 +335,23 @@ function Home() {
             Authorization: `${token}`,
           },
         }
-      );
-      const loadmoredatajson = await loadmoredata.json();
-      setDisplayload(true);
-      setPost_data([...post_data, ...loadmoredatajson]);
+      )
+      const loadmoredatajson = await loadmoredata.json()
+      setDisplayload(true)
+      setPost_data([...post_data, ...loadmoredatajson])
 
       if (loadmoredatajson.length === 0) {
-        setHavemore(false);
+        setHavemore(false)
       }
     } catch {
-      console.error("fail to load more");
+      console.error("fail to load more")
     }
-  };
+  }
   useEffect(() => {
     if (pagecount !== 1 && havemore) {
-      loadmore();
+      loadmore()
     }
-  }, [pagecount]);
+  }, [pagecount])
 
   return (
     <div className="Home_page">
@@ -475,17 +475,17 @@ function Home() {
                         data.toLowerCase().includes(searchresult.toLowerCase())
                       ) {
                         if (!count) {
-                          setCount(true);
+                          setCount(true)
                         }
-                        return data;
+                        return data
                       }
                     })
                     .map((data, idx) => {
                       const position = data
                         .toLowerCase()
-                        .indexOf(searchresult.toLowerCase());
-                      const possitionend = data.length;
-                      const position_in_topic_array = topicarray.indexOf(data);
+                        .indexOf(searchresult.toLowerCase())
+                      const possitionend = data.length
+                      const position_in_topic_array = topicarray.indexOf(data)
 
                       return (
                         <li
@@ -506,7 +506,7 @@ function Home() {
                             data.length
                           )}
                         </li>
-                      );
+                      )
                     })}
                   <p className={`${count ? "display_none" : null}`}>
                     No result found
@@ -521,7 +521,7 @@ function Home() {
                       >
                         {data}
                       </li>
-                    );
+                    )
                   } else {
                     if (idx === 12) {
                       return (
@@ -549,7 +549,7 @@ function Home() {
                             {data}
                           </li>
                         </div>
-                      );
+                      )
                     } else if (idx === topicarray.length - 1) {
                       return (
                         <div>
@@ -576,7 +576,7 @@ function Home() {
                             </div>
                           )}
                         </div>
-                      );
+                      )
                     }
 
                     return (
@@ -588,7 +588,7 @@ function Home() {
                       >
                         {data}
                       </li>
-                    );
+                    )
                   }
                 })}
               </ul>
@@ -619,7 +619,7 @@ function Home() {
                         user_like_status_post={element.user_like_status}
                       />
                     </div>
-                  );
+                  )
                 } else {
                   return (
                     <Post
@@ -636,7 +636,7 @@ function Home() {
                       user_id={element.author.user_id}
                       user_like_status_post={element.user_like_status}
                     />
-                  );
+                  )
                 }
               })}
               <div
@@ -648,7 +648,7 @@ function Home() {
       </div>
       <Checklogin />;
     </div>
-  );
+  )
 }
 
 export default Home

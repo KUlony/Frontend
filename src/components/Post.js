@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import "./Post.css";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { MdOutlineModeComment, MdTitle } from "react-icons/md";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
-import Post_generator from "./Post_generator";
-import { Link } from "react-router-dom";
-import { IoIosArrowBack } from "react-icons/io";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import Miniprofile from "./Miniprofile";
-import Reportpost_popup from "./Reportpost_popup";
-import Comment from "./Comment";
-import Showimg from "./Showimg";
-import Comment_generator from "./Comment_generator";
-import { BsFillHeartFill } from "react-icons/bs";
-import profileimg from "../picture/profile.png";
+import React, { useState } from "react"
+import "./Post.css"
+import { FcLikePlaceholder } from "react-icons/fc"
+import { MdOutlineModeComment, MdTitle } from "react-icons/md"
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai"
+import Post_generator from "./Post_generator"
+import { Link } from "react-router-dom"
+import { IoIosArrowBack } from "react-icons/io"
+import { RiArrowDropDownLine } from "react-icons/ri"
+import Miniprofile from "./Miniprofile"
+import Reportpost_popup from "./Reportpost_popup"
+import Comment from "./Comment"
+import Showimg from "./Showimg"
+import Comment_generator from "./Comment_generator"
+import { BsFillHeartFill } from "react-icons/bs"
+import profileimg from "../picture/profile.png"
 function Post(props) {
   const {
     title,
@@ -27,45 +27,45 @@ function Post(props) {
     post_id,
     user_id,
     user_like_status_post,
-  } = props;
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [displayComment, setdisplatComment] = useState(true);
-  const [displayImg, setdisplayImg] = useState(false);
-  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-  const [havedata, setHavedata] = useState(true);
-  const [likepost, setLikepost] = useState(false);
-  const [likecount, setLikecount] = useState(like);
-  const [profileurl, setProfileurl] = useState("");
-  const [miniprofileid, setMiniprofileid] = useState("");
+  } = props
+  const [displayReport, setdisplayReport] = useState(true)
+  const [displayProfile, setdisplayProfile] = useState(true)
+  const [displayComment, setdisplatComment] = useState(true)
+  const [displayImg, setdisplayImg] = useState(false)
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where")
+  const [imgcoverurl, setImgcoverurl] = useState(`${photo}`)
+  const [havedata, setHavedata] = useState(true)
+  const [likepost, setLikepost] = useState(false)
+  const [likecount, setLikecount] = useState(like)
+  const [profileurl, setProfileurl] = useState("")
+  const [miniprofileid, setMiniprofileid] = useState("")
   const [user_like_status, setUser_like_status] = useState(
     user_like_status_post
-  );
-  const [commentdata, setCommentdata] = useState([]);
-  const [loadingcomment, setLoadingcomment] = useState(true);
-  const token = localStorage.getItem("token");
+  )
+  const [commentdata, setCommentdata] = useState([])
+  const [loadingcomment, setLoadingcomment] = useState(true)
+  const token = localStorage.getItem("token")
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_where2");
+      setreportpost_drop("btn_where2")
     } else {
-      setreportpost_drop("btn_where");
+      setreportpost_drop("btn_where")
     }
-  };
+  }
   const display_profile = (userid) => {
-    setdisplayProfile(!displayProfile);
-    setMiniprofileid(userid);
-  };
+    setdisplayProfile(!displayProfile)
+    setMiniprofileid(userid)
+  }
   const display_report = () => {
-    setdisplayReport(!displayReport);
-  };
+    setdisplayReport(!displayReport)
+  }
   const display_comment = () => {
-    setdisplatComment(!displayComment);
-  };
+    setdisplatComment(!displayComment)
+  }
 
   const display_img = () => {
-    setdisplayImg(!displayImg);
-  };
+    setdisplayImg(!displayImg)
+  }
 
   // const likepost_update = () => {
   //   setLikecount(likepost ? likecount - 1 : likecount + 1);
@@ -83,7 +83,7 @@ function Post(props) {
               Authorization: `${token}`,
             },
           }
-        );
+        )
       } else {
         const add = await fetch(
           `http://localhost:4000/api/post/like/${post_id}`,
@@ -93,15 +93,15 @@ function Post(props) {
               Authorization: `${token}`,
             },
           }
-        );
+        )
       }
 
-      setLikecount(user_like_status ? likecount - 1 : likecount + 1);
-      setUser_like_status(!user_like_status);
+      setLikecount(user_like_status ? likecount - 1 : likecount + 1)
+      setUser_like_status(!user_like_status)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   const fetchcomment = async () => {
     try {
@@ -112,43 +112,43 @@ function Post(props) {
             Authorization: `${token}`,
           },
         }
-      );
-      const comment_json = await comment_fetch_respone.json();
-      console.log(comment_json);
-      console.log("as");
-      setCommentdata(comment_json);
-      setLoadingcomment(false);
-      display_comment();
+      )
+      const comment_json = await comment_fetch_respone.json()
+      console.log(comment_json)
+      console.log("as")
+      setCommentdata(comment_json)
+      setLoadingcomment(false)
+      display_comment()
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
-  const timepost = post_time.split("T");
-  const day = timepost[0].split("-").reverse().join("/");
-  const timearray = timepost[1].split(".");
-  const time = timearray[0];
+  const timepost = post_time.split("T")
+  const day = timepost[0].split("-").reverse().join("/")
+  const timearray = timepost[1].split(".")
+  const time = timearray[0]
 
-  let inttime = parseFloat(time.split(":").join("."));
+  let inttime = parseFloat(time.split(":").join("."))
 
-  let datetime = "";
+  let datetime = ""
 
   if (inttime >= 12 && inttime < 24) {
     if (inttime === 12) {
-      datetime = "12:00 PM, " + day;
+      datetime = "12:00 PM, " + day
     } else {
-      const min = inttime.toString().split(".");
-      inttime -= 12;
+      const min = inttime.toString().split(".")
+      inttime -= 12
 
-      const date = inttime.toString().split(".");
+      const date = inttime.toString().split(".")
       // console.log(date);
-      datetime = date[0] + ":" + min[1] + " PM, " + day;
+      datetime = date[0] + ":" + min[1] + " PM, " + day
     }
   } else {
     if (inttime === 24) {
-      datetime = "12:00 AM, " + day;
+      datetime = "12:00 AM, " + day
     } else {
-      datetime = time + " AM, " + day;
+      datetime = time + " AM, " + day
     }
   }
   // console.log(datetime);
@@ -278,7 +278,7 @@ function Post(props) {
         <div className={`cover ${displayImg ? null : "display_none"}`}></div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Post;
+export default Post

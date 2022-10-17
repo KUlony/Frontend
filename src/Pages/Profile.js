@@ -10,7 +10,6 @@ import g1020 from "../picture/g1020.png"
 
 // import { Navigate } from 'react-router-dom'
 import "./Profile.css"
-import Navbar from "../components/NavBar"
 
 function Profile() {
   const componentsUserProfile = [

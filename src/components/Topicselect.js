@@ -17,8 +17,11 @@ function Topicselect(props) {
   const [itemfacultyright, setitemfacultyright] = useState([])
 
   const getdata = () => {
+    const token = localStorage.getItem("token")
     axios
-      .get("//localhost:4000/api/topic/get_all_catagory_topic")
+      .get("http://localhost:4000/api/topic/get_all_catagory_topic", {
+        headers: { Authorization: `${token}` },
+      })
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data
