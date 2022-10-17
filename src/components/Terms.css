@@ -10,7 +10,7 @@
 }
 
 .terms_header {
-    padding-top: 20px;
+    padding-top: 30px;
     font-weight: bolder;
     text-align: center;
 }
@@ -26,9 +26,19 @@
     background-color: #D6EBE0;
     left: 40px;
     width: 570px;
-    height: 400px;
+    height: 420px;
     padding: 15px 10px 15px 10px;
     font-size: 16px;
+    margin-top: 30px;
+ }
+
+ .terms_subject {
+    margin-bottom: 20px;
+    margin-top: 20px;
+ }
+
+ .terms_content {
+    margin-left: 30px;
  }
 
  .terms_subject {

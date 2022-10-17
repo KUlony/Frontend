@@ -1,4 +1,4 @@
-.column_login {
+.login_column {
     float: left;
     box-sizing: border-box;
     width: 50%;
@@ -6,19 +6,19 @@
     padding: 5%;
 }
   
-.row_login:after {
+.login_row:after {
     display: table;
     clear: both;
 }
 
-.img_login {
+.login_img {
     width: 80%;
     height: 80%;
     margin-left: 10%;
     margin-top: 10%;
 }
 
-.header_login {
+.login_header {
     font-family: 'Quicksand';
     font-style: bolder;
     text-align: center;
@@ -28,7 +28,7 @@
     margin-bottom: 50px;
 }
 
-.input_login {
+.login_input {
     background: #F8F5D5;
     border-radius: 16px;
     font-size: 28px;
@@ -42,30 +42,32 @@
     font-size: 28px;
 }
 
-.button_login {
+.login_button{
+    text-decoration: none;
+
+    background: #339C64;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border: 1px solid black;
+    border-radius: 32px;
+    font-size: 28px;
+    font-weight: bolder;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+    font-family: 'Quicksand';
+    font-style: normal;
+
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 12px;
+
     gap: 10px;
-
     width: 100%;
+    height: 60px;
     margin-bottom: 50px;
-
-    background-color: #339C64;
-    
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    border-radius: 32px;
-
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-size: 28px;
-    color: white;
-    font-weight: bolder;
 }
 
-.qa_login {
+.login_qa {
     text-align: center;
 
     font-family: 'Quicksand';
@@ -74,9 +76,41 @@
     color: #000000;
 }
 
-.link_login {
+.login_link {
     color: #339C64;
     font-weight: bolder;
     outline: none;
     text-decoration: none;
+}
+
+.login_forgot {
+    text-align: center;
+    font-family: 'Quicksand';
+    font-style: border;
+    font-size: 28px;
+    color: #989898;
+    margin-bottom: 40px;
+    cursor: pointer;
+}
+
+.login_fg {
+    position: absolute;
+    top: 50%;
+    margin-top: -150px;
+    left: 50%;
+    margin-left: -335px;
+    z-index: 3;
+}
+
+.login_cover{
+    position: absolute;
+    background-color: white;
+    opacity: 0.6;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+.none {
+    display: none;
 }

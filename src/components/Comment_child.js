@@ -1,12 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./Comment_child.css";
 import { BiShare } from "react-icons/bi";
-
+import profileimg from "../picture/profile.png";
 function Comment_child(props) {
-  const { display_profile, reply_content } = props;
+  const { display_profile, reply_data } = props;
 
   const [textHidden, settextHidden] = useState(false);
-
+  const profile_pic_url = reply_data.author.profile_pic_url;
   const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
   const containerRef = useRef(null);
   useEffect(() => {
@@ -18,6 +18,8 @@ function Comment_child(props) {
     console.log(displayviewmorecm);
     settextHidden(true);
   }, [containerRef]);
+  console.log("replydata", reply_data);
+
   return (
     <div className="comment_child_mainbox">
       <div className="comment_child_content">
@@ -25,16 +27,30 @@ function Comment_child(props) {
           <div className="comment_parent">
             <div
               className="comment_profile"
-              onClick={() => display_profile("testdata")}
-            ></div>
-            <h5 className="comment_name">สมชาย กินดี</h5>
+              onClick={() => display_profile(reply_data.author.user_id)}
+            >
+              {profile_pic_url ? (
+                <img
+                  src={profile_pic_url}
+                  alt="profile_img"
+                  className="comment_profile_pic"
+                />
+              ) : (
+                <img
+                  src={profileimg}
+                  alt="profile_img"
+                  className="comment_profile_pic"
+                />
+              )}
+            </div>
+            <h5 className="comment_name">{reply_data.author.username}</h5>
             <div className="test" ref={containerRef}>
               <p
-                className={`comment_breakline ${
+                className={`comment_breakline reply_content ${
                   textHidden ? "comment_text" : null
                 }`}
               >
-                {reply_content}
+                {reply_data.reply_content}
               </p>
             </div>
             <button

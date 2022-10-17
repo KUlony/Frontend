@@ -1,0 +1,58 @@
+.unsuccess_cancle {
+    position: absolute;
+    right: 250px;
+    bottom: 28px;
+    text-decoration: none;
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: bolder;
+    font-size: 24px;
+    color: black;
+}
+
+.unsuccess_button {
+    position: absolute;
+    right: 30px;
+    bottom: 20px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+    height: 50px;
+
+    background: #E7DB73;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    border: 1px solid black;
+
+    font-size: 24px;
+    letter-spacing: 0.03em;
+    color: black;
+}
+
+.unsuccess_container {
+    background: #FFFFFF;
+    border: 1px solid #989898;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    width: 670px;
+    height: 300px;
+    font-family: 'Quicksand';
+    font-style: normal;
+}
+
+.unsuccess_header {
+    /* position: absolute; */
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 160px;
+}
+
+ .unsuccess_img {
+    position: absolute;
+    width: 250px;
+    left: 210px;
+ }

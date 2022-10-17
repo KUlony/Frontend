@@ -9,12 +9,13 @@
     font-style: normal;
 }
 
-.verify_code::-webkit-outer-spin-button,.verify_code::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
+/* .verify_code::-webkit-outer-spin-button,.verify_code::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+} */
 
 .verify_header {
+    margin-top: 30px;
     font-weight: bolder;
     text-align: center;
 }
@@ -35,6 +36,7 @@
  }
 
  .verify_code_container{
+    margin-top: 30px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -57,7 +59,7 @@
 .verify_resend {
     position: absolute;
     right: 220px;
-    bottom: 5px;
+    bottom: 28px;
 
     font-family: 'Quicksand';
     font-style: normal;
@@ -83,6 +85,7 @@
     background: #339C64;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 32px;
+    border: 1px solid black;
 
     font-family: 'Quicksand';
     font-style: normal;

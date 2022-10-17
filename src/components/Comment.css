@@ -73,9 +73,12 @@
   width: 30px;
   height: 30px;
   border-radius: 50px;
-  background-color: black;
+  /* background-color: black; */
   display: inline-block;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
 }
 
 .comment_name {
@@ -180,6 +183,8 @@
 }
 
 .commentreply_form {
+  position: relative;
+  left: 110px;
   height: 50px;
 }
 
@@ -246,4 +251,11 @@
     left: -99999cm;
     top: -10000px;
   }
+}
+
+.comment_profile_pic {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
 }
