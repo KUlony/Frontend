@@ -5,13 +5,21 @@ import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
 import Topicselect from "../components/Topicselect"
 import Sheetpost from "../picture/Sheetpost.png"
 import uploadicon from "../picture/uploadicon.png"
+import { IoIosArrowBack } from "react-icons/io"
 import Navbar from "../components/NavBar"
+import axios from "axios"
+import { Link } from "react-router-dom"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
   const [edittopicheck, seteditTopicCheck] = useState(true)
   const [discomferm, setdiscomferm] = useState(false)
+  const [reqtitle, setreqtitle] = useState(true)
+  const [reqcontent, setreqcontent] = useState(true)
+  const [reqtopic, setreqtopic] = useState(true)
   const [items, setItems] = useState([])
+  const [iditem, setIditem] = useState([])
+  const [urlcover, setUrl] = useState("")
 
   const topicselect = () => {
     seteditTopicCheck(!edittopicheck)
@@ -20,18 +28,28 @@ function Createpost() {
   const topicselectsend = () => {
     seteditTopicCheck(!edittopicheck)
     const items = JSON.parse(localStorage.getItem("itemed"))
+    const iditem = JSON.parse(localStorage.getItem("iditemed"))
     if (items) {
       console.log(items)
+      console.log(iditem)
       setItems(items)
+      setIditem(iditem)
     }
-    console.log(edittopicheck)
   }
 
-  const checkedItems = items.length
-    ? items.reduce((total, item) => {
-        return total + ", " + item
-      })
-    : ""
+  // const checkedItems = items.length
+  //   ? items.reduce((total, item) => {
+  //       return total + ", " + item
+  //     })
+  //   : ""
+
+  useEffect(() => {
+    if (items.length) {
+      setreqtopic(false)
+    } else {
+      setreqtopic(true)
+    }
+  })
 
   useEffect(() => {
     let textArea = document.getElementById("inputT")
@@ -73,6 +91,24 @@ function Createpost() {
     textArea.addEventListener("input", countCharacters)
   })
 
+  const handlereqT = (e) => {
+    if (e.target.value.trim().length) {
+      setreqtitle(false)
+    } else {
+      setreqtitle(true)
+    }
+  }
+  // console.log("title", reqtitle)
+
+  const handlereqC = (e) => {
+    if (e.target.value.trim().length) {
+      setreqcontent(false)
+    } else {
+      setreqcontent(true)
+    }
+  }
+  // console.log("content", reqcontent)
+
   // State to store uploaded file
   const [file, setFile] = useState("")
   const [filemult, setFileMult] = useState([])
@@ -89,6 +125,7 @@ function Createpost() {
   }
 
   function handleChangemult(event) {
+    setFileMult([])
     if (event.target.files.length > 10) {
       alert("Can upload up to 10 pics!!")
       setFileMult([])
@@ -131,9 +168,12 @@ function Createpost() {
       (err) => console.log(err),
       () => {
         // download url
-        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url)
-        })
+        getDownloadURL(uploadTask.snapshot.ref)
+          .then((url) => {
+            setUrl(url)
+            console.log(url)
+          })
+          .then(() => alert("Images uploaded"))
       }
     )
     setStateC(true)
@@ -188,7 +228,8 @@ function Createpost() {
     console.log("url", urls)
   }
 
-  console.log("url", urls)
+  console.log("image:", filemult)
+  // console.log("url", urls)
 
   function btncondis(e) {
     setdiscomferm(e)
@@ -196,66 +237,69 @@ function Createpost() {
 
   // console.log()
 
+  const senddata = () => {
+    let title = document.getElementById("inputT")
+    let content = document.getElementById("inputC")
+
+    axios
+      .post("//localhost:4000/api/post/create", {
+        topic_id: iditem,
+        post_title: title.value,
+        post_content: content.value,
+        cover_photo_url: urlcover,
+        post_photo_url: urls,
+      })
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <div>
       <Navbar />
       <div className="all">
+        <div className="bth">
+          <Link to="/home" className="backtohome">
+            <IoIosArrowBack className="picback" />
+            Back to home
+          </Link>
+        </div>
         <div className="createTitle">
           <h1 className="create">Create a post </h1>
           <img src={Sheetpost} alt="picsheet" className="picsheet"></img>
         </div>
-        <br></br>
         <div className="allcontent">
-          <div className="head">
-            <div className="title">
-              <div className="titlespan">
-                <p className="namet">Title</p>
-                <p className="name">
-                  <span id="char_count_title" className="char_count_title">
-                    0/200
-                  </span>
-                </p>
-              </div>
-              <textarea
-                className="inputTitle"
-                id="inputT"
-                type="text"
-                placeholder="Maximum 200 characters"
-                rows="1"
-                cols="50"
-                maxLength="200"
-              ></textarea>
+          <div className="title">
+            <div className="titlespan">
+              <p className={`namet ${reqtitle ? "nametreq" : ""}`}>
+                Title
+                {/* <span className={`${!reqtitle ? "noting" : ""}`}>*</span> */}
+              </p>
+              <p className="name">
+                <span id="char_count_title" className="char_count_title">
+                  0/200
+                </span>
+              </p>
             </div>
-            <div className="allcover">
-              <div className="covertitle">
-                <p className="namec">Cover image</p>
-                <p className="op">(Optional)</p>
-              </div>
-              <div className="choosefile">
-                <div class="mb-3" className="mb3cover">
-                  <input
-                    class="form-control"
-                    type="file"
-                    onChange={handleChange}
-                    accept=".png,.jpg,.jpeg"
-                  />
-                </div>
-                <button
-                  type="button"
-                  className="btcover"
-                  id="imagecover"
-                  onClick={handleUpload}
-                >
-                  Upload <img src={uploadicon} alt=""></img>
-                </button>
-              </div>
-              <p className="percentimgtitle">{percent}% done</p>
-            </div>
+            <textarea
+              className="inputTitle"
+              id="inputT"
+              type="text"
+              placeholder="Maximum 200 characters"
+              rows="1"
+              cols="50"
+              maxLength="200"
+              onChange={handlereqT}
+            ></textarea>
           </div>
           <br></br>
           <div className="conbody">
             <div className="contentspan">
-              <p className="content">Content</p>
+              <p className={`content ${reqcontent ? "contentreq" : ""}`}>
+                Content
+                {/* <span className={`${!reqcontent ? "noting" : ""}`}>*</span> */}
+              </p>
               <div className="namecontent">
                 <span id="char_count_content" className="char_count_content">
                   0/25000
@@ -270,64 +314,130 @@ function Createpost() {
               rows="20"
               cols="100"
               maxLength="25000"
+              onChange={handlereqC}
             ></textarea>
             <br></br>
-            <br></br>
+          </div>
+          <br></br>
+          <div className="conbottom">
             <div className="bottomphototopic">
-              <div className="allcontentimg">
-                <div className="covercontent">
-                  <p className="namecontentp">Content image</p>
-                  <p className="op">(Optional)</p>
-                </div>
-                <br></br>
-                <div>
-                  <div class="mb-3" className="mb3content">
-                    <input
-                      class="form-control"
-                      type="file"
-                      multiple
-                      onChange={handleChangemult}
-                      accept=".png,.jpg,.jpeg"
-                    />
+              <div className="covercontent">
+                <p className="namecontentp">Add Content image</p>
+                <p className="op">(Optional)</p>
+              </div>
+              <br></br>
+              <div className="mb3content">
+                <input
+                  className="form-control"
+                  id="uploadfilemult"
+                  type="file"
+                  multiple
+                  onChange={handleChangemult}
+                  accept=".png,.jpg,.jpeg"
+                />
+                <div className="displyfile">
+                  <label for="uploadfilemult" className="foruploadfile">
+                    Browse Files <i class="bi bi-file-earmark-plus-fill"></i>
+                  </label>
+                  <div
+                    className={`filename ${
+                      filemult.length !== 0 ? "" : "noting"
+                    }`}
+                  >
+                    {filemult.map((item, index) => (
+                      <div key={index}>
+                        {filemult.length !== 0 ? item.name : ""}
+                      </div>
+                    ))}
                   </div>
-                  <p className="uptoten">(Up to 10 Pics)</p>
-                  <div className="btnuploadimg">
-                    <button
-                      type="button"
-                      className="btcontent"
-                      id="imagecontent"
-                      onClick={handleUploadmult}
-                    >
-                      Upload <img src={uploadicon} alt=""></img>
-                    </button>
-                    <p className="permult">{percentmult}% done</p>
+                  <div
+                    className={`filename ${
+                      filemult.length !== 0 ? "noting" : ""
+                    }`}
+                  >
+                    no file chosen
                   </div>
                 </div>
               </div>
-              <div className="bottom">
-                <div className="bottomtopic">
-                  <p className="topicname">Topic</p>
-                  <button className="edittopic" onClick={topicselect}>
-                    Edit topic <i class="bi bi-plus-circle-fill"></i>
-                  </button>
-                </div>
-                <div className="topicinpage">{`${checkedItems}`}</div>
+              <p className="uptoten">(Up to 10 Pics)</p>
+              <div className="btnuploadimgmult">
+                <button
+                  type="button"
+                  className="btcontent"
+                  id="imagecontent"
+                  onClick={handleUploadmult}
+                >
+                  UPLOAD <img src={uploadicon} alt=""></img>
+                </button>
+                <p className="permult">{percentmult}% Done</p>
               </div>
+            </div>
+            <div className="allcover">
+              <div className="covertitle">
+                <p className="namec">Add Cover image</p>
+                <p className="op">(Optional)</p>
+              </div>
+              <div className="choosefile">
+                <input
+                  className="form-control"
+                  id="uploadfile"
+                  type="file"
+                  onChange={handleChange}
+                  accept=".png,.jpg,.jpeg"
+                />
+                <div className="displyfile">
+                  <label for="uploadfile" className="foruploadfile">
+                    Browse File <i class="bi bi-file-earmark-plus-fill"></i>
+                  </label>
+                  <div className="filename">
+                    {file.name != null ? file.name : "no file chosen"}
+                  </div>
+                </div>
+              </div>
+              <div className="btnuploadimg">
+                <button
+                  type="button"
+                  className="btcover"
+                  id="imagecover"
+                  onClick={handleUpload}
+                >
+                  UPLOAD <img src={uploadicon} alt=""></img>
+                </button>
+                <p className="percentimgtitle">{percent}% Done</p>
+              </div>
+            </div>
+            <div className="bottom">
+              <p className={`topicname ${reqtopic ? "topicnamereq" : ""}`}>
+                Add Topic
+                {/* <span className={`${!reqtopic ? "noting" : ""}`}>*</span> */}
+              </p>
+              <div className="nametopic">
+                <ul>
+                  {items.map((item, index) => (
+                    <div key={index} className="topicmap">
+                      <li>{item}</li>
+                    </div>
+                  ))}
+                </ul>
+              </div>
+              <button className="edittopic" onClick={topicselect}>
+                EDIT TOPIC <i class="bi bi-plus-circle-fill"></i>
+              </button>
+              {/* <div className="topicinpage">{`${checkedItems}`}</div> */}
             </div>
           </div>
           <div className="btnbottom">
-            <div className="bth">
-              <a href="/home" className="backtohome">
-                BACK TO HOME
-              </a>
-            </div>
-            {/* <div className="backtomypost"> */}
-            {/* <a href="/mypost"> */}
-            <button type="button" className="postbtn" id="buttonpost">
+            <button
+              type="button"
+              className={`${
+                reqtitle || reqcontent || reqtopic ? "dispost" : "postbtn"
+              }`}
+              id="buttonpost"
+              onClick={senddata}
+              disabled={reqtitle || reqcontent || reqtopic}
+            >
               POST
             </button>
-            {/* </a> */}
-            {/* </div> */}
           </div>
         </div>
       </div>

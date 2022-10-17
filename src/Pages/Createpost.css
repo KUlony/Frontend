@@ -1,8 +1,7 @@
 .createTitle {
   position: relative;
   display: flex;
-  margin-left: 70%;
-  margin-top: 70px;
+  margin-left: 5%;
   /* margin-bottom: 20px; */
   font-weight: 600;
   font-size: 20px;
@@ -16,13 +15,14 @@
 
 .all {
   width: 100%;
-  background: #D6EBE0;
-  overflow-y: scroll;
-  /* overflow: hidden; */
+  height: 100%;
+  background-color: white; 
+  /* overflow-y: scroll; */
 }
 
 .allcontent {
   width: 100%;
+  margin: auto;
 }
 
 .covertitle {
@@ -58,19 +58,19 @@
 }
 
 .allcover {
-  width: 50%;
+  width: 40%;
 }
 
 .btcover {
   position: relative;
   font-weight: 600;
   font-size: 15px;
-  /* margin-left: 50%; */
+  margin-left: 28%;
   width: 100px;
   height: 40px;
   background-color: #E7DB73;
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -80,36 +80,62 @@
 }
 
 .mb3content {
-  width: 80%;
+  width: 100%;
   margin-bottom: 10px;
 }
 
-.mb3cover {
-  width: 80%;
+.form-control {
+  display: none;
+}
+
+.foruploadfile {
+  font-weight: 600;
+  height: 20px;
+  background-color: white;
+  padding: 8px;
+  border: 1px solid gray;
+  transition-duration: 0.2s;
+}
+
+.foruploadfile:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.displyfile {
+  display: flex;
+  width: 100%;
+}
+
+.filename {
+  margin-left: 20px;
+  background-color: white;
+  padding: 8px;
+  width: 60%;
+  border: 1px solid gray;
 }
 
 .choosefile {
-  display: flex;
   width: 100%;
   margin-bottom: 10px;
 }
 
 .percentimgtitle {
-  margin: auto auto auto 78%;
+  margin: auto auto auto 10px;
   color: #339C64;
   font-weight: 600;
+  text-align: center;
 }
 
 .btcontent {
   position: relative;
   font-weight: 600;
   font-size: 15px;
-  margin-left: 50%;
+  margin-left: 29%;
   width: 100px;
   height: 40px;
   background-color: #E7DB73;
   border: none;
-  border-radius: 20px;
+  border-radius: 16px;
   transition-duration: 0.2s;
   cursor: pointer;
 }
@@ -119,7 +145,8 @@
 }
 
 .title {
-  width: 50%;
+  width: 80%;
+  margin: auto;
 }
 
 .titlespan {
@@ -127,26 +154,19 @@
 }
 
 .inputTitle {
+  margin-top: 10px;
   background: #F8F5D5;
-  border: 1px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 80%;
-  height: 50%;
+  width: 100%;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .char_count_title,.char_count_content {
   color: #339C64;
   font-weight: 600;
-}
-
-.head {
-  display: flex;
-  margin: auto;
-  width: 80%;
 }
 
 .namet {
@@ -155,24 +175,27 @@
   font-weight: 600;
 }
 
+/* .nametreq {
+  color: red;
+} */
+
 .namec {
   margin: auto 0px;
   font-weight: 600;
 }
 
 .name {
-  margin: auto 65% 0px;
+  margin-top: auto;
+  text-align: right;
+  width: 100%;
 }
 
 .conbody {
-  /* margin-left: 10%; */
   margin: auto;
   width: 80%;
-  /* margin: auto; */
 }
 
 .namecontentp {
-  margin: auto 0px;
   font-weight: 600;
 }
 
@@ -182,16 +205,20 @@
   font-weight: 600;
 }
 
+/* .contentreq {
+  color: red;
+} */
+
 .inputContent {
+  margin-top: 10px;
   width: 100%;
-  height: 301px;
+  height: 150px;
   resize: none;
   background: #F8F5D5;
-  border: 1px solid #000000;
   font-size: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
 .contentspan {
@@ -204,38 +231,57 @@
   width: 100%;
 }
 
-.bottom {
-  width: 50%;
+.conbottom {
+  display: flex;
+  width: 80%;
+  margin: auto;
 }
 
-.bottomtopic {
-  display: flex;
+.bottom {
+  width: 20%;
 }
 
 .bottomphototopic {
+  width: 40%;
+}
+
+.btnuploadimgmult {
   display: flex;
   width: 100%;
 }
 
 .btnuploadimg {
   display: flex;
-}
-
-.allcontentimg {
-  width: 50%;
+  width: 100%;
 }
 
 .topicname {
   font-size: 25px;
   font-weight: 600;
-  margin: 0px 0px;
+}
+
+/* .topicnamereq {
+  color: red;
+} */
+
+.nametopic {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #339C64;
+  /* overflow-wrap: break-word; */
+}
+
+.topicmap {
+  margin-bottom: 5px;
 }
 
 .edittopic {
   background: #E7DB73;
   border-radius: 16px;
   border: none;
-  margin-left: 20px;
   height: 40px;
   width: 120px;
   font-weight: 600;
@@ -249,20 +295,21 @@
 }
 
 .btnbottom {
-  display: flex;
   width: 100%;
+  margin-top: 50px;
 }
 
 .bth {
-  margin-top: 20px;
-  margin-left: 70%;
+  margin-top: 120px;
+  margin-left: 3%;
 }
 
 .backtohome {
+  display: flex;
   text-decoration: none;
-  color: black;
+  color: #339C64;
   font-weight: 600;
-  font-size: 24px;
+  font-size: 20px;
   transition-duration: 0.2s;
 }
 
@@ -270,9 +317,13 @@
   color: #339C64;
 }
 
+.picback {
+  margin-left: 5%;
+  margin: auto 0px auto 5%;
+}
+
 .postbtn {
-  width: 100%;
-  margin-left: 20px;
+  margin-left: 80%;
   font-weight: 600;
   font-size: 24px;
   color: white;
@@ -289,6 +340,19 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
   font-size: 28px;
   background-color: #2a8052;
+}
+
+.dispost {
+  margin-left: 80%;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
 }
 
 .noting {
@@ -316,7 +380,7 @@
 
 .picsheet {
   height: 150px;
-  margin: auto 0px;
+  margin-left: 70%;
 }
 
 .btnconfirm {
@@ -362,6 +426,7 @@
 
 .topicinpage {
   font-weight: 600;
+  margin-top: 10px;
 }
 
 .displayback {
