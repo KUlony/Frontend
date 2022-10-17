@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import "./View_post.css";
 import { IoIosArrowBack } from "react-icons/io";
@@ -219,6 +219,8 @@ function View_post() {
       console.log(err);
     }
   };
+  const navigate = useNavigate();
+
   return (
     <div className="view_post_poup">
       <Checklogin />
@@ -228,10 +230,19 @@ function View_post() {
         </div>
         <div className="view_post_fullpost">
           <div className="view_post_fullpost_backtohome">
-            <Link to="/home" className="view_post_fullpost_backtohome_link">
+            {/* <Link to="/home" className="view_post_fullpost_backtohome_link">
               <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
               Back to home
-            </Link>
+            </Link> */}
+            <button
+              className="view_post_fullpost_backtohome_link"
+              onClick={() => {
+                navigate("/home");
+              }}
+            >
+              <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
+              Back to home
+            </button>
           </div>
 
           <div className="view_post_fullpost_title">{title}</div>

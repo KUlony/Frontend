@@ -40,6 +40,7 @@ function Home() {
       console.error("fail");
     }
   };
+
   useEffect(() => {
     componentDidMount();
   }, []);
