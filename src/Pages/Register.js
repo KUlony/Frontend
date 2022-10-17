@@ -1,41 +1,41 @@
-import React, { useState, useRef } from "react";
-import "./Register.css";
-import register_img from "../picture/register.png";
-import { Link } from "react-router-dom";
-import Verify from "../components/Verify.js";
-import Terms from "../components/Terms.js";
+import React, { useState, useRef } from "react"
+import "./Register.css"
+import register_img from "../picture/register.png"
+import { Link } from "react-router-dom"
+import Verify from "../components/Verify.js"
+import Terms from "../components/Terms.js"
 
 function Register() {
-  const [display1, setdisplay1] = useState(true);
+  const [display1, setdisplay1] = useState(true)
   const display_terms = () => {
-    setdisplay1(!display1);
-  };
+    setdisplay1(!display1)
+  }
 
-  const [display2, setdisplay2] = useState(true);
-  const ref = useRef(null);
+  const [display2, setdisplay2] = useState(true)
+  const ref = useRef(null)
 
   const display_verify = () => {
     if (ref.current.checked) {
-      setdisplay2(!display2);
+      setdisplay2(!display2)
     } else {
-      setdisplay5(!display5);
+      setdisplay5(!display5)
     }
-  };
+  }
 
-  const [display5, setdisplay5] = useState(true);
+  const [display5, setdisplay5] = useState(true)
   const display_checked = () => {
     if (display5 === false) {
-      setdisplay5(!display5);
+      setdisplay5(!display5)
     }
-  };
+  }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmpassword, setConfirmpassword] = useState("")
 
   const register = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       const postdata = await fetch(
         "http://localhost:4000/api/sing-up/register/email",
         {
@@ -49,18 +49,18 @@ function Register() {
             confirm_password: confirmpassword,
           }),
         }
-      );
+      )
       // const json = await postdata.json()
       // console.log(postdata)
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
-      display_verify();
+      display_verify()
     } catch (err) {
       // console.log("catch")
-      console.log(err.message);
+      console.log(err.message)
     }
-  };
+  }
 
   return (
     <div className="register_row">
@@ -72,7 +72,7 @@ function Register() {
           placeholder="EMAIL"
           value={email}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setEmail(e.target.value)
           }}
         ></input>
         <input
@@ -81,7 +81,7 @@ function Register() {
           placeholder="PASSWORD"
           value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value)
           }}
         ></input>
         <input
@@ -90,7 +90,7 @@ function Register() {
           placeholder="CONFIRM PASSWORD"
           value={confirmpassword}
           onChange={(e) => {
-            setConfirmpassword(e.target.value);
+            setConfirmpassword(e.target.value)
           }}
         ></input>
 

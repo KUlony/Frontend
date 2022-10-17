@@ -8,7 +8,7 @@ import uploadicon from "../picture/uploadicon.png"
 import { IoIosArrowBack } from "react-icons/io"
 import Navbar from "../components/NavBar"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 import Checklogin from "../components/Checklogin"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
@@ -436,17 +436,19 @@ function Createpost() {
             </div>
           </div>
           <div className="btnbottom">
-            <button
-              type="button"
-              className={`${
-                reqtitle || reqcontent || reqtopic ? "dispost" : "postbtn"
-              }`}
-              id="buttonpost"
-              onClick={senddata}
-              disabled={reqtitle || reqcontent || reqtopic}
-            >
-              POST
-            </button>
+            <Link to="/mypost">
+              <button
+                type="button"
+                className={`${
+                  reqtitle || reqcontent || reqtopic ? "dispost" : "postbtn"
+                }`}
+                id="buttonpost"
+                onClick={senddata}
+                disabled={reqtitle || reqcontent || reqtopic}
+              >
+                POST
+              </button>
+            </Link>
           </div>
         </div>
       </div>
