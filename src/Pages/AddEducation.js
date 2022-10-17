@@ -46,7 +46,7 @@ const AddEducation = (props) => {
     <form className="add-education">
       <div className="add-education-bg" onClick={onBgClick}></div>
       <main className="add-education-inner">
-        <header>
+        <header className="add-edu-header">
           Add Education
           <button
             onClick={onBgClick}
@@ -65,13 +65,13 @@ const AddEducation = (props) => {
                 height: '16px',
                 cursor: 'pointer',
               }}
+              className="close-add-edu"
             />
           </button>
         </header>
-        <section className="school-box">
-          {' '}
-          School
-          <br />
+        <section className="school">
+          {/* school */}
+          <div className="school-text">School</div>
           <input
             class="input-school"
             type="text"
@@ -84,10 +84,11 @@ const AddEducation = (props) => {
             required
           />
         </section>
-        <section className="degree-box">
-          <span>Degree </span>
-          <span className="optional">(Optional)</span>
-          <br />
+        <section className="degree">
+          <div className="degree-text">
+            <span>Degree </span>
+            <span className="optional">(Optional)</span>
+          </div>
           <input
             class="input-degree"
             type="text"
@@ -99,10 +100,11 @@ const AddEducation = (props) => {
             onChange={onEduFormChange}
           />
         </section>
-        <section className="field-of-study-box">
-          <span>Field of study </span>
-          <span className="optional">(Optional)</span>
-          <br />
+        <section className="field-of-study">
+          <div className="fos-text">
+            <span>Field of study </span>
+            <span className="optional">(Optional)</span>
+          </div>
           <input
             class="input-field"
             type="text"
@@ -114,38 +116,19 @@ const AddEducation = (props) => {
             onChange={onEduFormChange}
           />
         </section>
-        <section className="start-date-box">
-          <span>Start date </span>
-          <span className="optional">(Optional)</span>
-          <br />
-          <select name="start-month">
-            {dateMonth.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </select>{' '}
-          <select name="start-year">
-            {dateYear.map((option, index) => (
-              <option key={index} value={option.value}>
-                {option.text}
-              </option>
-            ))}
-          </select>
-        </section>
-        <section className="end-date-box">
-          <div className="end-box">
-            <span>End date / Expected end date </span>
-            <span className="optional">(Optional)</span>
+        <section className="start-date">
+          <div className="start-date-text">
+            <span>Start date </span>
+            <span className="optional"> (Optional)</span>
           </div>
-          <select name="end-month">
+          <select name="start-month" className="start-month">
             {dateMonth.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
               </option>
             ))}
           </select>{' '}
-          <select name="end-year">
+          <select name="start-year" className="start-year">
             {dateYear.map((option, index) => (
               <option key={index} value={option.value}>
                 {option.text}
@@ -153,9 +136,39 @@ const AddEducation = (props) => {
             ))}
           </select>
         </section>
-        <button type="submit" onClick={onEduFormSubmit}>
-          Save
-        </button>
+        <section className="end-date">
+          <div className="end-date-text">
+            <span>End date / Expected end date</span>
+            <span className="optional"> (Optional)</span>
+          </div>
+          <select name="end-month" className="end-month">
+            {dateMonth.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </select>{' '}
+          <select name="end-year" className="end-year">
+            {dateYear.map((option, index) => (
+              <option key={index} value={option.value}>
+                {option.text}
+              </option>
+            ))}
+          </select>
+        </section>
+        <div className="footer-box">
+          <div className="add-edu-delete-edu">
+            <div className="add-edu-delete-text">Delete Education</div>
+            <FiTrash size={18}></FiTrash>
+          </div>
+          <button
+            className="add-edu-save-button"
+            type="submit"
+            onClick={onEduFormSubmit}
+          >
+            SAVE
+          </button>
+        </div>
         {eduElements}
       </main>
     </form>

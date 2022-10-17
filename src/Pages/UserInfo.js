@@ -34,7 +34,7 @@ const UserInfo = () => {
           placeholder="User"
           rows="1"
           cols="20"
-          disabled={false}
+          disabled={true}
         ></textarea>
       </section>
       <section className="bio">
