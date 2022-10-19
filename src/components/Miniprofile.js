@@ -13,24 +13,26 @@ function Miniprofile(props) {
 
   const user_info = async () => {
     try {
-      setLoading(true);
-      console.log(user_id);
-      const userdata = await fetch(
-        `http://localhost:4000/api/user/${user_id}/profile`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const jsonuserdata = await userdata.json();
-      // console.log(jsonuserdata);
-      await setUserdata(jsonuserdata);
-      setLoading(false);
-      if (userdata.user_firstname || userdata.user_lastname) {
-        setUserfirstandlastname(
-          `${userdata.user_firstname} ${userdata.user_lastname}`
+      if (user_id !== "") {
+        setLoading(true);
+        // console.log("user_id", user_id);
+        const userdata = await fetch(
+          `http://localhost:4000/api/user/${user_id}/profile`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
         );
+        const jsonuserdata = await userdata.json();
+        // console.log(jsonuserdata);
+        await setUserdata(jsonuserdata);
+        setLoading(false);
+        if (userdata.user_firstname || userdata.user_lastname) {
+          setUserfirstandlastname(
+            `${userdata.user_firstname} ${userdata.user_lastname}`
+          );
+        }
       }
     } catch (err) {}
   };
@@ -86,7 +88,10 @@ function Miniprofile(props) {
                   : "-"}
               </p>
             </footer>
-            <button onClick={display} className="miniprofile_info_exit">
+            <button
+              onClick={() => display("close")}
+              className="miniprofile_info_exit"
+            >
               <AiOutlineClose className="miniprofile_info_exit_icon" />
             </button>
           </section>

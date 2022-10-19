@@ -54,7 +54,9 @@ function Post(props) {
   };
   const display_profile = (userid) => {
     setdisplayProfile(!displayProfile);
-    setMiniprofileid(userid);
+    if (userid !== "close") {
+      setMiniprofileid(userid);
+    }
   };
   const display_report = () => {
     setdisplayReport(!displayReport);
@@ -66,11 +68,6 @@ function Post(props) {
   const display_img = () => {
     setdisplayImg(!displayImg);
   };
-
-  // const likepost_update = () => {
-  //   setLikecount(likepost ? likecount - 1 : likecount + 1);
-  //   setLikepost(!likepost);
-  // };
 
   const likepost_update = async () => {
     try {
@@ -260,7 +257,7 @@ function Post(props) {
       </div>
       <div
         className={`cover ${displayProfile ? "display_none" : null}`}
-        onClick={display_profile}
+        onClick={() => display_profile("close")}
       ></div>
       <div
         className={`reportpost_popup ${displayReport ? "display_none" : null}`}

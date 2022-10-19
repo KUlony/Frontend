@@ -33,7 +33,7 @@ function View_post() {
   // const username = from.username.username;
   // const scrollRestoration = History.scrollRestoration;
   // console.log(scrollRestoration);
-
+  localStorage.setItem("test", 1);
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [imgurl, setImgurl] = useState("");
@@ -179,8 +179,10 @@ function View_post() {
     setdisplayReport(!displayReport);
   };
   const display_profile = (userid) => {
-    setUserminiprofile(userid);
     setdisplayProfile(!displayProfile);
+    if (userid !== "close") {
+      setUserminiprofile(userid);
+    }
   };
   const display_postimg = (url) => {
     setDisplayposting(!displaypostimg);
@@ -237,11 +239,11 @@ function View_post() {
             <button
               className="view_post_fullpost_backtohome_link"
               onClick={() => {
-                navigate("/home");
+                navigate(-1, { state: { back: true } });
               }}
             >
               <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
-              Back to home
+              Go Back
             </button>
           </div>
 

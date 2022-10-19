@@ -47,6 +47,9 @@
   text-decoration: none;
   color: #339c64;
   font-size: 15px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .view_post_fullpost_title {

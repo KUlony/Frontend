@@ -1,9 +1,9 @@
-import React from "react"
-import "./NavBar.css"
-import logo from "../picture/Logo.png"
-import { BsPersonCircle } from "react-icons/bs"
-import { FaRegBell } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import React from "react";
+import "./NavBar.css";
+import logo from "../picture/Logo.png";
+import { BsPersonCircle } from "react-icons/bs";
+import { FaRegBell } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -31,7 +31,7 @@ function Navbar() {
       <li className="space"> </li>
       <li>
         <Link to="/createnewpost" className="create-new-post">
-          <div class="border-create-post">Create new post</div>
+          <div className="border-create-post">Create new post</div>
         </Link>
       </li>
       <li className="bell">
@@ -45,7 +45,7 @@ function Navbar() {
       </li>
       <div></div>
     </ul>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
