@@ -12,7 +12,7 @@ function MyPost() {
 
   const mypostfetch = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/user/mypost`, {
+      const response = await fetch(`/api/user/mypost`, {
         headers: {
           Authorization: `${token}`,
         },

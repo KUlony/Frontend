@@ -60,9 +60,15 @@
 }
 
 .report_other {
-  width: 250px;
-  height: 25px;
+  width: 235px;
+  height: auto;
+  min-height: 30px;
   margin-left: 2em;
+  border-radius: 6px;
+  border: 1px solid;
+  background-color: #f8f5d5;
+  padding-left: 15px;
+
   /* display: block; */
 }
 
@@ -92,4 +98,51 @@
 
 .reportpost_box h4 {
   padding-bottom: 20px;
+}
+
+.Success_popup {
+  position: fixed;
+  top: 50%;
+  margin-top: -40px;
+  left: 50%;
+  margin-left: -300px;
+  height: 80px;
+  width: 600px;
+  background-color: rgba(214, 235, 224);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.invisible {
+  opacity: 0;
+}
+
+.smile_img {
+  width: 120px;
+  height: auto;
+}
+
+.Success_popup h3 {
+  font-size: 25.7px;
+}
+
+.Action_fail_pop_up {
+  position: fixed;
+  top: 50%;
+  margin-top: -40px;
+  left: 50%;
+  margin-left: -300px;
+  height: 80px;
+  width: 600px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Action_fail_pop_up h3 {
+  color: white;
+  font-size: 25.7px;
+  margin: 0 auto;
 }

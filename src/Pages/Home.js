@@ -85,54 +85,39 @@ function Home() {
         setPost_data(json);
       } else if (category[1]) {
         setLoadingtopic(true);
-        response = await fetch(
-          `http://localhost:4000/api/topic/get_topic/General`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        response = await fetch(`/api/topic/get_topic/General`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else if (category[2]) {
         setLoadingtopic(true);
-        response = await fetch(
-          `http://localhost:4000/api/topic/get_topic/Learning`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        response = await fetch(`/api/topic/get_topic/Learning`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else if (category[3]) {
         setLoadingtopic(true);
-        response = await fetch(
-          `http://localhost:4000/api/topic/get_topic/News`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        response = await fetch(`/api/topic/get_topic/News`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else if (category[4]) {
         setLoadingtopic(true);
-        response = await fetch(
-          `http://localhost:4000/api/topic/get_topic/Market`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        response = await fetch(`/api/topic/get_topic/Market`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else if (category[5]) {
         setLoadingtopic(true);
-        response = await fetch(
-          `http://localhost:4000/api/topic/get_topic/Faculty`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        response = await fetch(`/api/topic/get_topic/Faculty`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       }
 
       const json = await response.json();
@@ -208,14 +193,11 @@ function Home() {
   const loadmore = async (e) => {
     try {
       setDisplayload(false);
-      const loadmoredata = await fetch(
-        `http://localhost:4000/api/${apipath}page=${pagecount}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
+      const loadmoredata = await fetch(`/api/${apipath}page=${pagecount}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const loadmoredatajson = await loadmoredata.json();
       setDisplayload(true);
       setPost_data([...post_data, ...loadmoredatajson]);
@@ -282,6 +264,8 @@ function Home() {
       topic_fetch();
     }
   }, [topic]);
+
+  const dataupdate = (postid) => {};
 
   return (
     <div className="Home_page">
@@ -531,7 +515,6 @@ function Home() {
             </div>
           </div>
           <div className="Home_post">
-            (
             <div className={`${category[0] ? null : "post_faculty"}`}>
               {/* ใส่ตอนมีข้อมูลให้ fetch */}
 
@@ -580,7 +563,6 @@ function Home() {
                 className={`loader ${displayload ? "display_none" : null}`}
               ></div>
             </div>
-            )
           </div>
         </div>
       </div>

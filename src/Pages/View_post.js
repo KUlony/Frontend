@@ -59,14 +59,11 @@ function View_post() {
 
   const postfetch = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:4000/api/post/${post_id.id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
+      const response = await fetch(`/api/post/${post_id.id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const json = await response.json();
 
       setLoading(false);
@@ -91,14 +88,11 @@ function View_post() {
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(
-        `http://localhost:4000/api/comment/${post_id.id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
+      const comment_fetch_respone = await fetch(`/api/comment/${post_id.id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const comment_json = await comment_fetch_respone.json();
       setCommentdata(comment_json);
       setLoadingcomment(false);
@@ -120,20 +114,17 @@ function View_post() {
           ".view_post_comment_input"
         );
 
-        const response_comment = await fetch(
-          `http://localhost:4000/api/comment/create`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${token}`,
-            },
-            body: JSON.stringify({
-              post_id: post_id.id,
-              comment_content: commentinput,
-            }),
-          }
-        );
+        const response_comment = await fetch(`/api/comment/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+          body: JSON.stringify({
+            post_id: post_id.id,
+            comment_content: commentinput,
+          }),
+        });
         if (!response_comment.ok) {
           throw new Error("fail");
         }
@@ -142,7 +133,7 @@ function View_post() {
         // console.log(`json_comment `, json_comment);
 
         const userdata = await fetch(
-          `http://localhost:4000/api/user/${json_comment.user_id}/profile`,
+          `/api/user/${json_comment.user_id}/profile`,
           {
             headers: {
               Authorization: `${token}`,
@@ -194,25 +185,19 @@ function View_post() {
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(
-          `http://localhost:4000/api/post/unlike/${post_id.id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const remove = await fetch(`/api/post/unlike/${post_id.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else {
-        const add = await fetch(
-          `http://localhost:4000/api/post/like/${post_id.id}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const add = await fetch(`/api/post/like/${post_id.id}`, {
+          method: "POST",
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       }
 
       setLikecount(user_like_status ? likecount - 1 : likecount + 1);

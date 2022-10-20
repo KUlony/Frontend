@@ -45,14 +45,11 @@ function Comment(props) {
   const replydata_fetch = async () => {
     try {
       if (loading) {
-        const response_replydata = await fetch(
-          `http://localhost:4000/api/reply/${comment_id}`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const response_replydata = await fetch(`/api/reply/${comment_id}`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
         if (!response_replydata.ok) {
           throw new Error("error");
         }
@@ -82,33 +79,27 @@ function Comment(props) {
   const comment_reply = async (e) => {
     try {
       e.preventDefault();
-      const response_reply = await fetch(
-        `http://localhost:4000/api/reply/create`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
-          body: JSON.stringify({
-            comment_id: comment_id,
-            reply_content: replyinput,
-          }),
-        }
-      );
+      const response_reply = await fetch(`/api/reply/create`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `${token}`,
+        },
+        body: JSON.stringify({
+          comment_id: comment_id,
+          reply_content: replyinput,
+        }),
+      });
       if (!response_reply.ok) {
         throw new Error("fail");
       }
       const json_reply = await response_reply.json();
       // console.log("json_reply", json_reply);
-      const userdata = await fetch(
-        `http://localhost:4000/api/user/${json_reply.user_id}/profile`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
+      const userdata = await fetch(`/api/user/${json_reply.user_id}/profile`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const jsonuserdata = await userdata.json();
       const replyform = {
         author: {
