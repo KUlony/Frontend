@@ -189,7 +189,7 @@ function Reportpost_popup(props) {
                 onChange={(event) => setreportOther(event.target.value)}
                 value={reportOther}
               ></input>
-              <button onClick={submit_report}>SEND ROPORT</button>
+              <button onClick={submit_report}>SEND REPORT</button>
             </form>
           </div>
           <div className="reportpost_exit" onClick={display}>

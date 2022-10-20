@@ -279,7 +279,7 @@ function Home() {
           <div className="home_search_center">
             <div className="home_search_box">
               <h1 className="home_search_title">Share & Explore</h1>
-              <h3>thorugh this endless KU's community !</h3>
+              <h3>through this endless KU's community !</h3>
               <button className="home_create_post_button">
                 Create new post{" "}
                 <BsPlusLg className="home_create_post_button_icon" />
@@ -431,85 +431,87 @@ function Home() {
                       No result found
                     </p>
                   </div>
-                  {topicarray.map((data, idx) => {
-                    if (idx < 12) {
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      );
-                    } else {
-                      if (idx === 12) {
+                  <div className="topic_box">
+                    {topicarray.map((data, idx) => {
+                      if (idx < 12) {
                         return (
-                          <div>
-                            {!showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show more
-                                </button>
-                                <FiChevronDown
-                                  className="topic_showmore_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                          </div>
+                          <li
+                            className={`${topic[idx] ? "current_topic" : null}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
                         );
-                      } else if (idx === topicarray.length - 1) {
+                      } else {
+                        if (idx === 12) {
+                          return (
+                            <div>
+                              {!showtopic && (
+                                <div className="show_box">
+                                  <button
+                                    className="topic_show_button"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  >
+                                    Show more
+                                  </button>
+                                  <FiChevronDown
+                                    className="topic_showmore_icon"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  />
+                                </div>
+                              )}
+                              <li
+                                className={`${
+                                  topic[idx] ? "current_topic" : null
+                                }  ${showtopic ? null : "display_none"}`}
+                                onClick={() => topic_select(idx)}
+                              >
+                                {data}
+                              </li>
+                            </div>
+                          );
+                        } else if (idx === topicarray.length - 1) {
+                          return (
+                            <div>
+                              <li
+                                className={`${
+                                  topic[idx] ? "current_topic" : null
+                                }  ${showtopic ? null : "display_none"}`}
+                                onClick={() => topic_select(idx)}
+                              >
+                                {data}
+                              </li>
+                              {showtopic && (
+                                <div className="show_box">
+                                  <button
+                                    className="topic_show_button"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  >
+                                    Show less
+                                  </button>
+                                  <FiChevronUp
+                                    className="topic_showless_icon"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          );
+                        }
+
                         return (
-                          <div>
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                            {showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show less
-                                </button>
-                                <FiChevronUp
-                                  className="topic_showless_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                          </div>
+                          <li
+                            className={`${
+                              topic[idx] ? "current_topic" : null
+                            }  ${showtopic ? null : "display_none"}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
                         );
                       }
-
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}  ${
-                            showtopic ? null : "display_none"
-                          }`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      );
-                    }
-                  })}
+                    })}
+                  </div>
                 </ul>
               )}
             </div>

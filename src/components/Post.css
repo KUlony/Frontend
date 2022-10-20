@@ -146,8 +146,8 @@
 
 .post_viewmorebox {
   position: relative;
-  right: -90px;
-  top: 24px;
+  right: -93px;
+  top: 30px;
 }
 
 .More {
@@ -178,8 +178,8 @@
   background-color: white;
   border: none;
   width: 0px;
-  top: -6px;
-  right: 8px;
+  top: 13px;
+  right: 30px;
   cursor: pointer;
 }
 
@@ -422,6 +422,5 @@
 }
 
 .report_button:hover {
-  text-decoration: underline;
-  color: #339c64;
+  background-color: #dcdcdc;
 }
