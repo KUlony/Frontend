@@ -66,6 +66,8 @@
     font-weight: bolder;
     font-size: 24px;
     color: #339C64;
+    cursor: pointer;
+    
 }
 
 .verify_button {

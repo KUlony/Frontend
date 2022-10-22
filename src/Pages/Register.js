@@ -31,9 +31,12 @@ function Register() {
   const [password, setPassword] = useState('')
   const [confirmpassword, setConfirmpassword] = useState('')
 
+  const [error,setError] = useState('')
+
   const register = async (e)=>{
     try{
       e.preventDefault()
+      setError('')
       const postdata = await fetch('http://localhost:4000/api/sing-up/register/email',{
       method: 'POST',
       headers: {
@@ -42,10 +45,16 @@ function Register() {
       body: JSON.stringify({
       "email": email,
       "password": password,
-      "confirmpassword": confirmpassword}),
+      "confirm_password": confirmpassword}),
       })
-      // const json = await postdata.json()
-      // console.log(postdata)
+
+      const json = await postdata.json()
+      console.log(json)
+
+      if (!json.success){
+        setError(json.message)
+      }
+
       if (!postdata.ok){
         throw new Error("error")
       }
@@ -75,8 +84,13 @@ function Register() {
           </div> */}
         </div>
         
+        <div className="register_noti">
+            {error && <div className="register_error">{error}</div>}
+        </div>
+
         <button className={`register_button_before  ${display5? null:'none' }`} >SIGN UP</button>
         <button className={`register_button_after  ${display5? 'none':null }`} onClick={register}>SIGN UP</button>
+
 
         <div className="register_qa">
           Already have an account? <Link className="register_link" to='/login'>Log-in</Link>
@@ -91,7 +105,7 @@ function Register() {
       </div>
 
       <div className={`register_verify  ${display2? 'none':null }`}>
-        <Verify display={display_verify} email={email}/>
+        <Verify display_ve={display_verify} email={email} isForgot={false}/>
       </div>
      
       {(!display1||!display2)&&<div className="register_cover"></div>}
