@@ -36,7 +36,7 @@
 }
 
 .view_post_fullpost_backtohome_arrow {
-  margin-top: -3px;
+  margin-top: -4px;
   float: left;
   color: #339c64;
   height: 30px;
@@ -51,6 +51,7 @@
   background-color: transparent;
   border: none;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .view_post_fullpost_title {
@@ -114,6 +115,7 @@
 .view_post_fullpost_img {
   margin: 0 5%;
   border-bottom: 1px solid black;
+  padding-bottom: 30px;
 }
 
 .view_post_fullpost_miniimg {
@@ -142,7 +144,7 @@
 .view_post_interact {
   margin: 0 5%;
   position: relative;
-  padding-top: 20px;
+  padding-top: 80px;
 }
 
 .view_post_commentbox {
@@ -160,7 +162,7 @@
 
 .view_post_reportbox {
   position: absolute;
-  top: 20px;
+  top: 80px;
   right: 0;
   cursor: pointer;
 }
@@ -251,4 +253,104 @@
 
 .cover {
   position: fixed;
+}
+
+.btn_dropdown_report_viewpost {
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  border: none;
+  width: 0px;
+  top: 73px;
+  right: -29px;
+  cursor: pointer;
+}
+
+.dropdown_iconri {
+  height: 40px;
+  width: 50px;
+}
+
+.edit_hover_box {
+  position: relative;
+  top: 30px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.edit_hover_box img {
+  position: relative;
+  left: 36px;
+  width: 11px;
+  height: auto;
+}
+
+.edit_hover_box:hover {
+  background-color: #dcdcdc;
+}
+
+.delete_button {
+  position: relative;
+  top: 35px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -4.6px;
+}
+
+.delete_button:hover {
+  cursor: pointer;
+  background-color: #dcdcdc;
+}
+
+.delete_button img {
+  position: relative;
+  left: 11px;
+  width: 9px;
+  height: auto;
+}
+
+.btn_where {
+  position: absolute;
+  display: none;
+}
+
+.btn_report_show {
+  min-height: 58px;
+  width: 128px;
+  height: auto;
+
+  position: absolute;
+  top: 77px;
+  right: -167px;
+  background-color: white;
+  z-index: 4;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.view_post_share {
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 700;
+  position: relative;
+  cursor: pointer;
+}
+
+.view_post_share:active {
+  opacity: 0.6;
+}
+
+.view_post_share p {
+  position: relative;
+  left: 22px;
+}
+
+.share_img {
+  position: relative;
+  top: 2px;
+  left: 33px;
+  width: 33px;
+  height: auto;
 }

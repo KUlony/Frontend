@@ -4,7 +4,7 @@ import Navbar from "../components/NavBar";
 import "./View_post.css";
 import { IoIosArrowBack } from "react-icons/io";
 import Comment from "../components/Comment";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
+
 import { FcLikePlaceholder } from "react-icons/fc";
 import profileimg from "../picture/profile.png";
 import {
@@ -23,6 +23,7 @@ import { RiArrowDropDownLine } from "react-icons/ri";
 import bin from "../picture/bin.png";
 import edit from "../picture/edit.png";
 import report from "../picture/reportmini.png";
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 
 function View_post() {
   localStorage.setItem("test", 1);
@@ -287,7 +288,7 @@ function View_post() {
 
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_where2");
+      setreportpost_drop("btn_report_show");
     } else {
       setreportpost_drop("btn_where");
     }
@@ -382,6 +383,13 @@ function View_post() {
               <MdOutlineModeComment size={30} />
               <p className="view_post_text">{commentcount} Comments</p>
             </div>
+            <div
+              className="view_post_share"
+              onClick={() => navigator.clipboard.writeText("test")}
+            >
+              <AiOutlineShareAlt className="share_img" />
+              <p className="view_post_text">Share</p>
+            </div>
             {!possession && (
               <div
                 className="view_post_reportbox"
@@ -394,7 +402,7 @@ function View_post() {
             {possession && (
               <div className="test_btn">
                 <button
-                  className="btn_dropdown_report"
+                  className="btn_dropdown_report_viewpost"
                   onClick={report_dropdown}
                 >
                   <RiArrowDropDownLine className="dropdown_iconri" />

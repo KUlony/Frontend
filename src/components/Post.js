@@ -329,7 +329,10 @@ function Post(props) {
               <div className="comment_box">
                 <div class="CommentCount">{commentcount}</div>
               </div>
-              <div className="share_box">
+              <div
+                className="share_box"
+                onClick={() => navigator.clipboard.writeText("bra bra")}
+              >
                 <AiOutlineShareAlt className="Share" size={30} />
               </div>
               <div className="post_viewmorebox">

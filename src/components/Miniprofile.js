@@ -9,7 +9,7 @@ function Miniprofile(props) {
   const [userdata, setUserdata] = useState();
   const [loading, setLoading] = useState(true);
   const token = localStorage.getItem("token");
-  const [userfirstandlastname, setUserfirstandlastname] = useState("-");
+  const [userfirstandlastname, setUserfirstandlastname] = useState("Anonymous");
 
   const user_info = async () => {
     try {
@@ -39,6 +39,7 @@ function Miniprofile(props) {
   useEffect(() => {
     user_info();
   }, [user_id]);
+
   return (
     <article className="home_post_profile">
       {!loading && (
@@ -63,31 +64,38 @@ function Miniprofile(props) {
           </section>
           <section className="miniprofile_info">
             <header>
-              <h3>{userdata.user_name}</h3>
+              {userdata.user_name ? (
+                <h3>{userdata.user_name}</h3>
+              ) : (
+                <h3>Anonymous</h3>
+              )}
 
               <p className="miniprofile_info_">({userfirstandlastname})</p>
             </header>
-            <p className="inputbox">Hello!</p>
+            <p className="inputbox">{userdata.user_bio}</p>
             <p className="miniprofile_info_miniheader">Education:</p>
             <p className="miniprofile_info_university">
-              <strong>Kasetsart University</strong>
+              {/* รอมีข้อมูลจริง */}
+              <strong></strong>
               <br />
-              {/* {userdata.education} */}-
+              {/* {userdata.education} */}
             </p>
-            <footer>
-              <p>
-                Contact: <FaFacebookSquare className="instagram_icon" />
-                {userdata.contact && userdata.contact.facebook
-                  ? userdata.contact.facebook
-                  : "-"}
-              </p>
-              <p className="miniprofile_info_contact">
-                <BsInstagram className="instagram_icon" />
-                {userdata.contact && userdata.contact.facebook
-                  ? userdata.contact.ig
-                  : "-"}
-              </p>
-            </footer>
+            {userdata.contact && (
+              <footer>
+                <p>
+                  Contact: <FaFacebookSquare className="instagram_icon" />
+                  {userdata.contact && userdata.contact.facebook
+                    ? userdata.contact.facebook
+                    : "-"}
+                </p>
+                <p className="miniprofile_info_contact">
+                  <BsInstagram className="instagram_icon" />
+                  {userdata.contact && userdata.contact.facebook
+                    ? userdata.contact.ig
+                    : "-"}
+                </p>
+              </footer>
+            )}
             <button
               onClick={() => display("close")}
               className="miniprofile_info_exit"

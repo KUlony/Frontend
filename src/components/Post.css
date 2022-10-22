@@ -453,3 +453,7 @@
 .report_button:hover {
   background-color: #dcdcdc;
 }
+
+.share_box:active {
+  opacity: 0.6;
+}
