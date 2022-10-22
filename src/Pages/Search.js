@@ -5,6 +5,7 @@ import "./Search.css";
 import search from "../picture/search.png";
 import Post from "../components/Post";
 import Checklogin from "../components/Checklogin";
+import Card from "../components/Card";
 
 function Search() {
   const [keepresult, setKeepresult] = useState("");
@@ -89,6 +90,7 @@ function Search() {
         setSearchresult("");
       } else if (searchtype[1]) {
         setDisplayload(false);
+        setSearchOutPutData([]);
         const data = await fetch(`/api/searchtopic/user?text=${searchResult}`, {
           headers: {
             Authorization: `${token}`,
@@ -189,6 +191,19 @@ function Search() {
                   );
                 }
               })}{" "}
+            </div>
+          )}
+          {searchtype[1] && (
+            <div className="search_user_content">
+              {searchOutPutData.map((e) => (
+                <Card
+                  username={e.user_name}
+                  profile_url={e.profile_pic_url}
+                  user_id={e.contact._id}
+                  user_firstname={e.user_firstname}
+                  user_lastname={e.user_lastname}
+                />
+              ))}
             </div>
           )}
           <div

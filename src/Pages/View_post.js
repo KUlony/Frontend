@@ -387,7 +387,7 @@ function View_post() {
               className="view_post_share"
               onClick={() => navigator.clipboard.writeText("test")}
             >
-              <AiOutlineShareAlt className="share_img" />
+              <AiOutlineShareAlt className="" />
               <p className="view_post_text">Share</p>
             </div>
             {!possession && (

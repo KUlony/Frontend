@@ -91,3 +91,8 @@
 .search_page_nav_topic li {
   cursor: pointer;
 }
+
+.search_user_content {
+  width: 80%;
+  margin: 20px auto;
+}
