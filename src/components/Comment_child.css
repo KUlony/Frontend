@@ -17,5 +17,6 @@
 
 .reply_content {
   position: relative;
-  left: 105px;
+  left: 45px;
+  top: -14px;
 }

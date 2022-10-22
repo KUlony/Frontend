@@ -101,6 +101,11 @@
   cursor: pointer;
 }
 
+.like_box,
+.comment_box {
+  font-weight: 700;
+}
+
 .ikeshadowdrop {
   color: black;
 }

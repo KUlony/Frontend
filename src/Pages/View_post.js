@@ -21,18 +21,6 @@ import Showimg from "../components/Showimg";
 import Checklogin from "../components/Checklogin";
 
 function View_post() {
-  // const location = useLocation();
-  // console.log(location);
-  // const from = location.state;
-  // const like = from.like.likecount;
-  // const commentcount = from.comment.comment;
-  // const title = from.title.title;
-  // const post_content = from.post_content.post_content;
-  // const photo = from.photo.photo;
-  // const profilepic = from.profilepic.profilepic;
-  // const username = from.username.username;
-  // const scrollRestoration = History.scrollRestoration;
-  // console.log(scrollRestoration);
   localStorage.setItem("test", 1);
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
@@ -55,7 +43,10 @@ function View_post() {
   const [userminiprofile, setUserminiprofile] = useState("");
   const [commentdata, setCommentdata] = useState([]);
   const token = localStorage.getItem("token");
+  const [timedata, setTimedate] = useState("");
   // console.log(post_id.id);
+  const [reportid, setReportid] = useState("");
+  const [reporttype, setRepottype] = useState("");
 
   const postfetch = async () => {
     try {
@@ -78,6 +69,7 @@ function View_post() {
       setPost_photo_url(json.post_photo_url);
       setUser_like_status(json.user_like_status);
       setUserminiprofile(json.author.user_id);
+      setTimedate(json.post_time);
     } catch (err) {
       console.log(err);
     }
@@ -141,7 +133,7 @@ function View_post() {
           }
         );
         const jsonuserdata = await userdata.json();
-
+        console.log(json_comment);
         const datainput = {
           comment_content: commentinput,
           comment_id: json_comment._id,
@@ -166,9 +158,14 @@ function View_post() {
   const comment_input = (e) => {
     setCommentinput(e.target.value);
   };
-  const display_report = () => {
+  const display_report = (type, id) => {
     setdisplayReport(!displayReport);
+    if (id !== "close") {
+      setReportid(id);
+      setRepottype(type);
+    }
   };
+
   const display_profile = (userid) => {
     setdisplayProfile(!displayProfile);
     if (userid !== "close") {
@@ -207,6 +204,44 @@ function View_post() {
     }
   };
   const navigate = useNavigate();
+  const [datetime, setDatetime] = useState("");
+
+  useEffect(() => {
+    if (!loading) {
+      const timepost = timedata.split("T");
+      const day = timepost[0].split("-").reverse().join("/");
+      const timearray = timepost[1].split(".");
+      const time = timearray[0];
+
+      let inttime = parseFloat(time.split(":").join("."));
+
+      if (inttime >= 12 && inttime < 24) {
+        if (inttime === 12) {
+          setDatetime("12:00 PM, " + day);
+        } else {
+          const min = inttime.toString().split(".");
+          inttime -= 5;
+
+          const date = inttime.toString().split(".");
+          // console.log(date);
+          setDatetime(date[0] + ":" + min[1] + " PM, " + day);
+        }
+      } else {
+        if (inttime === 24) {
+          setDatetime("12:00 AM, " + day);
+        } else {
+          const min = inttime.toString().split(".");
+          inttime += 7;
+          const date = inttime.toString().split(".");
+          if (min[1].length === 1) {
+            setDatetime(date[0] + ":" + min[1] + "0 AM, " + day);
+          } else {
+            setDatetime(date[0] + ":" + min[1] + " AM, " + day);
+          }
+        }
+      }
+    }
+  }, [timedata]);
 
   return (
     <div className="view_post_poup">
@@ -256,6 +291,7 @@ function View_post() {
             <div className="view_post_fullpost_profile_username">
               {username}
             </div>
+            <div className="date_time">{datetime}</div>
           </div>
           {photo && (
             <div className="view_post_fullpost_photo">
@@ -296,13 +332,16 @@ function View_post() {
               <MdOutlineModeComment size={30} />
               <p className="view_post_text">{commentcount} Comments</p>
             </div>
-            <div className="view_post_reportbox" onClick={display_report}>
+            <div
+              className="view_post_reportbox"
+              onClick={() => display_report("Post", post_id.id)}
+            >
               <MdReport size={30} className="view_post_report_icon" />
               <p className="view_post_text">Report post</p>
             </div>
           </div>
           <div className="view_post_commentinputbox">
-            Comments
+            <h3>Comments</h3>
             <form onSubmit={comment}>
               <input
                 className="view_post_comment_input"
@@ -321,6 +360,7 @@ function View_post() {
                 data={commentdata}
                 display_profile={display_profile}
                 display_reply={true}
+                display_report={display_report}
               />
             </div>
           )}
@@ -340,7 +380,11 @@ function View_post() {
           displayReport ? "display_none" : null
         }`}
       >
-        <Reportpost_popup display={display_report} post_id={post_id.id} />
+        <Reportpost_popup
+          display={display_report}
+          post_id={reportid}
+          type={reporttype}
+        />
       </div>
       <div onClick={() => setDisplayposting(!displaypostimg)}>
         {displaypostimg && <Showimg imgurl={imgurl} />}

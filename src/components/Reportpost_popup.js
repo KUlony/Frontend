@@ -6,7 +6,8 @@ import fail from "../picture/fail.png";
 
 function Reportpost_popup(props) {
   const [position, setPosition] = useState(0);
-  const { display, post_id } = props;
+  const { display, post_id, type } = props;
+  const lowertype = type.toLowerCase();
   const [checkArr, setcheckArr] = useState([
     false,
     false,
@@ -67,7 +68,7 @@ function Reportpost_popup(props) {
         reporttype = reportOther;
       }
       const reportsent = await fetch(
-        `http://localhost:4000/api/post/${post_id}/report`,
+        `/api/${lowertype}/${post_id}/report`,
 
         {
           method: "POST",
@@ -88,7 +89,7 @@ function Reportpost_popup(props) {
       await timeout(1500);
       setLoading(true);
       setStatus(false);
-      display();
+      display("close", "close");
     } catch (err) {
       console.error(err);
       setLoading(false);
@@ -97,7 +98,7 @@ function Reportpost_popup(props) {
       setStatus(true);
       setLoading(true);
       setStatus(false);
-      display();
+      display("close", "close");
     }
   };
 
@@ -105,7 +106,7 @@ function Reportpost_popup(props) {
     <div>
       {!status && (
         <div className="reportpost_popupbox">
-          <h3>Report post</h3>
+          <h3>Report {type}</h3>
           <div className="reportpost_box">
             <h4>Please select an issue :</h4>
             <form onSubmit={reportcheckbox} className="checkbox-round">
@@ -192,7 +193,10 @@ function Reportpost_popup(props) {
               <button onClick={submit_report}>SEND REPORT</button>
             </form>
           </div>
-          <div className="reportpost_exit" onClick={display}>
+          <div
+            className="reportpost_exit"
+            onClick={() => display("close", "close")}
+          >
             <AiOutlineClose />
           </div>
         </div>

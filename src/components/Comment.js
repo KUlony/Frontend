@@ -5,6 +5,11 @@ import Miniprofile from "./Miniprofile";
 import Comment_child from "./Comment_child";
 import { MdSend } from "react-icons/md";
 import profileimg from "../picture/profile.png";
+import reportgreen from "../picture/reportgreenimg.png";
+import reply from "../picture/reply.png";
+import showmore from "../picture/showmore.png";
+import showless from "../picture/showless.png";
+
 function Comment(props) {
   const {
     display_profile,
@@ -15,8 +20,70 @@ function Comment(props) {
     user_name,
     reply_count,
     profile_pic_url,
+    comment_time,
+    display_report,
   } = props;
+  // console.log(comment_time);
+  //2022-10-20T13:56:08.372Z
+
+  function useInterval(callback, delay) {
+    const savedCallback = useRef();
+
+    // Remember the latest callback.
+    useEffect(() => {
+      savedCallback.current = callback;
+    }, [callback]);
+
+    // Set up the interval.
+    useEffect(() => {
+      function tick() {
+        savedCallback.current();
+      }
+      if (delay !== null) {
+        let id = setInterval(tick, delay);
+        return () => clearInterval(id);
+      }
+    }, [delay]);
+  }
+
+  const [timeago, settimeago] = useState("");
+  const [datenow, setdatenow] = useState(new Date());
+
+  useInterval(() => {
+    setdatenow(new Date());
+  }, 1000);
+
+  useInterval(() => {
+    let timeback = new Date("2022-10-20T12:56:08.372Z");
+    let date = new Date();
+    let time = new Date(comment_time);
+    // console.log("time", time, "date", date);
+    // console.log(Math.abs((time - datenow) / 1000)); // safe to use
+
+    let diffdatetime = Math.abs((time - datenow) / 1000);
+
+    if (diffdatetime < 60) {
+      console.log(diffdatetime);
+      settimeago(`${Math.ceil(diffdatetime)} seconds ago`);
+    } else if (diffdatetime < 3600) {
+      settimeago(`${Math.ceil(diffdatetime / 60)} minute ago`);
+    } else if (diffdatetime < 86400) {
+      settimeago(`${Math.ceil(diffdatetime / 3600)} hour ago`);
+    } else if (diffdatetime < 2592000) {
+      settimeago(`${Math.ceil(diffdatetime / 86400)} days ago`);
+    } else if (diffdatetime < 31104000) {
+      settimeago(`${Math.ceil(diffdatetime / 2592000)} month ago`);
+    } else {
+      settimeago(`${Math.ceil(diffdatetime / 31104000)} year ago`);
+    }
+    // console.log(timeago);
+  }, 1000);
+
   const token = localStorage.getItem("token");
+  const userid = localStorage.getItem("user_id");
+  const [possession, setPossession] = useState(
+    user_id === userid ? true : false
+  );
   const containerRef = useRef(null);
   const [replydata, setReplydata] = useState([]);
   const [numberofchild, setNumberofchild] = useState(reply_count);
@@ -134,6 +201,7 @@ function Comment(props) {
 
   const updatecommentdata = (data) =>
     setReplydata((replydata) => [...replydata, data]);
+
   return (
     <div className="comment_main">
       <div className="comment_parent">
@@ -155,7 +223,16 @@ function Comment(props) {
             />
           )}
         </div>
-        <h5 className="comment_name">{user_name}</h5>
+        {/* <h5 className="comment_name">{user_name}</h5> */}
+        <h5 className="comment_name">maikaneiei</h5>
+        {!possession && (
+          <img
+            src={reportgreen}
+            className="comment_report_button"
+            onClick={() => display_report("Comment", comment_id)}
+          />
+        )}
+        {!possession && <div>delete</div>}
         <div className="comment_parent_context" ref={containerRef}>
           <p
             className={`comment_breakline ${
@@ -174,6 +251,7 @@ function Comment(props) {
         >
           {textHidden ? "show more" : "show less"}
         </button>
+        <div className="date_time_diff">{timeago}</div>
       </div>
 
       {firsttimeposition && (
@@ -188,49 +266,52 @@ function Comment(props) {
                 <Comment_child
                   display_profile={display_profile}
                   reply_data={data}
+                  display_report={display_report}
                 />
               ))}
             </div>
           )}
         </div>
       )}
-
-      <button
-        className={`comment_reply ${displayreply ? null : "display_none"}  
+      <div className="comment_interact">
+        <button
+          className={`comment_reply ${displayreply ? null : "display_none"}  
         ${displaychild ? null : "comment_reply_nochild"}
         
         
         `}
-        onClick={() => setDisplayreplyinput(!displayreplyinput)}
-      >
-        <BiShare
-          className={`comment_shareimg
+          onClick={() => setDisplayreplyinput(!displayreplyinput)}
+        >
+          <img
+            src={reply}
+            className={`comment_shareimg
           }`}
-        />{" "}
-        Reply
-      </button>
-      <button
-        className={`comment_showreply ${
-          displayreply ? null : "comment_showreplyfreespace"
-        }
+          />{" "}
+          Reply
+        </button>
+        <button
+          className={`comment_showreply ${
+            displayreply ? null : "comment_showreplyfreespace"
+          }
           ${!displayshowreply ? null : "display_none"}
            ${displaychild ? null : "comment_showreply_nochild"}  
         ${displayreply || displaychild || "comment_showreplyhome"}
         `}
-        onClick={replydata_fetch}
-      >
-        {displaychild ? (
-          <div className="removebackground">
-            <BiHide className={`comment_show_button`} />
-            Hide Reply
-          </div>
-        ) : (
-          <div className="removebackground">
-            <BiShow className={`comment_show_button`} />
-            View {numberofchild} Reply
-          </div>
-        )}{" "}
-      </button>
+          onClick={replydata_fetch}
+        >
+          {displaychild ? (
+            <div className="removebackground">
+              <img src={showless} className={`comment_show_button`} />
+              Hide Reply
+            </div>
+          ) : (
+            <div className="removebackground">
+              <img src={showmore} className={`comment_show_button`} />
+              View {numberofchild} Reply
+            </div>
+          )}{" "}
+        </button>
+      </div>
       <div>
         {displayreplyinput && (
           <form onSubmit={comment_reply} className={`commentreply_form `}>

@@ -70,8 +70,15 @@ function Post(props) {
       setMiniprofileid(userid);
     }
   };
-  const display_report = () => {
+  const [reportid, setReportid] = useState("");
+  const [reporttype, setReporttype] = useState("");
+
+  const display_report = (type, id) => {
     setdisplayReport(!displayReport);
+    if (type !== "close") {
+      setReporttype(type);
+      setReportid(id);
+    }
   };
   const display_comment = () => {
     setdisplatComment(!displayComment);
@@ -223,7 +230,10 @@ function Post(props) {
                       <div className="free_space"></div>
                     </div>
                   ) : (
-                    <div className="report_button" onClick={display_report}>
+                    <div
+                      className="report_button"
+                      onClick={() => display_report("Post", post_id)}
+                    >
                       Report post
                       <img src={report} />
                     </div>
@@ -280,6 +290,7 @@ function Post(props) {
                             data={commentdata}
                             display_profile={display_profile}
                             display_reply={false}
+                            display_report={display_report}
                           />
                         )}
                       </div>
@@ -316,7 +327,11 @@ function Post(props) {
               displayReport ? "display_none" : null
             }`}
           >
-            <Reportpost_popup display={display_report} post_id={post_id} />
+            <Reportpost_popup
+              display={display_report}
+              post_id={reportid}
+              type={reporttype}
+            />
           </div>
           <div
             className={`post_freespace ${
