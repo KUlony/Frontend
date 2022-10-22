@@ -19,6 +19,10 @@ import Miniprofile from "../components/Miniprofile";
 import Comment_generator from "../components/Comment_generator";
 import Showimg from "../components/Showimg";
 import Checklogin from "../components/Checklogin";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import bin from "../picture/bin.png";
+import edit from "../picture/edit.png";
+import report from "../picture/reportmini.png";
 
 function View_post() {
   localStorage.setItem("test", 1);
@@ -47,6 +51,8 @@ function View_post() {
   // console.log(post_id.id);
   const [reportid, setReportid] = useState("");
   const [reporttype, setRepottype] = useState("");
+  const [possession, setPossesstion] = useState(false);
+  const userid = localStorage.getItem("user_id");
 
   const postfetch = async () => {
     try {
@@ -70,6 +76,7 @@ function View_post() {
       setUser_like_status(json.user_like_status);
       setUserminiprofile(json.author.user_id);
       setTimedate(json.post_time);
+      setPossesstion(json.author.user_id === userid ? true : false);
     } catch (err) {
       console.log(err);
     }
@@ -243,6 +250,49 @@ function View_post() {
     }
   }, [timedata]);
 
+  const comment_delete = async (id) => {
+    try {
+      const respone = await fetch(`/api/comment/${id}/delete`, {
+        method: "PUT",
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      if (!respone.ok) {
+        throw new Error("fail to delete");
+      }
+      setCommentcount(commentcount - 1);
+      return true;
+    } catch (err) {
+      return false;
+      console.error(err);
+    }
+  };
+
+  const delete_post = async () => {
+    try {
+      const respone = await fetch(`/api/post/${post_id.id}/delete`, {
+        method: "PUT",
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
+
+  const report_dropdown = () => {
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_where2");
+    } else {
+      setreportpost_drop("btn_where");
+    }
+  };
+
   return (
     <div className="view_post_poup">
       <Checklogin />
@@ -332,13 +382,53 @@ function View_post() {
               <MdOutlineModeComment size={30} />
               <p className="view_post_text">{commentcount} Comments</p>
             </div>
-            <div
-              className="view_post_reportbox"
-              onClick={() => display_report("Post", post_id.id)}
-            >
-              <MdReport size={30} className="view_post_report_icon" />
-              <p className="view_post_text">Report post</p>
-            </div>
+            {!possession && (
+              <div
+                className="view_post_reportbox"
+                onClick={() => display_report("Post", post_id.id)}
+              >
+                <MdReport size={30} className="view_post_report_icon" />
+                <p className="view_post_text">Report post</p>
+              </div>
+            )}
+            {possession && (
+              <div className="test_btn">
+                <button
+                  className="btn_dropdown_report"
+                  onClick={report_dropdown}
+                >
+                  <RiArrowDropDownLine className="dropdown_iconri" />
+                </button>
+                <div className={reportpost_drop}>
+                  {possession ? (
+                    <div className="my_post_button">
+                      <div className="edit_hover_box">
+                        {" "}
+                        Edit post
+                        <img src={edit} />
+                      </div>
+                      {/* <div className="edit_button">
+                        Edit post
+                        <img src={edit} />
+                      </div> */}
+
+                      <div className="delete_button" onClick={delete_post}>
+                        Delete post <img src={bin} />
+                      </div>
+                      <div className="free_space"></div>
+                    </div>
+                  ) : (
+                    <div
+                      className="report_button"
+                      onClick={() => display_report("Post", post_id)}
+                    >
+                      Report post
+                      <img src={report} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
           <div className="view_post_commentinputbox">
             <h3>Comments</h3>
@@ -361,6 +451,7 @@ function View_post() {
                 display_profile={display_profile}
                 display_reply={true}
                 display_report={display_report}
+                comment_delete={comment_delete}
               />
             </div>
           )}

@@ -9,6 +9,7 @@ import reportgreen from "../picture/reportgreenimg.png";
 import reply from "../picture/reply.png";
 import showmore from "../picture/showmore.png";
 import showless from "../picture/showless.png";
+import x from "../picture/x.png";
 
 function Comment(props) {
   const {
@@ -22,6 +23,7 @@ function Comment(props) {
     profile_pic_url,
     comment_time,
     display_report,
+    comment_delete,
   } = props;
   // console.log(comment_time);
   //2022-10-20T13:56:08.372Z
@@ -202,133 +204,153 @@ function Comment(props) {
   const updatecommentdata = (data) =>
     setReplydata((replydata) => [...replydata, data]);
 
+  const [visible, setVisible] = useState(false);
+
+  const deletecomment = () => {
+    comment_delete(comment_id);
+    if (comment_delete(comment_id)) {
+      setVisible(true);
+    }
+  };
   return (
     <div className="comment_main">
-      <div className="comment_parent">
-        <div
-          className="comment_profile"
-          onClick={() => display_profile(user_id)}
-        >
-          {profile_pic_url ? (
-            <img
-              src={profile_pic_url}
-              alt="profile_img"
-              className="comment_profile_pic"
-            />
-          ) : (
-            <img
-              src={profileimg}
-              alt="profile_img"
-              className="comment_profile_pic"
-            />
-          )}
-        </div>
-        {/* <h5 className="comment_name">{user_name}</h5> */}
-        <h5 className="comment_name">maikaneiei</h5>
-        {!possession && (
-          <img
-            src={reportgreen}
-            className="comment_report_button"
-            onClick={() => display_report("Comment", comment_id)}
-          />
-        )}
-        {!possession && <div>delete</div>}
-        <div className="comment_parent_context" ref={containerRef}>
-          <p
-            className={`comment_breakline ${
-              textHidden ? "comment_text" : null
-            } `}
-          >
-            {comment_content}
-          </p>
-        </div>
-
-        <button
-          className={`comment_viewmore ${
-            displayviewmorecm ? "display_none" : null
-          }`}
-          onClick={() => settextHidden(!textHidden)}
-        >
-          {textHidden ? "show more" : "show less"}
-        </button>
-        <div className="date_time_diff">{timeago}</div>
-      </div>
-
-      {firsttimeposition && (
-        <div
-          className={`comment_child ${displaychild ? "reply_open" : null} ${
-            displayanimagoback ? null : "reply_close"
-          }`}
-        >
-          {!loading && (
-            <div>
-              {replydata.map((data) => (
-                <Comment_child
-                  display_profile={display_profile}
-                  reply_data={data}
-                  display_report={display_report}
+      {!visible && (
+        <div>
+          <div className="comment_parent">
+            <div
+              className="comment_profile"
+              onClick={() => display_profile(user_id)}
+            >
+              {profile_pic_url ? (
+                <img
+                  src={profile_pic_url}
+                  alt="profile_img"
+                  className="comment_profile_pic"
                 />
-              ))}
+              ) : (
+                <img
+                  src={profileimg}
+                  alt="profile_img"
+                  className="comment_profile_pic"
+                />
+              )}
+            </div>
+            {/* <h5 className="comment_name">{user_name}</h5> */}
+            <h5 className="comment_name">maikaneiei</h5>
+            {!possession && (
+              <img
+                src={reportgreen}
+                className="comment_report_button"
+                onClick={() => display_report("Comment", comment_id)}
+              />
+            )}
+            {possession && (
+              <img
+                src={x}
+                className="comment_x_button"
+                onClick={deletecomment}
+              />
+            )}
+            <div className="comment_parent_context" ref={containerRef}>
+              <p
+                className={`comment_breakline ${
+                  textHidden ? "comment_text" : null
+                } `}
+              >
+                {comment_content}
+              </p>
+            </div>
+
+            <button
+              className={`comment_viewmore ${
+                displayviewmorecm ? "display_none" : null
+              }`}
+              onClick={() => settextHidden(!textHidden)}
+            >
+              {textHidden ? "show more" : "show less"}
+            </button>
+            <div className="date_time_diff">{timeago}</div>
+          </div>
+
+          {firsttimeposition && (
+            <div
+              className={`comment_child ${displaychild ? "reply_open" : null} ${
+                displayanimagoback ? null : "reply_close"
+              }`}
+            >
+              {!loading && (
+                <div>
+                  {replydata.map((data) => (
+                    <Comment_child
+                      display_profile={display_profile}
+                      reply_data={data}
+                      display_report={display_report}
+                    />
+                  ))}
+                </div>
+              )}
             </div>
           )}
-        </div>
-      )}
-      <div className="comment_interact">
-        <button
-          className={`comment_reply ${displayreply ? null : "display_none"}  
+          <div className="comment_interact">
+            <button
+              className={`comment_reply ${
+                displayreply ? null : "display_none"
+              }  
         ${displaychild ? null : "comment_reply_nochild"}
         
         
         `}
-          onClick={() => setDisplayreplyinput(!displayreplyinput)}
-        >
-          <img
-            src={reply}
-            className={`comment_shareimg
+              onClick={() => setDisplayreplyinput(!displayreplyinput)}
+            >
+              <img
+                src={reply}
+                className={`comment_shareimg
           }`}
-          />{" "}
-          Reply
-        </button>
-        <button
-          className={`comment_showreply ${
-            displayreply ? null : "comment_showreplyfreespace"
-          }
+              />{" "}
+              Reply
+            </button>
+            <button
+              className={`comment_showreply ${
+                displayreply ? null : "comment_showreplyfreespace"
+              }
           ${!displayshowreply ? null : "display_none"}
            ${displaychild ? null : "comment_showreply_nochild"}  
         ${displayreply || displaychild || "comment_showreplyhome"}
         `}
-          onClick={replydata_fetch}
-        >
-          {displaychild ? (
-            <div className="removebackground">
-              <img src={showless} className={`comment_show_button`} />
-              Hide Reply
-            </div>
-          ) : (
-            <div className="removebackground">
-              <img src={showmore} className={`comment_show_button`} />
-              View {numberofchild} Reply
-            </div>
-          )}{" "}
-        </button>
-      </div>
-      <div>
-        {displayreplyinput && (
-          <form onSubmit={comment_reply} className={`commentreply_form `}>
-            <input
-              className="commentreply_input"
-              onChange={comment_input}
-              required
-              type="text"
-              value={replyinput}
-              placeholder="Add your reply here"
-            />
-            <button className="commentreply_button">
-              <MdSend size={30} />
+              onClick={replydata_fetch}
+            >
+              {displaychild ? (
+                <div className="removebackground">
+                  <img src={showless} className={`comment_show_button`} />
+                  Hide Reply
+                </div>
+              ) : (
+                <div className="removebackground">
+                  <img src={showmore} className={`comment_show_button`} />
+                  View {numberofchild} Reply
+                </div>
+              )}{" "}
             </button>
-          </form>
-        )}
-      </div>
+          </div>
+          <div>
+            {displayreplyinput && (
+              <form onSubmit={comment_reply} className={`commentreply_form `}>
+                <input
+                  className="commentreply_input"
+                  onChange={comment_input}
+                  required
+                  type="text"
+                  value={replyinput}
+                  placeholder="Add your reply here"
+                />
+                <button className="commentreply_button">
+                  <MdSend size={30} />
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

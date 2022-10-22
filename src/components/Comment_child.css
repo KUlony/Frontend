@@ -20,3 +20,12 @@
   left: 45px;
   top: -14px;
 }
+
+.comment_x_button {
+  position: absolute;
+  top: 15.5px;
+  left: 517px;
+  width: 11px;
+  height: auto;
+  cursor: pointer;
+}

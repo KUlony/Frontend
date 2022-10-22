@@ -108,6 +108,15 @@
   cursor: pointer;
 }
 
+.comment_x_button {
+  position: absolute;
+  top: 15.5px;
+  left: 517px;
+  width: 11px;
+  height: auto;
+  cursor: pointer;
+}
+
 .display_none {
   display: none;
 }

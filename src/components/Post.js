@@ -56,6 +56,7 @@ function Post(props) {
     user_current_Id === user_id ? true : false
   );
   const [deletedone, setDeletedone] = useState(false);
+  const [commentcount, setCommentcount] = useState(comment);
 
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
@@ -64,6 +65,7 @@ function Post(props) {
       setreportpost_drop("btn_where");
     }
   };
+
   const display_profile = (userid) => {
     setdisplayProfile(!displayProfile);
     if (userid !== "close") {
@@ -181,6 +183,25 @@ function Post(props) {
     }
   }
 
+  const comment_delete = async (id) => {
+    try {
+      const respone = await fetch(`/api/comment/${id}/delete`, {
+        method: "PUT",
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      if (!respone.ok) {
+        throw new Error("fail");
+      }
+      setCommentcount(commentcount - 1);
+      return true;
+    } catch (err) {
+      console.error(err);
+      return false;
+    }
+  };
+
   return (
     <div className>
       {!deletedone && (
@@ -220,10 +241,16 @@ function Post(props) {
                 <div className={reportpost_drop}>
                   {possession ? (
                     <div className="my_post_button">
-                      <div className="edit_button">
+                      <div className="edit_hover_box">
+                        {" "}
                         Edit post
                         <img src={edit} />
                       </div>
+                      {/* <div className="edit_button">
+                        Edit post
+                        <img src={edit} />
+                      </div> */}
+
                       <div className="delete_button" onClick={delete_post}>
                         Delete post <img src={bin} />
                       </div>
@@ -291,6 +318,7 @@ function Post(props) {
                             display_profile={display_profile}
                             display_reply={false}
                             display_report={display_report}
+                            comment_delete={comment_delete}
                           />
                         )}
                       </div>
@@ -299,7 +327,7 @@ function Post(props) {
                 </div>
               </div>
               <div className="comment_box">
-                <div class="CommentCount">{comment}</div>
+                <div class="CommentCount">{commentcount}</div>
               </div>
               <div className="share_box">
                 <AiOutlineShareAlt className="Share" size={30} />

@@ -8,6 +8,7 @@ function Comment_generator(props) {
     display_reply,
     updatecommentdata,
     display_report,
+    comment_delete,
   } = props;
 
   return (
@@ -26,6 +27,7 @@ function Comment_generator(props) {
             profile_pic_url={element.author.profile_pic_url}
             comment_time={element.comment_time}
             display_report={display_report}
+            comment_delete={comment_delete}
           />
         );
       })}

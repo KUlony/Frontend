@@ -3,7 +3,7 @@ import "./Comment_child.css";
 import { BiShare } from "react-icons/bi";
 import profileimg from "../picture/profile.png";
 import reportgreen from "../picture/reportgreenimg.png";
-
+import x from "../picture/x.png";
 function Comment_child(props) {
   const { display_profile, reply_data, display_report } = props;
   // console.log(reply_data);
@@ -107,7 +107,7 @@ function Comment_child(props) {
                 onClick={() => display_report("Reply", reply_data.reply_id)}
               />
             )}
-            {possession && <div>delete</div>}
+            {possession && <img src={x} className="comment_x_button" />}
 
             <div className="test" ref={containerRef}>
               <p

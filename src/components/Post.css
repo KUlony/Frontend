@@ -194,13 +194,13 @@
 }
 
 .btn_where2 {
-  position: relative;
   min-height: 58px;
   width: 128px;
   height: auto;
 
   position: absolute;
-  top: 4%;
+  top: 17px;
+  right: -110px;
   background-color: white;
   z-index: 4;
   filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
@@ -367,6 +367,26 @@
   font-size: 16px;
 }
 
+.edit_hover_box {
+  position: relative;
+  top: 30px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.edit_hover_box img {
+  position: relative;
+  left: 36px;
+  width: 11px;
+  height: auto;
+}
+
+.edit_hover_box:hover {
+  background-color: #dcdcdc;
+}
+
 .edit_button {
   position: relative;
   top: 30px;
@@ -374,7 +394,7 @@
 }
 
 .edit_button:hover {
-  color: #339c64;
+  background-color: #dcdcdc;
   text-decoration: underline;
   cursor: pointer;
 }
@@ -389,13 +409,15 @@
 .delete_button {
   position: relative;
   top: 35px;
-  left: 5px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -4.6px;
 }
 
 .delete_button:hover {
-  color: #339c64;
-  text-decoration: underline;
   cursor: pointer;
+  background-color: #dcdcdc;
 }
 
 .delete_button img {
@@ -406,14 +428,16 @@
 }
 
 .free_space {
-  height: 43px;
+  height: 35px;
 }
 
 .report_button {
   cursor: pointer;
   position: relative;
-  top: 30px;
-  left: 5px;
+  top: 28px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-weight: 700;
   font-size: 16px;
 }
