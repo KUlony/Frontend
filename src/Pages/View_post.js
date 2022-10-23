@@ -339,9 +339,15 @@ function View_post() {
               )}
             </div>
 
-            <div className="view_post_fullpost_profile_username">
-              {username}
-            </div>
+            {username ? (
+              <div className="view_post_fullpost_profile_username">
+                {username}
+              </div>
+            ) : (
+              <div className="view_post_fullpost_profile_username">
+                Anonymous
+              </div>
+            )}
             <div className="date_time">{datetime}</div>
           </div>
           {photo && (

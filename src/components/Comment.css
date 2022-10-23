@@ -39,9 +39,10 @@
   border: none;
   background-color: #d6ebe0;
   position: relative;
-  left: 455px;
+  left: 397px;
   cursor: pointer;
   padding-bottom: 25px;
+  top: -16px;
 }
 
 .comment_viewmore:hover {
@@ -111,7 +112,7 @@
 .comment_x_button {
   position: absolute;
   top: 15.5px;
-  left: 517px;
+  left: 523px;
   width: 11px;
   height: auto;
   cursor: pointer;

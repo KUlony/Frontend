@@ -31,14 +31,17 @@ function Card(props) {
         {!username && !user_firstname && !user_lastname && (
           <div className="card_user">Anonymous</div>
         )}
+
         {!onlyname && (user_firstname || user_lastname) && (
           <div className="card_name">
             ({user_firstname} {user_lastname})
           </div>
         )}
         {onlyname && (
-          <div className="card_name">
-            {user_firstname} {user_lastname}
+          <div className="card_name card_center">
+            <p>
+              {user_firstname} {user_lastname}
+            </p>
           </div>
         )}
       </div>
