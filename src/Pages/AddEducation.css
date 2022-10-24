@@ -111,6 +111,10 @@
   border-radius: 8px;
 }
 
+.end-month::after {
+  color: #339c64;
+}
+
 .input-school,
 .input-degree,
 .input-field {

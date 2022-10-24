@@ -1,12 +1,12 @@
-import React, { useState } from "react"
-import "./Profile.css"
-import UserInfo from "./UserInfo"
-import Favourite from "./Favourite"
-import FollowTopic from "./FollowTopic"
-import Setting from "./Setting"
-import Navbar from "../components/NavBar"
-import logoutpic from "../picture/logout.png"
-import g1020 from "../picture/g1020.png"
+import React, { useState } from 'react'
+import './Profile.css'
+import UserInfo from './UserInfo'
+import Favourite from './Favourite'
+import FollowTopic from './FollowTopic'
+import Setting from './Setting'
+import Navbar from '../components/NavBar'
+import logoutpic from '../picture/logout.png'
+import g1020 from '../picture/g1020.png'
 
 function Profile() {
   const componentsUserProfile = [
@@ -64,7 +64,7 @@ function Profile() {
           <div className="button_sidebar">
             <div className="buttonstyle">
               <button
-                className={`btn_click ${userinfo ? "setgreen" : ""}`}
+                className={`btn_click ${userinfo ? 'setgreen' : ''}`}
                 onClick={() => {
                   onClickProfile(componentsUserProfile[0])
                   toggleuserinfo()
@@ -72,13 +72,13 @@ function Profile() {
               >
                 User Info
               </button>
-              <div className={`${userinfo ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${userinfo ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${favourites ? "setgreen" : ""}`}
+                className={`btn_click ${favourites ? 'setgreen' : ''}`}
                 onClick={() => {
                   onClickProfile(componentsUserProfile[1])
                   togglefavourites()
@@ -87,14 +87,14 @@ function Profile() {
                 Favourites
               </button>
               <div
-                className={`${favourites ? "setdeepgreen" : "noting"}`}
+                className={`${favourites ? 'setdeepgreen' : 'noting'}`}
               ></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${following ? "setgreen" : ""}`}
+                className={`btn_click ${following ? 'setgreen' : ''}`}
                 onClick={() => {
                   onClickProfile(componentsUserProfile[2])
                   togglefollowing()
@@ -102,13 +102,13 @@ function Profile() {
               >
                 Following topics
               </button>
-              <div className={`${following ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${following ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${setting ? "setgreen" : ""}`}
+                className={`btn_click ${setting ? 'setgreen' : ''}`}
                 onClick={() => {
                   onClickProfile(componentsUserProfile[3])
                   togglesetting()
@@ -116,7 +116,7 @@ function Profile() {
               >
                 setting
               </button>
-              <div className={`${setting ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${setting ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
           </div>
           <br></br>

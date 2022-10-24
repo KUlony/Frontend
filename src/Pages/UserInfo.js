@@ -4,7 +4,7 @@ import './UserInfo.css'
 
 const UserInfo = () => {
   const [isAddEducation, setIsAddEducation] = useState(null)
-  //Education
+  //AddEducation Page
   function onAddEducationClick() {
     setIsAddEducation(true)
   }
@@ -19,15 +19,35 @@ const UserInfo = () => {
   if (localStorage.getItem('allEducation') === null) {
     localStorage.setItem('allEducation', JSON.stringify([]))
   }
-
+  function checkIsConnect(a, b) {
+    if (a != null && b != null) {
+      return true
+    }
+  }
   const allEduForm = JSON.parse(localStorage.getItem('allEducation'))
   const eduElements = allEduForm.map((theEdu) => {
     return (
-      <div className="education-main">
-        <div>{theEdu.school}</div>
-        <div>{theEdu.degree}</div>
-        <div>{theEdu.field}</div>
-      </div>
+      <section className="education-content">
+        <article className="education-school">
+          <div>{theEdu.school}</div>
+        </article>
+
+        <article className="education-degree-field">
+          {theEdu.degree}
+          {checkIsConnect(theEdu.degree, theEdu.field) ? ', ' : ''}
+          {theEdu.field}
+          {checkIsConnect(theEdu.field, theEdu.startMonth) ? ', ' : ''}
+          <span className="education-all-date">
+            {theEdu.startMonth}
+            {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? ' ' : ''}
+            {theEdu.startYear}
+            {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? ' - ' : ''}
+            {theEdu.endMonth}
+            {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? ' ' : ''}
+            {theEdu.endYear}
+          </span>
+        </article>
+      </section>
     )
   })
   return (
@@ -39,9 +59,11 @@ const UserInfo = () => {
           width="150"
           height="150"
         />
+        <div className="profile-pic-setup">Set up display</div>
       </section>
       <section className="username">
         Username
+        <br />
         <textarea
           class="input-username"
           type="text"
@@ -91,7 +113,7 @@ const UserInfo = () => {
       >
         Education
         <button onClick={onAddEducationClick}>add more</button>
-        {eduElements}
+        <div>{eduElements}</div>
       </section>
       <section className="contact">
         contact
