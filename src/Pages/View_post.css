@@ -366,3 +366,11 @@
   width: 33px;
   height: auto;
 }
+
+.share_icon {
+  width: 30px;
+  height: auto;
+  position: relative;
+  left: 30px;
+  /* position: absolute; */
+}

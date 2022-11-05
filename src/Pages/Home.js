@@ -121,12 +121,12 @@ function Home() {
       }
 
       const json = await response.json();
-      console.log(json);
+
       setTopicIdArray(json.map((data) => data._id));
       setTopicarray(json.map((data) => data.topic_name));
       setLoadingtopic(false);
     } catch {
-      console.error("fail");
+      console.error("fail to getpost");
     }
   };
 
@@ -155,7 +155,6 @@ function Home() {
 
   const topic_select = (topic_number) => {
     if (displayload) {
-      console.log(loadingtopic);
       if (topic[topic_number] !== true) {
         setTopic((prevdata) =>
           prevdata.map((data, idx) => (idx === topic_number ? true : false))
@@ -534,6 +533,7 @@ function Home() {
                         comment={element.post_comment_count}
                         profilepic={element.author.profile_pic_url}
                         post_photo_url={element.post_photo_url}
+                        post_topic={element.post_topic}
                         username={element.author.username}
                         post_time={element.post_time}
                         post_id={element.post_id}
@@ -552,6 +552,7 @@ function Home() {
                       comment={element.post_comment_count}
                       profilepic={element.author.profile_pic_url}
                       post_photo_url={element.post_photo_url}
+                      post_topic={element.post_topic}
                       username={element.author.username}
                       post_time={element.post_time}
                       post_id={element.post_id}

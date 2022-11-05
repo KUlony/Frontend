@@ -164,6 +164,7 @@ function Search() {
                         comment={element.post_comment_count}
                         profilepic={element.author.profile_pic_url}
                         post_photo_url={element.post_photo_url}
+                        post_topic={element.post_topic}
                         username={element.author.username}
                         post_time={element.post_time}
                         post_id={element.post_id}
@@ -182,6 +183,7 @@ function Search() {
                       comment={element.post_comment_count}
                       profilepic={element.author.profile_pic_url}
                       post_photo_url={element.post_photo_url}
+                      post_topic={element.post_topic}
                       username={element.author.username}
                       post_time={element.post_time}
                       post_id={element.post_id}

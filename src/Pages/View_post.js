@@ -187,6 +187,7 @@ function View_post() {
   };
   const updatecommentdata = (data) =>
     setCommentdata((commentdata) => [...commentdata, data]);
+
   const likepost_update = async () => {
     try {
       if (user_like_status) {
@@ -211,6 +212,7 @@ function View_post() {
       console.log(err);
     }
   };
+
   const navigate = useNavigate();
   const [datetime, setDatetime] = useState("");
 
@@ -393,7 +395,7 @@ function View_post() {
               className="view_post_share"
               onClick={() => navigator.clipboard.writeText("test")}
             >
-              <AiOutlineShareAlt className="" />
+              <AiOutlineShareAlt className="share_icon" />
               <p className="view_post_text">Share</p>
             </div>
             {!possession && (

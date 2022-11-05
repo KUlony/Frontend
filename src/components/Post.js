@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import { FcLikePlaceholder } from "react-icons/fc";
 import { MdOutlineModeComment, MdTitle } from "react-icons/md";
@@ -31,7 +31,9 @@ function Post(props) {
     post_id,
     user_id,
     user_like_status_post,
+    post_topic,
   } = props;
+  // console.log(post_topic);
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [displayComment, setdisplatComment] = useState(true);
@@ -57,6 +59,31 @@ function Post(props) {
   );
   const [deletedone, setDeletedone] = useState(false);
   const [commentcount, setCommentcount] = useState(comment);
+
+  const [topicname, setTopicname] = useState([]);
+  // const [loadtopicname, setloadtopicname] = useState(false);
+
+  const gettopicname = async (topicid) => {
+    try {
+      const response = await fetch(`/api/topic/get_topic_data?id=${topicid}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      // console.log(response);
+      const json = await response.json();
+      // console.log("json topic", json);
+      setTopicname((oldarray) => [...oldarray, json.topic_name]);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    post_topic.map((data) => {
+      gettopicname(data);
+    });
+  }, []);
 
   const report_dropdown = () => {
     if (reportpost_drop === "btn_where") {
@@ -279,7 +306,9 @@ function Post(props) {
                 />
               </div>
             )}
-            <h4 class="Topic_text">Topics : Engineering, รีวิวการเรียน</h4>
+            <h4 class="Topic_text">
+              Topics : {topicname.map((data) => `${data} `)}
+            </h4>
             <div className="interact">
               <div className="like_box_value" onClick={likepost_update}>
                 <BsFillHeartFill className="likeshadowdrop1" size={28} />

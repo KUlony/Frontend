@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Favorite from "../components/Favorite";
 import Navbar from "../components/NavBar";
 import Post from "../components/Post";
 import Post_generator from "../components/Post_generator";
@@ -20,6 +21,7 @@ function MyPost() {
       const json = await response.json();
       setUserinfo(json.author);
       setMypostdata(json.post);
+      // console.log("mypost ", json);
       setLoading(false);
     } catch (err) {
       console.error(err);
@@ -35,8 +37,10 @@ function MyPost() {
       <div>
         <Navbar />
       </div>
+
       {!loading && (
         <div className="mypost_allpost">
+          <Favorite />
           {mypostdata.map((element) => {
             return (
               <Post
@@ -47,6 +51,7 @@ function MyPost() {
                 comment={element.post_comment_count}
                 profilepic={userinfo.profile_pic_url}
                 post_photo_url={element.post_photo_url}
+                post_topic={element.post_topic}
                 username={userinfo.username}
                 post_time={element.post_time}
                 post_id={element.post_id}

@@ -106,7 +106,7 @@
   font-weight: 700;
 }
 
-.ikeshadowdrop {
+.likeshadowdrop {
   color: black;
 }
 
@@ -343,6 +343,7 @@
 .TitleHead {
   margin: 0px;
   padding: 0px;
+  overflow-wrap: break-word;
 }
 .profile_miniimg {
   position: relative;
