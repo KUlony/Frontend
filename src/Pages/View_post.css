@@ -254,6 +254,7 @@
   left: 50%;
   margin-left: -335px;
   margin-top: -150px;
+  z-index: 20;
 }
 
 .profile_miniimg {
