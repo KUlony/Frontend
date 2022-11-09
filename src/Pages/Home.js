@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react"
+import React, { useCallback, useEffect, useRef, useState } from "react"
 import NavBar from "../components/NavBar"
 import Post from "../components/Post"
 import "./Home.css"
@@ -8,339 +8,140 @@ import search from "../picture/search.png"
 import Post_generator from "../components/Post_generator"
 import PostData from "../PostData"
 import Miniprofile from "../components/Miniprofile"
-import { Link } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaPassport } from "react-icons/fa"
 import { HiSearch } from "react-icons/hi"
 import { BsPlusLg } from "react-icons/bs"
 import { FiChevronDown, FiChevronUp } from "react-icons/fi"
+import Checklogin from "../components/Checklogin"
+
 // import ScrollRestoration from "react-scroll-restoration";
 
 function Home() {
   // const [havepost]
+  // localStorage.removeItem("token");
+
+  const token = localStorage.getItem("token")
   const [post_data, setPost_data] = useState([])
-  const [displayload, setDisplayload] = useState(false)
-  const componentDidMount = async () => {
-    try {
-      // const response = await fetch(`http://localhost:3000/post/all_post`);
-      // const json = await response.json();
-      // setDisplayload(true);
-      // setPost_data(json);
-    } catch {
-      console.error("fail")
-    }
-  }
-  const [showtopic, setShowtopic] = useState(false)
-  // componentDidMount();
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", () => {
-  //     console.log(window.scrollY);
-  //   });
-  // });
-
-  // const [pagecount, setPagecount] = useState(1);
-
-  const ref = useRef(null)
-  // const [testcount, setTestCount] = useState(0);
-  // const pagecount = useRef(1);
-  // useEffect(() => {
-  //   setTestCount(testcount + 1);
-  //   const element = ref.current;
-  //   element.addEventListener("scroll", () => {
-  //     // setScollposition(element.scrollTop);
-  //     // console.log(element.scrollTop);
-  //     const scroll = element.scrollTop;
-  //     console.log(scroll);
-  //     const countscroll = scroll / 500;
-  //     // console.log(countscroll);
-  //     // setPagecount(countscroll);
-  //     if (countscroll >= pagecount.current + 1) {
-  //       pagecount.current++;
-  //     }
-
-  //     console.log(pagecount);
-  //   });
-  // }, [testcount]);
-
-  const testdata = [
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kitipong tame",
-        profile_pic_url:
-          "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      },
-      post_title:
-        "    โครงสร้างของบทความวิจัย  (research paper) มีดังนี้ บางบทความใช้เลขหมายกำกับ หรือเขียนอภิปรายตามหัวข้อปัญหาวิจัย หรือคำถามวิจัย (research questions)",
-      cover_photo_url:
-        "https://images.unsplash.com/photo-1617854818583-09e7f077a156?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80",
-      post_content:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac sad as dqw as dx wqdq deqw e wq ewq ewq e wq eqw edqw eqw q  qw wqturpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 45,
-      post_comment_count: 2112,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kanpech ",
-        profile_pic_url:
-          "https://static.trueplookpanya.com/tppy/member/m_545000_547500/545994/cms/images/2019-Q3/%E0%B9%81%E0%B8%A1%E0%B8%A79%E0%B8%8A%E0%B8%B5%E0%B8%A7%E0%B8%B4%E0%B8%95.jpg",
-      },
-      post_title:
-        "สวัสดีครับ2 Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla ",
-      cover_photo_url:
-        "https://static.thairath.co.th/media/dFQROr7oWzulq5FZYSepvl9DB1i50K00ibBJqUkYfxOBstWhhRdHMHEXFnVVFNc9GiG.webp",
-      post_content:
-        "Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 23,
-      post_comment_count: 212,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-    {
-      author: {
-        user_id: "6329fedcc3479021a8d8d1e4",
-        username: "kankasem",
-        profile_pic_url:
-          "https://image.sistacafe.com/w800/images/uploads/summary/image/5043/1449106947-Instagrams-most-famous-cat-Nala16__605.jpg",
-      },
-      post_title:
-        "สวัสดีครับ3Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla ",
-      cover_photo_url:
-        "https://www.central.co.th/e-shopping/storage/2020/12/CUTE-KITTY.jpg",
-      post_content:
-        "Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Vestibulum congue ipsum enim, quis sagittis diam dapibus vitae. Nam convallis mollis consectetur. Donec dictum lobortis nibh, et fermentum nisl laoreet ut. Sed metus lectus, viverra gravida mattis sit amet, fringilla elementum lectus. Quisque et pharetra ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non turpis ac mauris commodo scelerisque. Maecenas ut sem sed diam placerat facilisis. Phasellus aliquet vehicula tortor pretium viverra. Morbi tincidunt imperdiet purus, a lobortis nisi auctor eget. Sed pulvinar sollicitudin erat feugiat dictum. Cras purus nisi, sagittis non accumsan id, volutpat nec ipsum. Nunc blandit ante ac velit dictum pretium. Integer neque dui, mattis eu diam sit amet, scelerisque dignissim lacus.Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metusPellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo. Quisque sit amet est et sapien ullamcorper pharetra. Vestibulum erat wisi, condimentum sed, commodo vitae, ornare sit amet, wisi. Aenean fermentum, elit eget tincidunt condimentum, eros ipsum rutrum orci, sagittis tempus lacus enim ac dui. Donec non enim in turpis pulvinar facilisis. Ut felis. Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus",
-      post_like_count: 20,
-      post_comment_count: 2,
-      post_time: "2022-10-12T12:36:41.773Z",
-      post_id: "6346bc19c52c86c6ccbb0f88",
-    },
-  ]
-  const [category, setCategory] = useState([true, false, false, false, false])
-
-  const [followtopic, setFollowtopic] = useState(false)
-
-  const [topicarray, setTopicarray] = useState([
-    "Aardvark",
-    "Albatross",
-    "Alligator",
-    "Alpaca",
-    "Ant",
-    "Anteater",
-    "Antelope",
-    "Ape",
-    "Armadillo",
-    "Donkey",
-    "Baboon",
-    "Badger",
-    "Barracuda",
-    "Bat",
-    "Bear",
-    "Beaver",
-    "Bee",
-    "Bison",
-    "Boar",
-    "Buffalo",
-    "Butterfly",
-    "Camel",
-    "Capybara",
-    "Caribou",
-    "Cassowary",
-    "Cat",
-    "Caterpillar",
-    "Cattle",
-    "Chamois",
-    "Cheetah",
-    "Chicken",
-    "Chimpanzee",
-    "Chinchilla",
-    "Chough",
-    "Clam",
-    "Cobra",
-    "Cockroach",
-    "Cod",
-    "Cormorant",
-    "Coyote",
-    "Crab",
-    "Crane",
-    "Crocodile",
-    "Crow",
-    "Curlew",
-    "Deer",
-    "Dinosaur",
-    "Dog",
-    "Dogfish",
-    "Dolphin",
-    "Dotterel",
-    "Dove",
-    "Dragonfly",
-    "Duck",
-    "Dugong",
-    "Dunlin",
-    "Eagle",
-    "Echidna",
-    "Eel",
-    "Eland",
-    "Elephant",
-    "Elk",
-    "Emu",
-    "Falcon",
-    "Ferret",
-    "Finch",
-    "Fish",
-    "Flamingo",
-    "Fly",
-    "Fox",
-    "Frog",
-    "Gaur",
-    "Gazelle",
-    "Gerbil",
-    "Giraffe",
-    "Gnat",
-    "Gnu",
-    "Goat",
-    "Goldfinch",
-    "Goldfish",
-    "Goose",
-    "Gorilla",
-    "Goshawk",
-    "Grasshopper",
-    "Grouse",
-    "Guanaco",
-    "Gull",
-    "Hamster",
-    "Hare",
-    "Hawk",
-    "Hedgehog",
-    "Heron",
-    "Herring",
-    "Hippopotamus",
-    "Hornet",
-    "Horse",
-    "Human",
-    "Hummingbird",
-    "Hyena",
-    "Ibex",
-    "Ibis",
-    "Jackal",
-    "Jaguar",
-    "Jay",
-    "Jellyfish",
-    "Kangaroo",
-    "Kingfisher",
-    "Koala",
-    "Kookabura",
-    "Kouprey",
-    "Kudu",
-    "Lapwing",
-    "Lark",
-    "Lemur",
-    "Leopard",
-    "Lion",
-    "Llama",
-    "Lobster",
-    "Locust",
-    "Loris",
-    "Louse",
-    "Lyrebird",
-    "Magpie",
-    "Mallard",
-    "Manatee",
-    "Mandrill",
-    "Mantis",
-    "Marten",
-    "Meerkat",
-    "Mink",
-    "Mole",
-    "Mongoose",
-    "Monkey",
-    "Moose",
-    "Mosquito",
-    "Mouse",
-    "Mule",
-    "Narwhal",
-    "Newt",
-    "Nightingale",
-    "Octopus",
-    "Okapi",
-    "Opossum",
-    "Oryx",
-    "Ostrich",
-    "Otter",
-    "Owl",
-    "Oyster",
-    "Panther",
-    "Parrot",
-    "Partridge",
-    "Peafowl",
-    "Pelican",
-    "Penguin",
-    "Pheasant",
-    "Pig",
-    "Pigeon",
-    "Pony",
-    "Porcupine",
-    "Porpoise",
-    "Quail",
-    "Quelea",
-    "Quetzal",
-    "Rabbit",
-    "Raccoon",
-    "Rail",
-    "Ram",
-    "Rat",
-    "Raven",
-    "Red deer",
-    "Red panda",
-    "Reindeer",
-    "Rhinoceros",
-    "Rook",
-    "Salamander",
-    "Salmon",
-    "Sand Dollar",
-    "Sandpiper",
-    "Sardine",
-    "Scorpion",
-    "Seahorse",
-    "Seal",
-    "Shark",
-    "Sheep",
-    "Shrew",
-    "Skunk",
-    "Snail",
-    "Snake",
-    "Sparrow",
-    "Spider",
-    "Spoonbill",
-    "Squid",
-    "Squirrel",
-    "Starling",
-    "Stingray",
-    "Stinkbug",
-    "Stork",
-    "Swallow",
-    "Swan",
-    "Tapir",
-    "Tarsier",
-    "Termite",
-    "Tiger",
-    "Toad",
-    "Trout",
+  const [displayload, setDisplayload] = useState(true)
+  const [apipath, setApipath] = useState("post/all_post")
+  const [category, setCategory] = useState([
+    true,
+    false,
+    false,
+    false,
+    false,
+    false,
   ])
-
+  const [followtopic, setFollowtopic] = useState(false)
+  const [showtopic, setShowtopic] = useState(false)
+  const [topicarray, setTopicarray] = useState([])
+  const [loadingtopic, setLoadingtopic] = useState(false)
   const [topic, setTopic] = useState([])
   const [count, setCount] = useState(false)
   const [searchresult, setSearchresult] = useState("")
-  const category_select = (category_number) => {
-    if (category[category_number] !== true) {
-      setCategory((prevdata) =>
-        prevdata.map((data, idx) => (idx === category_number ? true : false))
-      )
-    }
+  const ref = useRef(null)
+  const observer = useRef()
+  const [pagecount, setPageCount] = useState(1)
+  const [havemore, setHavemore] = useState(true)
+  const [topicIdArrayy, setTopicIdArray] = useState([])
+  const init = () => {
+    setPost_data([])
+    setPageCount(1)
+    setHavemore(true)
+    setTopic([])
+    setTopicarray([])
+    setSearchresult("")
+  }
 
-    // fetchข้อมูลมาก่อนแล้วค่อย set state
+  useEffect(() => {
+    componentDidMount()
+  }, [category, followtopic])
+
+  const componentDidMount = async () => {
+    try {
+      let response = ""
+
+      if (category[0]) {
+        setDisplayload(false)
+        if (!followtopic) {
+          response = await fetch(`/api/post/all_post?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("post/all_post?")
+        } else {
+          response = await fetch(`/api/home?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("home?")
+        }
+
+        const json = await response.json()
+        setDisplayload(true)
+        setPost_data(json)
+      } else if (category[1]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/General`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[2]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Learning`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[3]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/News`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[4]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Market`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[5]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Faculty`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      }
+
+      const json = await response.json()
+
+      setTopicIdArray(json.map((data) => data._id))
+      setTopicarray(json.map((data) => data.topic_name))
+      setLoadingtopic(false)
+    } catch {
+      console.error("fail to getpost")
+    }
+  }
+
+  const category_select = (category_number) => {
+    if (displayload && !loadingtopic) {
+      if (category[category_number] !== true) {
+        setCategory((prevdata) =>
+          prevdata.map((data, idx) => (idx === category_number ? true : false))
+        )
+        init()
+      }
+    }
+  }
+
+  useEffect(() => {
     setTopic(
       topicarray.map((data, idx) => {
         if (idx === 0) {
@@ -350,13 +151,15 @@ function Home() {
         }
       })
     )
-  }
+  }, [topicarray])
 
   const topic_select = (topic_number) => {
-    if (topic[topic_number] !== true) {
-      setTopic((prevdata) =>
-        prevdata.map((data, idx) => (idx === topic_number ? true : false))
-      )
+    if (displayload) {
+      if (topic[topic_number] !== true) {
+        setTopic((prevdata) =>
+          prevdata.map((data, idx) => (idx === topic_number ? true : false))
+        )
+      }
     }
   }
 
@@ -366,118 +169,214 @@ function Home() {
   }
 
   const topic_selectbysearch = (data) => {
-    const indexoftext = topicarray.indexOf(data)
-    topic_select(indexoftext)
-    setSearchresult(topicarray[indexoftext])
+    if (displayload) {
+      const indexoftext = topicarray.indexOf(data)
+      topic_select(indexoftext)
+      setSearchresult(topicarray[indexoftext])
+    }
   }
-  // <Link to="/search">search </Link>
+
+  const lastSearchelement = useCallback(
+    (node) => {
+      if (!displayload) return
+      if (observer.current) observer.current.disconnect()
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          setPageCount((pagecount) => pagecount + 1)
+        }
+      })
+      if (node) observer.current.observe(node)
+    },
+    [displayload]
+  )
+  const loadmore = async (e) => {
+    try {
+      setDisplayload(false)
+      const loadmoredata = await fetch(`/api/${apipath}page=${pagecount}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
+      const loadmoredatajson = await loadmoredata.json()
+      setDisplayload(true)
+      setPost_data([...post_data, ...loadmoredatajson])
+
+      if (loadmoredatajson.length === 0) {
+        setHavemore(false)
+      }
+    } catch {
+      console.error("fail to load more")
+    }
+  }
+
+  useEffect(() => {
+    if (pagecount !== 1 && havemore) {
+      loadmore()
+    }
+  }, [pagecount])
+
+  const followtopic_click = () => {
+    if (displayload) {
+      setFollowtopic(!followtopic)
+      init()
+    }
+  }
+
+  // ทุกครั้งที่topicเปลี่ยนจะ fetch ใหม่่ โดยใช้ตำแหน่ง idx แล้วไปชี้ที่ topic.id
+
+  const topic_fetch = async () => {
+    try {
+      setPost_data([])
+      setPageCount(1)
+      setHavemore(true)
+      setDisplayload(false)
+      const idxoftopic = topic.findIndex((data) => {
+        if (data) {
+          return data
+        }
+      })
+
+      const currenttopic = topicIdArrayy[idxoftopic]
+      if (currenttopic) {
+        // console.log(currenttopic);
+        const response = await fetch(
+          `/api/search/post/topic?text=${currenttopic}&page=1`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        )
+        const json = await response.json()
+        // console.log(json);
+        setPost_data(json)
+        setDisplayload(true)
+        setApipath(`search/post/topic?text=${currenttopic}&`)
+      }
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  useEffect(() => {
+    if (!loadingtopic && !category[0]) {
+      topic_fetch()
+    }
+  }, [topic])
+
+  const dataupdate = (postid) => {}
 
   return (
-    <PostData.Provider postdata={testdata}>
-      <div className="Home_page">
-        <div className="home_test" ref={ref}>
-          <div className="Nav_home">
-            <NavBar />
-            {/* <ScrollRestoration /> */}
-          </div>
+    <div className="Home_page">
+      <div className="home_test" ref={ref}>
+        <div className="Nav_home">
+          <NavBar />
+          {/* <ScrollRestoration /> */}
+        </div>
 
-          <div className="home_search">
-            <div className="home_search_center">
-              <div className="home_search_box">
-                <h1 className="home_search_title">Share & Explore</h1>
-                <h3>thorugh this endless KU's community !</h3>
-                <button className="home_create_post_button">
-                  Create new post{" "}
-                  <BsPlusLg className="home_create_post_button_icon" />
-                  <Link to="/"></Link>
+        <div className="home_search">
+          <div className="home_search_center">
+            <div className="home_search_box">
+              <h1 className="home_search_title">Share & Explore</h1>
+              <h3>through this endless KU's community !</h3>
+              <button className="home_create_post_button">
+                Create new post{" "}
+                <BsPlusLg className="home_create_post_button_icon" />
+                <Link to="/"></Link>
+              </button>
+              <Link to="/search">
+                <button className="home_search_button">
+                  Search
+                  <HiSearch className="home_search_button_icon" />
                 </button>
-                <Link to="/search">
-                  <button className="home_search_button">
-                    Search
-                    <HiSearch className="home_search_button_icon" />
-                  </button>
-                </Link>
-              </div>
-              <div className="think_img_box">
-                <img
-                  src={Think}
-                  alt="Girl in a jacket"
-                  className="think_img_photo"
-                ></img>
-              </div>
-              <div>
-                {" "}
-                <img
-                  src={Homebackground}
-                  alt="Girl in a jacket"
-                  className="home_title_background"
-                ></img>
-              </div>
+              </Link>
+            </div>
+            <div className="think_img_box">
+              <img
+                src={Think}
+                alt="Girl in a jacket"
+                className="think_img_photo"
+              ></img>
+            </div>
+            <div>
+              {" "}
+              <img
+                src={Homebackground}
+                alt="Girl in a jacket"
+                className="home_title_background"
+              ></img>
             </div>
           </div>
-          <nav className="Nav_topic">
-            {/* {topicarray.} */}
+        </div>
+        <nav className="Nav_topic">
+          {/* {topicarray.} */}
 
-            <div
-              className={`${category[0] ? "current_category" : null}`}
-              onClick={() => category_select(0)}
-            >
-              General
-            </div>
-            <div
-              className={`${category[1] ? "current_category" : null}`}
-              onClick={() => category_select(1)}
-            >
-              Learning
-            </div>
-            <div
-              className={`${category[2] ? "current_category" : null}`}
-              onClick={() => category_select(2)}
-            >
-              News
-            </div>
-            <div
-              className={`${category[3] ? "current_category" : null}`}
-              onClick={() => category_select(3)}
-            >
-              Market
-            </div>
-            <div
-              className={`${category[4] ? "current_category" : null}`}
-              onClick={() => category_select(4)}
-            >
-              Faculty
-            </div>
-          </nav>
-          <div className="home_Content">
-            <div
-              className={`home_sidebar ${category[0] ? "display_none" : null}`}
-            >
-              <div>
-                <form
-                  className={`home_checkbox ${
-                    category[0] ? "display_none" : null
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    onClick={() => setFollowtopic(!followtopic)}
-                  ></input>
-                  <label>Show following topics only</label>
-                </form>
-                <form
-                  className="searchinput_form"
-                  onSubmit={(e) => e.preventDefault()}
-                >
-                  <input
-                    type="text"
-                    value={searchresult}
-                    onChange={resultinput}
-                    className="searchtopic_input"
-                    placeholder="Search topic"
-                  />
-                  <HiSearch className="topic_search_icon" />
-                </form>
+          <div
+            className={`${category[0] ? "current_category" : null}`}
+            onClick={() => category_select(0)}
+          >
+            Discover
+          </div>
+          <div
+            className={`${category[1] ? "current_category" : null}`}
+            onClick={() => category_select(1)}
+          >
+            General
+          </div>
+          <div
+            className={`${category[2] ? "current_category" : null}`}
+            onClick={() => category_select(2)}
+          >
+            Learning
+          </div>
+          <div
+            className={`${category[3] ? "current_category" : null}`}
+            onClick={() => category_select(3)}
+          >
+            News
+          </div>
+          <div
+            className={`${category[4] ? "current_category" : null}`}
+            onClick={() => category_select(4)}
+          >
+            Market
+          </div>
+          <div
+            className={`${category[5] ? "current_category" : null}`}
+            onClick={() => category_select(5)}
+          >
+            Faculty
+          </div>
+        </nav>
+        <div className="home_Content">
+          <form
+            className={`home_checkbox ${category[0] ? null : "display_none"}`}
+          >
+            <input
+              type="checkbox"
+              onClick={followtopic_click}
+              checked={followtopic}
+            ></input>
+            <label>Show following topics only</label>
+          </form>
+          <div
+            className={`home_sidebar ${category[0] ? "display_none" : null}`}
+          >
+            <div>
+              <form
+                className="searchinput_form"
+                onSubmit={(e) => e.preventDefault()}
+              >
+                <input
+                  type="text"
+                  value={searchresult}
+                  onChange={resultinput}
+                  className="searchtopic_input"
+                  placeholder="Search topic"
+                />
+                <HiSearch className="topic_search_icon" />
+              </form>
+              {!loadingtopic && (
                 <ul className="select_faculty">
                   <div
                     className={`search_result ${
@@ -530,103 +429,147 @@ function Home() {
                       No result found
                     </p>
                   </div>
-                  {topicarray.map((data, idx) => {
-                    if (idx < 12) {
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      )
-                    } else {
-                      if (idx === 12) {
+                  <div className="topic_box">
+                    {topicarray.map((data, idx) => {
+                      if (idx < 12) {
                         return (
-                          <div>
-                            {!showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show more
-                                </button>
-                                <FiChevronDown
-                                  className="topic_showmore_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                          </div>
+                          <li
+                            className={`${topic[idx] ? "current_topic" : null}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
                         )
-                      } else if (idx === topicarray.length - 1) {
+                      } else {
+                        if (idx === 12) {
+                          return (
+                            <div>
+                              {!showtopic && (
+                                <div className="show_box">
+                                  <button
+                                    className="topic_show_button"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  >
+                                    Show more
+                                  </button>
+                                  <FiChevronDown
+                                    className="topic_showmore_icon"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  />
+                                </div>
+                              )}
+                              <li
+                                className={`${
+                                  topic[idx] ? "current_topic" : null
+                                }  ${showtopic ? null : "display_none"}`}
+                                onClick={() => topic_select(idx)}
+                              >
+                                {data}
+                              </li>
+                            </div>
+                          )
+                        } else if (idx === topicarray.length - 1) {
+                          return (
+                            <div>
+                              <li
+                                className={`${
+                                  topic[idx] ? "current_topic" : null
+                                }  ${showtopic ? null : "display_none"}`}
+                                onClick={() => topic_select(idx)}
+                              >
+                                {data}
+                              </li>
+                              {showtopic && (
+                                <div className="show_box">
+                                  <button
+                                    className="topic_show_button"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  >
+                                    Show less
+                                  </button>
+                                  <FiChevronUp
+                                    className="topic_showless_icon"
+                                    onClick={() => setShowtopic(!showtopic)}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          )
+                        }
+
                         return (
-                          <div>
-                            <li
-                              className={`${
-                                topic[idx] ? "current_topic" : null
-                              }  ${showtopic ? null : "display_none"}`}
-                              onClick={() => topic_select(idx)}
-                            >
-                              {data}
-                            </li>
-                            {showtopic && (
-                              <div>
-                                <button
-                                  className="topic_show_button"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                >
-                                  Show less
-                                </button>
-                                <FiChevronUp
-                                  className="topic_showless_icon"
-                                  onClick={() => setShowtopic(!showtopic)}
-                                />
-                              </div>
-                            )}
-                          </div>
+                          <li
+                            className={`${
+                              topic[idx] ? "current_topic" : null
+                            }  ${showtopic ? null : "display_none"}`}
+                            onClick={() => topic_select(idx)}
+                          >
+                            {data}
+                          </li>
                         )
                       }
-
-                      return (
-                        <li
-                          className={`${topic[idx] ? "current_topic" : null}  ${
-                            showtopic ? null : "display_none"
-                          }`}
-                          onClick={() => topic_select(idx)}
-                        >
-                          {data}
-                        </li>
-                      )
-                    }
-                  })}
+                    })}
+                  </div>
                 </ul>
-              </div>
+              )}
             </div>
-            <div className="Home_post">
-              <div className={`${category[0] ? null : "post_faculty"}`}>
-                {/* ใส่ตอนมีข้อมูลให้ fetch */}
-                {/* <div
-                className={`loader ${displayload ? "display_none" : null}`}
-              ></div> */}
+          </div>
+          <div className="Home_post">
+            <div className={`${category[0] ? null : "post_faculty"}`}>
+              {/* ใส่ตอนมีข้อมูลให้ fetch */}
 
-                <Post_generator data={testdata} />
-                {/* <Post_generator data={post_data} /> */}
-              </div>
+              {/* <Post_generator data={testdata} /> */}
+              {/* <Post_generator data={post_data} /> */}
+              {post_data.map((element, index) => {
+                if (post_data.length === index + 1) {
+                  return (
+                    <div ref={lastSearchelement}>
+                      <Post
+                        title={element.post_title}
+                        like={element.post_like_count}
+                        post_content={element.post_content}
+                        photo={element.cover_photo_url}
+                        comment={element.post_comment_count}
+                        profilepic={element.author.profile_pic_url}
+                        post_photo_url={element.post_photo_url}
+                        post_topic={element.post_topic}
+                        username={element.author.username}
+                        post_time={element.post_time}
+                        post_id={element.post_id}
+                        user_id={element.author.user_id}
+                        user_like_status_post={element.user_like_status}
+                      />
+                    </div>
+                  )
+                } else {
+                  return (
+                    <Post
+                      title={element.post_title}
+                      like={element.post_like_count}
+                      post_content={element.post_content}
+                      photo={element.cover_photo_url}
+                      comment={element.post_comment_count}
+                      profilepic={element.author.profile_pic_url}
+                      post_photo_url={element.post_photo_url}
+                      post_topic={element.post_topic}
+                      username={element.author.username}
+                      post_time={element.post_time}
+                      post_id={element.post_id}
+                      user_id={element.author.user_id}
+                      user_like_status_post={element.user_like_status}
+                    />
+                  )
+                }
+              })}
+              <div
+                className={`loader ${displayload ? "display_none" : null}`}
+              ></div>
             </div>
           </div>
         </div>
       </div>
-    </PostData.Provider>
+      <Checklogin />;
+    </div>
   )
 }
 

@@ -14,3 +14,19 @@
   position: relative;
   left: 105px;
 }
+
+.reply_content {
+  position: relative;
+  left: 45px;
+  top: -14px;
+  width: 420px;
+}
+
+.comment_x_button {
+  position: absolute;
+  top: 15.5px;
+  left: 523px;
+  width: 11px;
+  height: auto;
+  cursor: pointer;
+}

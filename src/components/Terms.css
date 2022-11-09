@@ -1,0 +1,55 @@
+.terms_container {
+    background: #FFFFFF;
+    border: 1px solid #989898;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    width: 670px;
+    height: 600px;
+    font-family: 'Quicksand';
+    font-style: normal;
+}
+
+.terms_header {
+    padding-top: 30px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.terms_subheader {
+    font-weight: lighter;
+    text-align: center;
+    color: #989898;
+}
+
+.terms_rule {
+    position: absolute;
+    background-color: #D6EBE0;
+    left: 40px;
+    width: 570px;
+    height: 420px;
+    padding: 15px 10px 15px 10px;
+    font-size: 16px;
+    margin-top: 30px;
+ }
+
+ .terms_subject {
+    margin-bottom: 20px;
+    margin-top: 20px;
+ }
+
+ .terms_content {
+    margin-left: 30px;
+ }
+
+ .terms_subject {
+    font-weight: bolder;
+ }
+
+ .terms_xmark {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    right: 25px;
+    top: 30px;
+    cursor: pointer;
+ }

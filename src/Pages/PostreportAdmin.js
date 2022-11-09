@@ -6,8 +6,26 @@ import "./PostreportAdmin.css"
 
 function PostreportAdmin() {
   const [postdata, setPostdata] = useState([])
+  const [postiddata, setPostiddata] = useState([])
 
   const token = localStorage.getItem("token")
+
+  const genpost = () => {
+    axios
+      .get(`/api/post/635cd1f7672871211ee8cb13`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2Njc5NzEzNzIsImV4cCI6MTY2ODA1Nzc3Mn0.gly9ATCPhhspCN2vrM74iaUZtK0OjMXdgRRhcUiPJlw`,
+        },
+      })
+      .then((res) => {
+        setPostiddata((iditemed) => [...iditemed, res.data])
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  console.log(postiddata)
 
   const gendata = () => {
     axios
@@ -71,7 +89,9 @@ function PostreportAdmin() {
             <p className="topname">
               Reported by <span className="greenspan">{item.count_user}</span>{" "}
               users, Lastest report on{" "}
-              <span className="greenspan">{item.last_report}</span>
+              <span className="greenspan">
+                {item.year}-{item.month}-{item.day}
+              </span>
             </p>
             <button className="discardbtnpost">
               Discard Report <i class="bi bi-x"></i>
@@ -80,6 +100,8 @@ function PostreportAdmin() {
               Delete Post <i class="bi bi-trash"></i>
             </button>
           </div>
+          {/* <p className="">Report Type : {item.report_type}</p> */}
+          {/* {genpost("635cd1f7672871211ee8cb13")} */}
           {/* <Post
           title={item.post_title}
           like={item.post_like_count}

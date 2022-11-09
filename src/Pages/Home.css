@@ -17,7 +17,8 @@
 .home_test {
   background-color: #f8f5d5;
   height: 100vh;
-  overflow: scroll;
+  overflow-y: scroll;
+  overflow-x: hidden;
   /* overflow: hidden; */
 }
 
@@ -73,7 +74,7 @@
 
 .home_create_post_button {
   position: absolute;
-  top: 157px;
+  top: 148px;
   left: 85px;
   width: 321px;
   font-weight: 700;
@@ -111,7 +112,7 @@
   font-size: 27px;
   font-weight: 700;
   position: absolute;
-  top: 157px;
+  top: 148px;
   left: 430px;
   width: 202px;
   border: 2.5px solid #339c64;
@@ -168,13 +169,14 @@
   text-align: center;
   height: 50px;
   background-color: #f8f5d5;
-  z-index: 2;
+  z-index: 3;
+  margin: 0 2%;
 }
 
 .Nav_topic div {
   margin-top: 15px;
   display: inline-block;
-  width: 20%;
+  width: 16%;
   cursor: pointer;
 }
 
@@ -214,8 +216,9 @@
   position: relative;
   /* left: max(50%, 640px); */
   padding: 0px;
-  left: 40%;
-  top: -80px;
+  left: 10%;
+  top: 25px;
+  z-index: 2;
   /* margin-left: -390px; */
 }
 
@@ -272,6 +275,11 @@
   padding-left: 10px;
 }
 
+.searchtopic_input:focus {
+  outline-width: 0;
+  border: 1px black soild;
+}
+
 .topic_search_icon {
   position: absolute;
   width: 22px;
@@ -282,7 +290,7 @@
 
 .searchinput_form {
   position: relative;
-  top: -50px;
+  top: -16px;
 }
 
 .home_sidebar {
@@ -311,7 +319,7 @@
 }
 
 .select_faculty {
-  top: -35px;
+  top: -5px;
   list-style-type: none;
   position: relative;
   left: 40%;
@@ -362,6 +370,12 @@
 .search_result {
   border-bottom: 1px solid black;
   width: 83%;
+  padding-bottom: 32px;
+}
+
+.search_result p {
+  position: relative;
+  top: 7px;
 }
 
 .topic_show_button {
@@ -371,6 +385,11 @@
   font-weight: bold;
   color: #339c64;
   cursor: pointer;
+}
+
+.show_box {
+  position: relative;
+  top: 25px;
 }
 
 .topic_showmore_icon {
@@ -406,4 +425,8 @@
   position: relative;
   margin: 0 auto;
   width: 1150px;
+}
+
+.topic_box {
+  margin-top: 25px;
 }

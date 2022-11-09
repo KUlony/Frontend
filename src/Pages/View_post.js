@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Navbar from "../components/NavBar";
 import "./View_post.css";
 import { IoIosArrowBack } from "react-icons/io";
 import Comment from "../components/Comment";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
+
 import { FcLikePlaceholder } from "react-icons/fc";
+import profileimg from "../picture/profile.png";
 import {
   MdOutlineModeComment,
   MdTitle,
@@ -17,21 +18,15 @@ import Reportpost_popup from "../components/Reportpost_popup";
 import Miniprofile from "../components/Miniprofile";
 import Comment_generator from "../components/Comment_generator";
 import Showimg from "../components/Showimg";
+import Checklogin from "../components/Checklogin";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import bin from "../picture/bin.png";
+import edit from "../picture/edit.png";
+import report from "../picture/reportmini.png";
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 
 function View_post() {
-  // const location = useLocation();
-  // console.log(location);
-  // const from = location.state;
-  // const like = from.like.likecount;
-  // const commentcount = from.comment.comment;
-  // const title = from.title.title;
-  // const post_content = from.post_content.post_content;
-  // const photo = from.photo.photo;
-  // const profilepic = from.profilepic.profilepic;
-  // const username = from.username.username;
-  // const scrollRestoration = History.scrollRestoration;
-  // console.log(scrollRestoration);
-
+  localStorage.setItem("test", 1);
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [imgurl, setImgurl] = useState("");
@@ -52,18 +47,21 @@ function View_post() {
   const [user_like_status, setUser_like_status] = useState(false);
   const [userminiprofile, setUserminiprofile] = useState("");
   const [commentdata, setCommentdata] = useState([]);
+  const token = localStorage.getItem("token");
+  const [timedata, setTimedate] = useState("");
   // console.log(post_id.id);
+  const [reportid, setReportid] = useState("");
+  const [reporttype, setRepottype] = useState("");
+  const [possession, setPossesstion] = useState(false);
+  const userid = localStorage.getItem("user_id");
 
   const postfetch = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:4000/api/post/${post_id.id}`,
-        {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-          },
-        }
-      );
+      const response = await fetch(`/api/post/${post_id.id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const json = await response.json();
 
       setLoading(false);
@@ -78,6 +76,8 @@ function View_post() {
       setPost_photo_url(json.post_photo_url);
       setUser_like_status(json.user_like_status);
       setUserminiprofile(json.author.user_id);
+      setTimedate(json.post_time);
+      setPossesstion(json.author.user_id === userid ? true : false);
     } catch (err) {
       console.log(err);
     }
@@ -88,17 +88,12 @@ function View_post() {
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(
-        `http://localhost:4000/api/comment/${post_id.id}`,
-        {
-          headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-          },
-        }
-      );
+      const comment_fetch_respone = await fetch(`/api/comment/${post_id.id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
       const comment_json = await comment_fetch_respone.json();
-      console.log(comment_json);
-      console.log("as");
       setCommentdata(comment_json);
       setLoadingcomment(false);
     } catch (err) {
@@ -119,31 +114,43 @@ function View_post() {
           ".view_post_comment_input"
         );
 
-        const response_comment = await fetch(
-          `http://localhost:4000/api/comment/create`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-            },
-            body: JSON.stringify({
-              post_id: post_id.id,
-              comment_content: commentinput,
-            }),
-          }
-        );
+        const response_comment = await fetch(`/api/comment/create`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `${token}`,
+          },
+          body: JSON.stringify({
+            post_id: post_id.id,
+            comment_content: commentinput,
+          }),
+        });
         if (!response_comment.ok) {
           throw new Error("fail");
         }
+
         const json_comment = await response_comment.json();
+        // console.log(`json_comment `, json_comment);
+
+        const userdata = await fetch(
+          `/api/user/${json_comment.user_id}/profile`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const jsonuserdata = await userdata.json();
+        console.log(json_comment);
         const datainput = {
           comment_content: commentinput,
-          comment_id: "eiei",
+          comment_id: json_comment._id,
+          comment_reply_count: 0,
+          comment_time: json_comment.comment_time,
           author: {
             user_id: json_comment.user_id,
-            username: json_comment.username,
-            profile_pic_url: null,
+            username: jsonuserdata.user_name,
+            profile_pic_url: jsonuserdata.profile_pic_url,
           },
         };
         updatecommentdata(datainput);
@@ -159,12 +166,22 @@ function View_post() {
   const comment_input = (e) => {
     setCommentinput(e.target.value);
   };
-  const display_report = () => {
+  const display_report = (type, id) => {
     setdisplayReport(!displayReport);
+    if (id !== "close") {
+      setReportid(id);
+      setRepottype(type);
+    }
   };
-  const display_profile = (userid) => {
-    setUserminiprofile(userid);
-    setdisplayProfile(!displayProfile);
+
+  const display_profile = (user_id) => {
+    if (user_id === "close") {
+      setdisplayProfile(false);
+    } else if (user_id !== userminiprofile) {
+      setUserminiprofile(user_id);
+    } else {
+      setdisplayProfile(!displayProfile);
+    }
   };
   const display_postimg = (url) => {
     setDisplayposting(!displaypostimg);
@@ -173,28 +190,23 @@ function View_post() {
   };
   const updatecommentdata = (data) =>
     setCommentdata((commentdata) => [...commentdata, data]);
+
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(
-          `http://localhost:4000/api/post/unlike/${post_id.id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-            },
-          }
-        );
+        const remove = await fetch(`/api/post/unlike/${post_id.id}`, {
+          method: "DELETE",
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       } else {
-        const add = await fetch(
-          `http://localhost:4000/api/post/like/${post_id.id}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZ3BvbjkxQGdtYWlsLmNvbSIsImlkIjoiNjM0OTIzZTI0ZGY2NmY5OWU2ZWQyZDI0IiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2NTgzNDI2MiwiZXhwIjoxNjY1OTIwNjYyfQ.J1WUIsjEaBStoia14Q9s7_NSpMxm_gSbBiPqPUebwHo`,
-            },
-          }
-        );
+        const add = await fetch(`/api/post/like/${post_id.id}`, {
+          method: "POST",
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
       }
 
       setLikecount(user_like_status ? likecount - 1 : likecount + 1);
@@ -203,18 +215,112 @@ function View_post() {
       console.log(err);
     }
   };
+
+  const navigate = useNavigate();
+  const [datetime, setDatetime] = useState("");
+
+  useEffect(() => {
+    if (!loading) {
+      const timepost = timedata.split("T");
+      const day = timepost[0].split("-").reverse().join("/");
+      const timearray = timepost[1].split(".");
+      const time = timearray[0];
+
+      let inttime = parseFloat(time.split(":").join("."));
+
+      if (inttime >= 12 && inttime < 24) {
+        if (inttime === 12) {
+          setDatetime("12:00 PM, " + day);
+        } else {
+          const min = inttime.toString().split(".");
+          inttime -= 5;
+
+          const date = inttime.toString().split(".");
+          // console.log(date);
+          setDatetime(date[0] + ":" + min[1] + " PM, " + day);
+        }
+      } else {
+        if (inttime === 24) {
+          setDatetime("12:00 AM, " + day);
+        } else {
+          const min = inttime.toString().split(".");
+          inttime += 7;
+          const date = inttime.toString().split(".");
+          if (min[1].length === 1) {
+            setDatetime(date[0] + ":" + min[1] + "0 AM, " + day);
+          } else {
+            setDatetime(date[0] + ":" + min[1] + " AM, " + day);
+          }
+        }
+      }
+    }
+  }, [timedata]);
+
+  const comment_delete = async (id) => {
+    try {
+      const respone = await fetch(`/api/comment/${id}/delete`, {
+        method: "PUT",
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      if (!respone.ok) {
+        throw new Error("fail to delete");
+      }
+      setCommentcount(commentcount - 1);
+      return true;
+    } catch (err) {
+      return false;
+      console.error(err);
+    }
+  };
+
+  const delete_post = async () => {
+    try {
+      const respone = await fetch(`/api/post/${post_id.id}/delete`, {
+        method: "PUT",
+        headers: {
+          Authorization: `${token}`,
+        },
+      });
+      navigate(-1);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
+
+  const report_dropdown = () => {
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_report_show");
+    } else {
+      setreportpost_drop("btn_where");
+    }
+  };
+
   return (
     <div className="view_post_poup">
+      <Checklogin />
       <div className="view_post">
         <div className="view_post_nav">
           <Navbar />
         </div>
         <div className="view_post_fullpost">
           <div className="view_post_fullpost_backtohome">
-            <Link to="/home" className="view_post_fullpost_backtohome_link">
+            {/* <Link to="/home" className="view_post_fullpost_backtohome_link">
               <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
               Back to home
-            </Link>
+            </Link> */}
+            <button
+              className="view_post_fullpost_backtohome_link"
+              onClick={() => {
+                navigate(-1, { state: { back: true } });
+              }}
+            >
+              <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
+              Go Back
+            </button>
           </div>
 
           <div className="view_post_fullpost_title">{title}</div>
@@ -223,16 +329,31 @@ function View_post() {
               className="UserProfile"
               onClick={() => display_profile(postdataarray.author.user_id)}
             >
-              <img
-                src={profilepic}
-                alt="profilemini_img"
-                className="profile_miniimg"
-              />
+              {profilepic ? (
+                <img
+                  src={profilepic}
+                  alt="profilemini_img"
+                  className="profile_miniimg"
+                />
+              ) : (
+                <img
+                  src={profileimg}
+                  alt="profilemini_img"
+                  className="profile_miniimg"
+                />
+              )}
             </div>
 
-            <div className="view_post_fullpost_profile_username">
-              {username}
-            </div>
+            {username ? (
+              <div className="view_post_fullpost_profile_username">
+                {username}
+              </div>
+            ) : (
+              <div className="view_post_fullpost_profile_username">
+                Anonymous
+              </div>
+            )}
+            <div className="date_time">{datetime}</div>
           </div>
           {photo && (
             <div className="view_post_fullpost_photo">
@@ -265,19 +386,71 @@ function View_post() {
                 className={`${user_like_status ? "like" : "unlike"}`}
                 size={22}
               />
-              <p className="view_post_text">{likecount} Likes</p>
+              <p className="view_post_text">
+                <p>{likecount}</p> Likes
+              </p>
             </div>
             <div className="view_post_commentbox">
               <MdOutlineModeComment size={30} />
               <p className="view_post_text">{commentcount} Comments</p>
             </div>
-            <div className="view_post_reportbox" onClick={display_report}>
-              <MdReport size={30} className="view_post_report_icon" />
-              <p className="view_post_text">Report post</p>
+            <div
+              className="view_post_share"
+              onClick={() => navigator.clipboard.writeText("test")}
+            >
+              <AiOutlineShareAlt className="share_icon" />
+              <p className="view_post_text">Share</p>
             </div>
+            {!possession && (
+              <div
+                className="view_post_reportbox"
+                onClick={() => display_report("Post", post_id.id)}
+              >
+                <MdReport size={30} className="view_post_report_icon" />
+                <p className="view_post_text">Report post</p>
+              </div>
+            )}
+            {possession && (
+              <div className="test_btn">
+                <button
+                  className="btn_dropdown_report_viewpost"
+                  onClick={report_dropdown}
+                >
+                  <RiArrowDropDownLine className="dropdown_iconri" />
+                </button>
+                <div className={reportpost_drop}>
+                  {possession ? (
+                    <div className="my_post_button">
+                      <div className="edit_hover_box">
+                        {" "}
+                        Edit post
+                        <img src={edit} />
+                      </div>
+                      {/* <div className="edit_button">
+                        Edit post
+                        <img src={edit} />
+                      </div> */}
+
+                      <div className="delete_button" onClick={delete_post}>
+                        Delete post <img src={bin} />
+                      </div>
+                      <div className="free_space"></div>
+                    </div>
+                  ) : (
+                    <div
+                      className="report_button"
+                      onClick={() => display_report("Post", post_id)}
+                    >
+                      Report post
+                      <img src={report} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
           <div className="view_post_commentinputbox">
-            Comments
+            <h3>Comments</h3>
             <form onSubmit={comment}>
               <input
                 className="view_post_comment_input"
@@ -296,6 +469,8 @@ function View_post() {
                 data={commentdata}
                 display_profile={display_profile}
                 display_reply={true}
+                display_report={display_report}
+                comment_delete={comment_delete}
               />
             </div>
           )}
@@ -315,7 +490,11 @@ function View_post() {
           displayReport ? "display_none" : null
         }`}
       >
-        <Reportpost_popup display={display_report} post_id={post_id.id} />
+        <Reportpost_popup
+          display={display_report}
+          post_id={reportid}
+          type={reporttype}
+        />
       </div>
       <div onClick={() => setDisplayposting(!displaypostimg)}>
         {displaypostimg && <Showimg imgurl={imgurl} />}
