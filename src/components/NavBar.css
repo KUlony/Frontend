@@ -141,6 +141,7 @@
   float: left;
   color: #000000;
   text-decoration: none;
+  display: flex;
   padding-top: 33px;
   height: 37px;
   text-align: center;
@@ -148,6 +149,9 @@
   float: left;
   cursor: pointer;
   overflow: visible;
+  justify-content: center;
+  /* align-items: center; */
+  gap: 2px;
 }
 
 .bell {
@@ -208,6 +212,7 @@
 
 .create-post-link {
   text-decoration: none;
+  width: 100%;
 }
 
 .home-nav:hover,
@@ -307,4 +312,13 @@
 
 .create-topic-confirm:hover {
   cursor: pointer;
+}
+
+.num-noti {
+  background-color: #e7db73;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 14px;
+  text-align: center;
 }

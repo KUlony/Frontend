@@ -9,19 +9,23 @@ import CreateTopic from './CreateTopic';
 
 function Navbar() {
   const [show, setShow] = useState(false);
-  const [showCreateTopic,setShowCreateTopic] = useState(false)
+  const [showCreateTopic, setShowCreateTopic] = useState(false);
   const handleReq = (e) => {
     e.preventDefault();
   };
   console.log(show);
   const handleShow = () => setShow(!show);
-  const handleShow2 = () => setShowCreateTopic(!showCreateTopic)
+  const handleShow2 = () => setShowCreateTopic(!showCreateTopic);
 
   const isAdmin = !false;
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
-      <CreateTopic handleShow2={handleShow2} handleReq={handleReq} show={showCreateTopic}/>
+      <CreateTopic
+        handleShow2={handleShow2}
+        handleReq={handleReq}
+        show={showCreateTopic}
+      />
       <li className="kulony">
         <img
           src={logo}
@@ -38,9 +42,12 @@ function Navbar() {
       </li>
       <li>
         {isAdmin ? (
-          <Link to="/admin/reportpost" className="reportpost-nav">
-            REPORT
-          </Link>
+          <div>
+            <Link to="/admin/reportpost" className="reportpost-nav">
+              <span>REPORT</span>
+              <div className="num-noti">3</div>
+            </Link>
+          </div>
         ) : (
           <div className="search-nav">SEARCH</div>
         )}
@@ -48,7 +55,8 @@ function Navbar() {
       <li>
         {isAdmin ? (
           <Link to="/admin/requesttopic" className="topic-req-nav">
-            TOPIC REQUEST
+            <span>TOPIC REQUEST</span>
+            <div className="num-noti">3</div>
           </Link>
         ) : (
           <Link to="/mypost" className="my-post">
@@ -66,7 +74,9 @@ function Navbar() {
       <li className="space"> </li>
       <li className="create-new-post">
         {isAdmin ? (
-          <div className="border-create-post" onClick={handleShow2}>Create new topic +</div>
+          <div className="border-create-post" onClick={handleShow2}>
+            Create new topic +
+          </div>
         ) : (
           <Link to="/createnewpost" className="create-post-link">
             <div class="border-create-post">Create new post +</div>
@@ -75,6 +85,7 @@ function Navbar() {
       </li>
       <li className="bell">
         <Notification />
+        <div className="num-noti">3</div>
       </li>
       {/* <div><Notification /></div> */}
       {/* <li className='vector'><img src={vector} width='40px' height='40px' alt=""/></li> */}
@@ -84,7 +95,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
