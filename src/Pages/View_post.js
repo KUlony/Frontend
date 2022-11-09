@@ -369,20 +369,22 @@ function View_post() {
             </div>
           )}
           <div className="view_post_fullpost_content">{post_content}</div>
-          <div className="view_post_fullpost_img">
-            {post_photo_url.map((data) => {
-              return (
-                <div className="view_post_fullpost_miniimg">
-                  <div
-                    className="view_post_fullpost_miniimg_center"
-                    onClick={() => display_postimg(data)}
-                  >
-                    <img src={data} alt="post_img" className="post_img" />
+          {post_photo_url && (
+            <div className="view_post_fullpost_img">
+              {post_photo_url.map((data) => {
+                return (
+                  <div className="view_post_fullpost_miniimg">
+                    <div
+                      className="view_post_fullpost_miniimg_center"
+                      onClick={() => display_postimg(data)}
+                    >
+                      <img src={data} alt="post_img" className="post_img" />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
           <div className="view_post_interact">
             <div className="view_post_likebox" onClick={likepost_update}>
               <BsFillHeartFill className="likeshadowdrop1" size={28} />
@@ -508,7 +510,7 @@ function View_post() {
       </div>
       {displaypostimg && (
         <div
-          className="cover"
+          className="viewpost_cover"
           onClick={() => setDisplayposting(!displaypostimg)}
         ></div>
       )}

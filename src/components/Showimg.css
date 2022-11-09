@@ -10,7 +10,7 @@
   height: 1000px;
 
   /* background-color: aqua; */
-  z-index: 15;
+  z-index: 10002;
 }
 
 .center_img img {

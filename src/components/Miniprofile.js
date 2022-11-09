@@ -16,14 +16,11 @@ function Miniprofile(props) {
       if (user_id !== "") {
         setLoading(true);
         // console.log("user_id", user_id);
-        const userdata = await fetch(
-          `http://localhost:4000/api/user/${user_id}/profile`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const userdata = await fetch(`/api/user/${user_id}/profile`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
         const jsonuserdata = await userdata.json();
         // console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
