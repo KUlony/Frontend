@@ -94,7 +94,6 @@
 
 .profile-bottom {
   position: relative;
-  top: 650px;
   left: 200px;
   list-style-type: none;
 }
@@ -103,18 +102,19 @@
   position: absolute;
   text-decoration: none;
   color: black;
-  left: 500px;
+  left: 192px;
   top: 10px;
   width: 150px;
 }
 
 .save-button {
   position: relative;
-  left: 500px;
+  left: 362px;
   border-radius: 25px;
   padding: 10px 10px;
   background-color: #339c64;
   border: none;
+  cursor: pointer;
 }
 /* Add Education */
 .education-content {

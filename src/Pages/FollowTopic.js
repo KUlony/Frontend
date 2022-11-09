@@ -17,7 +17,7 @@ const FollowTopic = () => {
 
   const getdata = () => {
     axios
-      .get('//localhost:4000/api/topic/get_all_catagory_topic')
+      .get('/api/topic/get_all_catagory_topic')
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data
