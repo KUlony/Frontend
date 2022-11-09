@@ -19,7 +19,7 @@ function Change(probs) {
     try{
       e.preventDefault()
       setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/changepassword/resetpassword',{
+      const postdata = await fetch('http://localhost:4000/api/sing-up/forgotpassword/resetpassword',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
