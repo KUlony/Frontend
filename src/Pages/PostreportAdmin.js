@@ -6,33 +6,72 @@ import "./PostreportAdmin.css"
 
 function PostreportAdmin() {
   const [postdata, setPostdata] = useState([])
+
   const token = localStorage.getItem("token")
 
-  useEffect(() => {
+  const gendata = () => {
     axios
-      .get("//localhost:4000/api/admin/get_all_report", {
-        headers: { Authorization: `${token}` },
+      .get(`/api/admin/get_post_report`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2Njc5NzEzNzIsImV4cCI6MTY2ODA1Nzc3Mn0.gly9ATCPhhspCN2vrM74iaUZtK0OjMXdgRRhcUiPJlw`,
+        },
       })
       .then((res) => {
-        console.log(res.data)
-        // setPostdata(res.data)
+        const data = res.data
+        setPostdata(data)
       })
       .catch((err) => {
         console.log(err)
       })
+  }
+
+  useEffect(() => {
+    gendata()
   }, [])
 
-  // console.log(postdata)
+  console.log(postdata)
+
+  const discarddata = () => {
+    axios
+      .delete(`/api/admin/delete_report/{report_id}`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2Njc5NzEzNzIsImV4cCI6MTY2ODA1Nzc3Mn0.gly9ATCPhhspCN2vrM74iaUZtK0OjMXdgRRhcUiPJlw`,
+        },
+      })
+      .then((res) => {
+        const data = res.data
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
+
+  const deletedata = () => {
+    axios
+      .delete(`/api/admin/delete_reported_entity/{report_id}`, {
+        headers: {
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2Njc5NzEzNzIsImV4cCI6MTY2ODA1Nzc3Mn0.gly9ATCPhhspCN2vrM74iaUZtK0OjMXdgRRhcUiPJlw`,
+        },
+      })
+      .then((res) => {
+        const data = res.data
+        console.log(data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }
 
   return (
     <div className="allpostreport">
-      {/* {data.map((item, index) => (
+      {postdata.map((item, index) => (
         <div className="contentreportpost" key={index}>
           <div className="headcard">
             <p className="topname">
-              Reported by <span className="greenspan">{item.people}</span>{" "}
+              Reported by <span className="greenspan">{item.count_user}</span>{" "}
               users, Lastest report on{" "}
-              <span className="greenspan">{item.date}</span>
+              <span className="greenspan">{item.last_report}</span>
             </p>
             <button className="discardbtnpost">
               Discard Report <i class="bi bi-x"></i>
@@ -41,20 +80,23 @@ function PostreportAdmin() {
               Delete Post <i class="bi bi-trash"></i>
             </button>
           </div>
-          <Post
-            title={post_title}
-            like={element.post_like_count}
-            post_content={element.post_content}
-            photo={element.cover_photo_url}
-            comment={element.post_comment_count}
-            profilepic={element.author.profile_pic_url}
-            post_photo_url={element.post_photo_url}
-            username={element.author.username}
-            post_time={element.post_time}
-            post_id={element.post_id}
-          />
+          {/* <Post
+          title={item.post_title}
+          like={item.post_like_count}
+          post_content={item.post_content}
+          photo={item.cover_photo_url}
+          comment={item.post_comment_count}
+          profilepic={item.author.profile_pic_url}
+          post_photo_url={item.post_photo_url}
+          post_topic={item.post_topic}
+          username={item.author.username}
+          post_time={item.post_time}
+          post_id={item.post_id}
+          user_id={item.author.user_id}
+          user_like_status_post={item.user_like_status}
+          /> */}
         </div>
-      ))} */}
+      ))}
     </div>
   )
 }

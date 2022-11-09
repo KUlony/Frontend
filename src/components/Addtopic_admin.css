@@ -1,0 +1,10 @@
+.addtopicadmin {
+  border-radius: 8px;
+  background: #D6EBE0;
+  border: 1px solid #989898;
+  width: 50%;
+  margin: auto auto auto auto;
+  height: 300px;
+  padding: 10px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}

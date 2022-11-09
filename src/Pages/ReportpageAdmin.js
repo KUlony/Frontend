@@ -60,6 +60,7 @@ function ReportpageAdmin() {
           </select>
         </div>
       </div>
+      <br></br>
       {togpost && <PostreportAdmin />}
       {togcom && <ComreportAdmin />}
     </div>

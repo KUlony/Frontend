@@ -1,4 +1,5 @@
 .allreqpage {
+  position: relative;
   width: 100%;
   height: 100%;
 }
@@ -21,15 +22,17 @@
 
 .bodyreq {
   width: 80%;
-  height: 500px;
+  height: 550px;
   margin: 0px auto;
   background-color: #F8F5D5;
   padding: 10px;
+  overflow-y: scroll;
 }
 
 .topiccard {
   display: flex;
   margin: 1% auto;
+  margin-bottom: 20px;
   width: 90%;
   height: 50px;
   padding: 10px;
@@ -81,4 +84,26 @@
 .trashreq {
   margin: auto 0px auto 20px;
   cursor: pointer;
+}
+
+.nothing {
+  display: none;
+}
+
+.addtopiccss {
+  position: absolute;
+  width: 100%;
+  top: 30%;
+  /* overflow-x: hidden; */
+  z-index: 3;
+}
+
+.displayback {
+  position: fixed;
+  top: 0px;
+  background-color: white;
+  opacity: 0.6;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
 }
