@@ -47,7 +47,7 @@
 
     background: #339C64;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    border: 1px solid black;
+    border: 0px solid;
     border-radius: 32px;
     font-size: 28px;
     font-weight: bolder;
@@ -87,11 +87,15 @@
 
 .login_forgot {
     text-align: center;
-    font-family: 'Quicksand';
-    font-style: border;
+    /* font-style: border; */
     font-size: 28px;
     color: #989898;
     margin-bottom: 40px;
+
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 700;
+    letter-spacing: 0.03em;
 }
 
 .login_fotgot_click {

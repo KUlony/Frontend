@@ -72,9 +72,9 @@ function Register() {
         <h1 className="register_header">SIGN-UP</h1>
 
         
-        <input className="register_input" type="email" placeholder="EMAIL" value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
-        <input className="register_input" type="password" placeholder="PASSWORD" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
-        <input className="register_input" type="password" placeholder="CONFIRM PASSWORD" value={confirmpassword} onChange={(e)=>{setConfirmpassword(e.target.value)}}></input>
+        <input className="register_input_email" type="email" placeholder="EMAIL" value={email} onChange={(e)=>{setEmail(e.target.value)}}></input>
+        <input className="register_input_password" type="password" placeholder="PASSWORD" value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
+        <input className="register_input_password" type="password" placeholder="CONFIRM PASSWORD" value={confirmpassword} onChange={(e)=>{setConfirmpassword(e.target.value)}}></input>
         
         <div className="register_tp">
           <input className="register_check" type="checkbox" ref={ref} onClick={display_checked}></input>
