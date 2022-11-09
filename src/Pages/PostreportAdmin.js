@@ -6,14 +6,23 @@ import "./PostreportAdmin.css"
 
 function PostreportAdmin() {
   const [postdata, setPostdata] = useState([])
+  const token = localStorage.getItem("token")
 
   useEffect(() => {
-    axios.get("/api/admin/get_all_report").then((res) => {
-      setPostdata(res.data)
-    })
+    axios
+      .get("//localhost:4000/api/admin/get_all_report", {
+        headers: { Authorization: `${token}` },
+      })
+      .then((res) => {
+        console.log(res.data)
+        // setPostdata(res.data)
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   }, [])
 
-  console.log(postdata)
+  // console.log(postdata)
 
   return (
     <div className="allpostreport">
