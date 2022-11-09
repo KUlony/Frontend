@@ -40,7 +40,6 @@ function MyPost() {
 
       {!loading && (
         <div className="mypost_allpost">
-          <Favorite />
           {mypostdata.map((element) => {
             return (
               <Post

@@ -174,10 +174,13 @@ function View_post() {
     }
   };
 
-  const display_profile = (userid) => {
-    setdisplayProfile(!displayProfile);
-    if (userid !== "close") {
-      setUserminiprofile(userid);
+  const display_profile = (user_id) => {
+    if (user_id === "close") {
+      setdisplayProfile(false);
+    } else if (user_id !== userminiprofile) {
+      setUserminiprofile(user_id);
+    } else {
+      setdisplayProfile(!displayProfile);
     }
   };
   const display_postimg = (url) => {

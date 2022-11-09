@@ -6,6 +6,7 @@ import search from "../picture/search.png";
 import Post from "../components/Post";
 import Checklogin from "../components/Checklogin";
 import Card from "../components/Card";
+import Miniprofile from "../components/Miniprofile";
 
 function Search() {
   const [keepresult, setKeepresult] = useState("");
@@ -17,6 +18,9 @@ function Search() {
   const observer = useRef();
   const token = localStorage.getItem("token");
   const [searchtype, setSearchtype] = useState([true, false]);
+  const [displayprofile, setDisplayprofile] = useState(false);
+  const [carduserid, setCarduserid] = useState("");
+
   const loadmore = async (e) => {
     try {
       setDisplayload(false);
@@ -104,6 +108,16 @@ function Search() {
       }
     } catch {
       console.error("fail");
+    }
+  };
+
+  const display_profile = (user_id) => {
+    if (user_id === "close") {
+      setDisplayprofile(false);
+    } else if (user_id !== carduserid) {
+      setCarduserid(user_id);
+    } else {
+      setDisplayprofile(!displayprofile);
     }
   };
 
@@ -201,9 +215,10 @@ function Search() {
                 <Card
                   username={e.user_name}
                   profile_url={e.profile_pic_url}
-                  user_id={e.contact._id}
+                  user_id={e._id}
                   user_firstname={e.user_firstname}
                   user_lastname={e.user_lastname}
+                  display_profile={display_profile}
                 />
               ))}
             </div>
@@ -213,6 +228,12 @@ function Search() {
           ></div>
         </div>
       </div>
+
+      {displayprofile && (
+        <div className="miniprofile_popup">
+          <Miniprofile display={display_profile} user_id={carduserid} />
+        </div>
+      )}
     </div>
   );
 }

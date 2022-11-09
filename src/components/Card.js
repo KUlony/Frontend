@@ -4,21 +4,21 @@ import profile_img from "../picture/miniprofileimg.png";
 import Miniprofile from "./Miniprofile";
 
 function Card(props) {
-  const { username, profile_url, user_id, user_firstname, user_lastname } =
-    props;
+  const {
+    username,
+    profile_url,
+    user_id,
+    user_firstname,
+    user_lastname,
+    display_profile,
+  } = props;
 
   const [onlyname, setOnlyname] = useState(
     !username && (user_firstname || user_lastname)
   );
 
-  const [displayprofile, setDisplayprofile] = useState(false);
-
-  const display_profile = () => {
-    setDisplayprofile(!displayprofile);
-  };
-
   return (
-    <div className="card_container" onClick={display_profile}>
+    <div className="card_container" onClick={() => display_profile(user_id)}>
       <div className="card_profile">
         {profile_url ? (
           <img src={profile_url} alt="xmark_img" className="card_profile_img" />
@@ -45,11 +45,6 @@ function Card(props) {
           </div>
         )}
       </div>
-      {displayprofile && (
-        <div className="miniprofile_popup">
-          <Miniprofile display={display_profile} user_id={user_id} />
-        </div>
-      )}
     </div>
   );
 }

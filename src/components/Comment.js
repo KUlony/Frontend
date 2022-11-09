@@ -101,6 +101,8 @@ function Comment(props) {
   const [displayanimagoback, setdisplayanimagoback] = useState(true);
   const [replyfetch, setReplyfetch] = useState(true);
   const [firsttimeposition, setFirsttimeposition] = useState(false);
+  const [profileopenstatus, setProfileopenstatus] = useState(false);
+
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     containerRef.current.clientHeight > 53
@@ -236,7 +238,7 @@ function Comment(props) {
               )}
             </div>
             {/* <h5 className="comment_name">{user_name}</h5> */}
-            <h5 className="comment_name">maikaneiei</h5>
+            <h5 className="comment_name">{user_name}</h5>
             {!possession && (
               <img
                 src={reportgreen}

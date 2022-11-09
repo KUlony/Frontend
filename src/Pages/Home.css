@@ -275,6 +275,11 @@
   padding-left: 10px;
 }
 
+.searchtopic_input:focus {
+  outline-width: 0;
+  border: 1px black soild;
+}
+
 .topic_search_icon {
   position: absolute;
   width: 22px;

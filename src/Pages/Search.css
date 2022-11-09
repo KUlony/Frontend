@@ -41,6 +41,10 @@
   padding-left: 10px;
 }
 
+.search_page_input:focus {
+  outline-width: 0;
+}
+
 .search_page_button {
   position: absolute;
 

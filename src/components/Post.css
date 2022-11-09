@@ -21,6 +21,7 @@
   margin-top: 40px;
   position: relative;
   bottom: 15px;
+  word-wrap: break-word;
 }
 
 .PostBox {
@@ -91,6 +92,7 @@
 .share_box {
   float: left;
   margin-left: 8px;
+  cursor: pointer;
 }
 
 .like_box_value {
@@ -456,5 +458,9 @@
 }
 
 .share_box:active {
+  opacity: 0.6;
+}
+
+.like_box_value:active {
   opacity: 0.6;
 }
