@@ -78,7 +78,10 @@
 }
 
 .sortby {
+  /* -webkit-appearance: none; */
+  outline: none;
   border: none;
   font-size: 16px;
   font-weight: 600;
+  cursor: pointer;
 }
