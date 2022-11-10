@@ -70,7 +70,7 @@ function Miniprofile(props) {
             </header>
             <p className="inputbox">{userdata.user_bio}</p>
             <p className="miniprofile_info_miniheader">Education:</p>
-            {userdata.education ? (
+            {userdata.education[0] ? (
               <p className="miniprofile_info_university">
                 {/* รอมีข้อมูลจริง */}
                 <strong>{userdata.education[0].school}</strong>
