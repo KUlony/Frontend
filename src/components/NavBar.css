@@ -154,11 +154,6 @@
   gap: 2px;
 }
 
-.bell {
-  height: 40px;
-  padding-top: 30px;
-}
-
 .kulony {
   padding-top: 20px;
 }
@@ -204,10 +199,7 @@
   height: 30px;
   overflow: hidden;
   cursor: pointer;
-  color: #000000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  color: white;
 }
 
 .create-post-link {
@@ -229,96 +221,11 @@
   .space {
     float: left;
     padding-top: 55px;
-    padding-left: 18%;
+    padding-left: 22%;
     cursor: default;
   }
 
   .request-topic {
     overflow: hidden;
   }
-}
-
-.create-topic-container {
-  background-color: #ffffff;
-  text-align: center;
-  margin-top: 30px;
-  border-radius: 10px;
-  color: black;
-  font-weight: 500;
-  border: 0.5px solid rgb(164, 162, 162);
-  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  display: inline-block;
-  width: 500px;
-  height: 300px;
-  font-family: 'Quicksand', sans-serif;
-  overflow: hidden;
-}
-
-.create-topic-text {
-  padding: 30px;
-  font-size: 24px;
-  font-weight: 500;
-  width: 440px;
-  border-bottom: 1px solid #000000;
-}
-
-.input-topic {
-  margin-top: 40px;
-  margin-left: 10px;
-  width: 300px;
-  background-color: #f8f5d5;
-  border: 1px solid #000000;
-  border-radius: 8px;
-  height: 27px;
-}
-
-.dropdown-cate {
-  margin-top: 14px;
-  width: 150px;
-  margin-left: 10px;
-  height: 27px;
-  margin-right: 70px;
-  margin-bottom: 40px;
-  background: #ffffff;
-  box-shadow: 2px 2px 8px #979797;
-  border-radius: 4px;
-  font-weight: lighter;
-  font-family: 'Quicksand', sans-serif;
-  font-size: 14px;
-}
-
-.create-topic-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 40px;
-  margin-left: 180px;
-}
-
-.create-topic-cancle {
-  color: #339c64;
-}
-
-.create-topic-cancle:hover {
-  cursor: pointer;
-}
-
-.create-topic-confirm {
-  padding: 10px 39px;
-  background-color: #e7db73;
-  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
-  border-radius: 32px;
-}
-
-.create-topic-confirm:hover {
-  cursor: pointer;
-}
-
-.num-noti {
-  background-color: #e7db73;
-  border-radius: 50%;
-  width: 20px;
-  height: 20px;
-  font-size: 14px;
-  text-align: center;
 }

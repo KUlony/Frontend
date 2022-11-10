@@ -1,22 +1,22 @@
-import axios from 'axios'
-import React, { useRef, useState } from 'react'
-import './Setting.css'
+import axios from "axios"
+import React, { useRef, useState } from "react"
+import "./Setting.css"
 const Setting = () => {
   const currentPassword = useRef()
   const newPassword = useRef()
   const confirmPassword = useRef()
 
   const onClickCancel = () => {
-    currentPassword.current.value = ''
-    newPassword.current.value = ''
-    confirmPassword.current.value = ''
+    currentPassword.current.value = ""
+    newPassword.current.value = ""
+    confirmPassword.current.value = ""
   }
 
   const onClickChangePassword = async () => {
     try {
       axios
         .post(
-          '/api/sing-up/changepassword',
+          "/api/sing-up/changepassword",
           {
             currentpassword: currentPassword.current.value,
             newpassword: newPassword.current.value,
@@ -25,7 +25,7 @@ const Setting = () => {
           {
             headers: {
               Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImthbnBlY2gudEBrdS50aCIsImlkIjoiNjM0Y2VmNmQwYmJkYzIwODlhZWU5YTliIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2Nzk3NzE3OSwiZXhwIjoxNjY4MDYzNTc5fQ.5SZm06jDG4ey-aryW8gJ8Z-unhuxGrB2xbXN0cEr3Nc',
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDY4Nzc0LCJleHAiOjE2NjgxNTUxNzR9.Q3r8YETuxYzhhzCtVR2VSRD4crn3UTDUOU4mwIljXgw",
             },
           }
         )
@@ -54,18 +54,18 @@ const Setting = () => {
 
   const inVisibility = (
     <img
-      src={require('../picture/invisibility.png')}
+      src={require("../picture/invisibility.png")}
       alt="eye"
       width="17px"
-      style={{ 'vertical-align': 'middle' }}
+      style={{ "vertical-align": "middle" }}
     />
   )
   const vis = (
     <img
-      src={require('../picture/visibility.png')}
+      src={require("../picture/visibility.png")}
       alt="eye"
       width="17px"
-      style={{ 'vertical-align': 'middle' }}
+      style={{ "vertical-align": "middle" }}
     />
   )
   return (
@@ -80,7 +80,7 @@ const Setting = () => {
             <b>Type your current password</b>
             <br />
             <input
-              type={currentPasswordShown ? 'text' : 'password'}
+              type={currentPasswordShown ? "text" : "password"}
               ref={currentPassword}
             />
             <span className="visibility" onClick={toggleCurrentPassword}>
@@ -91,7 +91,7 @@ const Setting = () => {
             <b>Type your new password</b>
             <br />
             <input
-              type={newPasswordShown ? 'text' : 'password'}
+              type={newPasswordShown ? "text" : "password"}
               ref={newPassword}
             />
             <span className="visibility" onClick={toggleNewPassword}>
@@ -102,7 +102,7 @@ const Setting = () => {
             <b>Confirm new password</b>
             <br />
             <input
-              type={confirmPasswordShown ? 'text' : 'password'}
+              type={confirmPasswordShown ? "text" : "password"}
               ref={confirmPassword}
             />
             <span className="visibility" onClick={toggleConfirmPassword}>

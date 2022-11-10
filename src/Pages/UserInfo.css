@@ -46,7 +46,8 @@
 
 .input-firstname {
   background: #f8f5d5;
-  border: 1px solid #000000;
+  border: 0px solid #000000;
+  font-weight: 400;
   resize: none;
   font-size: 16px;
   width: 210px;
@@ -58,7 +59,7 @@
 
 .input-lastname {
   background: #f8f5d5;
-  border: 1px solid #000000;
+  border: 0px solid #000000;
   resize: none;
   font-size: 16px;
   width: 210px;
@@ -70,7 +71,7 @@
 
 .input-bio {
   background: #f8f5d5;
-  border: 1px solid #000000;
+  border: 0px solid #000000;
   resize: none;
   font-size: 16px;
   width: 300px;
@@ -119,8 +120,15 @@
 /* Add Education */
 .education-content {
   border: 1px solid rgba(0, 0, 0, 1);
+  width: 70%;
+  margin-left: 47px;
 }
 
 .education-all-date {
   color: #339c64;
+}
+
+.input-ig {
+  width: 200px;
+  height: 100px;
 }
