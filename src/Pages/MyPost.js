@@ -13,7 +13,7 @@ function MyPost() {
 
   const mypostfetch = async () => {
     try {
-      const response = await fetch(`http://localhost:4000/api/user/mypost`, {
+      const response = await fetch(`/api/user/mypost`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -36,6 +36,7 @@ function MyPost() {
       <div>
         <Navbar />
       </div>
+
       {!loading && (
         <div className="mypost_allpost">
           {mypostdata.map((element) => {
@@ -48,6 +49,7 @@ function MyPost() {
                 comment={element.post_comment_count}
                 profilepic={userinfo.profile_pic_url}
                 post_photo_url={element.post_photo_url}
+                post_topic={element.post_topic}
                 username={userinfo.username}
                 post_time={element.post_time}
                 post_id={element.post_id}

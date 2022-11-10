@@ -1,23 +1,20 @@
-import React, { useState } from 'react';
-import './NavBar.css';
-import logo from '../picture/Logo.png';
-import { BsPersonCircle } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
-import ReqTopic from './ReqTopic';
-import Notification from './Notification';
-import CreateTopic from './CreateTopic';
+import React, { useState } from "react"
+import "./NavBar.css"
+import logo from "../picture/Logo.png"
+import { BsPersonCircle } from "react-icons/bs"
+import { FaRegBell } from "react-icons/fa"
+import { Link } from "react-router-dom"
+import ReqTopic from "./ReqTopic"
+import Notification from "./Notification"
 
 function Navbar() {
-  const [show, setShow] = useState(false);
-  const [showCreateTopic, setShowCreateTopic] = useState(false);
-  const handleReq = (e) => {
-    e.preventDefault();
-  };
-  console.log(show);
-  const handleShow = () => setShow(!show);
-  const handleShow2 = () => setShowCreateTopic(!showCreateTopic);
+  const [show, setShow] = useState(false)
 
-  const isAdmin = !false;
+  const handleReq = (e) => {
+    e.preventDefault()
+  }
+  console.log(show)
+  const handleShow = () => setShow(!show)
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
@@ -41,36 +38,16 @@ function Navbar() {
         </Link>
       </li>
       <li>
-        {isAdmin ? (
-          <div>
-            <Link to="/admin/reportpost" className="reportpost-nav">
-              <span>REPORT</span>
-              <div className="num-noti">3</div>
-            </Link>
-          </div>
-        ) : (
-          <div className="search-nav">SEARCH</div>
-        )}
+        <div className="search-nav">SEARCH</div>
       </li>
       <li>
-        {isAdmin ? (
-          <Link to="/admin/requesttopic" className="topic-req-nav">
-            <span>TOPIC REQUEST</span>
-            <div className="num-noti">3</div>
-          </Link>
-        ) : (
-          <Link to="/mypost" className="my-post">
-            MY POST
-          </Link>
-        )}
+        <Link to="/mypost" className="my-post">
+          MY POST
+        </Link>
       </li>
-      {isAdmin ? (
-        <div className="free-box"></div>
-      ) : (
-        <li className="request-topic" onClick={handleShow}>
-          REQUEST TOPIC
-        </li>
-      )}
+      <li className="request-topic" onClick={handleShow}>
+        REQUEST TOPIC
+      </li>
       <li className="space"> </li>
       <li className="create-new-post">
         {isAdmin ? (
@@ -95,7 +72,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  );
+  )
 }
 
-export default Navbar;
+export default Navbar

@@ -7,10 +7,8 @@ import MyPost from "./Pages/MyPost"
 import Profile from "./Pages/Profile"
 import View_post from "./Pages/View_post"
 import Search from "./Pages/Search"
-import Login from "./Pages/Login"
-import Register from "./Pages/Register"
-import Createpost from "./Pages/Createpost"
-
+import ReportpageAdmin from "./Pages/ReportpageAdmin"
+import ReqtopicAdmin from "./Pages/ReqtopicAdmin"
 // import ScrollRestoration from "react-scroll-restoration";
 function App() {
   // const clientId =
@@ -43,7 +41,7 @@ function App() {
 
   return (
     <div>
-      {/* <NavBa /> */}
+      {/* {/* <NavBa /> */}
       {/* <Home /> */}
       <BrowserRouter>
         <Routes>
@@ -52,10 +50,11 @@ function App() {
           <Route path="/profile" element={<Profile />} />
           <Route path="/viewpost/:id" element={<View_post />} />
           <Route path="/search" element={<Search />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {/* <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} /> */}
           <Route path="*" element={<Navigate to="/home" />} />
-          <Route path="/createnewpost" element={<Createpost />} />
+          <Route path="/admin/reportpost" element={<ReportpageAdmin />} />
+          <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>

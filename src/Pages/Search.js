@@ -5,6 +5,8 @@ import "./Search.css"
 import search from "../picture/search.png"
 import Post from "../components/Post"
 import Checklogin from "../components/Checklogin"
+import Card from "../components/Card"
+import Miniprofile from "../components/Miniprofile"
 
 function Search() {
   const [keepresult, setKeepresult] = useState("")
@@ -15,12 +17,15 @@ function Search() {
   const [havemore, setHavemore] = useState(true)
   const observer = useRef()
   const token = localStorage.getItem("token")
-  const [searchtype, setSearchtype] = useState([true, false, false])
+  const [searchtype, setSearchtype] = useState([true, false])
+  const [displayprofile, setDisplayprofile] = useState(false)
+  const [carduserid, setCarduserid] = useState("")
+
   const loadmore = async (e) => {
     try {
       setDisplayload(false)
       const loadmoredata = await fetch(
-        `http://localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
+        `/api/search/post?text=${keepresult}&page=${pagecount}`,
         {
           headers: {
             Authorization: `${token}`,
@@ -58,10 +63,8 @@ function Search() {
     }
   }, [pagecount])
 
-  //eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjU2NTY3MDgsImV4cCI6MTY2NTc0MzEwOH0.uy6bvp4C6OnL6h6aG3kh2NLo0lfZCo9bprn1EHAIXE0
-
   const updatesearchselect = (position) => {
-    console.log(position)
+    setSearchOutPutData([])
     setSearchtype((prev) =>
       prev.map((data, idx) => (idx === position ? true : false))
     )
@@ -76,7 +79,7 @@ function Search() {
         setSearchOutPutData([])
         setDisplayload(false)
         const data = await fetch(
-          `http://localhost:4000/api/search/post?text=${searchResult}&page=1`,
+          `/api/search/post?text=${searchResult}&page=1`,
           {
             headers: {
               Authorization: `${token}`,
@@ -84,15 +87,37 @@ function Search() {
           }
         )
         const datajson = await data.json()
-        console.log("data", datajson)
+
         setDisplayload(true)
         setSearchOutPutData(datajson)
         setKeepresult(searchResult)
         setSearchresult("")
       } else if (searchtype[1]) {
+        setDisplayload(false)
+        setSearchOutPutData([])
+        const data = await fetch(`/api/searchtopic/user?text=${searchResult}`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+        const datajson = await data.json()
+        console.log(datajson)
+        setSearchOutPutData(datajson)
+        setDisplayload(true)
+        setSearchresult("")
       }
     } catch {
       console.error("fail")
+    }
+  }
+
+  const display_profile = (user_id) => {
+    if (user_id === "close") {
+      setDisplayprofile(false)
+    } else if (user_id !== carduserid) {
+      setCarduserid(user_id)
+    } else {
+      setDisplayprofile(!displayprofile)
     }
   }
 
@@ -132,12 +157,6 @@ function Search() {
                 >
                   User
                 </li>
-                <li
-                  className={`${searchtype[2] ? "search_select" : null}`}
-                  onClick={() => updatesearchselect(2)}
-                >
-                  Topics
-                </li>
               </ul>
             </div>
           </nav>
@@ -145,11 +164,31 @@ function Search() {
         <div className="search_page_content">
           {/* <Post_generator data={testdata} /> */}
 
-          <div>
-            {searchOutPutData.map((element, index) => {
-              if (searchOutPutData.length === index + 1) {
-                return (
-                  <div ref={lastSearchelement}>
+          {searchtype[0] && (
+            <div>
+              {searchOutPutData.map((element, index) => {
+                if (searchOutPutData.length === index + 1) {
+                  return (
+                    <div ref={lastSearchelement}>
+                      <Post
+                        title={element.post_title}
+                        like={element.post_like_count}
+                        post_content={element.post_content}
+                        photo={element.cover_photo_url}
+                        comment={element.post_comment_count}
+                        profilepic={element.author.profile_pic_url}
+                        post_photo_url={element.post_photo_url}
+                        post_topic={element.post_topic}
+                        username={element.author.username}
+                        post_time={element.post_time}
+                        post_id={element.post_id}
+                        user_id={element.author.user_id}
+                        user_like_status_post={element.user_like_status}
+                      />
+                    </div>
+                  )
+                } else {
+                  return (
                     <Post
                       title={element.post_title}
                       like={element.post_like_count}
@@ -158,39 +197,43 @@ function Search() {
                       comment={element.post_comment_count}
                       profilepic={element.author.profile_pic_url}
                       post_photo_url={element.post_photo_url}
+                      post_topic={element.post_topic}
                       username={element.author.username}
                       post_time={element.post_time}
                       post_id={element.post_id}
                       user_id={element.author.user_id}
                       user_like_status_post={element.user_like_status}
                     />
-                  </div>
-                )
-              } else {
-                return (
-                  <Post
-                    title={element.post_title}
-                    like={element.post_like_count}
-                    post_content={element.post_content}
-                    photo={element.cover_photo_url}
-                    comment={element.post_comment_count}
-                    profilepic={element.author.profile_pic_url}
-                    post_photo_url={element.post_photo_url}
-                    username={element.author.username}
-                    post_time={element.post_time}
-                    post_id={element.post_id}
-                    user_id={element.author.user_id}
-                    user_like_status_post={element.user_like_status}
-                  />
-                )
-              }
-            })}{" "}
-          </div>
+                  )
+                }
+              })}{" "}
+            </div>
+          )}
+          {searchtype[1] && (
+            <div className="search_user_content">
+              {searchOutPutData.map((e) => (
+                <Card
+                  username={e.user_name}
+                  profile_url={e.profile_pic_url}
+                  user_id={e._id}
+                  user_firstname={e.user_firstname}
+                  user_lastname={e.user_lastname}
+                  display_profile={display_profile}
+                />
+              ))}
+            </div>
+          )}
           <div
             className={`loadersearch ${displayload ? "display_none" : null}`}
           ></div>
         </div>
       </div>
+
+      {displayprofile && (
+        <div className="miniprofile_popup">
+          <Miniprofile display={display_profile} user_id={carduserid} />
+        </div>
+      )}
     </div>
   )
 }

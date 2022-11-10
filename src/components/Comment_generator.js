@@ -2,7 +2,14 @@ import React from "react"
 import Comment from "./Comment"
 
 function Comment_generator(props) {
-  const { data, display_profile, display_reply, updatecommentdata } = props
+  const {
+    data,
+    display_profile,
+    display_reply,
+    updatecommentdata,
+    display_report,
+    comment_delete,
+  } = props;
 
   return (
     <div>
@@ -18,7 +25,9 @@ function Comment_generator(props) {
             user_name={element.author.username}
             reply_count={element.comment_reply_count}
             profile_pic_url={element.author.profile_pic_url}
-            // comment_id ={element.}
+            comment_time={element.comment_time}
+            display_report={display_report}
+            comment_delete={comment_delete}
           />
         )
       })}

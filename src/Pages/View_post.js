@@ -51,6 +51,10 @@ function View_post() {
   const [commentdata, setCommentdata] = useState([])
   const token = localStorage.getItem("token")
   // console.log(post_id.id);
+  const [reportid, setReportid] = useState("");
+  const [reporttype, setRepottype] = useState("");
+  const [possession, setPossesstion] = useState(false);
+  const userid = localStorage.getItem("user_id");
 
   const postfetch = async () => {
     try {
@@ -137,7 +141,7 @@ function View_post() {
         // console.log(`json_comment `, json_comment);
 
         const userdata = await fetch(
-          `http://localhost:4000/api/user/${json_comment.user_id}/profile`,
+          `/api/user/${json_comment.user_id}/profile`,
           {
             headers: {
               Authorization: `${token}`,
@@ -223,10 +227,19 @@ function View_post() {
         </div>
         <div className="view_post_fullpost">
           <div className="view_post_fullpost_backtohome">
-            <Link to="/home" className="view_post_fullpost_backtohome_link">
+            {/* <Link to="/home" className="view_post_fullpost_backtohome_link">
               <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
               Back to home
-            </Link>
+            </Link> */}
+            <button
+              className="view_post_fullpost_backtohome_link"
+              onClick={() => {
+                navigate(-1, { state: { back: true } });
+              }}
+            >
+              <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
+              Go Back
+            </button>
           </div>
 
           <div className="view_post_fullpost_title">{title}</div>
@@ -250,9 +263,16 @@ function View_post() {
               )}
             </div>
 
-            <div className="view_post_fullpost_profile_username">
-              {username}
-            </div>
+            {username ? (
+              <div className="view_post_fullpost_profile_username">
+                {username}
+              </div>
+            ) : (
+              <div className="view_post_fullpost_profile_username">
+                Anonymous
+              </div>
+            )}
+            <div className="date_time">{datetime}</div>
           </div>
           {photo && (
             <div className="view_post_fullpost_photo">
@@ -293,13 +313,63 @@ function View_post() {
               <MdOutlineModeComment size={30} />
               <p className="view_post_text">{commentcount} Comments</p>
             </div>
-            <div className="view_post_reportbox" onClick={display_report}>
-              <MdReport size={30} className="view_post_report_icon" />
-              <p className="view_post_text">Report post</p>
+            <div
+              className="view_post_share"
+              onClick={() => navigator.clipboard.writeText("test")}
+            >
+              <AiOutlineShareAlt className="share_icon" />
+              <p className="view_post_text">Share</p>
             </div>
+            {!possession && (
+              <div
+                className="view_post_reportbox"
+                onClick={() => display_report("Post", post_id.id)}
+              >
+                <MdReport size={30} className="view_post_report_icon" />
+                <p className="view_post_text">Report post</p>
+              </div>
+            )}
+            {possession && (
+              <div className="test_btn">
+                <button
+                  className="btn_dropdown_report_viewpost"
+                  onClick={report_dropdown}
+                >
+                  <RiArrowDropDownLine className="dropdown_iconri" />
+                </button>
+                <div className={reportpost_drop}>
+                  {possession ? (
+                    <div className="my_post_button">
+                      <div className="edit_hover_box">
+                        {" "}
+                        Edit post
+                        <img src={edit} />
+                      </div>
+                      {/* <div className="edit_button">
+                        Edit post
+                        <img src={edit} />
+                      </div> */}
+
+                      <div className="delete_button" onClick={delete_post}>
+                        Delete post <img src={bin} />
+                      </div>
+                      <div className="free_space"></div>
+                    </div>
+                  ) : (
+                    <div
+                      className="report_button"
+                      onClick={() => display_report("Post", post_id)}
+                    >
+                      Report post
+                      <img src={report} />
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
           <div className="view_post_commentinputbox">
-            Comments
+            <h3>Comments</h3>
             <form onSubmit={comment}>
               <input
                 className="view_post_comment_input"
@@ -318,6 +388,8 @@ function View_post() {
                 data={commentdata}
                 display_profile={display_profile}
                 display_reply={true}
+                display_report={display_report}
+                comment_delete={comment_delete}
               />
             </div>
           )}
@@ -337,7 +409,11 @@ function View_post() {
           displayReport ? "display_none" : null
         }`}
       >
-        <Reportpost_popup display={display_report} post_id={post_id.id} />
+        <Reportpost_popup
+          display={display_report}
+          post_id={reportid}
+          type={reporttype}
+        />
       </div>
       <div onClick={() => setDisplayposting(!displaypostimg)}>
         {displaypostimg && <Showimg imgurl={imgurl} />}

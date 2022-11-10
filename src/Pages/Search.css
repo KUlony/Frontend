@@ -41,6 +41,10 @@
   padding-left: 10px;
 }
 
+.search_page_input:focus {
+  outline-width: 0;
+}
+
 .search_page_button {
   position: absolute;
 
@@ -61,7 +65,7 @@
 
 .search_page_nav_topic ul li {
   position: relative;
-  width: 33%;
+  width: 50%;
   display: inline-block;
   text-align: center;
   border: 1% solid #f8f5d5;
@@ -90,4 +94,9 @@
 
 .search_page_nav_topic li {
   cursor: pointer;
+}
+
+.search_user_content {
+  width: 80%;
+  margin: 20px auto;
 }

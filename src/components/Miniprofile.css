@@ -68,11 +68,13 @@
 
 .inputbox {
   background-color: #f8f5d5;
-  width: 220px;
+  width: 270px;
   height: 40px;
   margin-top: 10px;
   padding: 10px;
   font-size: 15px;
+  overflow-y: scroll;
+  word-wrap: break-word;
 }
 
 .miniprofile_info_miniheader {
@@ -89,6 +91,8 @@
 
 .miniprofile_info_university {
   color: #339c64;
+  height: 45px;
+  overflow-y: scroll;
 }
 
 .miniprofile_info_contact {

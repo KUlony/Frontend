@@ -1,0 +1,110 @@
+.favorite_box {
+  position: relative;
+  width: 669px;
+  height: auto;
+  min-height: 75px;
+  padding-bottom: 50px;
+  background-color: white;
+  margin: 20px;
+  border: 1px solid rgba(220, 220, 220, 1);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+.favorite_box_profile {
+  overflow: hidden;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  margin-right: 20px;
+  z-index: 3;
+  cursor: pointer;
+  position: relative;
+  float: left;
+  margin-top: 20px;
+  margin-left: 15px;
+}
+
+.favorite_box_profile_miniimg {
+  position: relative;
+  z-index: 10;
+  height: 40px;
+  width: 40px;
+}
+
+.favorite_box_title {
+  display: inline-block;
+  margin-top: 20px;
+  overflow-wrap: break-word;
+  width: 495px;
+  height: auto;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.favorite_box_like {
+  position: absolute;
+  top: 19px;
+  right: 17px;
+}
+
+.like {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #339c64;
+}
+
+.unlike {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #fff;
+}
+
+.likeshadowdrop {
+  color: black;
+}
+
+.favorite_likebox {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.favorite_viewmorebox {
+  position: absolute;
+  bottom: 17px;
+  right: 153px;
+}
+.favorite_viewmore {
+  font-weight: bold;
+  text-align: center;
+  font-size: 100%;
+  height: 24px;
+  width: min(80px);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 28.5px;
+  padding-right: 28.5px;
+  color: black;
+  font-size: 16px;
+  left: -4%;
+  bottom: 3%;
+  background-color: #d6ebe0;
+  text-decoration: none;
+  position: absolute;
+  margin-right: 10%;
+  margin-left: 80%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.favorite_miniprofile {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  margin-left: -335px;
+  margin-top: -150px;
+  z-index: 10;
+}

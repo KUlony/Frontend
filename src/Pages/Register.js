@@ -50,6 +50,10 @@ function Register() {
             confirm_password: confirmpassword,
           }),
         }
+      );
+
+      // const json = await postdata.json()
+      // console.log(postdata)
       )
 
       const json = await postdata.json()

@@ -25,9 +25,60 @@ function Home() {
   const [displayload, setDisplayload] = useState(false)
   const componentDidMount = async () => {
     try {
-      const response = await fetch(
-        `http://localhost:4000/api/post/all_post?page=1`,
-        {
+      let response = ""
+
+      if (category[0]) {
+        setDisplayload(false)
+        if (!followtopic) {
+          response = await fetch(`/api/post/all_post?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("post/all_post?")
+        } else {
+          response = await fetch(`/api/home?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("home?")
+        }
+
+        const json = await response.json()
+        setDisplayload(true)
+        setPost_data(json)
+      } else if (category[1]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/General`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[2]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Learning`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[3]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/News`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[4]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Market`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
+      } else if (category[5]) {
+        setLoadingtopic(true)
+        response = await fetch(`/api/topic/get_topic/Faculty`, {
           headers: {
             Authorization: `${token}`,
           },
@@ -276,8 +327,9 @@ function Home() {
         prevdata.map((data, idx) => (idx === category_number ? true : false))
       )
     }
+  }
 
-    // fetchข้อมูลมาก่อนแล้วค่อย set state
+  useEffect(() => {
     setTopic(
       topicarray.map((data, idx) => {
         if (idx === 0) {
@@ -442,7 +494,8 @@ function Home() {
           >
             <input
               type="checkbox"
-              onClick={() => setFollowtopic(!followtopic)}
+              onClick={followtopic_click}
+              checked={followtopic}
             ></input>
             <label>Show following topics only</label>
           </form>
@@ -613,6 +666,7 @@ function Home() {
                         comment={element.post_comment_count}
                         profilepic={element.author.profile_pic_url}
                         post_photo_url={element.post_photo_url}
+                        post_topic={element.post_topic}
                         username={element.author.username}
                         post_time={element.post_time}
                         post_id={element.post_id}
@@ -631,6 +685,7 @@ function Home() {
                       comment={element.post_comment_count}
                       profilepic={element.author.profile_pic_url}
                       post_photo_url={element.post_photo_url}
+                      post_topic={element.post_topic}
                       username={element.author.username}
                       post_time={element.post_time}
                       post_id={element.post_id}
