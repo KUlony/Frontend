@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css2?family=Prompt&family=Quicksand&display=swap");
+
+* {
+  font-family: "Prompt", sans-serif;
+  font-family: "Quicksand", sans-serif;
+}
+
+.LikeCount {
+  width: 15px;
+}
+.Header {
+  height: auto;
+  width: 100%;
+  min-height: 60px;
+  overflow: hidden;
+  margin: 0px;
+  padding: 0px;
+}
+
+.Topic_text {
+  margin-top: 40px;
+  position: relative;
+  bottom: 15px;
+  word-wrap: break-word;
+}
+
+.PostBox {
+  background-color: white;
+  margin: auto;
+  top: 100px;
+  height: auto;
+  /* width: 60%; */
+  max-width: 950px;
+  margin-top: 30px;
+  /* padding-top: 3%;
+  padding-left: 4%;
+  padding-right: 4%;
+  padding-bottom: 1%; */
+  padding: 40px 60px;
+  border: 1px solid #f5f5f5;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  border-radius: 8px;
+  border: 1px solid black;
+}
+
+.UserProfile {
+  /* background-color: black;
+   */
+
+  overflow: hidden;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  float: left;
+  margin-right: 20px;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.post_img_cover {
+  width: 100%;
+  height: auto;
+}
+
+.FakeImage {
+  /* background-color: rgb(175, 175, 175); */
+  margin: auto;
+  height: 300px;
+  width: 100%;
+  /* padding: 20px; */
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.post_Content {
+  margin: 20px 0;
+  height: auto;
+  max-height: 87px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: normal;
+  display: -webkit-box !important;
+  word-wrap: break-word;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+.like_box_value,
+.comment_box_value,
+.share_box {
+  float: left;
+  margin-left: 8px;
+  cursor: pointer;
+}
+
+.like_box_value {
+  position: relative;
+  margin-top: -4px;
+  margin-left: 0px;
+  top: 4px;
+  cursor: pointer;
+}
+
+.like_box,
+.comment_box {
+  font-weight: 700;
+}
+
+.likeshadowdrop {
+  color: black;
+}
+
+.like {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #339c64;
+}
+
+.unlike {
+  position: absolute;
+  top: 2.7px;
+  left: 3px;
+  color: #fff;
+}
+
+.like_box {
+  float: left;
+  margin-top: 2px;
+  margin-left: 10px;
+}
+
+.comment_box {
+  margin-top: 2px;
+  float: left;
+  margin-left: 10px;
+}
+
+.comment_box_value {
+  margin-left: 30px;
+}
+
+.share_box {
+  margin-left: 30px;
+}
+
+.interact {
+  padding-bottom: 26px;
+  width: 100%;
+}
+
+.post_viewmorebox {
+  position: relative;
+  right: -93px;
+  top: 30px;
+}
+
+.More {
+  font-weight: bold;
+  text-align: center;
+  font-size: 100%;
+  height: 24px;
+  width: min(80px, 18%);
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 3%;
+  padding-right: 3%;
+  color: black;
+  font-size: 16px;
+  left: -4%;
+  bottom: 3%;
+  background-color: #d6ebe0;
+  text-decoration: none;
+  position: absolute;
+  margin-right: 10%;
+  margin-left: 80%;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.btn_dropdown_report {
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  border: none;
+  width: 0px;
+  top: 13px;
+  right: 30px;
+  cursor: pointer;
+}
+
+.btn_where {
+  position: absolute;
+  display: none;
+}
+
+.btn_where2 {
+  min-height: 58px;
+  width: 128px;
+  height: auto;
+
+  position: absolute;
+  top: 17px;
+  right: -110px;
+  background-color: white;
+  z-index: 4;
+  filter: drop-shadow(0px 5px 5px rgba(0, 0, 0, 0.2));
+}
+
+.test_btn {
+  position: absolute;
+  right: 1%;
+  top: 4%;
+  margin-right: 50px;
+}
+
+.post_report_btn {
+  position: absolute;
+  bottom: 10px;
+  left: 7px;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.post_report_btn:hover {
+  color: #339c64;
+  text-decoration: underline;
+}
+
+.dropdown_iconri {
+  height: 40px;
+  width: 50px;
+}
+
+.miniprofile_post {
+  position: fixed;
+  top: 50%;
+  margin-top: -150px;
+  left: 50%;
+  margin-left: -300px;
+  display: flex;
+  justify-content: center;
+  z-index: 10007;
+}
+.display_none {
+  display: none;
+}
+
+.cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  /* border: 250px solid white; */
+  z-index: 11;
+  opacity: 0.5;
+}
+
+.reportpost_popup {
+  position: fixed;
+  top: 50%;
+  margin-top: -275px;
+  left: 50%;
+  margin-left: -170px;
+  /* display: flex; */
+  justify-content: center;
+  z-index: 7;
+}
+
+.post_freespace {
+  position: relative;
+  /* height: 340px; */
+  height: 430px;
+  z-index: -2;
+}
+
+.post_relative {
+  position: relative;
+  top: -34px;
+  left: 57px;
+}
+
+.comment_all {
+  position: absolute;
+  /* width: 460px; */
+  width: 680px;
+  /* height: 310px; */
+  height: 400px;
+  left: 36%;
+  z-index: 7;
+  background-color: white;
+  border: 1px solid rgba(220, 220, 220, 1);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 16px;
+  padding: 20px 20px 20px 40px;
+  /* overflow: scroll; */
+}
+
+.comment_icon {
+  cursor: pointer;
+}
+
+.minicommentbox {
+  /* height: 310px; */
+  height: 400px;
+  position: relative;
+}
+
+.minicommentbox::-webkit-scrollbar {
+  border-radius: 10px;
+}
+
+.minicommentbox::-webkit-scrollbar-track {
+  color: #339c64;
+}
+
+.comment_exit {
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.comment_content {
+  overflow-y: scroll;
+  height: 380px;
+}
+
+.comment_header {
+  padding-bottom: 10px;
+  height: 15px;
+}
+
+.TitleHead_box {
+  display: inline-block;
+  width: 80%;
+  padding: 0px;
+  margin: 0px;
+}
+
+.TitleHead {
+  margin: 0px;
+  padding: 0px;
+  overflow-wrap: break-word;
+}
+.profile_miniimg {
+  position: relative;
+  z-index: 10;
+  height: 40px;
+  width: 40px;
+}
+
+.display_none2 {
+  position: absolute;
+  left: -99999999em;
+}
+
+.TitleHead_box p {
+  color: #339c64;
+  font-size: 14px;
+  margin-top: 3px;
+}
+
+.my_post_button div {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.edit_hover_box {
+  position: relative;
+  top: 30px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.edit_hover_box img {
+  position: relative;
+  left: 36px;
+  width: 11px;
+  height: auto;
+}
+
+.edit_hover_box:hover {
+  background-color: #dcdcdc;
+}
+
+.edit_button {
+  position: relative;
+  top: 30px;
+  left: 5px;
+}
+
+.edit_button:hover {
+  background-color: #dcdcdc;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.edit_button img {
+  position: relative;
+  left: 36px;
+  width: 11px;
+  height: auto;
+}
+
+.delete_button {
+  position: relative;
+  top: 35px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-top: -4.6px;
+}
+
+.delete_button:hover {
+  cursor: pointer;
+  background-color: #dcdcdc;
+}
+
+.delete_button img {
+  position: relative;
+  left: 11px;
+  width: 9px;
+  height: auto;
+}
+
+.free_space {
+  height: 35px;
+}
+
+.report_button {
+  cursor: pointer;
+  position: relative;
+  top: 28px;
+  padding-left: 5px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.report_button img {
+  position: relative;
+  top: 1px;
+  left: 11px;
+  width: 12px;
+  height: auto;
+}
+
+.report_button:hover {
+  background-color: #dcdcdc;
+}
+
+.share_box:active {
+  opacity: 0.6;
+}
+
+.like_box_value:active {
+  opacity: 0.6;
+}

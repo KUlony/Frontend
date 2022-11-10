@@ -1,0 +1,102 @@
+.search_page {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+}
+
+.search_page_scoll {
+  height: 100vh;
+  overflow: scroll;
+  background-color: #f8f5d5;
+}
+.search_page_navkulony {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+
+.search_page_navbar {
+  position: fixed;
+  top: 70px;
+  background-color: #fff;
+  height: 110px;
+  width: 100%;
+  z-index: 1;
+}
+
+.search_page_content {
+  background-color: #f8f5d5;
+  height: auto;
+  z-index: 1;
+  padding: 200px 0 60px 0px;
+  /* overflow: hidden; */
+}
+
+.search_page_input {
+  height: 30px;
+  width: 50%;
+  border: 1.5px solid rgb(0, 0, 0);
+  margin-left: 30%;
+  padding-left: 10px;
+}
+
+.search_page_input:focus {
+  outline-width: 0;
+}
+
+.search_page_button {
+  position: absolute;
+
+  border: 1.5px solid rgb(0, 0, 0);
+  height: 33px;
+  width: 33px;
+  background-color: black;
+}
+
+.search_page_topic_nav {
+  padding: 50px 0px;
+}
+
+.search_page_nav_topic {
+  display: inline-block;
+  width: 60%;
+}
+
+.search_page_nav_topic ul li {
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  text-align: center;
+  border: 1% solid #f8f5d5;
+  top: 7px;
+}
+
+.search_page_topic_nav form {
+  display: inline-block;
+  width: 40%;
+}
+
+.loadersearch {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #339c64;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 250px auto;
+}
+
+.search_select {
+  color: #339c64;
+  text-decoration: underline;
+}
+
+.search_page_nav_topic li {
+  cursor: pointer;
+}
+
+.search_user_content {
+  width: 80%;
+  margin: 20px auto;
+}

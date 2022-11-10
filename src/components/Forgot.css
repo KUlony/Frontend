@@ -1,0 +1,79 @@
+.forgot_container {
+    background: #FFFFFF;
+    border: 1px solid #989898;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 16px;
+    width: 670px;
+    height: 300px;
+    font-family: 'Quicksand';
+    font-style: normal;
+}
+
+.forgot_header {
+    font-weight: bolder;
+    text-align: center;
+    padding-top: 40px;
+}
+
+.forgot_subheader {
+    text-align: center;
+    font-style: light;
+    padding-top: 40px;
+}
+
+.forgot_xmark {
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    right: 25px;
+    top: 30px;
+    cursor: pointer;
+ }
+
+.forgot_button {
+    text-decoration: none;
+
+    position: absolute;
+    left: 230px;
+    bottom: 40px;
+
+    background: #339C64;
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 32px;
+    border: 1px solid black;
+    font-size: 24px;
+    font-weight: bolder;
+    letter-spacing: 0.03em;
+    color: #FFFFFF;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 200px;
+    height: 50px;
+
+    cursor: pointer;
+}
+
+.forgot_input {
+    position: absolute;
+    background: #F8F5D5;
+    border-radius: 8px;
+    font-size: 28px;
+    width: 400px;
+    height: 40px;
+    margin-top: 20px;
+    left: 135px;
+
+    font-family: 'Quicksand';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.none {
+    display: none;
+}

@@ -1,0 +1,300 @@
+.comment_parent {
+  position: relative;
+  /* width: auto; */
+  /* width: 300px; */
+  width: 520px;
+  height: auto;
+  padding: 15px 15px 10px 15px;
+  border-radius: 13px;
+  background-color: #d6ebe0;
+  margin: 20px 20px 20px 0;
+}
+
+.comment_text {
+  overflow: hidden;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+}
+.testzazza {
+  height: 200px;
+}
+.line_clamp {
+  /* -webkit-line-clamp: 3; */
+}
+
+.comment_interact {
+  position: relative;
+  left: -30px;
+}
+
+.comment_breakline {
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.comment_viewmore {
+  color: #339c64;
+  border: none;
+  background-color: #d6ebe0;
+  position: relative;
+  left: 397px;
+  cursor: pointer;
+  padding-bottom: 25px;
+  top: -16px;
+}
+
+.comment_viewmore:hover {
+  text-decoration: underline;
+}
+
+.comment_main {
+  position: relative;
+}
+
+.comment_reply {
+  position: relative;
+  bottom: 11px;
+  /* left: 265px; */
+  left: 490px;
+  border: none;
+  background-color: transparent;
+  color: #339c64;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.comment_reply:hover {
+  text-decoration: underline;
+}
+
+.comment_shareimg {
+  position: relative;
+  top: 4px;
+  left: -4px;
+  width: 20px;
+  height: auto;
+}
+
+.comment_profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50px;
+  /* background-color: black; */
+  display: inline-block;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.comment_name {
+  position: absolute;
+  top: 15.5px;
+  left: 60px;
+  width: 300px;
+  width: 520px;
+  height: 20px;
+  /* overflow: hidden;*/
+}
+
+.comment_report_button {
+  position: absolute;
+  top: 15.5px;
+  left: 517px;
+  width: 17px;
+  height: auto;
+  cursor: pointer;
+}
+
+.comment_x_button {
+  position: absolute;
+  top: 15.5px;
+  left: 523px;
+  width: 11px;
+  height: auto;
+  cursor: pointer;
+}
+
+.display_none {
+  display: none;
+}
+
+.comment_parent_context {
+  position: relative;
+  height: auto;
+  left: 45px;
+  width: 420px;
+  top: -14px;
+  font-weight: 400;
+}
+
+.comment_showreply {
+  position: relative;
+  bottom: 11px;
+  /* left: 290px; */
+  left: 522px;
+  border: none;
+  background-color: transparent;
+  color: #339c64;
+  font-size: 15px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.comment_showreply:hover {
+  text-decoration: underline;
+}
+
+.comment_showreplyfreespace {
+  left: 588px;
+}
+
+.removebackground {
+  background-color: transparent;
+}
+
+.comment_show_button {
+  position: relative;
+
+  height: auto;
+  width: 20px;
+  top: 2px;
+  right: 7px;
+}
+
+.comment_reply_nochild {
+  left: 366px;
+}
+
+.comment_showreply_nochild {
+  left: 400px;
+}
+
+.comment_showreplyhome {
+  left: 467px;
+}
+
+.display_move {
+  position: absolute;
+  left: -99999cm;
+  top: -10000px;
+}
+
+.commentreply_input {
+  padding-left: 20px;
+  width: 530px;
+  height: 30px;
+  background-color: #f8f5d5;
+  margin-right: 30px;
+  border-radius: 6px;
+  border: none;
+}
+
+.commentreply_button {
+  color: #339c64;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  top: 10px;
+}
+
+.commentreply_move {
+  position: relative;
+  animation: inputslide 1s forwards 0s;
+  animation-fill-mode: forwards;
+}
+
+.commentreply_moveback {
+  position: relative;
+  animation: inputslideback 2s forwards 0s;
+  animation-fill-mode: forwards;
+}
+
+.commentreply_form {
+  position: relative;
+  left: 110px;
+  height: 50px;
+}
+
+.reply_open {
+  max-height: 0px;
+  overflow: hidden;
+  animation: slide 10s ease-in-out 0.5s;
+  animation-fill-mode: forwards;
+}
+
+.reply_close {
+  animation: slideout 5s ease-in-out 0s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+  0% {
+    opacity: 1;
+    max-height: 0px;
+    overflow: hidden;
+  }
+  100% {
+    opacity: 1;
+    /* height: auto; */
+    max-height: 100000px;
+  }
+}
+
+@keyframes inputslide {
+  0% {
+    position: relative;
+    left: 0px;
+  }
+  100% {
+    position: relative;
+    left: 100px;
+  }
+}
+
+@keyframes inputslideback {
+  0% {
+    position: relative;
+    left: 100px;
+  }
+
+  100% {
+    position: relative;
+    left: 0px;
+  }
+}
+
+@keyframes slideout {
+  0% {
+    max-height: 4000px;
+  }
+  20% {
+    max-height: 0px;
+    overflow: hidden;
+  }
+
+  100% {
+    /* height: auto; */
+    position: absolute;
+    left: -99999cm;
+    top: -10000px;
+  }
+}
+
+.comment_profile_pic {
+  width: auto;
+  height: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.date_time_diff {
+  position: absolute;
+  bottom: 10px;
+  right: 14px;
+  color: #339c64;
+}
