@@ -35,7 +35,7 @@
 
     position: absolute;
     left: 230px;
-    bottom: 40px;
+    bottom: 20px;
 
     background: #339C64;
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
@@ -76,4 +76,16 @@
 
 .none {
     display: none;
+}
+
+.forgot_noti {
+    position: relative;
+    margin: 0 auto;
+    width: auto;
+    height: 30px;
+    margin-top: 70px;
+}
+.forgot_error {
+    text-align: center;
+    color: red;
 }
