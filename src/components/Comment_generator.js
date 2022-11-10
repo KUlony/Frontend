@@ -1,5 +1,5 @@
-import React from "react";
-import Comment from "./Comment";
+import React from "react"
+import Comment from "./Comment"
 
 function Comment_generator(props) {
   const {
@@ -29,10 +29,10 @@ function Comment_generator(props) {
             display_report={display_report}
             comment_delete={comment_delete}
           />
-        );
+        )
       })}
     </div>
-  );
+  )
 }
 
-export default Comment_generator;
+export default Comment_generator

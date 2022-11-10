@@ -191,14 +191,14 @@ function Comment(props) {
   };
 
   const comment_input = (e) => {
-    setReplyinput(e.target.value);
-  };
+    setReplyinput(e.target.value)
+  }
 
   const display_child = () => {
-    setDisplaychild(!displaychild);
-    setdisplayanimagoback(!displaychild);
-    setFirsttimeposition(true);
-  };
+    setDisplaychild(!displaychild)
+    setdisplayanimagoback(!displaychild)
+    setFirsttimeposition(true)
+  }
 
   const updatecommentdata = (data) =>
     setReplydata((replydata) => [...replydata, data]);
@@ -355,7 +355,7 @@ function Comment(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Comment;
+export default Comment

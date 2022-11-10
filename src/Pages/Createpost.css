@@ -1,0 +1,443 @@
+.createTitle {
+  position: relative;
+  display: flex;
+  margin-left: 5%;
+  /* margin-bottom: 20px; */
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: 0.03em;
+  color: #000000;
+}
+
+.create {
+  margin: auto 0px;
+}
+
+.all {
+  width: 100%;
+  height: 100%;
+  background-color: white; 
+  /* overflow-y: scroll; */
+}
+
+.allcontent {
+  width: 100%;
+  margin: auto;
+}
+
+.covertitle {
+  /* position: relative; */
+  width: 100%;
+  display: flex;
+  margin-bottom: 20px;
+  font-size: 25px;
+}
+
+.covercontent {
+  display: flex;
+  font-size: 25px;
+}
+
+.uptoten {
+  font-size: medium;
+  margin: auto 0px;
+  color: darkgrey;
+}
+
+.permult {
+  margin: auto auto auto 10px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #339C64;
+}
+
+.op {
+  margin: auto 10px;
+  color: #339C64;
+  font-weight: 600;
+}
+
+.allcover {
+  width: 40%;
+}
+
+.btcover {
+  position: relative;
+  font-weight: 600;
+  font-size: 15px;
+  margin-left: 28%;
+  width: 100px;
+  height: 40px;
+  background-color: #E7DB73;
+  border: none;
+  border-radius: 16px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.btcover:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.mb3content {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.form-control {
+  display: none;
+}
+
+.foruploadfile {
+  font-weight: 600;
+  height: 20px;
+  background-color: white;
+  padding: 8px;
+  border: 1px solid gray;
+  transition-duration: 0.2s;
+}
+
+.foruploadfile:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.displyfile {
+  display: flex;
+  width: 100%;
+}
+
+.filename {
+  margin-left: 20px;
+  background-color: white;
+  padding: 8px;
+  width: 60%;
+  border: 1px solid gray;
+}
+
+.choosefile {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.percentimgtitle {
+  margin: auto auto auto 10px;
+  color: #339C64;
+  font-weight: 600;
+  text-align: center;
+}
+
+.btcontent {
+  position: relative;
+  font-weight: 600;
+  font-size: 15px;
+  margin-left: 29%;
+  width: 100px;
+  height: 40px;
+  background-color: #E7DB73;
+  border: none;
+  border-radius: 16px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.btcontent:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.title {
+  width: 80%;
+  margin: auto;
+}
+
+.titlespan {
+  display: flex;
+}
+
+.inputTitle {
+  margin-top: 10px;
+  background: #F8F5D5;
+  resize: none;
+  font-size: 16px;
+  width: 100%;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.char_count_title,.char_count_content {
+  color: #339C64;
+  font-weight: 600;
+}
+
+.namet {
+  margin: auto 0px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+/* .nametreq {
+  color: red;
+} */
+
+.namec {
+  margin: auto 0px;
+  font-weight: 600;
+}
+
+.name {
+  margin-top: auto;
+  text-align: right;
+  width: 100%;
+}
+
+.conbody {
+  margin: auto;
+  width: 80%;
+}
+
+.namecontentp {
+  font-weight: 600;
+}
+
+.content {
+  margin-bottom: 0px;
+  font-size: 25px;
+  font-weight: 600;
+}
+
+/* .contentreq {
+  color: red;
+} */
+
+.inputContent {
+  margin-top: 10px;
+  width: 100%;
+  height: 150px;
+  resize: none;
+  background: #F8F5D5;
+  font-size: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.contentspan {
+  display: flex;
+  /* width: 100%; */
+}
+
+.namecontent {
+  margin: auto auto auto 88%;
+  width: 100%;
+}
+
+.conbottom {
+  display: flex;
+  width: 80%;
+  margin: auto;
+}
+
+.bottom {
+  width: 20%;
+}
+
+.bottomphototopic {
+  width: 40%;
+}
+
+.btnuploadimgmult {
+  display: flex;
+  width: 100%;
+}
+
+.btnuploadimg {
+  display: flex;
+  width: 100%;
+}
+
+.topicname {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+/* .topicnamereq {
+  color: red;
+} */
+
+.nametopic {
+  margin-left: 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #339C64;
+  /* overflow-wrap: break-word; */
+}
+
+.topicmap {
+  margin-bottom: 5px;
+}
+
+.edittopic {
+  background: #E7DB73;
+  border-radius: 16px;
+  border: none;
+  height: 40px;
+  width: 120px;
+  font-weight: 600;
+  font-size: 15px;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.edittopic:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.btnbottom {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.bth {
+  margin-top: 120px;
+  margin-left: 3%;
+}
+
+.backtohome {
+  display: flex;
+  text-decoration: none;
+  color: #339C64;
+  font-weight: 600;
+  font-size: 20px;
+  transition-duration: 0.2s;
+}
+
+.backtohome:hover {
+  color: #339C64;
+}
+
+.picback {
+  margin-left: 5%;
+  margin: auto 0px auto 5%;
+}
+
+.postbtn {
+  margin-left: 80%;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: #339C64;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.postbtn:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+  font-size: 28px;
+  background-color: #2a8052;
+}
+
+.dispost {
+  margin-left: 80%;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
+}
+
+.noting {
+  display: none;
+}
+
+.topicselectcss {
+  position: absolute;
+  /* border-style: solid; */
+  width: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -25%;
+  margin-top: -15%;
+  /* overflow-x: hidden; */
+  z-index: 3;
+}
+
+.close {
+  position: absolute;
+  margin-left: 98%;
+  margin-top: -2px;
+  cursor: pointer;
+}
+
+.picsheet {
+  height: 150px;
+  margin-left: 70%;
+}
+
+.btnconfirm {
+  position: relative;
+  margin-left: 40%;
+  margin-top: -13%;
+}
+
+.confirm {
+  /* width: 100%; */
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: #339C64;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.confirm:hover {
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+  font-size: 28px;
+  background-color: #2a8052;
+}
+
+.discon {
+  /* width: 100%; */
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  color: white;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.5s;
+}
+
+.topicinpage {
+  font-weight: 600;
+  margin-top: 10px;
+}
+
+.displayback {
+  /* position: absolute; */
+  position: fixed;
+  top: 0px;
+  
+  /* margin: 0px 0px; */
+  background-color: white;
+  opacity: 0.6;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+}

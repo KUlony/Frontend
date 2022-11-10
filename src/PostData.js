@@ -1,5 +1,5 @@
-import { createContext } from "react";
+import { createContext } from "react"
 
-const PostData = createContext();
+const PostData = createContext()
 
-export default PostData;
+export default PostData

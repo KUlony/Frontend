@@ -1,0 +1,173 @@
+.topic {
+  background-color: white;
+  border-radius: 20px;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px;
+  width: 100%;
+  height: 500px;
+  padding: 10px;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.headtopic {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.choosetopic {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.maxtopic {
+  color: gray;
+}
+
+.contenttopic {
+  display: flex;
+  width: 100%;
+}
+
+.seltopic {
+  margin: 0px 5%;
+}
+
+.selcom {
+  background: #D6EBE0;
+  width: 60%;
+  height: 220px;
+  font-size: larger;
+  overflow: hidden;
+  text-align: justify;
+  padding: 20px 40px;
+}
+
+.scrollgeneral {
+  display: flex;
+  /* margin: 20px 40px; */
+  height: 220px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.scrollstudy {
+  display: flex;
+  height: 220px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.scrollfaculty {
+  display: flex;
+  height: 220px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.comleft {
+  /* border-style: solid; */
+  width: 50%;
+}
+
+.comright {
+  /* margin-left: 5%; */
+  /* border-style: solid; */
+  width: 50%;
+}
+
+.generalC {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.generaltog {
+  color: #2a8052;
+}
+
+.generalC:hover {
+  color: #2a8052;
+}
+
+.studyC {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.studytog {
+  color: #2a8052;
+}
+
+.studyC:hover {
+  color: #2a8052;
+}
+
+.facultyC {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.facultytog {
+  color: #2a8052;
+}
+
+.facultyC:hover {
+  color: #2a8052;
+}
+
+/* .comleft input[type="checkbox"],.comright input[type="checkbox"] {
+  removing default appearance
+  -webkit-appearance: none;
+  appearance: none;
+  creating a custom design
+  width: 1.6em;
+  height: 1.6em;
+  border-radius: 0.15em;
+  margin-left: 3em;
+  border: 0.15em solid gray;
+  outline: none;
+  cursor: pointer;
+}
+*/
+
+.checkbox-wrapper {
+  margin-bottom: 3%;
+  /* margin-left: 10%; */
+}
+
+.checked-item,
+.not-checked-item {
+  margin-left: 10px;
+}
+.checked-item {
+  text-decoration: line-through;
+}
+
+.itemname {
+  margin-left: 10px;
+}
+
+.noting {
+  display: none;
+}

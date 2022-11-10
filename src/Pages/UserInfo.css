@@ -1,0 +1,118 @@
+.user-info {
+  margin-left: 70px;
+}
+.profile-pic {
+  position: absolute;
+  /* margin-left: 200px; */
+  /* margin-top: 10px; */
+  left: 500px;
+  top: 130px;
+}
+.username {
+  position: absolute;
+  left: 700px;
+  top: 120px;
+}
+
+.bio {
+  position: absolute;
+  left: 700px;
+  top: 200px;
+}
+
+.firstname {
+  position: absolute;
+  left: 500px;
+  top: 350px;
+}
+
+.lastname {
+  position: absolute;
+  left: 750px;
+  top: 350px;
+}
+
+.education {
+  position: absolute;
+  left: 500px;
+  top: 450px;
+}
+
+.contact {
+  position: absolute;
+  left: 500px;
+  top: 500px;
+}
+
+.input-firstname {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-lastname {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-bio {
+  background: #f8f5d5;
+  border: 1px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 300px;
+  height: 78px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-username {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.profile-bottom {
+  position: relative;
+  top: 650px;
+  left: 200px;
+  list-style-type: none;
+}
+
+.home-button {
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  left: 500px;
+  top: 10px;
+  width: 150px;
+}
+
+.save-button {
+  position: relative;
+  left: 500px;
+  border-radius: 25px;
+  padding: 10px 10px;
+  background-color: #339c64;
+  border: none;
+}
