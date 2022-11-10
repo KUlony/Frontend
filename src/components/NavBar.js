@@ -81,7 +81,7 @@ function Navbar() {
       <li className="create-new-post">
         {isAdmin ? (
           <div className="border-create-post" onClick={handleShow2}>
-            Create new topic +
+            <p className="create-post-name">Create new topic +</p>
           </div>
         ) : (
           <Link to="/createnewpost" className="create-post-link">

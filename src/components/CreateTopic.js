@@ -1,13 +1,13 @@
-import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import React, { useState } from "react"
+import { Modal } from "react-bootstrap"
 
 function CreateTopic(props) {
-  const { handleShow2, handleReq, show } = props;
-  const [createTopic, setCreateTopic] = useState('');
+  const { handleShow2, handleReq, show } = props
+  const [createTopic, setCreateTopic] = useState("")
   const newTopic = (e) => {
-    setCreateTopic(e.target.value);
-    console.log(createTopic);
-  };
+    setCreateTopic(e.target.value)
+    console.log(createTopic)
+  }
 
   return (
     <Modal show={show} onHide={handleShow2} className="pop-up topic-con">
@@ -43,7 +43,7 @@ function CreateTopic(props) {
         </div>
       </form>
     </Modal>
-  );
+  )
 }
 
-export default CreateTopic;
+export default CreateTopic

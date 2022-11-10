@@ -60,7 +60,7 @@ function App() {
           <Route path="/createnewpost" element={<Createpost />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/admin/reportpost" element={<ReportpageAdmin />} />
-          <Route path="/admin/requsttopic" element={<ReqtopicAdmin />} />
+          <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
         </Routes>
       </BrowserRouter>
     </div>
