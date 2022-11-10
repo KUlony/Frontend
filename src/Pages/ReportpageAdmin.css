@@ -1,0 +1,87 @@
+.allpage {
+  width: 100%;
+  height: 100%;
+}
+
+.headname {
+  margin-top: 4%;
+  margin-left: 5%;
+  display: flex;
+}
+
+.namepage {
+  font-size: 36px;
+  font-weight: 600;
+  margin: auto 0px;
+}
+
+.picbad {
+  margin-left: -30px;
+}
+
+.headpostcom {
+  display: flex;
+  width: 100%;
+}
+
+.butn {
+  margin-left: 10%;
+  display: flex;
+}
+
+.select {
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 600;
+  transition-duration: 0.2s;
+}
+
+.select:hover {
+  color: #339C64;
+}
+
+.noti {
+  height: 20px;
+  width: 20px;
+  margin: auto 0px auto 5px;
+  text-align: center;
+  background-color: #E7DB73;
+  border-radius: 100%;
+}
+
+.baseline {
+  background-color: #339C64;
+  height: 3px;
+}
+
+.tog {
+  color: #339C64;
+}
+
+.sortname {
+  font-size: 20px;
+  font-weight: 600;
+  color: #339C64;
+  margin-left: 50%;
+}
+
+.sortpic {
+  height: 16px;
+  margin: auto 0px;
+  margin-left: 10px;
+}
+
+.dropboxsort {
+  margin: auto 0px auto 10px;
+}
+
+.sortby {
+  /* -webkit-appearance: none; */
+  outline: none;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
