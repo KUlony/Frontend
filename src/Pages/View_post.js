@@ -1,135 +1,143 @@
-import React, { useEffect, useState } from "react";
-import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import Navbar from "../components/NavBar";
-import "./View_post.css";
-import { IoIosArrowBack } from "react-icons/io";
-import Comment from "../components/Comment";
-
-import { FcLikePlaceholder } from "react-icons/fc";
-import profileimg from "../picture/profile.png";
-import {
-  MdOutlineModeComment,
-  MdTitle,
-  MdReport,
-  MdSend,
-} from "react-icons/md";
-import { BsFillHeartFill } from "react-icons/bs";
-import Reportpost_popup from "../components/Reportpost_popup";
-import Miniprofile from "../components/Miniprofile";
-import Comment_generator from "../components/Comment_generator";
-import Showimg from "../components/Showimg";
-import Checklogin from "../components/Checklogin";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import bin from "../picture/bin.png";
-import edit from "../picture/edit.png";
-import report from "../picture/reportmini.png";
-import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
+import React, { useEffect, useState } from "react"
+import { Link, useLocation, useParams } from "react-router-dom"
+import Navbar from "../components/NavBar"
+import "./View_post.css"
+import { IoIosArrowBack } from "react-icons/io"
+import Comment from "../components/Comment"
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai"
+import { FcLikePlaceholder } from "react-icons/fc"
+import profileimg from "../picture/profile.png"
+import { MdOutlineModeComment, MdTitle, MdReport, MdSend } from "react-icons/md"
+import { BsFillHeartFill } from "react-icons/bs"
+import Reportpost_popup from "../components/Reportpost_popup"
+import Miniprofile from "../components/Miniprofile"
+import Comment_generator from "../components/Comment_generator"
+import Showimg from "../components/Showimg"
+import Checklogin from "../components/Checklogin"
 
 function View_post() {
-  localStorage.setItem("test", 1);
-  const [displayReport, setdisplayReport] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const [imgurl, setImgurl] = useState("");
-  const [displaypostimg, setDisplayposting] = useState(false);
-  const [likepost, setLikepost] = useState(false);
-  const [likecount, setLikecount] = useState(0);
-  const post_id = useParams();
-  const [postdataarray, setPostdataarray] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [title, setTitle] = useState("");
-  const [commentcount, setCommentcount] = useState("");
-  const [post_content, setPost_content] = useState("");
-  const [photo, setPhoto] = useState("");
-  const [profilepic, setProfilepic] = useState("");
-  const [username, setUsername] = useState("");
-  const [post_photo_url, setPost_photo_url] = useState([]);
-  const [loadingcomment, setLoadingcomment] = useState(true);
-  const [user_like_status, setUser_like_status] = useState(false);
-  const [userminiprofile, setUserminiprofile] = useState("");
-  const [commentdata, setCommentdata] = useState([]);
-  const token = localStorage.getItem("token");
-  const [timedata, setTimedate] = useState("");
+  // const location = useLocation();
+  // console.log(location);
+  // const from = location.state;
+  // const like = from.like.likecount;
+  // const commentcount = from.comment.comment;
+  // const title = from.title.title;
+  // const post_content = from.post_content.post_content;
+  // const photo = from.photo.photo;
+  // const profilepic = from.profilepic.profilepic;
+  // const username = from.username.username;
+  // const scrollRestoration = History.scrollRestoration;
+  // console.log(scrollRestoration);
+
+  const [displayReport, setdisplayReport] = useState(true)
+  const [displayProfile, setdisplayProfile] = useState(true)
+  const [imgurl, setImgurl] = useState("")
+  const [displaypostimg, setDisplayposting] = useState(false)
+  const [likepost, setLikepost] = useState(false)
+  const [likecount, setLikecount] = useState(0)
+  const post_id = useParams()
+  const [postdataarray, setPostdataarray] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [title, setTitle] = useState("")
+  const [commentcount, setCommentcount] = useState("")
+  const [post_content, setPost_content] = useState("")
+  const [photo, setPhoto] = useState("")
+  const [profilepic, setProfilepic] = useState("")
+  const [username, setUsername] = useState("")
+  const [post_photo_url, setPost_photo_url] = useState([])
+  const [loadingcomment, setLoadingcomment] = useState(true)
+  const [user_like_status, setUser_like_status] = useState(false)
+  const [userminiprofile, setUserminiprofile] = useState("")
+  const [commentdata, setCommentdata] = useState([])
+  const token = localStorage.getItem("token")
   // console.log(post_id.id);
-  const [reportid, setReportid] = useState("");
-  const [reporttype, setRepottype] = useState("");
-  const [possession, setPossesstion] = useState(false);
-  const userid = localStorage.getItem("user_id");
+  const [reportid, setReportid] = useState("")
+  const [reporttype, setRepottype] = useState("")
+  const [possession, setPossesstion] = useState(false)
+  const userid = localStorage.getItem("user_id")
 
   const postfetch = async () => {
     try {
-      const response = await fetch(`/api/post/${post_id.id}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      const json = await response.json();
+      const response = await fetch(
+        `http://localhost:4000/api/post/${post_id.id}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      const json = await response.json()
 
-      setLoading(false);
-      setPostdataarray(json);
-      setLikecount(json.post_like_count);
-      setCommentcount(json.post_comment_count);
-      setTitle(json.post_title);
-      setPost_content(json.post_content);
-      setPhoto(json.cover_photo_url);
-      setProfilepic(json.author.profile_pic_url);
-      setUsername(json.author.username);
-      setPost_photo_url(json.post_photo_url);
-      setUser_like_status(json.user_like_status);
-      setUserminiprofile(json.author.user_id);
-      setTimedate(json.post_time);
-      setPossesstion(json.author.user_id === userid ? true : false);
+      setLoading(false)
+      setPostdataarray(json)
+      setLikecount(json.post_like_count)
+      setCommentcount(json.post_comment_count)
+      setTitle(json.post_title)
+      setPost_content(json.post_content)
+      setPhoto(json.cover_photo_url)
+      setProfilepic(json.author.profile_pic_url)
+      setUsername(json.author.username)
+      setPost_photo_url(json.post_photo_url)
+      setUser_like_status(json.user_like_status)
+      setUserminiprofile(json.author.user_id)
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
   useEffect(() => {
-    postfetch();
-  }, []);
+    postfetch()
+  }, [])
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(`/api/comment/${post_id.id}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      const comment_json = await comment_fetch_respone.json();
-      setCommentdata(comment_json);
-      setLoadingcomment(false);
+      const comment_fetch_respone = await fetch(
+        `http://localhost:4000/api/comment/${post_id.id}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      )
+      const comment_json = await comment_fetch_respone.json()
+      setCommentdata(comment_json)
+      setLoadingcomment(false)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
   useEffect(() => {
     if (loadingcomment) {
-      fetchcomment();
+      fetchcomment()
     }
-  }, []);
-  const [commentinput, setCommentinput] = useState("");
+  }, [])
+  const [commentinput, setCommentinput] = useState("")
   const comment = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       if (commentinput !== "") {
         const comment_input_value = document.querySelector(
           ".view_post_comment_input"
-        );
+        )
 
-        const response_comment = await fetch(`/api/comment/create`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `${token}`,
-          },
-          body: JSON.stringify({
-            post_id: post_id.id,
-            comment_content: commentinput,
-          }),
-        });
+        const response_comment = await fetch(
+          `http://localhost:4000/api/comment/create`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+              post_id: post_id.id,
+              comment_content: commentinput,
+            }),
+          }
+        )
         if (!response_comment.ok) {
-          throw new Error("fail");
+          throw new Error("fail")
         }
 
-        const json_comment = await response_comment.json();
+        const json_comment = await response_comment.json()
         // console.log(`json_comment `, json_comment);
 
         const userdata = await fetch(
@@ -139,9 +147,9 @@ function View_post() {
               Authorization: `${token}`,
             },
           }
-        );
-        const jsonuserdata = await userdata.json();
-        console.log(json_comment);
+        )
+        const jsonuserdata = await userdata.json()
+
         const datainput = {
           comment_content: commentinput,
           comment_id: json_comment._id,
@@ -152,27 +160,27 @@ function View_post() {
             username: jsonuserdata.user_name,
             profile_pic_url: jsonuserdata.profile_pic_url,
           },
-        };
-        updatecommentdata(datainput);
-        setCommentcount(commentcount + 1);
-        comment_input_value.value = "";
-        setCommentinput("");
+        }
+        updatecommentdata(datainput)
+        setCommentcount(commentcount + 1)
+        comment_input_value.value = ""
+        setCommentinput("")
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
     //เดี๊ยวฟังชั่นนี้ต้อง fetch  ก่อนที่จะ updatecommentdata
-  };
+  }
   const comment_input = (e) => {
-    setCommentinput(e.target.value);
-  };
+    setCommentinput(e.target.value)
+  }
   const display_report = (type, id) => {
-    setdisplayReport(!displayReport);
+    setdisplayReport(!displayReport)
     if (id !== "close") {
-      setReportid(id);
-      setRepottype(type);
+      setReportid(id)
+      setRepottype(type)
     }
-  };
+  }
 
   const display_profile = (user_id) => {
     // if (user_id === "close") {
@@ -182,127 +190,48 @@ function View_post() {
     // } else {
     //   setdisplayProfile(!displayProfile);
     // }
-    setdisplayProfile(!displayProfile);
+    setdisplayProfile(!displayProfile)
     if (user_id !== "close") {
-      setUserminiprofile(user_id);
+      setUserminiprofile(user_id)
     }
-  };
+  }
   const display_postimg = (url) => {
-    setDisplayposting(!displaypostimg);
-    setImgurl(url);
-    setDisplayposting(true);
-  };
+    setDisplayposting(!displaypostimg)
+    setImgurl(url)
+    setDisplayposting(true)
+  }
   const updatecommentdata = (data) =>
-    setCommentdata((commentdata) => [...commentdata, data]);
-
+    setCommentdata((commentdata) => [...commentdata, data])
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(`/api/post/unlike/${post_id.id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-      } else {
-        const add = await fetch(`/api/post/like/${post_id.id}`, {
-          method: "POST",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-      }
-
-      setLikecount(user_like_status ? likecount - 1 : likecount + 1);
-      setUser_like_status(!user_like_status);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const navigate = useNavigate();
-  const [datetime, setDatetime] = useState("");
-
-  useEffect(() => {
-    if (!loading) {
-      const timepost = timedata.split("T");
-      const day = timepost[0].split("-").reverse().join("/");
-      const timearray = timepost[1].split(".");
-      const time = timearray[0];
-
-      let inttime = parseFloat(time.split(":").join("."));
-
-      if (inttime >= 12 && inttime < 24) {
-        if (inttime === 12) {
-          setDatetime("12:00 PM, " + day);
-        } else {
-          const min = inttime.toString().split(".");
-          inttime -= 5;
-
-          const date = inttime.toString().split(".");
-          // console.log(date);
-          setDatetime(date[0] + ":" + min[1] + " PM, " + day);
-        }
-      } else {
-        if (inttime === 24) {
-          setDatetime("12:00 AM, " + day);
-        } else {
-          const min = inttime.toString().split(".");
-          inttime += 7;
-          const date = inttime.toString().split(".");
-          if (min[1].length === 1) {
-            setDatetime(date[0] + ":" + min[1] + "0 AM, " + day);
-          } else {
-            setDatetime(date[0] + ":" + min[1] + " AM, " + day);
+        const remove = await fetch(
+          `http://localhost:4000/api/post/unlike/${post_id.id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `${token}`,
+            },
           }
-        }
+        )
+      } else {
+        const add = await fetch(
+          `http://localhost:4000/api/post/like/${post_id.id}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        )
       }
-    }
-  }, [timedata]);
 
-  const comment_delete = async (id) => {
-    try {
-      const respone = await fetch(`/api/comment/${id}/delete`, {
-        method: "PUT",
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      if (!respone.ok) {
-        throw new Error("fail to delete");
-      }
-      setCommentcount(commentcount - 1);
-      return true;
+      setLikecount(user_like_status ? likecount - 1 : likecount + 1)
+      setUser_like_status(!user_like_status)
     } catch (err) {
-      return false;
-      console.error(err);
+      console.log(err)
     }
-  };
-
-  const delete_post = async () => {
-    try {
-      const respone = await fetch(`/api/post/${post_id.id}/delete`, {
-        method: "PUT",
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      navigate(-1);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
-
-  const report_dropdown = () => {
-    if (reportpost_drop === "btn_where") {
-      setreportpost_drop("btn_report_show");
-    } else {
-      setreportpost_drop("btn_where");
-    }
-  };
-
+  }
   return (
     <div className="view_post_poup">
       <Checklogin />
@@ -319,7 +248,7 @@ function View_post() {
             <button
               className="view_post_fullpost_backtohome_link"
               onClick={() => {
-                navigate(-1, { state: { back: true } });
+                navigate(-1, { state: { back: true } })
               }}
             >
               <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
@@ -381,7 +310,7 @@ function View_post() {
                       <img src={data} alt="post_img" className="post_img" />
                     </div>
                   </div>
-                );
+                )
               })}
             </div>
           )}
@@ -515,7 +444,7 @@ function View_post() {
         ></div>
       )}
     </div>
-  );
+  )
 }
 
-export default View_post;
+export default View_post

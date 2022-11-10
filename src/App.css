@@ -46,3 +46,11 @@
     transform: rotate(360deg);
   }
 }
+
+* {
+  font-family: 'Prompt', sans-serif;
+  font-family: 'Quicksand', sans-serif;
+  align-content: center;
+  margin: 0px;
+  padding: 0px;
+}
