@@ -107,3 +107,21 @@
   height: 100vh;
   z-index: 2;
 }
+
+.cancleconfirm {
+  position: absolute;
+  bottom: 43px;
+  right: 45%;
+}
+
+.cancleaddtopic {
+  font-size: 26px;
+  font-weight: 600;
+  color: #339C64;
+  cursor: pointer;
+  transition-duration: 0.2s;
+}
+
+.cancleaddtopic:hover {
+  color: #277b4e;
+}
