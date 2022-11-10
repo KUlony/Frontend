@@ -53,7 +53,7 @@ function Home() {
     setTopicarray([])
     setSearchresult("")
   }
-
+  // console.log()
   useEffect(() => {
     componentDidMount()
   }, [category, followtopic])

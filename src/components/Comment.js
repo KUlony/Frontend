@@ -144,9 +144,6 @@ function Comment(props) {
     }
   }, [replydata]);
 
-  // useEffect(() => {
-  //   replydata_fetch();
-  // }, []);
   const comment_reply = async (e) => {
     try {
       e.preventDefault();
@@ -214,6 +211,7 @@ function Comment(props) {
       setVisible(true);
     }
   };
+
   return (
     <div className="comment_main">
       {!visible && (
@@ -238,7 +236,10 @@ function Comment(props) {
               )}
             </div>
             {/* <h5 className="comment_name">{user_name}</h5> */}
-            <h5 className="comment_name">{user_name}</h5>
+            <h5 className="comment_name">
+              {" "}
+              {user_name ? user_name : "anonymous"}
+            </h5>
             {!possession && (
               <img
                 src={reportgreen}

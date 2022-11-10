@@ -175,12 +175,16 @@ function View_post() {
   };
 
   const display_profile = (user_id) => {
-    if (user_id === "close") {
-      setdisplayProfile(false);
-    } else if (user_id !== userminiprofile) {
+    // if (user_id === "close") {
+    //   setdisplayProfile(false);
+    // } else if (user_id !== userminiprofile) {
+    //   setUserminiprofile(user_id);
+    // } else {
+    //   setdisplayProfile(!displayProfile);
+    // }
+    setdisplayProfile(!displayProfile);
+    if (user_id !== "close") {
       setUserminiprofile(user_id);
-    } else {
-      setdisplayProfile(!displayProfile);
     }
   };
   const display_postimg = (url) => {
@@ -346,7 +350,7 @@ function View_post() {
 
             {username ? (
               <div className="view_post_fullpost_profile_username">
-                {username}
+                {username ? username : "anonymous"}
               </div>
             ) : (
               <div className="view_post_fullpost_profile_username">
@@ -365,20 +369,22 @@ function View_post() {
             </div>
           )}
           <div className="view_post_fullpost_content">{post_content}</div>
-          <div className="view_post_fullpost_img">
-            {post_photo_url.map((data) => {
-              return (
-                <div className="view_post_fullpost_miniimg">
-                  <div
-                    className="view_post_fullpost_miniimg_center"
-                    onClick={() => display_postimg(data)}
-                  >
-                    <img src={data} alt="post_img" className="post_img" />
+          {post_photo_url && (
+            <div className="view_post_fullpost_img">
+              {post_photo_url.map((data) => {
+                return (
+                  <div className="view_post_fullpost_miniimg">
+                    <div
+                      className="view_post_fullpost_miniimg_center"
+                      onClick={() => display_postimg(data)}
+                    >
+                      <img src={data} alt="post_img" className="post_img" />
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          )}
           <div className="view_post_interact">
             <div className="view_post_likebox" onClick={likepost_update}>
               <BsFillHeartFill className="likeshadowdrop1" size={28} />
@@ -485,6 +491,9 @@ function View_post() {
           <Miniprofile display={display_profile} user_id={userminiprofile} />
         </div>
       )}
+      {!displayProfile && (
+        <div className="cover" onClick={() => display_profile("close")}></div>
+      )}
       <div
         className={`viewpost_report_popup ${
           displayReport ? "display_none" : null
@@ -501,7 +510,7 @@ function View_post() {
       </div>
       {displaypostimg && (
         <div
-          className="cover"
+          className="viewpost_cover"
           onClick={() => setDisplayposting(!displaypostimg)}
         ></div>
       )}

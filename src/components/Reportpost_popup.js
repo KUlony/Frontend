@@ -19,6 +19,7 @@ function Reportpost_popup(props) {
     false,
     false,
   ]);
+
   const [reportOther, setreportOther] = useState("");
   const token = localStorage.getItem("token");
   const reportcheckbox = (e) => {
