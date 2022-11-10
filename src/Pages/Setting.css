@@ -3,25 +3,73 @@
   height: 100%;
   width: 100%;
   background-color: #f8f5d5;
+  z-index: 6;
 }
 
-.content {
+.setting-content {
   position: relative;
   left: 100px;
   top: 109px;
   padding: 10px;
   background-color: white;
-  border: 1px solid #dcdcdc;
+  border: 1px solid rgba(220, 220, 220, 1);
   width: 70%;
+  z-index: 8;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
 }
 
-.title {
+.setting-title {
   position: relative;
   left: 103px;
   top: 100px;
 }
 
-.visibility {
+.setting-visibility {
   margin-left: -21px;
   cursor: pointer;
+}
+
+.setting-header-text {
+  margin-top: -20px;
+}
+
+.setting-content-header {
+  cursor: pointer;
+}
+.setting-cancel {
+  cursor: pointer;
+}
+
+.setting-confirm-change {
+  cursor: pointer;
+  background: rgba(231, 219, 115, 1);
+  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+}
+
+.current-pass-input {
+  /* width: 400px; */
+  /* font-size: 24px; */
+  border: 1px;
+  background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
+    linear-gradient(0deg, #003615, #003615);
+  border: 1px solid rgba(0, 54, 21, 1);
+  border-radius: 8px;
+}
+.new-pass-input {
+  /* width: 400px; */
+  border: 1px;
+  background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
+    linear-gradient(0deg, #003615, #003615);
+  border: 1px solid rgba(0, 54, 21, 1);
+  border-radius: 8px;
+}
+
+.confirm-pass-input {
+  /* width: 400px; */
+  border: 1px;
+  background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
+    linear-gradient(0deg, #003615, #003615);
+  border: 1px solid rgba(0, 54, 21, 1);
+  border-radius: 8px;
 }

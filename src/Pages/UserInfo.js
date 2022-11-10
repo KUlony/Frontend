@@ -59,7 +59,7 @@ const UserInfo = () => {
           '/api/user/edit_profile',
           {
             user_name: username.current.value,
-            user_firtname: firstname.current.value,
+            user_firstname: firstname.current.value,
             user_lastname: lastname.current.value,
             user_bio: bio.current.value,
             education: [
@@ -247,12 +247,12 @@ const UserInfo = () => {
             cols="20"
             disabled={true}
             ref={firstname}
-            // value={userData.user_firtname}
+            // value={userData.user_firstname}
             value={
               !userData
                 ? ''
-                : userData.user_firtname
-                ? userData.user_firtname
+                : userData.user_firstname
+                ? userData.user_firstname
                 : ''
             }
           />
@@ -399,7 +399,7 @@ const UserInfo = () => {
       </section>
       <section className="profile-bottom">
         <article className="back-to-home">
-          <button className="home-button"> BACK TO HOME </button>
+          <div className="home-button"> BACK TO HOME </div>
         </article>
         <article className="save">
           <button className="save-button" onClick={onClickSave}>

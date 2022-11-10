@@ -106,6 +106,7 @@
   left: 192px;
   top: 10px;
   width: 150px;
+  cursor: pointer;
 }
 
 .save-button {
