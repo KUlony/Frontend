@@ -74,6 +74,7 @@ function Comment_child(props) {
       setReplyttimeago(`${Math.ceil(diffdatetime / 31104000)} year ago`);
     }
   }, 1000);
+
   return (
     <div className="comment_child_mainbox">
       <div className="comment_child_content">
@@ -98,7 +99,11 @@ function Comment_child(props) {
               )}
             </div>
             {/* <h5 className="comment_name">{reply_data.author.username}</h5> */}
-            <h5 className="comment_name">{reply_data.author.username}</h5>
+            <h5 className="comment_name">
+              {reply_data.author.username
+                ? reply_data.author.username
+                : "anonymous"}
+            </h5>
             {!possession && (
               <img
                 src={reportgreen}

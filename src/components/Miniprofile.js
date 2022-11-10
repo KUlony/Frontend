@@ -16,21 +16,19 @@ function Miniprofile(props) {
       if (user_id !== "") {
         setLoading(true);
         // console.log("user_id", user_id);
-        const userdata = await fetch(
-          `http://localhost:4000/api/user/${user_id}/profile`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        const userdata = await fetch(`/api/user/${user_id}/profile`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        });
         const jsonuserdata = await userdata.json();
         // console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
-        if (userdata.user_firstname || userdata.user_lastname) {
+        console.log(jsonuserdata);
+        if (jsonuserdata.user_firtname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
-            `${userdata.user_firstname} ${userdata.user_lastname}`
+            `${jsonuserdata.user_firtname} ${userdata.user_lastname}`
           );
         }
       }
@@ -83,16 +81,27 @@ function Miniprofile(props) {
             {userdata.contact && (
               <footer>
                 <p>
-                  Contact: <FaFacebookSquare className="instagram_icon" />
-                  {userdata.contact && userdata.contact.facebook
-                    ? userdata.contact.facebook
-                    : "-"}
+                  Contact:
+                  {userdata.contact && userdata.contact.facebook ? (
+                    <p className="miniprofile_inline">
+                      <FaFacebookSquare className="instagram_icon" />
+                      {userdata.contact.facebook}
+                    </p>
+                  ) : null}
                 </p>
-                <p className="miniprofile_info_contact">
-                  <BsInstagram className="instagram_icon" />
-                  {userdata.contact && userdata.contact.facebook
-                    ? userdata.contact.ig
-                    : "-"}
+                <p
+                  className={`miniprofile_info_contact ${
+                    userdata.contact && userdata.contact.facebook
+                      ? null
+                      : "changposition"
+                  }`}
+                >
+                  {userdata.contact && userdata.contact.facebook ? (
+                    <p className="miniprofile_inline">
+                      <BsInstagram className="instagram_icon" />
+                      {userdata.contact.ig}
+                    </p>
+                  ) : null}
                 </p>
               </footer>
             )}

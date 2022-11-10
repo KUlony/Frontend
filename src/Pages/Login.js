@@ -14,31 +14,23 @@ function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const navigate = useNavigate();
-
-  const [error,setError] = useState('')
-
-  
-  const login = async (e)=>{
-    try{
-      e.preventDefault()
-      setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/login',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-      "email": email,
-      "password": password})
-      })
-      const json = await postdata.json()
-
-      if (!json.success){
-        setError(json.message)
-      }
-
-      if (!postdata.ok){
-        throw new Error("error")
+  const login = async (e) => {
+    try {
+      e.preventDefault();
+      const postdata = await fetch("/api/sing-up/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      });
+      // const json = await postdata.json()
+      // console.log(postdata)
+      if (!postdata.ok) {
+        throw new Error("error");
       }
 
       console.log(json)

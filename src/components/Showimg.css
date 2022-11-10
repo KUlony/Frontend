@@ -8,13 +8,15 @@
   align-items: center;
   width: 600px;
   height: 1000px;
+
   /* background-color: aqua; */
-  z-index: 7;
+  z-index: 10002;
 }
 
 .center_img img {
   width: 600px;
   height: auto;
+  max-height: 700px;
   margin-left: auto;
   margin-right: auto;
 }

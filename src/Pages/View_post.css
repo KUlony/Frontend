@@ -254,6 +254,7 @@
   left: 50%;
   margin-left: -335px;
   margin-top: -150px;
+  z-index: 20;
 }
 
 .profile_miniimg {
@@ -373,4 +374,16 @@
   position: relative;
   left: 30px;
   /* position: absolute; */
+}
+
+.viewpost_cover {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  /* border: 250px solid white; */
+  z-index: 10001;
+  opacity: 0.5;
 }
