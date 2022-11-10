@@ -30,6 +30,7 @@ function PostreportAdmin() {
   // console.log(postiddata)
 
   const gendata = () => {
+    setPostiddata([])
     axios
       .get(`/api/admin/get_post_report`, {
         headers: {
@@ -67,6 +68,7 @@ function PostreportAdmin() {
   }, [])
 
   console.log(postdata)
+  console.log(postiddata)
 
   const discarddata = () => {
     axios
