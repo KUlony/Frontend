@@ -1,41 +1,42 @@
-import axios from 'axios'
-import React, { useEffect, useRef, useState } from 'react'
-import AddEducation from './AddEducation'
-import EditEducation from './EditEducation'
-import './UserInfo.css'
+import axios from "axios";
+import React, { useEffect, useRef, useState } from "react";
+import AddEducation from "./AddEducation";
+import EditEducation from "./EditEducation";
+import "./UserInfo.css";
 
 const UserInfo = () => {
   //api
-  const [userData, setUserData] = useState('')
+  const [userData, setUserData] = useState("");
   useEffect(() => {
     axios
-      .get('/api/user/6345767f2b95ee9f9c0a663d/profile', {
+      .get("/api/user/6345767f2b95ee9f9c0a663d/profile", {
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8',
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8",
         },
       })
       .then((res) => {
-        setUserData(res.data)
-        setAllEduForm(res.data.education)
+        setUserData(res.data);
+        setAllEduForm(res.data.education);
+        setEducationUpdated(res.data.education);
         // console.log(res.data.user_name)
       })
       .catch((error) => {
-        console.log(error)
-      })
-  }, [])
+        console.log(error);
+      });
+  }, []);
 
   //edit
-  const username = useRef()
-  const bio = useRef()
-  const firstname = useRef()
-  const lastname = useRef()
-  const instagram = useRef()
-  const facebook = useRef()
+  const username = useRef();
+  const bio = useRef();
+  const firstname = useRef();
+  const lastname = useRef();
+  const instagram = useRef();
+  const facebook = useRef();
 
   const editstyles = {
-    border: '1px solid rgba(0, 0, 0, 1)',
-  }
+    border: "1px solid rgba(0, 0, 0, 1)",
+  };
 
   const [inputArray, setInputArray] = useState([
     true,
@@ -44,20 +45,20 @@ const UserInfo = () => {
     true,
     true,
     true,
-  ])
+  ]);
 
   const editInputArray = (index) => {
     setInputArray((oldarray) =>
       oldarray.map((data, idx) => (idx === index ? !data : data))
-    )
-  }
+    );
+  };
 
   const onClickSave = async () => {
     try {
       // console.log('hello try')
       axios
         .put(
-          '/api/user/edit_profile',
+          "/api/user/edit_profile",
           {
             user_name: username.current.value,
             user_firstname: firstname.current.value,
@@ -65,94 +66,93 @@ const UserInfo = () => {
             user_bio: bio.current.value,
             education: [
               {
-                school: 'kaset',
-                degree: 'best bachelor',
+                school: "kaset",
+                degree: "best bachelor",
                 field_of_study: null,
                 start_date: null,
                 end_date: null,
-                _id: '634adc85e5a0f50a0041c393',
+                _id: "634adc85e5a0f50a0041c393",
               },
               {
-                school: 'deb',
+                school: "deb",
                 degree: null,
                 field_of_study: null,
                 start_date: null,
                 end_date: null,
-                _id: '634adc85e5a0f50a0041c394',
+                _id: "634adc85e5a0f50a0041c394",
               },
             ],
             contact: {
               facebook: facebook.current.value,
               ig: instagram.current.value,
-              _id: '634adc85e5a0f50a0041c392',
+              _id: "634adc85e5a0f50a0041c392",
             },
             profile_pic_url:
-              'https://cdn.myanimelist.net/images/characters/12/451497.jpg',
-            gender: 'male',
+              "https://cdn.myanimelist.net/images/characters/12/451497.jpg",
+            gender: "male",
           },
           {
             headers: {
               Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8',
+                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8",
             },
           }
         )
         .then((res) => {
-          console.log(res)
+          console.log(res);
         })
         .catch((err) => {
-          console.log(err)
-        })
+          console.log(err);
+        });
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   //AddEducation Page
-  const [isAddEducation, setIsAddEducation] = useState(null)
+  const [isAddEducation, setIsAddEducation] = useState(null);
 
   function onAddEducationClick() {
-    setIsAddEducation(true)
+    setIsAddEducation(true);
   }
   function onBgClick() {
-    setIsAddEducation(null)
+    setIsAddEducation(null);
   }
-  let addEducation = null
+  let addEducation = null;
   if (!!isAddEducation) {
-    addEducation = <AddEducation onBgClick={onBgClick} />
+    addEducation = <AddEducation onBgClick={onBgClick} />;
   }
   //check if local not defined
-  if (localStorage.getItem('allEducation') === null) {
-    localStorage.setItem('allEducation', JSON.stringify([]))
+  if (localStorage.getItem("allEducation") === null) {
+    localStorage.setItem("allEducation", JSON.stringify([]));
   }
   function checkIsConnect(a, b) {
     if (a != null && b != null) {
-      return true
+      return true;
     }
   }
 
   //edit Education
-  const [isEditEducation, setIsEditEducation] = useState(null)
-  const [educationInfo, setEducationInfo] = useState(null)
-  const [educationUpdated, setEducationUpdated] = useState([{}])
-  const [indexEdit, setIndexEdit] = useState()
+  const [isEditEducation, setIsEditEducation] = useState(null);
+  const [educationInfo, setEducationInfo] = useState(null);
+  const [educationUpdated, setEducationUpdated] = useState([]);
+  const [indexEdit, setIndexEdit] = useState();
   const updateEducation = (data, index) => {
+    console.log("data", data);
     setEducationUpdated((olddata) =>
       olddata.map((tmp, idx) => (idx === index ? data : tmp))
-    )
-
-    console.log('update is ', educationUpdated)
-  }
+    );
+  };
   function onEditEducationClick(theEdu, index) {
-    setIsEditEducation(true)
-    setEducationInfo(theEdu)
-    setIndexEdit(index)
+    setIsEditEducation(true);
+    setEducationInfo(theEdu);
+    setIndexEdit(index);
   }
   function onBgEditClick() {
-    setIsEditEducation(null)
-    setEducationInfo(null)
+    setIsEditEducation(null);
+    setEducationInfo(null);
   }
-  let editEducation = null
+  let editEducation = null;
   if (!!isEditEducation) {
     editEducation = (
       <EditEducation
@@ -161,7 +161,7 @@ const UserInfo = () => {
         index={indexEdit}
         updateEducation={updateEducation}
       />
-    )
+    );
   }
 
   // {dateYear.map((option, index) => (
@@ -178,7 +178,7 @@ const UserInfo = () => {
 
   //noting func
   // function
-  const [allEduForm, setAllEduForm] = useState([{}])
+  const [allEduForm, setAllEduForm] = useState([{}]);
   const eduElements = allEduForm.map((theEdu, index) => {
     return (
       <div>
@@ -188,31 +188,31 @@ const UserInfo = () => {
               className="education-school"
               // style={{ display: 'inline', whiteSpace: 'nowrap' }}
             >
-              <span>{theEdu.school ? theEdu.school : ''}</span>
+              <span>{theEdu.school ? theEdu.school : ""}</span>
               <img
-                src={require('../picture/editButton.png')}
+                src={require("../picture/editButton.png")}
                 alt="edit-button"
                 width="20px"
                 className="edit-education-button"
                 onClick={() => {
-                  onEditEducationClick(theEdu, index)
+                  onEditEducationClick(theEdu, index);
                 }}
               />
             </article>
 
             <article className="education-degree-field">
-              {theEdu.degree ? theEdu.degree : ''}
-              {checkIsConnect(theEdu.degree, theEdu.field) ? ', ' : ''}
-              {theEdu.field ? theEdu.field : ''}
-              {checkIsConnect(theEdu.field, theEdu.startMonth) ? ', ' : ''}
+              {theEdu.degree ? theEdu.degree : ""}
+              {checkIsConnect(theEdu.degree, theEdu.field) ? ", " : ""}
+              {theEdu.field ? theEdu.field : ""}
+              {checkIsConnect(theEdu.field, theEdu.startMonth) ? ", " : ""}
               <span className="education-all-date">
-                {theEdu.startMonth ? theEdu.startMonth : ''}
-                {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? ' ' : ''}
-                {theEdu.startYear ? theEdu.startYear : ''}
-                {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? ' - ' : ''}
-                {theEdu.endMonth ? theEdu.endMonth : ''}
-                {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? ' ' : ''}
-                {theEdu.endYear ? theEdu.endMonth : ''}
+                {theEdu.startMonth ? theEdu.startMonth : ""}
+                {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? " " : ""}
+                {theEdu.startYear ? theEdu.startYear : ""}
+                {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? " - " : ""}
+                {theEdu.endMonth ? theEdu.endMonth : ""}
+                {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? " " : ""}
+                {theEdu.endYear ? theEdu.endMonth : ""}
               </span>
             </article>
             <br />
@@ -221,8 +221,8 @@ const UserInfo = () => {
           <div></div>
         )}
       </div>
-    )
-  })
+    );
+  });
 
   return (
     <main className="user-info">
@@ -231,10 +231,10 @@ const UserInfo = () => {
           // src={require('../picture/temp-profile.png')}
           src={
             !userData
-              ? require('../picture/temp-profile.png')
+              ? require("../picture/temp-profile.png")
               : userData.profile_pic_url
               ? userData.profile_pic_url
-              : ''
+              : ""
           }
           alt="profileExample"
           width="150"
@@ -257,7 +257,7 @@ const UserInfo = () => {
             ref={username}
             // value={userData.user_name}
             value={
-              !userData ? '' : userData.user_name ? userData.user_name : ''
+              !userData ? "" : userData.user_name ? userData.user_name : ""
             }
           />
         ) : (
@@ -286,7 +286,7 @@ const UserInfo = () => {
             disabled={true}
             ref={bio}
             // value={userData.user_bio}
-            value={!userData ? '' : userData.user_bio ? userData.user_bio : ''}
+            value={!userData ? "" : userData.user_bio ? userData.user_bio : ""}
           />
         ) : (
           <input
@@ -317,10 +317,10 @@ const UserInfo = () => {
             // value={userData.user_firstname}
             value={
               !userData
-                ? ''
+                ? ""
                 : userData.user_firstname
                 ? userData.user_firstname
-                : ''
+                : ""
             }
           />
         ) : (
@@ -351,10 +351,10 @@ const UserInfo = () => {
             // value={userData.user_lastname}
             value={
               !userData
-                ? ''
+                ? ""
                 : userData.user_lastname
                 ? userData.user_lastname
-                : ''
+                : ""
             }
           ></input>
         ) : (
@@ -372,7 +372,7 @@ const UserInfo = () => {
 
       <section
         className="education"
-        style={{ display: 'inline', whiteSpace: 'nowrap' }}
+        style={{ display: "inline", whiteSpace: "nowrap" }}
       >
         Education
         <button onClick={onAddEducationClick}>add more</button>
@@ -383,16 +383,16 @@ const UserInfo = () => {
         <article className="instagram">
           <div
             className="ig-box"
-            style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            style={{ display: "inline", whiteSpace: "nowrap" }}
           >
             <img
               className="ig-img"
-              src={require('../picture/ig-icon.png')}
+              src={require("../picture/ig-icon.png")}
               alt="instagram"
               width="20"
               height="20"
-              style={{ 'vertical-align': 'middle' }}
-            />{' '}
+              style={{ "vertical-align": "middle" }}
+            />{" "}
             {inputArray[4] ? (
               <input
                 type="text"
@@ -403,10 +403,10 @@ const UserInfo = () => {
                 ref={instagram}
                 value={
                   !userData
-                    ? ''
+                    ? ""
                     : userData.contact.ig
                     ? userData.contact.ig
-                    : ''
+                    : ""
                 }
               />
             ) : (
@@ -429,11 +429,11 @@ const UserInfo = () => {
           >
             <img
               className="fb-img"
-              src={require('../picture/fb-icon.png')}
+              src={require("../picture/fb-icon.png")}
               alt="facebook"
               width="20"
-              style={{ 'vertical-align': 'middle' }}
-            />{' '}
+              style={{ "vertical-align": "middle" }}
+            />{" "}
             {inputArray[5] ? (
               <input
                 type="text"
@@ -444,10 +444,10 @@ const UserInfo = () => {
                 ref={facebook}
                 value={
                   !userData
-                    ? ''
+                    ? ""
                     : userData.contact.facebook
                     ? userData.contact.facebook
-                    : ''
+                    : ""
                 }
               />
             ) : (
@@ -477,7 +477,7 @@ const UserInfo = () => {
       {addEducation}
       {editEducation}
     </main>
-  )
-}
+  );
+};
 
-export default UserInfo
+export default UserInfo;
