@@ -56,7 +56,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<Navigate to="/home" />} />
           <Route path="/createnewpost" element={<Createpost />} />
-          {/* <Route path="*" element={<Navigate to="/home" />} /> */}
+          <Route path="/profile" element={<Profile />} />
           {/* <Route path="*" element={<Navigate to="/home" />} /> */}
         </Routes>
       </BrowserRouter>

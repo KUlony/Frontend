@@ -1,0 +1,27 @@
+.setting-main {
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
+  background-color: #f8f5d5;
+}
+
+.content {
+  position: relative;
+  left: 100px;
+  top: 109px;
+  padding: 10px;
+  background-color: white;
+  border: 1px solid #dcdcdc;
+  width: 70%;
+}
+
+.title {
+  position: relative;
+  left: 103px;
+  top: 100px;
+}
+
+.visibility {
+  margin-left: -21px;
+  cursor: pointer;
+}

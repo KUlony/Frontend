@@ -270,7 +270,7 @@ function Createpost() {
           <img src={Sheetpost} alt="picsheet" className="picsheet"></img>
         </div>
         <div className="allcontent">
-          <div className="title">
+          <div className="titlecreate">
             <div className="titlespan">
               <p className={`namet ${reqtitle ? "nametreq" : ""}`}>
                 Title
@@ -296,7 +296,7 @@ function Createpost() {
           <br></br>
           <div className="conbody">
             <div className="contentspan">
-              <p className={`content ${reqcontent ? "contentreq" : ""}`}>
+              <p className={`contentcreate ${reqcontent ? "contentreq" : ""}`}>
                 Content
                 {/* <span className={`${!reqcontent ? "noting" : ""}`}>*</span> */}
               </p>

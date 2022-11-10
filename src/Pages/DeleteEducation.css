@@ -1,0 +1,47 @@
+.delete-edu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  /* background-color: rgb(0, 0, 0, 0.2); */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+}
+
+.delete-edu-bg {
+  position: absolute;
+  background-color: white;
+  opacity: 0.7;
+  width: 100%;
+  height: 100vh;
+  z-index: 7;
+  cursor: pointer;
+}
+
+.delete-edu-content {
+  position: absolute;
+  border: 1px solid black;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 32px;
+  width: 100%;
+  max-width: 353px;
+  background-color: #f8f5d5;
+  z-index: 8;
+  font-weight: 700;
+}
+/* 
+.delete-edu-content {
+  position: relative;
+  padding: 32px;
+  width: 100%;
+  max-width: 353px;
+  background-color: white;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  z-index: 7;
+  font-weight: 700;
+} */

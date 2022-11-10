@@ -144,7 +144,7 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }
 
-.title {
+.titlecreate {
   width: 80%;
   margin: auto;
 }
@@ -199,7 +199,7 @@
   font-weight: 600;
 }
 
-.content {
+.contentcreate {
   margin-bottom: 0px;
   font-size: 25px;
   font-weight: 600;
