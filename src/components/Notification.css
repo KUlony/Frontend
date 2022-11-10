@@ -80,27 +80,3 @@
   padding: 10px;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 0px;
-}
-
-/* Track
-  ::-webkit-scrollbar-track {
-    background: #f9f9f9; 
-  } */
-
-/* Handle */
-::-webkit-scrollbar-thumb {
-  background: #339c64;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-::-webkit-scrollbar-thumb:hover {
-  background: #216340;
-}
-
-::-webkit-scrollbar-corner {
-  height: 0px;
-}

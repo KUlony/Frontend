@@ -1,23 +1,31 @@
-import React, { useState } from "react"
-import "./NavBar.css"
-import logo from "../picture/Logo.png"
-import { BsPersonCircle } from "react-icons/bs"
-import { FaRegBell } from "react-icons/fa"
-import { Link } from "react-router-dom"
-import ReqTopic from "./ReqTopic"
-import Notification from "./Notification"
+import React, { useState } from 'react';
+import './NavBar.css';
+import logo from '../picture/Logo.png';
+import { BsPersonCircle } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import ReqTopic from './ReqTopic';
+import Notification from './Notification';
+import CreateTopic from './CreateTopic';
 
 function Navbar() {
-  const [show, setShow] = useState(false)
-
+  const [show, setShow] = useState(false);
+  const [showCreateTopic, setShowCreateTopic] = useState(false);
   const handleReq = (e) => {
-    e.preventDefault()
-  }
-  console.log(show)
-  const handleShow = () => setShow(!show)
+    e.preventDefault();
+  };
+  console.log(show);
+  const handleShow = () => setShow(!show);
+  const handleShow2 = () => setShowCreateTopic(!showCreateTopic);
+
+  const isAdmin = !false;
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />
+      <CreateTopic
+        handleShow2={handleShow2}
+        handleReq={handleReq}
+        show={showCreateTopic}
+      />
       <li className="kulony">
         <img
           src={logo}
@@ -33,24 +41,51 @@ function Navbar() {
         </Link>
       </li>
       <li>
-        <div className="search-nav">SEARCH</div>
+        {isAdmin ? (
+          <div>
+            <Link to="/admin/reportpost" className="reportpost-nav">
+              <span>REPORT</span>
+              <div className="num-noti">3</div>
+            </Link>
+          </div>
+        ) : (
+          <div className="search-nav">SEARCH</div>
+        )}
       </li>
       <li>
-        <Link to="/mypost" className="my-post">
-          MY POST
-        </Link>
+        {isAdmin ? (
+          <Link to="/admin/requesttopic" className="topic-req-nav">
+            <span>TOPIC REQUEST</span>
+            <div className="num-noti">3</div>
+          </Link>
+        ) : (
+          <Link to="/mypost" className="my-post">
+            MY POST
+          </Link>
+        )}
       </li>
-      <li className="request-topic" onClick={handleShow}>
-        REQUEST TOPIC
-      </li>
+      {isAdmin ? (
+        <div className="free-box"></div>
+      ) : (
+        <li className="request-topic" onClick={handleShow}>
+          REQUEST TOPIC
+        </li>
+      )}
       <li className="space"> </li>
       <li className="create-new-post">
-        <Link to="/createnewpost" className="create-post-link">
-          <div class="border-create-post">Create new post +</div>
-        </Link>
+        {isAdmin ? (
+          <div className="border-create-post" onClick={handleShow2}>
+            Create new topic +
+          </div>
+        ) : (
+          <Link to="/createnewpost" className="create-post-link">
+            <div class="border-create-post">Create new post +</div>
+          </Link>
+        )}
       </li>
       <li className="bell">
         <Notification />
+        <div className="num-noti">3</div>
       </li>
       {/* <div><Notification /></div> */}
       {/* <li className='vector'><img src={vector} width='40px' height='40px' alt=""/></li> */}
@@ -60,7 +95,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;
