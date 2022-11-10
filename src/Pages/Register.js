@@ -37,7 +37,7 @@ function Register() {
     try {
       e.preventDefault();
       setError("");
-      const postdata = await fetch("/api/sing-up/register/email", {
+      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/register/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

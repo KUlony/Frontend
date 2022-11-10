@@ -20,7 +20,7 @@ function Change(probs) {
       e.preventDefault();
       setError("");
       const postdata = await fetch(
-        "/api/sing-up/forgotpassword/resetpassword",
+        "https://kulony-backend.herokuapp.comhttps://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/resetpassword",
         {
           method: "POST",
           headers: {

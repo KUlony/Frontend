@@ -242,7 +242,7 @@ function Createpost() {
     let content = document.getElementById("inputC")
 
     axios
-      .post("//localhost:4000/api/post/create", {
+      .post("https://kulony-backend.herokuapp.com/api/post/create", {
         topic_id: iditem,
         post_title: title.value,
         post_content: content.value,

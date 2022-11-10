@@ -4,11 +4,11 @@ import AddEducation from "./AddEducation"
 import "./UserInfo.css"
 
 const UserInfo = () => {
-  //api
+  /https://kulony-backend.herokuapp.com/api
   const [userData, setUserData] = useState("")
   useEffect(() => {
     axios
-      .get("/api/user/6345767f2b95ee9f9c0a663d/profile", {
+      .get("https://kulony-backend.herokuapp.com/api/user/6345767f2b95ee9f9c0a663d/profile", {
         headers: {
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8",
@@ -56,7 +56,7 @@ const UserInfo = () => {
       // console.log('hello try')
       axios
         .put(
-          "/api/user/edit_profile",
+          "https://kulony-backend.herokuapp.com/api/user/edit_profile",
           {
             user_name: username.current.value,
             user_firstname: firstname.current.value,

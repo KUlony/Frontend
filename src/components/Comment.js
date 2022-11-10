@@ -116,7 +116,7 @@ function Comment(props) {
   const replydata_fetch = async () => {
     try {
       if (loading) {
-        const response_replydata = await fetch(`/api/reply/${comment_id}`, {
+        const response_replydata = await fetch(`https://kulony-backend.herokuapp.com/api/reply/${comment_id}`, {
           headers: {
             Authorization: `${token}`,
           },
@@ -147,7 +147,7 @@ function Comment(props) {
   const comment_reply = async (e) => {
     try {
       e.preventDefault();
-      const response_reply = await fetch(`/api/reply/create`, {
+      const response_reply = await fetch(`https://kulony-backend.herokuapp.com/api/reply/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -163,7 +163,7 @@ function Comment(props) {
       }
       const json_reply = await response_reply.json();
       // console.log("json_reply", json_reply);
-      const userdata = await fetch(`/api/user/${json_reply.user_id}/profile`, {
+      const userdata = await fetch(`https://kulony-backend.herokuapp.com/api/user/${json_reply.user_id}/profile`, {
         headers: {
           Authorization: `${token}`,
         },

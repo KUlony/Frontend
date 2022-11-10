@@ -34,7 +34,7 @@ function Verify(probs) {
   const verify_register = async (e) => {
     try {
       e.preventDefault();
-      const postdata = await fetch("/api/sing-up/register/email/checkOTP", {
+      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/register/email/checkOTP", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -61,7 +61,7 @@ function Verify(probs) {
   const resend_register = async (e) => {
     try {
       e.preventDefault();
-      const postdata = await fetch("/api/sing-up/newotp/verify/email", {
+      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/email", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +83,7 @@ function Verify(probs) {
   const verify_change = async (e) => {
     try {
       e.preventDefault();
-      const postdata = await fetch("/api/sing-up/forgotpassword/checkOTP", {
+      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/checkOTP", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -111,7 +111,7 @@ function Verify(probs) {
     try {
       e.preventDefault();
       const postdata = await fetch(
-        "/api/sing-up/newotp/verify/forgotpassword",
+        "https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/forgotpassword",
         {
           method: "POST",
           headers: {

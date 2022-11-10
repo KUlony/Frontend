@@ -25,7 +25,7 @@ function Search() {
     try {
       setDisplayload(false);
       const loadmoredata = await fetch(
-        `/api/search/post?text=${keepresult}&page=${pagecount}`,
+        `https://kulony-backend.herokuapp.com/api/search/post?text=${keepresult}&page=${pagecount}`,
         {
           headers: {
             Authorization: `${token}`,
@@ -79,7 +79,7 @@ function Search() {
         setSearchOutPutData([]);
         setDisplayload(false);
         const data = await fetch(
-          `/api/search/post?text=${searchResult}&page=1`,
+          `https://kulony-backend.herokuapp.com/api/search/post?text=${searchResult}&page=1`,
           {
             headers: {
               Authorization: `${token}`,
@@ -95,7 +95,7 @@ function Search() {
       } else if (searchtype[1]) {
         setDisplayload(false);
         setSearchOutPutData([]);
-        const data = await fetch(`/api/searchtopic/user?text=${searchResult}`, {
+        const data = await fetch(`https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`, {
           headers: {
             Authorization: `${token}`,
           },

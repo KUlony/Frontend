@@ -20,7 +20,7 @@ function ReqtopicAdmin() {
 
   const gentopic = () => {
     axios
-      .get(`/api/admin/get_all_request_topic`, {
+      .get(`https://kulony-backend.herokuapp.com/api/admin/get_all_request_topic`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
         },
@@ -35,7 +35,7 @@ function ReqtopicAdmin() {
       })
 
     axios
-      .get(`/api/topic/get_all_catagory_topic`, {
+      .get(`https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
         },
@@ -58,7 +58,7 @@ function ReqtopicAdmin() {
     console.log(e.request_id)
     // axios
     //   .post(
-    //     `/api/admin/accept_request_topic/${e.request_id}`,
+    //     `https://kulony-backend.herokuapp.com/api/admin/accept_request_topic/${e.request_id}`,
     //     {
     //       catagory_id: "any",
     //       topic_name: "any",
@@ -80,7 +80,7 @@ function ReqtopicAdmin() {
 
   const deletetopic = () => {
     axios
-      .delete(`/api/admin/remove_request_topic/{request_id}`, {
+      .delete(`https://kulony-backend.herokuapp.com/api/admin/remove_request_topic/{request_id}`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
         },

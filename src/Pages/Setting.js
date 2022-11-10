@@ -16,7 +16,7 @@ const Setting = () => {
     try {
       axios
         .post(
-          "/api/sing-up/changepassword",
+          "https://kulony-backend.herokuapp.com/api/sing-up/changepassword",
           {
             currentpassword: currentPassword.current.value,
             newpassword: newPassword.current.value,

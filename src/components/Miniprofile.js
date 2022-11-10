@@ -16,7 +16,7 @@ function Miniprofile(props) {
       if (user_id !== "") {
         setLoading(true);
         // console.log("user_id", user_id);
-        const userdata = await fetch(`/api/user/${user_id}/profile`, {
+        const userdata = await fetch(`https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`, {
           headers: {
             Authorization: `${token}`,
           },

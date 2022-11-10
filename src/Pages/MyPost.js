@@ -13,7 +13,7 @@ function MyPost() {
 
   const mypostfetch = async () => {
     try {
-      const response = await fetch(`/api/user/mypost`, {
+      const response = await fetch(`https://kulony-backend.herokuapp.com/api/user/mypost`, {
         headers: {
           Authorization: `${token}`,
         },

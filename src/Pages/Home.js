@@ -65,14 +65,14 @@ function Home() {
       if (category[0]) {
         setDisplayload(false);
         if (!followtopic) {
-          response = await fetch(`/api/post/all_post?page=1`, {
+          response = await fetch(`https://kulony-backend.herokuapp.com/api/post/all_post?page=1`, {
             headers: {
               Authorization: `${token}`,
             },
           });
           setApipath("post/all_post?");
         } else {
-          response = await fetch(`/api/home?page=1`, {
+          response = await fetch(`https://kulony-backend.herokuapp.com/api/home?page=1`, {
             headers: {
               Authorization: `${token}`,
             },
@@ -85,35 +85,35 @@ function Home() {
         setPost_data(json);
       } else if (category[1]) {
         setLoadingtopic(true);
-        response = await fetch(`/api/topic/get_topic/General`, {
+        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/General`, {
           headers: {
             Authorization: `${token}`,
           },
         });
       } else if (category[2]) {
         setLoadingtopic(true);
-        response = await fetch(`/api/topic/get_topic/Learning`, {
+        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Learning`, {
           headers: {
             Authorization: `${token}`,
           },
         });
       } else if (category[3]) {
         setLoadingtopic(true);
-        response = await fetch(`/api/topic/get_topic/News`, {
+        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/News`, {
           headers: {
             Authorization: `${token}`,
           },
         });
       } else if (category[4]) {
         setLoadingtopic(true);
-        response = await fetch(`/api/topic/get_topic/Market`, {
+        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Market`, {
           headers: {
             Authorization: `${token}`,
           },
         });
       } else if (category[5]) {
         setLoadingtopic(true);
-        response = await fetch(`/api/topic/get_topic/Faculty`, {
+        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Faculty`, {
           headers: {
             Authorization: `${token}`,
           },
@@ -192,7 +192,7 @@ function Home() {
   const loadmore = async (e) => {
     try {
       setDisplayload(false);
-      const loadmoredata = await fetch(`/api/${apipath}page=${pagecount}`, {
+      const loadmoredata = await fetch(`https://kulony-backend.herokuapp.com/api/${apipath}page=${pagecount}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -240,7 +240,7 @@ function Home() {
       if (currenttopic) {
         // console.log(currenttopic);
         const response = await fetch(
-          `/api/search/post/topic?text=${currenttopic}&page=1`,
+          `https://kulony-backend.herokuapp.com/api/search/post/topic?text=${currenttopic}&page=1`,
           {
             headers: {
               Authorization: `${token}`,
