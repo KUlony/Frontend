@@ -136,3 +136,7 @@
   width: 200px;
   height: 100px;
 }
+
+.edit-education-button {
+  cursor: pointer;
+}

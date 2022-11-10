@@ -82,13 +82,13 @@
   /* justify-content: center; */
 }
 
-.add-edu-delete-edu {
+.edit-edu-delete-edu {
   width: 150px;
   cursor: pointer;
   display: flex;
   margin-right: 60px;
 }
-.add-edu-save-button {
+.edit-edu-save-button {
   width: 100px;
   height: 40px;
   border-radius: 32px;
@@ -98,9 +98,6 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: #e7db73;
   cursor: pointer;
-  /* text-align: right; */
-  position: relative;
-  left: 213px;
 }
 
 .end-month,

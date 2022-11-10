@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 import AddEducation from './AddEducation'
+import EditEducation from './EditEducation'
 import './UserInfo.css'
 
 const UserInfo = () => {
@@ -16,6 +17,7 @@ const UserInfo = () => {
       })
       .then((res) => {
         setUserData(res.data)
+        setAllEduForm(res.data.education)
         // console.log(res.data.user_name)
       })
       .catch((error) => {
@@ -31,7 +33,6 @@ const UserInfo = () => {
   const instagram = useRef()
   const facebook = useRef()
 
-  // console.log(userData.contact.ig)
   const editstyles = {
     border: '1px solid rgba(0, 0, 0, 1)',
   }
@@ -129,31 +130,97 @@ const UserInfo = () => {
       return true
     }
   }
-  const allEduForm = JSON.parse(localStorage.getItem('allEducation'))
-  const eduElements = allEduForm.map((theEdu) => {
-    return (
-      <section className="education-content">
-        <article className="education-school">
-          <div>{theEdu.school}</div>
-        </article>
 
-        <article className="education-degree-field">
-          {theEdu.degree}
-          {checkIsConnect(theEdu.degree, theEdu.field) ? ', ' : ''}
-          {theEdu.field}
-          {checkIsConnect(theEdu.field, theEdu.startMonth) ? ', ' : ''}
-          <span className="education-all-date">
-            {theEdu.startMonth}
-            {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? ' ' : ''}
-            {theEdu.startYear}
-            {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? ' - ' : ''}
-            {theEdu.endMonth}
-            {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? ' ' : ''}
-            {theEdu.endYear}
-          </span>
-        </article>
-        <br />
-      </section>
+  //edit Education
+  const [isEditEducation, setIsEditEducation] = useState(null)
+  const [educationInfo, setEducationInfo] = useState(null)
+  const [educationUpdated, setEducationUpdated] = useState([{}])
+  const [indexEdit, setIndexEdit] = useState()
+  const updateEducation = (data, index) => {
+    setEducationUpdated((olddata) =>
+      olddata.map((tmp, idx) => (idx === index ? data : tmp))
+    )
+
+    console.log('update is ', educationUpdated)
+  }
+  function onEditEducationClick(theEdu, index) {
+    setIsEditEducation(true)
+    setEducationInfo(theEdu)
+    setIndexEdit(index)
+  }
+  function onBgEditClick() {
+    setIsEditEducation(null)
+    setEducationInfo(null)
+  }
+  let editEducation = null
+  if (!!isEditEducation) {
+    editEducation = (
+      <EditEducation
+        onBgEditClick={onBgEditClick}
+        educationInfo={educationInfo}
+        index={indexEdit}
+        updateEducation={updateEducation}
+      />
+    )
+  }
+
+  // {dateYear.map((option, index) => (
+  //   <option
+  //     key={index}
+  //     // value={option.value}
+  //   >
+  //     {option.text}
+  //   </option>
+  // ))}
+
+  // const allEduForm = JSON.parse(localStorage.getItem('allEducation'))
+  // const allEduForm = userData.education
+
+  //noting func
+  // function
+  const [allEduForm, setAllEduForm] = useState([{}])
+  const eduElements = allEduForm.map((theEdu, index) => {
+    return (
+      <div>
+        {allEduForm[0].school ? (
+          <section className="education-content">
+            <article
+              className="education-school"
+              // style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            >
+              <span>{theEdu.school ? theEdu.school : ''}</span>
+              <img
+                src={require('../picture/editButton.png')}
+                alt="edit-button"
+                width="20px"
+                className="edit-education-button"
+                onClick={() => {
+                  onEditEducationClick(theEdu, index)
+                }}
+              />
+            </article>
+
+            <article className="education-degree-field">
+              {theEdu.degree ? theEdu.degree : ''}
+              {checkIsConnect(theEdu.degree, theEdu.field) ? ', ' : ''}
+              {theEdu.field ? theEdu.field : ''}
+              {checkIsConnect(theEdu.field, theEdu.startMonth) ? ', ' : ''}
+              <span className="education-all-date">
+                {theEdu.startMonth ? theEdu.startMonth : ''}
+                {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? ' ' : ''}
+                {theEdu.startYear ? theEdu.startYear : ''}
+                {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? ' - ' : ''}
+                {theEdu.endMonth ? theEdu.endMonth : ''}
+                {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? ' ' : ''}
+                {theEdu.endYear ? theEdu.endMonth : ''}
+              </span>
+            </article>
+            <br />
+          </section>
+        ) : (
+          <div></div>
+        )}
+      </div>
     )
   })
 
@@ -408,6 +475,7 @@ const UserInfo = () => {
         </article>
       </section>
       {addEducation}
+      {editEducation}
     </main>
   )
 }

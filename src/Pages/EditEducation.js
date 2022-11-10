@@ -1,18 +1,58 @@
-import React, { useEffect, useState } from 'react'
-import './AddEducation.css'
+import React, { useEffect, useRef, useState } from 'react'
+import './EditEducation.css'
 import { dateMonth, dateYear } from './data/monthYear'
-const AddEducation = (props) => {
-  const { onBgClick } = props
+import { FiTrash } from 'react-icons/fi'
+import DeleteEducation from './DeleteEducation'
+const EditEducation = (props) => {
+  const { onBgEditClick, educationInfo, index, updateEducation } = props
+  const [isDeleteEducation, setIsDeleteEducation] = useState(null)
+  //DeleteEducation Page
+  function onDeleteEducationClick() {
+    setIsDeleteEducation(true)
+  }
+  function onBgEducationClick() {
+    setIsDeleteEducation(null)
+  }
+  let deleteEducation = null
+  if (!!isDeleteEducation) {
+    deleteEducation = (
+      <DeleteEducation onBgEducationClick={onBgEducationClick} />
+    )
+  }
+  const [editSchool, setEditSchool] = useState(educationInfo.school)
+  const [editDegree, setEditDegree] = useState(educationInfo.degree)
+  const [editField, setEditField] = useState(educationInfo.field)
+  const [editStartMonth, setEditStartMonth] = useState(educationInfo.startMonth)
+  const [editStartYear, setEditStartYear] = useState(educationInfo.startYear)
+  const [editEndMonth, setEditEndMonth] = useState(educationInfo.endMonth)
+  const [editEndYear, setEditEndYear] = useState(educationInfo.endYear)
 
   const [eduForm, setEduForm] = useState({
-    school: '',
-    degree: '',
-    field: '',
+    school: editSchool,
+    degree: editDegree,
+    field: editField,
     startMonth: '',
     startYear: '',
     endMonth: '',
     endYear: '',
   })
+
+  const updatingEducation = (e) => {
+    e.preventDefault()
+    const educationInfoUpdated = {
+      school: editSchool,
+      degree: editDegree,
+      field: editField,
+      startMonth: '',
+      startYear: '',
+      endMonth: '',
+      endYear: '',
+    }
+    updateEducation(educationInfoUpdated, index)
+  }
+
+  console.log(editStartMonth)
+  console.log('index', index)
   //check if local not defined
   if (localStorage.getItem('allEducation') === null) {
     localStorage.setItem('allEducation', JSON.stringify([]))
@@ -44,12 +84,12 @@ const AddEducation = (props) => {
   return (
     <main>
       <form className="add-education">
-        <div className="add-education-bg" onClick={onBgClick}></div>
+        <div className="add-education-bg" onClick={onBgEditClick}></div>
         <main className="add-education-inner">
           <header className="add-edu-header">
-            Add Education
+            Edit Education
             <button
-              onClick={onBgClick}
+              onClick={onBgEditClick}
               style={{
                 width: '16px',
                 height: '16px',
@@ -78,8 +118,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="school"
-              value={eduForm.school}
-              onChange={onEduFormChange}
+              value={editSchool}
+              onChange={(e) => setEditSchool(e.target.value)}
               required
             />
           </section>
@@ -95,8 +135,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="degree"
-              value={eduForm.degree}
-              onChange={onEduFormChange}
+              value={editDegree}
+              onChange={(e) => setEditDegree(e.target.value)}
             />
           </section>
           <section className="field-of-study">
@@ -111,8 +151,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="field"
-              value={eduForm.field}
-              onChange={onEduFormChange}
+              vvalue={editField}
+              onChange={(e) => setEditField(e.target.value)}
             />
           </section>
           <section className="start-date">
@@ -123,8 +163,8 @@ const AddEducation = (props) => {
             <select
               className="start-month"
               name="startMonth"
-              value={eduForm.startMonth}
-              onChange={onEduFormChange}
+              //   value={editStartMonth}
+              //   onChange={(e) => setEditSchool(e.target.value)}
             >
               {dateMonth.map((option, index) => (
                 <option
@@ -183,19 +223,26 @@ const AddEducation = (props) => {
             </select>
           </section>
           <div className="footer-box">
+            <div
+              className="edit-edu-delete-edu"
+              onClick={onDeleteEducationClick}
+            >
+              <div className="edit-edu-delete-text">Delete Education</div>
+              <FiTrash size={18}></FiTrash>
+            </div>
             <button
-              className="add-edu-save-button"
+              className="edit-edu-save-button"
               type="submit"
-              onClick={onEduFormSubmit}
+              onClick={() => updatingEducation}
             >
               SAVE
             </button>
           </div>
         </main>
       </form>
-      {/* {deleteEducation} */}
+      {deleteEducation}
     </main>
   )
 }
 
-export default AddEducation
+export default EditEducation
