@@ -40,7 +40,7 @@ function Post(props) {
   const [displayImg, setdisplayImg] = useState(false);
   const [reportpost_drop, setreportpost_drop] = useState("btn_where");
   const [imgcoverurl, setImgcoverurl] = useState(`${photo}`);
-  const [havedata, setHavedata] = useState(true);
+  const [havedata, setHavedata] = useState(false);
   const [likepost, setLikepost] = useState(false);
   const [likecount, setLikecount] = useState(like);
   const [profileurl, setProfileurl] = useState("");
@@ -153,6 +153,7 @@ function Post(props) {
       console.log(comment_json);
       console.log("as");
       setCommentdata(comment_json);
+      setHavedata(true);
       setLoadingcomment(false);
       display_comment();
     } catch (err) {
