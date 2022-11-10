@@ -21,6 +21,7 @@ function Miniprofile(props) {
           },
         });
         const jsonuserdata = await userdata.json();
+        console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
         if (jsonuserdata.user_firstname || jsonuserdata.user_lastname) {
@@ -69,12 +70,14 @@ function Miniprofile(props) {
             </header>
             <p className="inputbox">{userdata.user_bio}</p>
             <p className="miniprofile_info_miniheader">Education:</p>
-            <p className="miniprofile_info_university">
-              {/* รอมีข้อมูลจริง */}
-              <strong></strong>
-              <br />
-              {/* {userdata.education} */}
-            </p>
+            {userdata.education ? (
+              <p className="miniprofile_info_university">
+                {/* รอมีข้อมูลจริง */}
+                <strong>{userdata.education[0].school}</strong>
+                <br />
+                {userdata.education[0].degree}
+              </p>
+            ) : null}
             {userdata.contact && (
               <footer>
                 <p>
