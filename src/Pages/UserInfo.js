@@ -4,7 +4,7 @@ import AddEducation from "./AddEducation"
 import "./UserInfo.css"
 
 const UserInfo = () => {
-  /https://kulony-backend.herokuapp.com/api
+  //api
   const [userData, setUserData] = useState("")
   useEffect(() => {
     axios
