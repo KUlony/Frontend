@@ -1,138 +1,138 @@
 .login_column {
-    float: left;
-    box-sizing: border-box;
-    width: 50%;
-    height: 100vh;
-    padding: 5%;
+  float: left;
+  box-sizing: border-box;
+  width: 50%;
+  height: 100vh;
+  padding: 5%;
 }
-  
+
 .login_row:after {
-    display: table;
-    clear: both;
+  display: table;
+  clear: both;
 }
 
 .login_img {
-    width: 80%;
-    /* height: 80%; */
-    margin-left: 10%;
-    margin-top: 10%;
+  width: 80%;
+  /* height: 80%; */
+  margin-left: 10%;
+  margin-top: 10%;
 }
 
 .login_header {
-    font-family: 'Quicksand';
-    font-style: bolder;
-    text-align: center;
-    font-size: 48px;
-    color: #339C64;
-    margin-top: 15%;
-    margin-bottom: 50px;
+  font-family: "Quicksand";
+  font-style: bolder;
+  text-align: center;
+  font-size: 48px;
+  color: #339c64;
+  margin-top: 15%;
+  margin-bottom: 50px;
 }
 
 .login_input {
-    background: #F8F5D5;
-    border-radius: 16px;
-    font-size: 28px;
-    width: 95%;
-    height: 70px;
-    margin-bottom: 40px;
-    padding-left: 20px;
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 28px;
+  background: #f8f5d5;
+  border-radius: 16px;
+  font-size: 28px;
+  width: 95%;
+  height: 70px;
+  margin-bottom: 40px;
+  padding-left: 20px;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 28px;
 }
 
-.login_button{
-    text-decoration: none;
+.login_button {
+  text-decoration: none;
 
-    background: #339C64;
-    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-    border: 0px solid;
-    border-radius: 32px;
-    font-size: 28px;
-    font-weight: bolder;
-    letter-spacing: 0.03em;
-    color: #FFFFFF;
-    font-family: 'Quicksand';
-    font-style: normal;
+  background: #339c64;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  border: 0px solid;
+  border-radius: 32px;
+  font-size: 28px;
+  font-weight: bolder;
+  letter-spacing: 0.03em;
+  color: #ffffff;
+  font-family: "Quicksand";
+  font-style: normal;
 
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 
-    gap: 10px;
-    width: 100%;
-    height: 60px;
-    margin-bottom: 10px;
-    cursor: pointer;
+  gap: 10px;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 10px;
+  cursor: pointer;
 }
 
 .login_qa {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-size: 20px;
-    color: #000000;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-size: 20px;
+  color: #000000;
 }
 
 .login_link {
-    color: #339C64;
-    font-weight: bolder;
-    outline: none;
-    text-decoration: none;
+  color: #339c64;
+  font-weight: bolder;
+  outline: none;
+  text-decoration: none;
 }
 
 .login_forgot {
-    text-align: center;
-    /* font-style: border; */
-    font-size: 28px;
-    color: #989898;
-    margin-bottom: 40px;
+  text-align: center;
+  /* font-style: border; */
+  font-size: 28px;
+  color: #989898;
+  margin-bottom: 40px;
 
-    font-family: 'Quicksand';
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0.03em;
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.03em;
 }
 
 .login_fotgot_click {
-    width: 250px;
-    margin: 0 auto;
-    cursor: pointer;
+  width: 260px;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 .login_fg {
-    position: absolute;
-    top: 50%;
-    margin-top: -150px;
-    left: 50%;
-    margin-left: -335px;
-    z-index: 3;
+  position: absolute;
+  top: 50%;
+  margin-top: -150px;
+  left: 50%;
+  margin-left: -335px;
+  z-index: 3;
 }
 
-.login_cover{
-    position: absolute;
-    background-color: white;
-    opacity: 0.6;
-    width: 100%;
-    height: 100vh;
-    z-index: 2;
+.login_cover {
+  position: absolute;
+  background-color: white;
+  opacity: 0.6;
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
 }
 
 .none {
-    display: none;
+  display: none;
 }
 
 .login_noti {
-    position: relative;
-    margin: 0 auto;
-    width: auto;
-    height: 30px;
+  position: relative;
+  margin: 0 auto;
+  width: auto;
+  height: 30px;
 }
 .login_error {
-    text-align: center;
-    color: red;
+  text-align: center;
+  color: red;
 }
