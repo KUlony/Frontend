@@ -72,7 +72,7 @@ const Setting = () => {
     <img
       src={require('../picture/invisibility.png')}
       alt="eye"
-      width="17px"
+      width="20px"
       style={{ 'vertical-align': 'middle' }}
     />
   )
@@ -80,7 +80,7 @@ const Setting = () => {
     <img
       src={require('../picture/visibility.png')}
       alt="eye"
-      width="17px"
+      width="20px"
       style={{ 'vertical-align': 'middle' }}
     />
   )

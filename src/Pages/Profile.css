@@ -14,12 +14,12 @@
 
 .profile-sidebar {
   width: 30%;
-  border-style: solid;
+  /* border-style: solid; */
 }
 
 .profile-content {
   width: 70%;
-  border-style: solid;
+  /* border-style: solid; */
 }
 
 .user_profile {
@@ -47,7 +47,7 @@
 }
 
 .btn_click:hover {
-  color: #339C64;
+  color: #339c64;
 }
 
 .buttonstyle {
@@ -55,11 +55,11 @@
 }
 
 .setgreen {
-  background-color: #D6EBE0;
+  background-color: #d6ebe0;
 }
 
 .setdeepgreen {
-  background: #339C64;
+  background: #339c64;
   width: 7px;
 }
 
@@ -71,7 +71,7 @@
   padding: 10px;
   font-size: 25px;
   font-weight: 600;
-  color: #339C64;
+  color: #339c64;
   background-color: white;
   border: none;
   cursor: pointer;

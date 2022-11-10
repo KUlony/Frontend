@@ -1,7 +1,7 @@
-.favourite {
-  background-color: #339c64;
-  position: absolute;
-  top: 200px;
-  width: 200px;
-  height: 200px;
+.favourite-main {
+  /* position: relative; */
+  height: 100%;
+  width: 100%;
+  background-color: #f8f5d5;
+  z-index: 6;
 }

@@ -25,7 +25,8 @@
 }
 
 .setting-visibility {
-  margin-left: -21px;
+  margin-left: -25px;
+  vertical-align: center;
   cursor: pointer;
 }
 
@@ -48,28 +49,34 @@
 }
 
 .current-pass-input {
-  /* width: 400px; */
-  /* font-size: 24px; */
-  border: 1px;
+  width: 440px;
+  height: 29px;
   background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
     linear-gradient(0deg, #003615, #003615);
   border: 1px solid rgba(0, 54, 21, 1);
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 22px;
 }
 .new-pass-input {
-  /* width: 400px; */
-  border: 1px;
+  width: 440px;
+  height: 29px;
   background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
     linear-gradient(0deg, #003615, #003615);
   border: 1px solid rgba(0, 54, 21, 1);
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 22px;
 }
 
 .confirm-pass-input {
-  /* width: 400px; */
-  border: 1px;
+  width: 440px;
+  height: 29px;
   background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
     linear-gradient(0deg, #003615, #003615);
   border: 1px solid rgba(0, 54, 21, 1);
-  border-radius: 8px;
+  border-radius: 6px;
+  font-size: 22px;
+}
+
+.setting-content-main {
+  margin-left: 29px;
 }
