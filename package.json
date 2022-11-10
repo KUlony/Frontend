@@ -2,10 +2,9 @@
   "name": "my-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://kulony-backend.herokuapp.com",
-  "engines" : { 
-    "npm" : "8.1.2",
-    "node" : "16.13.2"
+  "engines": {
+    "npm": "8.1.2",
+    "node": "16.13.2"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
@@ -15,6 +14,7 @@
     "bootstrap-icons": "^1.9.1",
     "draft-js": "^0.11.7",
     "firebase": "^9.13.0",
+    "http-proxy-middleware": "^2.0.6",
     "react": "^18.2.0",
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
