@@ -2,8 +2,9 @@ import axios from "axios"
 import React, { useEffect, useState } from "react"
 import "./Addtopic_admin.css"
 
-const Addtopic_admin = () => {
-  const [editname, setEditname] = useState(false)
+const Addtopic_admin = ({ cata, datatopic }) => {
+  // const {postcata} = props
+  const [editname, setEditname] = useState(true)
 
   const token = localStorage.getItem("item")
 
@@ -19,11 +20,12 @@ const Addtopic_admin = () => {
         <div className="topicname">
           <p className="topicnameedit">Topic : </p>
           <textarea
-            className="topicnametext"
+            className={`${editname ? "topicnametext" : "outlinebox"}`}
             placeholder="Topic name"
-            maxLength="35"
+            // maxLength="35"
             id="topicname"
             disabled={editname}
+            value={datatopic.request_topic}
           ></textarea>
           <h3 className="icontopic" onClick={editnamehandle}>
             <i class="bi bi-slash-circle-fill"></i>
@@ -33,16 +35,16 @@ const Addtopic_admin = () => {
           <p className="catanameedit">Add this topic to : </p>
           <div className="dropboxcata">
             <select className="cataname" placeholder="Categories">
-              {/* {cataname.map((item, index) => (
+              {cata.map((item, index) => (
                 <option
                   key={index}
                   value={item.catagory_name}
                   id={item.catagory_id}
                 >
                   {item.catagory_name}
-                  {console.log(item)}
+                  {/* {console.log(item)} */}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
         </div>

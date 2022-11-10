@@ -9,6 +9,7 @@ import Addtopic_admin from "../components/Addtopic_admin"
 function ReqtopicAdmin() {
   const [postdata, setPostdata] = useState([])
   const [cataname, setcataname] = useState([])
+  const [nametopic, setNametopic] = useState([])
   const [edittopicheck, seteditTopicCheck] = useState(true)
 
   const topicselect = () => {
@@ -18,65 +19,29 @@ function ReqtopicAdmin() {
 
   const token = localStorage.getItem("token")
 
-  const gentopic = () => {
-    axios
-      .get(`/api/admin/get_all_request_topic`, {
+  const gentopic = async () => {
+    try {
+      const respone = await axios.get(`/api/admin/get_all_request_topic`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDY4OTIzLCJleHAiOjE2NjgxNTUzMjN9.sFV9mFX51mo1n0-w49Dr8f52FyjgJ9FtqW6E_b1_AGE`,
         },
       })
-      .then((res) => {
-        const data = res.data
-        // console.log(data)
-        setPostdata(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setPostdata(respone.data)
 
-    axios
-      .get(`/api/topic/get_all_catagory_topic`, {
+      const response2 = await axios.get(`/api/topic/get_all_catagory_topic`, {
         headers: {
           Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
         },
       })
-      .then((res) => {
-        const data = res.data
-        // console.log(data)
-        setcataname(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setcataname(response2.data)
+
+      // console.log(response2.data);
+    } catch {}
   }
 
   useEffect(() => {
     gentopic()
   }, [])
-
-  const addtopic = (e) => {
-    console.log(e.request_id)
-    // axios
-    //   .post(
-    //     `/api/admin/accept_request_topic/${e.request_id}`,
-    //     {
-    //       catagory_id: "any",
-    //       topic_name: "any",
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     const data = res.data
-    //     console.log(data)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-  }
 
   const deletetopic = () => {
     axios
@@ -113,7 +78,10 @@ function ReqtopicAdmin() {
                 <p className="datecardreq">{item.requset_time}</p>
                 <button
                   className="btnaddtopic"
-                  onClick={(() => addtopic(item), topicselect)}
+                  onClick={() => {
+                    topicselect()
+                    setNametopic(item)
+                  }}
                 >
                   Add Topic <i class="bi bi-check-lg"></i>
                 </button>
@@ -126,10 +94,10 @@ function ReqtopicAdmin() {
         </div>
       </div>
       <div className={`addtopiccss ${edittopicheck ? "nothing" : ""}`}>
-        <Addtopic_admin />
+        <Addtopic_admin cata={cataname} datatopic={nametopic} />
         <div className="cancleconfirm">
           <p className="cancleaddtopic" onClick={topicselect}>
-            CANCLE
+            CANCEL
           </p>
         </div>
       </div>
