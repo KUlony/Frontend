@@ -64,10 +64,12 @@ function Search() {
   }, [pagecount]);
 
   const updatesearchselect = (position) => {
-    setSearchOutPutData([]);
-    setSearchtype((prev) =>
-      prev.map((data, idx) => (idx === position ? true : false))
-    );
+    if (displayload) {
+      setSearchOutPutData([]);
+      setSearchtype((prev) =>
+        prev.map((data, idx) => (idx === position ? true : false))
+      );
+    }
   };
 
   const searchsubmit = async (e) => {

@@ -15,20 +15,17 @@ function Miniprofile(props) {
     try {
       if (user_id !== "") {
         setLoading(true);
-        // console.log("user_id", user_id);
         const userdata = await fetch(`/api/user/${user_id}/profile`, {
           headers: {
             Authorization: `${token}`,
           },
         });
         const jsonuserdata = await userdata.json();
-        // console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
-        console.log(jsonuserdata);
         if (jsonuserdata.user_firtname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
-            `${jsonuserdata.user_firtname} ${userdata.user_lastname}`
+            `${jsonuserdata.user_firtname} ${jsonuserdata.user_lastname}`
           );
         }
       }
@@ -84,7 +81,7 @@ function Miniprofile(props) {
                   Contact:
                   {userdata.contact && userdata.contact.facebook ? (
                     <p className="miniprofile_inline">
-                      <FaFacebookSquare className="instagram_icon" />
+                      <FaFacebookSquare className="facebook_icon" />
                       {userdata.contact.facebook}
                     </p>
                   ) : null}
