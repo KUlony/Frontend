@@ -8,10 +8,10 @@ const UserInfo = () => {
   const [userData, setUserData] = useState('')
   useEffect(() => {
     axios
-      .get('/api/user/634cef6d0bbdc2089aee9a9b/profile', {
+      .get('/api/user/6345767f2b95ee9f9c0a663d/profile', {
         headers: {
           Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1pbGQuNDExMkBnbWFpbC5jb20iLCJpZCI6IjYzNDU3Njg4ZjdjM2Q1MzRmMjYwZmRhMCIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2Njc5NzEzNzIsImV4cCI6MTY2ODA1Nzc3Mn0.gly9ATCPhhspCN2vrM74iaUZtK0OjMXdgRRhcUiPJlw',
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8',
         },
       })
       .then((res) => {
@@ -30,6 +30,11 @@ const UserInfo = () => {
   const lastname = useRef()
   const instagram = useRef()
   const facebook = useRef()
+
+  // console.log(userData.contact.ig)
+  const editstyles = {
+    border: '1px solid rgba(0, 0, 0, 1)',
+  }
 
   const [inputArray, setInputArray] = useState([
     true,
@@ -54,9 +59,9 @@ const UserInfo = () => {
           '/api/user/edit_profile',
           {
             user_name: username.current.value,
-            user_firtname: 'kanpech',
-            user_lastname: 'tacha',
-            user_bio: 'ไม้แก่นเองฮับผม',
+            user_firtname: firstname.current.value,
+            user_lastname: lastname.current.value,
+            user_bio: bio.current.value,
             education: [
               {
                 school: 'kaset',
@@ -76,8 +81,8 @@ const UserInfo = () => {
               },
             ],
             contact: {
-              facebook: 'MaikanEIEI',
-              ig: 'maikankungza',
+              facebook: facebook.current.value,
+              ig: instagram.current.value,
               _id: '634adc85e5a0f50a0041c392',
             },
             profile_pic_url:
@@ -87,7 +92,7 @@ const UserInfo = () => {
           {
             headers: {
               Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImthbnBlY2gudEBrdS50aCIsImlkIjoiNjM0Y2VmNmQwYmJkYzIwODlhZWU5YTliIiwidmVyaWZpZWQiOnRydWUsImlhdCI6MTY2Nzk3NzE3OSwiZXhwIjoxNjY4MDYzNTc5fQ.5SZm06jDG4ey-aryW8gJ8Z-unhuxGrB2xbXN0cEr3Nc',
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8',
             },
           }
         )
@@ -147,6 +152,7 @@ const UserInfo = () => {
             {theEdu.endYear}
           </span>
         </article>
+        <br />
       </section>
     )
   })
@@ -156,7 +162,13 @@ const UserInfo = () => {
       <section className="profile-pic">
         <img
           // src={require('../picture/temp-profile.png')}
-          src={userData.profile_pic_url}
+          src={
+            !userData
+              ? require('../picture/temp-profile.png')
+              : userData.profile_pic_url
+              ? userData.profile_pic_url
+              : ''
+          }
           alt="profileExample"
           width="150"
           height="150"
@@ -171,12 +183,15 @@ const UserInfo = () => {
           <input
             class="input-username"
             type="text"
-            placeholder="User"
+            placeholder="Username"
             rows="1"
             cols="20"
             disabled={true}
             ref={username}
-            value={userData.user_name}
+            // value={userData.user_name}
+            value={
+              !userData ? '' : userData.user_name ? userData.user_name : ''
+            }
           />
         ) : (
           <input
@@ -186,6 +201,7 @@ const UserInfo = () => {
             rows="1"
             cols="20"
             ref={username}
+            style={editstyles}
           />
         )}
       </section>
@@ -193,45 +209,98 @@ const UserInfo = () => {
         Bio
         <button onClick={() => editInputArray(1)}> edit </button>
         <br />
-        <input
-          class="input-bio"
-          type="text"
-          placeholder="Bio"
-          rows="1"
-          cols="20"
-          disabled={true}
-          value={userData.user_bio}
-        />
+        {inputArray[1] ? (
+          <input
+            class="input-bio"
+            type="text"
+            placeholder="Bio"
+            rows="1"
+            cols="20"
+            disabled={true}
+            ref={bio}
+            // value={userData.user_bio}
+            value={!userData ? '' : userData.user_bio ? userData.user_bio : ''}
+          />
+        ) : (
+          <input
+            class="input-bio"
+            type="text"
+            placeholder="Bio"
+            rows="1"
+            cols="20"
+            ref={bio}
+            style={editstyles}
+          />
+        )}
       </section>
       <section className="firstname">
         <div>
           First name
-          <button onClick={editInputArray}> edit </button>
+          <button onClick={() => editInputArray(2)}> edit </button>
         </div>
-
-        <input
-          className="input-firstname"
-          type="text"
-          placeholder="Firstname"
-          rows="1"
-          cols="20"
-          disabled={true}
-          value={userData.user_firtname}
-        />
+        {inputArray[2] ? (
+          <input
+            className="input-firstname"
+            type="text"
+            placeholder="Firstname"
+            rows="1"
+            cols="20"
+            disabled={true}
+            ref={firstname}
+            // value={userData.user_firtname}
+            value={
+              !userData
+                ? ''
+                : userData.user_firtname
+                ? userData.user_firtname
+                : ''
+            }
+          />
+        ) : (
+          <input
+            className="input-firstname"
+            type="text"
+            placeholder="Firstname"
+            rows="1"
+            cols="20"
+            ref={firstname}
+            style={editstyles}
+          />
+        )}
       </section>
       <section className="lastname">
         Last name
-        <button onClick={editInputArray}> edit </button>
+        <button onClick={() => editInputArray(3)}> edit </button>
         <br />
-        <input
-          class="input-lastname"
-          type="text"
-          placeholder="Lastname"
-          rows="1"
-          cols="20"
-          disabled={true}
-          value={userData.user_lastname}
-        ></input>
+        {inputArray[3] ? (
+          <input
+            class="input-lastname"
+            type="text"
+            placeholder="Lastname"
+            rows="1"
+            cols="20"
+            disabled={true}
+            ref={lastname}
+            // value={userData.user_lastname}
+            value={
+              !userData
+                ? ''
+                : userData.user_lastname
+                ? userData.user_lastname
+                : ''
+            }
+          ></input>
+        ) : (
+          <input
+            class="input-lastname"
+            type="text"
+            placeholder="Lastname"
+            rows="1"
+            cols="20"
+            ref={lastname}
+            style={editstyles}
+          ></input>
+        )}
       </section>
 
       <section
@@ -256,39 +325,75 @@ const UserInfo = () => {
               width="20"
               height="20"
               style={{ 'vertical-align': 'middle' }}
-            />
-            <input
-              type="text"
-              name="ig-input"
-              id="ig-input"
-              placeholder="ig here.."
-              disabled={true}
-              // value={userData.contact.ig}
-            />
-            <button onClick={editInputArray}> edit </button>
+            />{' '}
+            {inputArray[4] ? (
+              <input
+                type="text"
+                classname="input-ig"
+                id="ig-input"
+                placeholder="add instagram"
+                disabled={true}
+                ref={instagram}
+                value={
+                  !userData
+                    ? ''
+                    : userData.contact.ig
+                    ? userData.contact.ig
+                    : ''
+                }
+              />
+            ) : (
+              <input
+                type="text"
+                classname="input-ig"
+                id="ig-input"
+                placeholder="add instagram"
+                ref={instagram}
+                style={editstyles}
+              />
+            )}
+            <button onClick={() => editInputArray(4)}> edit </button>
           </div>
         </article>
         <article className="facebook">
           <div
             className="fb-box"
-            style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            // style={{ display: 'inline', whiteSpace: 'nowrap' }}
           >
             <img
               className="fb-img"
               src={require('../picture/fb-icon.png')}
               alt="facebook"
-              width="25"
+              width="20"
               style={{ 'vertical-align': 'middle' }}
-            />
-            <input
-              type="text"
-              name="fb-input"
-              id="fb-input"
-              placeholder="facebook here.."
-              disabled={true}
-              // value={fb}
-            />
-            <button onClick={editInputArray}> edit </button>
+            />{' '}
+            {inputArray[5] ? (
+              <input
+                type="text"
+                name="fb-input"
+                id="fb-input"
+                placeholder="add facebook"
+                disabled={true}
+                ref={facebook}
+                value={
+                  !userData
+                    ? ''
+                    : userData.contact.facebook
+                    ? userData.contact.facebook
+                    : ''
+                }
+              />
+            ) : (
+              <input
+                type="text"
+                name="fb-input"
+                id="fb-input"
+                placeholder="add facebook"
+                ref={facebook}
+                style={editstyles}
+              />
+            )}
+            <button onClick={() => editInputArray(5)}> edit </button>
           </div>
         </article>
       </section>
