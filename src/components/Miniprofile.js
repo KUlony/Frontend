@@ -23,9 +23,9 @@ function Miniprofile(props) {
         const jsonuserdata = await userdata.json();
         await setUserdata(jsonuserdata);
         setLoading(false);
-        if (jsonuserdata.user_firtname || jsonuserdata.user_lastname) {
+        if (jsonuserdata.user_firstname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
-            `${jsonuserdata.user_firtname} ${jsonuserdata.user_lastname}`
+            `${jsonuserdata.user_firstname} ${jsonuserdata.user_lastname}`
           );
         }
       }
@@ -78,7 +78,7 @@ function Miniprofile(props) {
             {userdata.contact && (
               <footer>
                 <p>
-                  Contact:
+                  <p className="miniprofile_contact">Contact:</p>
                   {userdata.contact && userdata.contact.facebook ? (
                     <p className="miniprofile_inline">
                       <FaFacebookSquare className="facebook_icon" />
