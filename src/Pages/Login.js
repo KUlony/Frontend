@@ -22,7 +22,7 @@ function Login() {
     try{
       e.preventDefault()
       setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/login',{
+      const postdata = await fetch('/api/sing-up/login',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
