@@ -135,12 +135,12 @@ function Verify(probs) {
       <h2 className="verify_header">Verify your identity</h2>
       <h5 className="verify_subheader">Enter the code we sent to your email</h5>
       <div class="verify_code_container">
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,0)}}></input>
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,1)}}></input>
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,2)}}></input>
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,3)}}></input>
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,4)}}></input>
-        <input type="number" className="verify_code" min="0" max="9" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,5)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,0)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,1)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,2)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,3)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,4)}}></input>
+        <input type="text" className="verify_code" required maxlength="1" onChange={(e)=>{setArrayOTP(e.target.value,5)}}></input>
       </div>
 
 
