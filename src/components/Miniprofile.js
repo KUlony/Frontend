@@ -25,10 +25,9 @@ function Miniprofile(props) {
         // console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
-        console.log(jsonuserdata);
-        if (jsonuserdata.user_firtname || jsonuserdata.user_lastname) {
+        if (userdata.user_firstname || userdata.user_lastname) {
           setUserfirstandlastname(
-            `${jsonuserdata.user_firtname} ${userdata.user_lastname}`
+            `${userdata.user_firstname} ${userdata.user_lastname}`
           );
         }
       }
@@ -81,27 +80,16 @@ function Miniprofile(props) {
             {userdata.contact && (
               <footer>
                 <p>
-                  Contact:
-                  {userdata.contact && userdata.contact.facebook ? (
-                    <p className="miniprofile_inline">
-                      <FaFacebookSquare className="instagram_icon" />
-                      {userdata.contact.facebook}
-                    </p>
-                  ) : null}
+                  Contact: <FaFacebookSquare className="instagram_icon" />
+                  {userdata.contact && userdata.contact.facebook
+                    ? userdata.contact.facebook
+                    : "-"}
                 </p>
-                <p
-                  className={`miniprofile_info_contact ${
-                    userdata.contact && userdata.contact.facebook
-                      ? null
-                      : "changposition"
-                  }`}
-                >
-                  {userdata.contact && userdata.contact.facebook ? (
-                    <p className="miniprofile_inline">
-                      <BsInstagram className="instagram_icon" />
-                      {userdata.contact.ig}
-                    </p>
-                  ) : null}
+                <p className="miniprofile_info_contact">
+                  <BsInstagram className="instagram_icon" />
+                  {userdata.contact && userdata.contact.facebook
+                    ? userdata.contact.ig
+                    : "-"}
                 </p>
               </footer>
             )}
