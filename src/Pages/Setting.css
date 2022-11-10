@@ -9,7 +9,7 @@
 .setting-content {
   position: relative;
   left: 100px;
-  top: 109px;
+  top: 145px;
   padding: 10px;
   background-color: white;
   border: 1px solid rgba(220, 220, 220, 1);
@@ -22,16 +22,29 @@
   position: relative;
   left: 103px;
   top: 100px;
+  font-size: 28px;
 }
 
 .setting-visibility {
-  margin-left: -25px;
-  vertical-align: center;
+  margin-left: -31px;
+  /* vertical-align: center; */
   cursor: pointer;
+  position: relative;
+  top: 5px;
+}
+
+.setting-invisibility {
+  margin-left: -31px;
+  /* vertical-align: center; */
+  cursor: pointer;
+  position: relative;
+  top: 7px;
 }
 
 .setting-header-text {
   margin-top: -20px;
+  margin-left: 10px;
+  font-size: 28px;
 }
 
 .setting-content-header {
@@ -39,44 +52,53 @@
 }
 .setting-cancel {
   cursor: pointer;
+  position: relative;
+  left: -28px;
+  top: -15px;
+  font-weight: bold;
 }
 
 .setting-confirm-change {
   cursor: pointer;
-  background: rgba(231, 219, 115, 1);
-  box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 4px;
+  width: 200px;
+  margin-top: 37px;
+  position: relative;
+  left: -5px;
 }
 
-.current-pass-input {
-  width: 440px;
-  height: 29px;
-  background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
-    linear-gradient(0deg, #003615, #003615);
-  border: 1px solid rgba(0, 54, 21, 1);
-  border-radius: 6px;
-  font-size: 22px;
-}
-.new-pass-input {
-  width: 440px;
-  height: 29px;
-  background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
-    linear-gradient(0deg, #003615, #003615);
-  border: 1px solid rgba(0, 54, 21, 1);
-  border-radius: 6px;
-  font-size: 22px;
-}
-
+.current-pass-input,
+.new-pass-input,
 .confirm-pass-input {
-  width: 440px;
-  height: 29px;
+  /* width: 528px; */
+  width: 99%;
+  height: 30px;
   background: linear-gradient(0deg, #f8f5d5, #f8f5d5),
     linear-gradient(0deg, #003615, #003615);
   border: 1px solid rgba(0, 54, 21, 1);
   border-radius: 6px;
-  font-size: 22px;
+  font-size: 16px;
+  padding: 1%;
+  position: relative;
+  top: 5px;
+  /* text-align: center; */
+  justify-content: center;
+  /* margin-left: auto;
+  margin-right: auto; */
 }
 
 .setting-content-main {
-  margin-left: 29px;
+  /* vertical-align: center; */
+  /* margin-top: 50; */
+  margin-left: 10%;
+  margin-right: 10%;
+  /* text-align: center; */
+}
+
+.setting-current-pass {
+  top: 10px;
+}
+.setting-arrow {
+  position: relative;
+  top: 11px;
+  left: -9px;
 }

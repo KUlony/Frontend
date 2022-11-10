@@ -13,12 +13,12 @@
 }
 
 .profile-sidebar {
-  width: 30%;
+  width: 33%;
   /* border-style: solid; */
 }
 
 .profile-content {
-  width: 70%;
+  width: 67%;
   /* border-style: solid; */
 }
 
@@ -84,5 +84,14 @@
   width: 240px;
   /* left: 180px; */
   margin-left: 40%;
-  margin-top: -100px;
+  margin-top: -180px;
+}
+
+.logout-button {
+  position: relative;
+  top: -72px;
+}
+.logout-text {
+  position: relative;
+  left: 20px;
 }

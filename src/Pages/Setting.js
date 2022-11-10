@@ -50,7 +50,7 @@ const Setting = () => {
       setIsChangePassword(true) // popup now
       await timeoutPopup(1500)
       setIsChangePassword(null) // popup down
-      setIsSuccess(null)
+      // setIsSuccess(null)
     }
   }
   const [currentPasswordShown, setCurrentPasswordShown] = useState(false)
@@ -72,16 +72,19 @@ const Setting = () => {
     <img
       src={require('../picture/invisibility.png')}
       alt="eye"
-      width="20px"
-      style={{ 'vertical-align': 'middle' }}
+      width="18px"
+      className="setting-invisibility"
+
+      // style={{ 'vertical-align': 'middle' }}
     />
   )
   const vis = (
     <img
       src={require('../picture/visibility.png')}
       alt="eye"
-      width="20px"
-      style={{ 'vertical-align': 'middle' }}
+      width="18px"
+      className="setting-visibility"
+      // style={{ 'vertical-align': 'middle' }}
     />
   )
   const [isShowPass, setIsShowPass] = useState(false)
@@ -97,12 +100,11 @@ const Setting = () => {
             className="setting-content-header"
             onClick={showContentChangePass}
           >
-            <div style={{ 'text-align': 'right' }}>
+            <div style={{ 'text-align': 'right' }} className="setting-arrow">
               <img
                 src={require('../picture/arrowUp.png')}
                 width="20px"
                 alt="arrow"
-                className="setting-arrow"
               />
             </div>
             <div className="setting-header-text" style={{ color: '#339C64' }}>
@@ -111,10 +113,15 @@ const Setting = () => {
             <br />
           </article>
           <article className="setting-content-main">
-            Choose a unique password to protect your account
-            <div className="setting-time">Last changed : 10/05/2022</div>
+            <header style={{ 'font-size': '16px' }}>
+              Choose a unique password to protect your account.
+            </header>
+            {/* <div className="setting-time">Last changed : 10/05/2022</div> */}
             <br />
-            <div className="setting-current-pass">
+            <div
+              className="setting-current-pass"
+              style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            >
               <b>Type your current password</b>
               <br />
               <input
@@ -122,15 +129,16 @@ const Setting = () => {
                 ref={currentPassword}
                 className="current-pass-input"
               />
-              <span
-                className="setting-visibility"
-                onClick={toggleCurrentPassword}
-              >
+              <span onClick={toggleCurrentPassword}>
                 {currentPasswordShown ? vis : inVisibility}
               </span>
+              <br />
             </div>
             <br />
-            <div className="setting-new-pass">
+            <div
+              className="setting-new-pass"
+              style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            >
               <b>Type your new password</b>
               <br />
               <input
@@ -138,12 +146,16 @@ const Setting = () => {
                 ref={newPassword}
                 className="new-pass-input"
               />
-              <span className="setting-visibility" onClick={toggleNewPassword}>
+              <span onClick={toggleNewPassword}>
                 {newPasswordShown ? vis : inVisibility}
               </span>
+              <br />
             </div>
             <br />
-            <div className="setting-confirm-pass">
+            <div
+              className="setting-confirm-pass"
+              style={{ display: 'inline', whiteSpace: 'nowrap' }}
+            >
               <b>Confirm new password</b>
               <br />
               <input
@@ -151,16 +163,18 @@ const Setting = () => {
                 ref={confirmPassword}
                 className="confirm-pass-input"
               />
-              <span
-                className="setting-visibility"
-                onClick={toggleConfirmPassword}
-              >
+              <span onClick={toggleConfirmPassword}>
                 {confirmPasswordShown ? vis : inVisibility}
               </span>
+              <br />
             </div>
             <br />
           </article>
-          <article style={{ 'text-align': 'right' }}>
+          <article
+            style={{
+              'text-align': 'right',
+            }}
+          >
             <span
               onClick={() => {
                 onClickCancel()
@@ -171,12 +185,18 @@ const Setting = () => {
               {' '}
               CANCEL{' '}
             </span>
-            <span
+            <span>
+              <img
+                src={require('../picture/changePassButton.png')}
+                alt="changepass"
+                className="setting-confirm-change"
+                onClick={onClickChangePassword}
+              />
+            </span>
+            {/* <span
               className="setting-confirm-change"
               onClick={onClickChangePassword}
-            >
-              CHANGE PASSWORD
-            </span>
+            ></span> */}
           </article>
         </section>
       ) : (
@@ -185,12 +205,11 @@ const Setting = () => {
             className="setting-content-header"
             onClick={showContentChangePass}
           >
-            <div style={{ 'text-align': 'right' }}>
+            <div style={{ 'text-align': 'right' }} className="setting-arrow">
               <img
                 src={require('../picture/arrowDown.png')}
                 width="20px"
                 alt="arrow"
-                className="setting-arrow"
                 onClick={showContentChangePass}
               />
             </div>
