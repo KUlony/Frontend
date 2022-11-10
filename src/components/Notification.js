@@ -6,9 +6,8 @@ import NotificationList from './NotificationList';
 
 function Notification() {
   const [showNoti, setShowNoti] = useState('dropdown_hide');
-  const [showNotiAll, setShowNotiAll] = useState(false);
+  // const [showNotiAll, setShowNotiAll] = useState(false);
 
-  console.log(showNotiAll);
   const [data, setData] = useState([]);
   useEffect(() => {
     axios

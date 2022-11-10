@@ -5,7 +5,7 @@ function NotificationList(props) {
   const { item } = props;
   const [datenow, setdatenow] = useState('');
   const [likeTime, setLikeTime] = useState('');
-  const [delay, setDelay] = useState(!false);
+  // const [delay, setDelay] = useState(!false);
 
   // setTimeout(() => setDelay(true), 2000);
   async function useInterval(callback, delay) {
@@ -60,7 +60,7 @@ function NotificationList(props) {
         </div>
       </div>
 
-      <div className="action-time">{delay ? likeTime : null}</div>
+      <div className="action-time">{likeTime}</div>
     </Link>
   );
 }
