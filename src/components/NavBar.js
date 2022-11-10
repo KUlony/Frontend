@@ -17,7 +17,7 @@ function Navbar() {
   const handleShow = () => setShow(!show);
   const handleShow2 = () => setShowCreateTopic(!showCreateTopic);
 
-  const isAdmin = !false;
+  const isAdmin = false;
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />

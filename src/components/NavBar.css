@@ -225,16 +225,41 @@
   background-color: #dedede;
 }
 
-@media only screen and (max-width: 1000px) {
+@media only screen and (max-width: 1200px) {
+  .kulony,
+  .home-nav,
+  .search-nav,
+  .my-post,
+  .request-topic,
+  .create-new-post,
+  .bell,
+  .vector,
+  .reportpost-nav,
+  .topic-req-nav,
+  .free-box {
+    font-size: 12px;
+  }
+  .kulony {
+    width: 40px;
+  }
   .space {
     float: left;
     padding-top: 55px;
-    padding-left: 18%;
+    padding-left: 0%;
     cursor: default;
   }
 
   .request-topic {
     overflow: hidden;
+  }
+
+  .num-noti {
+    background-color: #e7db73;
+    border-radius: 50%;
+    width: 5px;
+    height: 5px;
+    font-size: 1px;
+    text-align: center;
   }
 }
 
