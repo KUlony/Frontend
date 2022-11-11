@@ -4,6 +4,9 @@ import AddEducation from "./AddEducation";
 import EditEducation from "./EditEducation";
 import "./UserInfo.css";
 
+import { IoMdAddCircle } from "react-icons/io";
+import { MdEdit } from "react-icons/md";
+
 const UserInfo = () => {
   //----------------------api_get-------------------------
   const [userData, setUserData] = useState("");
@@ -178,7 +181,7 @@ const UserInfo = () => {
 
   const eduElements = educationUpdated.map((theEdu, index) => {
     return (
-      <div>
+      <div className="user-data">
         {allEduForm[0].school ? (
           <section className="education-content">
             <article
@@ -197,7 +200,7 @@ const UserInfo = () => {
               />
             </article>
 
-            <article className="education-degree-field">
+            <article>
               {theEdu.degree ? theEdu.degree : ""}
               {checkIsConnect(theEdu.degree, theEdu.field_of_study) ? ", " : ""}
               {theEdu.field_of_study ? theEdu.field_of_study : ""}
@@ -252,7 +255,7 @@ const UserInfo = () => {
           <div className="user-info-profile-box">
             <img
               src={
-                userData
+                !userData
                   ? require("../picture/temp-profile.png")
                   : userData.profile_pic_url
                   ? userData.profile_pic_url
@@ -319,7 +322,7 @@ const UserInfo = () => {
           />
           <br />
           {inputArray[1] ? (
-            <input
+            <textarea
               class="input-bio1"
               type="text"
               placeholder="Bio"
@@ -333,7 +336,7 @@ const UserInfo = () => {
               }
             />
           ) : (
-            <input
+            <textarea
               class="input-bio2"
               type="text"
               placeholder="Bio"
@@ -425,17 +428,38 @@ const UserInfo = () => {
             ></input>
           )}
         </section>
-
-        <section
+        {/* education css */}
+        <div className="user-info-onboard4-edu-container">
+          <span className="user-info-onboard4-edu-header">
+            Education
+            <span
+              className="user-info-add-more-button"
+              onClick={onAddEducationClick}
+            >
+              ADD MORE
+              <IoMdAddCircle size={20} className="user-info-add-button-icon" />
+            </span>
+          </span>
+          <div className="user-info-edu-added">
+            <div className="user-info-degree-faculty">
+              <div>{eduElements}</div>
+              {/* <div className="university-name">Kasetsart University</div>
+                <span className="degree">Bachelor's degree, </span>
+                <span className="faculty">Computer engineering</span> */}
+            </div>
+          </div>
+        </div>
+        {/* <section
           className="education"
           style={{ display: "inline", whiteSpace: "nowrap" }}
         >
           Education
           <button onClick={onAddEducationClick}>add more</button>
           <div>{eduElements}</div>
-        </section>
-        <section className="contact">
-          contact
+        </section> */}
+
+        <section className="user-info-contact">
+          <p className="user-info-contact-title">Contact</p>
           <article className="instagram">
             <div
               className="ig-box"
@@ -445,8 +469,8 @@ const UserInfo = () => {
                 className="ig-img"
                 src={require("../picture/ig-icon.png")}
                 alt="instagram"
-                width="20"
-                height="20"
+                width="23"
+                height="23"
                 style={{ "vertical-align": "middle" }}
               />{" "}
               {inputArray[4] ? (
@@ -457,6 +481,7 @@ const UserInfo = () => {
                   placeholder="add instagram"
                   disabled={true}
                   ref={instagram}
+                  className="ig-img-input1"
                   value={
                     !userData.contact
                       ? ""
@@ -473,6 +498,7 @@ const UserInfo = () => {
                   placeholder="add instagram"
                   ref={instagram}
                   style={editstyles}
+                  className="ig-img-input1"
                 />
               )}
               <img
@@ -493,7 +519,8 @@ const UserInfo = () => {
                 className="fb-img"
                 src={require("../picture/fb-icon.png")}
                 alt="facebook"
-                width="20"
+                width="23"
+                height="23"
                 style={{ "vertical-align": "middle" }}
               />{" "}
               {inputArray[5] ? (
@@ -504,6 +531,7 @@ const UserInfo = () => {
                   placeholder="add facebook"
                   disabled={true}
                   ref={facebook}
+                  className="ig-img-input1"
                   value={
                     !userData.contact
                       ? ""
@@ -520,19 +548,21 @@ const UserInfo = () => {
                   placeholder="add facebook"
                   ref={facebook}
                   style={editstyles}
+                  className="ig-img-input1"
                 />
               )}
               <img
                 src={require("../picture/editButton.png")}
                 alt="edit-button"
                 width="20px"
-                className="edit-fb-button"
+                className="edit-i-button"
                 onClick={() => editInputArray(5)}
               />
             </div>
           </article>
         </section>
       </div>
+
       <section className="profile-bottom">
         <b className="home-button"> BACK TO HOME </b>
         <div className="save">

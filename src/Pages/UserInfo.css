@@ -153,10 +153,10 @@
   margin-left: 48px;
 }
 
-.contact {
+.user-info-contact {
   position: relative;
-  margin-left: 48px;
-  margin-top: 18px;
+  top: -77px;
+  left: -10px;
 }
 
 .input-firstname1 {
@@ -244,7 +244,7 @@
   resize: none;
   font-size: 16px;
   width: 320px;
-  height: 78px;
+  height: 130px;
   padding: 10px;
   outline: none;
   border-radius: 10px;
@@ -288,8 +288,11 @@
 }
 
 .profile-bottom {
+  background-color: #e7db73;
+  width: 300px;
   position: relative;
-  margin-left: 200px;
+  left: 250px;
+  /* margin-left: 200px; */
   margin-top: 0px;
   list-style-type: none;
 }
@@ -325,9 +328,12 @@
 }
 /* Add Education */
 .education-content {
-  border: 1px solid rgba(0, 0, 0, 1);
-  width: 75%;
-  margin-left: 47px;
+  /* background-color: #e7db73; */
+  /* opacity: 0.5; */
+  /* display: inline-block; */
+  /* border: 1px solid rgba(0, 0, 0, 1); */
+  /* width: 75%; */
+  /* margin-left: 47px; */
 }
 
 .education-all-date {
@@ -339,6 +345,156 @@
   height: 100px;
 }
 
+.user-data {
+  position: relative;
+}
+
 .edit-education-button {
   cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.edit-education-button:active {
+  opacity: 0.6;
+}
+
+/* education css */
+.user-info-onboard4-edu-container {
+  position: relative;
+  top: 0px;
+  left: -109px;
+  height: 230px;
+  width: 750px;
+  /* border: 1px solid black; */
+  margin: 0px 50px;
+  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #339c64; */
+}
+
+.user-data {
+  /* display: inline-block; */
+}
+
+.user-info-onboard4-edu-header {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  width: 100%;
+  align-items: center;
+  padding: 30px;
+  font-weight: 700;
+  margin-left: 100px;
+}
+
+.user-info-add-more-button {
+  background-color: #e7db73;
+  margin-left: 20px;
+  padding: 7px 10px;
+  display: flex;
+  border-radius: 16px;
+  box-shadow: 2.5px 2.5px 2.5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.user-info-add-button-icon {
+  padding-left: 5px;
+}
+
+.user-info-edu-added {
+  position: relative;
+  left: 31px;
+  top: -10px;
+  height: 55px;
+  width: 709px;
+  border: 1px solid black;
+  /* overflow: scroll; */
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.user-info-education-degree-field {
+  background-color: pink;
+}
+
+.user-info-degree-faculty {
+  width: 698px;
+  height: 55px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* background-color: #E7DB73; */
+  overflow: scroll;
+  margin-left: 10px;
+  line-height: 25px;
+
+  /* font-weight: 700; */
+}
+
+.user-info-degree-faculty::-webkit-scrollbar {
+  display: none;
+}
+.user-info-university-name {
+  font-weight: 700;
+}
+
+.user-info-border-edit-icon {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 20px;
+  margin-left: 250px;
+  cursor: pointer;
+}
+
+.user-info-add-more-button:active {
+  opacity: 0.6;
+}
+
+.user-info-contact-title {
+  font-weight: 700;
+  size: 16px;
+}
+
+.fb-img,
+.ig-img {
+  margin-right: 13px;
+}
+
+.ig-img-input1 {
+  border: 1px solid black;
+  position: relative;
+  top: 1px;
+  height: 21px;
+  border-radius: 2.5px;
+}
+
+.edit-i-button {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.edit-i-button:active {
+  opacity: 0.6;
+}
+
+.ig-img-input1:focus {
+  outline: none;
+}
+
+.ig-img-input2 {
+  border: 1px solid black;
 }
