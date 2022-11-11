@@ -20,18 +20,24 @@ function ReqtopicAdmin() {
 
   const gentopic = async () => {
     try {
-      const respone = await axios.get(`/api/admin/get_all_request_topic`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
-        },
-      })
+      const respone = await axios.get(
+        `https://kulony-backend.herokuapp.com/api/admin/get_all_request_topic`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
+          },
+        }
+      )
       setPostdata(respone.data)
 
-      const response2 = await axios.get(`/api/topic/get_all_catagory_topic`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
-        },
-      })
+      const response2 = await axios.get(
+        `https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
+          },
+        }
+      )
       setcataname(response2.data)
 
       // console.log(response2.data);
@@ -44,11 +50,14 @@ function ReqtopicAdmin() {
 
   const deletetopic = (e) => {
     axios
-      .delete(`/api/admin/remove_request_topic/${e.request_id}`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
-        },
-      })
+      .delete(
+        `https://kulony-backend.herokuapp.com/api/admin/remove_request_topic/${e.request_id}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0NzM5LCJleHAiOjE2NjgyNDExMzl9.VWyt_fvXyNvUDJbTEMfN-mF-O2htqJhBKJPYW08JIhE`,
+          },
+        }
+      )
       .then((res) => {
         const data = res.data
         console.log(data)

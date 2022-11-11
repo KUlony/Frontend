@@ -8,7 +8,6 @@ import ComreportAdmin from "./ComreportAdmin"
 function ReportpageAdmin() {
   const [togpost, setTogpost] = useState(true)
   const [togcom, setTogcom] = useState(false)
-  const [sendsortdata, setSendsortdata] = useState("")
 
   const distogpost = () => {
     setTogpost(true)
@@ -18,11 +17,6 @@ function ReportpageAdmin() {
   const distogcom = () => {
     setTogpost(false)
     setTogcom(true)
-  }
-
-  const sendsort = (e) => {
-    console.log(e.target.value)
-    setSendsortdata(e.target.value)
   }
 
   return (
@@ -57,18 +51,10 @@ function ReportpageAdmin() {
           </div>
           <p className="noti">10</p>
         </div>
-        <div className="sortname">Sort by</div>
-        {/* <img alt="" src={sortpic} className="sortpic" /> */}
-        <div className="dropboxsort">
-          <select className="sortby" onChange={(e) => sendsort(e)}>
-            <option value="lasted">Latest</option>
-            <option value="reported">Most Reported</option>
-          </select>
-        </div>
       </div>
       <br></br>
-      {togpost && <PostreportAdmin datasort={sendsortdata} />}
-      {togcom && <ComreportAdmin datasort={sendsortdata} />}
+      {togpost && <PostreportAdmin />}
+      {togcom && <ComreportAdmin />}
     </div>
   )
 }

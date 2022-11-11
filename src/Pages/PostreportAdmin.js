@@ -114,31 +114,35 @@ function PostreportAdmin({ datasort }) {
       {postdata.map((item, index) => (
         <div className="contentreportpost" key={index}>
           <div className="headcard">
-            <p className="topname">
-              Reported by <span className="greenspan">{item.count_user}</span>{" "}
-              users, Lastest report on{" "}
-              <span className="greenspan">
-                {item.year}-{item.month}-{item.day}
-              </span>
-            </p>
-            <button
-              className="discardbtnpost"
-              onClick={() => {
-                discarddata(item)
-                window.location.reload()
-              }}
-            >
-              Discard Report <i class="bi bi-x"></i>
-            </button>
-            <button
-              className="deletebtnpost"
-              onClick={() => {
-                deletedata(item)
-                window.location.reload()
-              }}
-            >
-              Delete Post <i class="bi bi-trash"></i>
-            </button>
+            <div className="headnamecom">
+              <p className="topname">
+                Reported by <span className="greenspan">{item.count_user}</span>{" "}
+                users, Lastest report on{" "}
+                <span className="greenspan">
+                  {item.year}-{item.month}-{item.day}
+                </span>
+              </p>
+            </div>
+            <div className="btnpost">
+              <button
+                className="discardbtnpost"
+                onClick={() => {
+                  discarddata(item)
+                  window.location.reload()
+                }}
+              >
+                Discard Report <i class="bi bi-x"></i>
+              </button>
+              <button
+                className="deletebtnpost"
+                onClick={() => {
+                  deletedata(item)
+                  window.location.reload()
+                }}
+              >
+                Delete Post <i class="bi bi-trash"></i>
+              </button>
+            </div>
           </div>
           {postiddata.map((item2, index2) =>
             index === index2 ? (
