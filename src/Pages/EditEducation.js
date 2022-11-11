@@ -1,103 +1,95 @@
-import React, { useState } from "react";
-import "./AddEducation.css";
-import { dateMonth, dateYear } from "./data/monthYear";
-const AddEducation = (props) => {
-  const { onBgClick, educationUpdated } = props;
+import React, { useState } from 'react'
+import './EditEducation.css'
+import { dateMonth, dateYear } from './data/monthYear'
+import { FiTrash } from 'react-icons/fi'
+import DeleteEducation from './DeleteEducation'
+const EditEducation = (props) => {
+  const { onBgEditClick, educationInfo, index, updateEducation } = props
 
-  const [editSchool, setEditSchool] = useState("");
-  const [editDegree, setEditDegree] = useState("");
-  const [editField, setEditField] = useState("");
-  const [editStartMonth, setEditStartMonth] = useState("");
-  const [editStartYear, setEditStartYear] = useState("");
-  const [editEndMonth, setEditEndMonth] = useState("");
-  const [editEndYear, setEditEndYear] = useState("");
+  const [editSchool, setEditSchool] = useState(educationInfo.school)
+  const [editDegree, setEditDegree] = useState(educationInfo.degree)
+  const [editField, setEditField] = useState(educationInfo.field_of_study)
+  const [editStartMonth, setEditStartMonth] = useState(educationInfo.start_date)
+  const [editStartYear, setEditStartYear] = useState(educationInfo.start_date)
+  const [editEndMonth, setEditEndMonth] = useState(educationInfo.end_date)
+  const [editEndYear, setEditEndYear] = useState(educationInfo.end_date)
 
+  //--------------------updating---------------------
   const addTwo = (editStartMonth, editStartYear) => {
-    let startMonthAddYear = "";
+    let startMonthAddYear = ''
     if (editStartMonth) {
       if (editStartYear) {
-        startMonthAddYear = editStartMonth + "-" + editStartYear;
+        startMonthAddYear = editStartMonth + '-' + editStartYear
       } else {
-        startMonthAddYear = editStartMonth;
+        startMonthAddYear = editStartMonth
       }
     }
-    return startMonthAddYear;
-  };
-  const addingEducation = (e) => {
-    e.preventDefault();
-    if (editSchool !== "") {
-      const startMonthAddYear = addTwo(editStartMonth, editStartYear);
-      const endMonthAddYear = addTwo(editEndMonth, editEndYear);
-      e.preventDefault();
-      const educationAdded = {
-        school: editSchool,
-        degree: editDegree,
-        field_of_study: editField,
-        start_date: startMonthAddYear,
-        end_date: endMonthAddYear,
-      };
-      console.log("newdata", educationAdded);
-      educationUpdated.push(educationAdded);
-      onBgClick();
-      // .then(onBgEditClick)
+    return startMonthAddYear
+  }
+  const updatingEducation = () => {
+    const startMonthAddYear = addTwo(editStartMonth, editStartYear)
+    const endMonthAddYear = addTwo(editEndMonth, editEndYear)
+    const educationInfoUpdated = {
+      school: editSchool,
+      degree: editDegree,
+      field_of_study: editField,
+      start_date: startMonthAddYear,
+      end_date: endMonthAddYear,
     }
-  };
-  // const [eduForm, setEduForm] = useState({
-  //   school: '',
-  //   degree: '',
-  //   field: '',
-  //   startMonth: '',
-  //   startYear: '',
-  //   endMonth: '',
-  //   endYear: '',
-  // })
+    console.log('newdata', educationInfoUpdated)
+    updateEducation(educationInfoUpdated, index)
+  }
 
-  // const objInLocalStorage = JSON.parse(localStorage.getItem('allEducation'))
-  // const [allEduForm, setallEduForm] = useState(objInLocalStorage)
-  // useEffect(() => {
-  //   localStorage.setItem('allEducation', JSON.stringify(allEduForm))
-  // }, [allEduForm])
+  //--------------------deleting---------------------
+  const deletingEducation = () => {
+    const educationInfoUpdated = null
+    console.log('newdata', educationInfoUpdated)
+    console.log('index', index)
+    updateEducation(educationInfoUpdated, index)
+    // .then(onBgEditClick)
+  }
 
-  // function onEduFormChange(event) {
-  //   const { name, value } = event.target
-  //   setEduForm((prevEduForm) => {
-  //     return {
-  //       ...prevEduForm,
-  //       [name]: value,
-  //     }
-  //   })
-  // }
+  const [isDeleteEducation, setIsDeleteEducation] = useState(null)
 
-  // function onEduFormSubmit(event) {
-  //   event.preventDefault()
-  //   setallEduForm((prevAllEduForm) => {
-  //     return [...prevAllEduForm, eduForm]
-  //   })
-  // }
-
+  function onDeleteEducationClick() {
+    setIsDeleteEducation(true)
+  }
+  function onBgEducationClick() {
+    setIsDeleteEducation(null)
+  }
+  let deleteEducation = null
+  if (!!isDeleteEducation) {
+    deleteEducation = (
+      <DeleteEducation
+        onBgEducationClick={onBgEducationClick}
+        deletingEducation={deletingEducation}
+        onBgEditClick={onBgEditClick}
+      />
+    )
+  }
   return (
     <main>
       <form className="add-education">
-        <div className="add-education-bg" onClick={onBgClick}></div>
+        <div className="add-education-bg" onClick={onBgEditClick}></div>
         <main className="add-education-inner">
           <header className="add-edu-header">
-            Add Education
+            Edit Education
             <button
-              onClick={onBgClick}
+              onClick={onBgEditClick}
               style={{
-                width: "16px",
-                height: "16px",
-                border: "none",
-                background: "none",
+                width: '16px',
+                height: '16px',
+                border: 'none',
+                background: 'none',
               }}
             >
               <img
-                src={require("../picture/close.png")}
+                src={require('../picture/close.png')}
                 alt="close"
                 style={{
-                  width: "16px",
-                  height: "16px",
-                  cursor: "pointer",
+                  width: '16px',
+                  height: '16px',
+                  cursor: 'pointer',
                 }}
                 className="close-add-edu"
               />
@@ -108,7 +100,7 @@ const AddEducation = (props) => {
             <input
               class="input-school"
               type="text"
-              placeholder="Kasetsart University"
+              placeholder="Ex. Kasetsart University"
               rows="1"
               cols="20"
               name="school"
@@ -125,7 +117,7 @@ const AddEducation = (props) => {
             <input
               class="input-degree"
               type="text"
-              placeholder="Bachelor's degree"
+              placeholder="Ex. Bachelor's degree"
               rows="1"
               cols="20"
               name="degree"
@@ -141,7 +133,7 @@ const AddEducation = (props) => {
             <input
               class="input-field"
               type="text"
-              placeholder="Computer engineering"
+              placeholder="Ex. Computer engineering"
               rows="1"
               cols="20"
               name="field"
@@ -157,6 +149,7 @@ const AddEducation = (props) => {
             <select
               className="start-month"
               name="startMonth"
+              //   value={editStartMonth ? editStartMonth.split('-')[0] : ''}
               onChange={(e) => setEditStartMonth(e.target.value)}
             >
               {dateMonth.map((option, index) => (
@@ -167,10 +160,11 @@ const AddEducation = (props) => {
                   {option.text}
                 </option>
               ))}
-            </select>{" "}
+            </select>{' '}
             <select
               className="start-year"
               name="startYear"
+              //   value={eduForm.startYear}
               onChange={(e) => setEditStartYear(e.target.value)}
             >
               {dateYear.map((option, index) => (
@@ -186,6 +180,7 @@ const AddEducation = (props) => {
             <select
               className="end-month"
               name="endMonth"
+              //   value={eduForm.endMonth}
               onChange={(e) => setEditEndMonth(e.target.value)}
             >
               {dateMonth.map((option, index) => (
@@ -196,10 +191,11 @@ const AddEducation = (props) => {
                   {option.text}
                 </option>
               ))}
-            </select>{" "}
+            </select>{' '}
             <select
               name="endYear"
               className="end-year"
+              //   value={eduForm.endYear}
               onChange={(e) => setEditEndYear(e.target.value)}
             >
               {dateYear.map((option, index) => (
@@ -213,19 +209,28 @@ const AddEducation = (props) => {
             </select>
           </section>
           <div className="footer-box">
+            <div
+              className="edit-edu-delete-edu"
+              onClick={onDeleteEducationClick}
+            >
+              <div className="edit-edu-delete-text">Delete Education</div>
+              <FiTrash size={18} className="edit-edu-trash"></FiTrash>
+            </div>
             <button
-              className="add-edu-save-button"
-              // type="submit"
-              onClick={addingEducation}
+              className="edit-edu-save-button"
+              onClick={() => {
+                onBgEditClick()
+                updatingEducation()
+              }}
             >
               SAVE
             </button>
           </div>
         </main>
       </form>
-      {/* {deleteEducation} */}
+      {deleteEducation}
     </main>
-  );
-};
+  )
+}
 
-export default AddEducation;
+export default EditEducation

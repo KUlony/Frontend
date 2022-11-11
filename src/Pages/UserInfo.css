@@ -1,24 +1,139 @@
 .user-info {
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  position: relative;
+  /* top: -53px; */
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  /* background-color: #9ab6a7; */
+  /* height: 100%; */
+  /* width: 100%; */
+  /* background-color: black; */
 }
+
+.user-info-main {
+  position: relative;
+  top: 55px;
+  /* background-color: aqua; */
+  margin: 0 auto;
+  width: 700px;
+  height: 550px;
+}
+
 .profile-pic {
+  width: 230px;
+  height: 205px;
   position: absolute;
+  left: -67px;
+  /* position: relative; */
   margin-left: 57px;
   margin-top: -9px;
   padding: 20px;
-  border: 1px solid #000000;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 2%;
+  background-color: white;
 }
 
-.username {
+.profile-pic-setup {
   position: relative;
-  margin-left: 312px;
-  margin-top: 53px;
+  top: 2px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
 }
 
-.bio {
+.edit-profile-button {
+  position: absolute;
+  top: 145px;
+  right: 58px;
+}
+
+.user-info-profile {
+  width: 100%;
+  height: auto;
+}
+
+.user-info-profile-box {
+  width: 180px;
+  height: 180px;
+  border-radius: 100%;
+  overflow: hidden;
   position: relative;
-  margin-left: 312px;
-  margin-top: 10px;
+  top: -4px;
+  left: 21.5px;
+  background-color: aqua;
+}
+
+.user-info-username {
+  position: relative;
+  top: -17px;
+  left: 360px;
+}
+
+.edit-username-button,
+.edit-lastname-button {
+  position: relative;
+  left: 5px;
+}
+
+.edit-profile-button,
+.edit-username-button,
+.edit-bio-button,
+.edit-firstname-button,
+.edit-lastname-button {
+  cursor: pointer;
+}
+.edit-profile-button:active,
+.edit-username-button:active,
+.edit-bio-button:active,
+.edit-firstname-button:active,
+.edit-lastname-button:active {
+  opacity: 0.6;
+}
+
+.edit-bio-button,
+.edit-firstname-button {
+  position: relative;
+  left: 5px;
+}
+
+.user-info-username-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-firstname {
+  position: relative;
+  top: 35px;
+  /* margin-top: 55px; */
+  left: -10px;
+}
+
+.user-info-lastname {
+  position: relative;
+  top: -26px;
+  left: 361px;
+}
+
+.user-info-firstname-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-bio-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-bio {
+  position: relative;
+  top: 0px;
+  left: 360px;
+  /* background-color: aquamarine; */
+  width: 320px;
 }
 
 .firstname {
@@ -38,90 +153,187 @@
   margin-left: 48px;
 }
 
-.contact {
+.user-info-contact {
   position: relative;
-  margin-left: 48px;
-  margin-top: 18px;
+  top: -77px;
+  left: -10px;
 }
 
-.input-firstname {
+.input-firstname1 {
+  margin: 1px;
+  position: relative;
+  top: 6px;
   background: #f8f5d5;
   border: 0px solid #000000;
   font-weight: 400;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 310px;
+  height: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.input-lastname {
+.input-firstname2 {
+  position: relative;
+  top: 6px;
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  font-weight: 400;
+  resize: none;
+  font-size: 16px;
+  width: 310px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-lastname1 {
+  margin: 1px;
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 320px;
+  height: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.input-bio {
+.input-lastname2 {
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 300px;
-  height: 78px;
+  width: 320px;
+  height: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.input-username {
+.user-info-lastname-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.edit-lastname-button {
+  margin-bottom: 5px;
+}
+
+.input-bio1 {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  margin: 1px;
+  font-size: 16px;
+  width: 320px;
+  height: 130px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-bio2 {
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 320px;
+  height: 130px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.input-username1 {
+  position: relative;
+  top: 4px;
+  background: #f8f5d5;
+  margin: 1px;
+  /* border: 0px solid #000000; */
+  border: none;
+  resize: none;
+  font-size: 16px;
+  width: 320px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-username2 {
+  position: relative;
+  top: 4px;
+  background: #f8f5d5;
+  /* border: 0px solid #000000; */
+  border: none;
+  resize: none;
+  font-size: 16px;
+  width: 320px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-username:focus {
+  border: none;
 }
 
 .profile-bottom {
+  background-color: #e7db73;
+  width: 300px;
   position: relative;
-  left: 200px;
+  left: 250px;
+  /* margin-left: 200px; */
+  margin-top: 0px;
   list-style-type: none;
 }
 
 .home-button {
-  position: absolute;
+  position: relative;
   text-decoration: none;
   color: black;
-  left: 192px;
-  top: 10px;
+  top: 44px;
+  left: 190px;
+  /* margin-left: 180px; */
+  /* margin-top: 54px; */
   width: 150px;
+  cursor: pointer;
+  z-index: 5px;
 }
-
 .save-button {
   position: relative;
-  left: 362px;
   border-radius: 25px;
   padding: 10px 10px;
-  background-color: #339c64;
+  top: 0px;
+  left: 319px;
+  /* background-color: #339c64; */
   border: none;
   cursor: pointer;
+  width: 135px;
+}
+.save {
+  position: relative;
+  margin-top: 0px;
+  width: 0px;
+  /* z-index: 0; */
 }
 /* Add Education */
 .education-content {
-  border: 1px solid rgba(0, 0, 0, 1);
-  width: 70%;
-  margin-left: 47px;
+  /* background-color: #e7db73; */
+  /* opacity: 0.5; */
+  /* display: inline-block; */
+  /* border: 1px solid rgba(0, 0, 0, 1); */
+  /* width: 75%; */
+  /* margin-left: 47px; */
 }
 
 .education-all-date {
@@ -131,4 +343,158 @@
 .input-ig {
   width: 200px;
   height: 100px;
+}
+
+.user-data {
+  position: relative;
+}
+
+.edit-education-button {
+  cursor: pointer;
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+.edit-education-button:active {
+  opacity: 0.6;
+}
+
+/* education css */
+.user-info-onboard4-edu-container {
+  position: relative;
+  top: 0px;
+  left: -109px;
+  height: 230px;
+  width: 750px;
+  /* border: 1px solid black; */
+  margin: 0px 50px;
+  /* justify-content: center; */
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  /* background-color: #339c64; */
+}
+
+.user-data {
+  /* display: inline-block; */
+}
+
+.user-info-onboard4-edu-header {
+  height: 20px;
+  display: flex;
+  flex-direction: row;
+  /* justify-content: center; */
+  width: 100%;
+  align-items: center;
+  padding: 30px;
+  font-weight: 700;
+  margin-left: 100px;
+}
+
+.user-info-add-more-button {
+  background-color: #e7db73;
+  margin-left: 20px;
+  padding: 7px 10px;
+  display: flex;
+  border-radius: 16px;
+  box-shadow: 2.5px 2.5px 2.5px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+}
+
+.user-info-add-button-icon {
+  padding-left: 5px;
+}
+
+.user-info-edu-added {
+  position: relative;
+  left: 31px;
+  top: -10px;
+  height: 55px;
+  width: 709px;
+  border: 1px solid black;
+  /* overflow: scroll; */
+  /* display: flex; */
+  /* flex-direction: row; */
+}
+
+.user-info-education-degree-field {
+  background-color: pink;
+}
+
+.user-info-degree-faculty {
+  width: 698px;
+  height: 55px;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  /* flex-direction: column; */
+  /* background-color: #E7DB73; */
+  overflow: scroll;
+  margin-left: 10px;
+  line-height: 25px;
+
+  /* font-weight: 700; */
+}
+
+.user-info-degree-faculty::-webkit-scrollbar {
+  display: none;
+}
+.user-info-university-name {
+  font-weight: 700;
+}
+
+.user-info-border-edit-icon {
+  height: 20px;
+  width: 20px;
+  background-color: black;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin: 20px;
+  margin-left: 250px;
+  cursor: pointer;
+}
+
+.user-info-add-more-button:active {
+  opacity: 0.6;
+}
+
+.user-info-contact-title {
+  font-weight: 700;
+  size: 16px;
+}
+
+.fb-img,
+.ig-img {
+  margin-right: 13px;
+}
+
+.ig-img-input1 {
+  border: 1px solid black;
+  position: relative;
+  top: 1px;
+  height: 21px;
+  border-radius: 2.5px;
+}
+
+.edit-i-button {
+  position: relative;
+  top: 5px;
+  left: 10px;
+  cursor: pointer;
+}
+
+.edit-i-button:active {
+  opacity: 0.6;
+}
+
+.ig-img-input1:focus {
+  outline: none;
+}
+
+.ig-img-input2 {
+  border: 1px solid black;
 }

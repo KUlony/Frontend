@@ -13,15 +13,17 @@
 }
 
 .profile-sidebar {
-  width: 30%;
-  border-style: solid;
+  width: 33%;
+  /* border-style: solid; */
 }
 
 .profile-content {
-  width: 70%;
-  border-style: solid;
-}
+  width: 67%;
+  height: 900px;
+  overflow-y: auto;
 
+  overflow-x: hidden;
+}
 .user_profile {
   margin-left: 20%;
   margin-top: 50px;
@@ -47,7 +49,7 @@
 }
 
 .btn_click:hover {
-  color: #339C64;
+  color: #339c64;
 }
 
 .buttonstyle {
@@ -55,11 +57,11 @@
 }
 
 .setgreen {
-  background-color: #D6EBE0;
+  background-color: #d6ebe0;
 }
 
 .setdeepgreen {
-  background: #339C64;
+  background: #339c64;
   width: 7px;
 }
 
@@ -71,7 +73,7 @@
   padding: 10px;
   font-size: 25px;
   font-weight: 600;
-  color: #339C64;
+  color: #339c64;
   background-color: white;
   border: none;
   cursor: pointer;
@@ -84,5 +86,14 @@
   width: 240px;
   /* left: 180px; */
   margin-left: 40%;
-  margin-top: -100px;
+  margin-top: -180px;
+}
+
+.logout-button {
+  position: relative;
+  top: -72px;
+}
+.logout-text {
+  position: relative;
+  left: 20px;
 }

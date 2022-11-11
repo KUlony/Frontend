@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './Profile.css'
 import UserInfo from './UserInfo'
-import Favourite from './Favourite'
+// import Favourite from './Favorite'
 import FollowTopic from './FollowTopic'
 import Setting from './Setting'
 import Navbar from '../components/NavBar'
 import logoutpic from '../picture/logout.png'
 import g1020 from '../picture/g1020.png'
+import Favourite from './Favourite.js'
 
 function Profile() {
   const componentsUserProfile = [
@@ -70,7 +71,7 @@ function Profile() {
                   toggleuserinfo()
                 }}
               >
-                User Info
+                User info
               </button>
               <div className={`${userinfo ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
@@ -84,7 +85,7 @@ function Profile() {
                   togglefavourites()
                 }}
               >
-                Favourites
+                Favorites
               </button>
               <div
                 className={`${favourites ? 'setdeepgreen' : 'noting'}`}
@@ -114,7 +115,7 @@ function Profile() {
                   togglesetting()
                 }}
               >
-                setting
+                Setting
               </button>
               <div className={`${setting ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
@@ -122,7 +123,8 @@ function Profile() {
           <br></br>
           <br></br>
           <button className="logout-button">
-            <img src={logoutpic} alt="logout" className="logout-img" /> Log Out
+            <img src={logoutpic} alt="logout" className="logout-img" />
+            <span className="logout-text">Log Out</span>
           </button>
           <br></br>
           <img src={g1020} alt="" className="g1020" />

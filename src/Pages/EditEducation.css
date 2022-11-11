@@ -23,6 +23,9 @@
 .add-education-inner {
   position: relative;
   padding: 32px;
+  top: 25px;
+  border: 1px solid black;
+  border-radius: 8px;
   width: 100%;
   max-width: 353px;
   background-color: white;
@@ -55,7 +58,7 @@
 }
 
 .close-add-edu {
-  margin-left: 148px;
+  margin-left: 152px;
 }
 
 .add-education-inner section {
@@ -82,13 +85,13 @@
   /* justify-content: center; */
 }
 
-.add-edu-delete-edu {
+.edit-edu-delete-edu {
   width: 150px;
   cursor: pointer;
   display: flex;
   margin-right: 60px;
 }
-.add-edu-save-button {
+.edit-edu-save-button {
   width: 100px;
   height: 40px;
   border-radius: 32px;
@@ -98,9 +101,8 @@
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.25);
   background-color: #e7db73;
   cursor: pointer;
-  /* text-align: right; */
   position: relative;
-  left: 251px;
+  left: 42px;
 }
 
 .end-month,
@@ -109,13 +111,18 @@
 .start-year {
   width: 140px;
   height: 35px;
-  margin-right: 30px;
+  margin-right: 11px;
   border: 1px solid #000000;
   border-radius: 8px;
 }
 
 .end-month::after {
   color: #339c64;
+}
+
+.edit-edu-trash {
+  position: relative;
+  left: 6px;
 }
 
 .input-school,
