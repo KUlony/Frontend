@@ -5,7 +5,7 @@
   left: 0px;
   width: 100%;
   height: 100vh;
-  background-color: #9ab6a7;
+  /* background-color: #9ab6a7; */
   /* height: 100%; */
   /* width: 100%; */
   /* background-color: black; */
@@ -14,15 +14,15 @@
 .user-info-main {
   position: relative;
   top: 55px;
-  background-color: aqua;
+  /* background-color: aqua; */
   margin: 0 auto;
   width: 700px;
   height: 550px;
 }
 
 .profile-pic {
-  width: 190px;
-  height: 175px;
+  width: 230px;
+  height: 205px;
   position: absolute;
   left: -67px;
   /* position: relative; */
@@ -44,18 +44,24 @@
 
 .edit-profile-button {
   position: absolute;
-  top: 123px;
-  right: 43px;
+  top: 145px;
+  right: 58px;
+}
+
+.user-info-profile {
+  width: 100%;
+  height: auto;
 }
 
 .user-info-profile-box {
-  width: 150px;
-  height: 150px;
+  width: 180px;
+  height: 180px;
   border-radius: 100%;
   overflow: hidden;
   position: relative;
   top: -4px;
   left: 21.5px;
+  background-color: aqua;
 }
 
 .user-info-username {
@@ -64,7 +70,8 @@
   left: 360px;
 }
 
-.edit-username-button {
+.edit-username-button,
+.edit-lastname-button {
   position: relative;
   left: 5px;
 }
@@ -72,13 +79,15 @@
 .edit-profile-button,
 .edit-username-button,
 .edit-bio-button,
-.edit-firstname-button {
+.edit-firstname-button,
+.edit-lastname-button {
   cursor: pointer;
 }
 .edit-profile-button:active,
 .edit-username-button:active,
 .edit-bio-button:active,
-.edit-firstname-button:active {
+.edit-firstname-button:active,
+.edit-lastname-button:active {
   opacity: 0.6;
 }
 
@@ -96,14 +105,15 @@
 
 .user-info-firstname {
   position: relative;
-  margin-top: 55px;
-  left: 60px;
+  top: 35px;
+  /* margin-top: 55px; */
+  left: -10px;
 }
 
 .user-info-lastname {
   position: relative;
-  margin-top: 55px;
-  left: 60px;
+  top: -26px;
+  left: 361px;
 }
 
 .user-info-firstname-titile {
@@ -123,7 +133,7 @@
   top: 0px;
   left: 360px;
   /* background-color: aquamarine; */
-  width: 340px;
+  width: 320px;
 }
 
 .firstname {
@@ -158,7 +168,7 @@
   font-weight: 400;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 310px;
   height: 16px;
   padding: 10px;
   outline: none;
@@ -173,23 +183,46 @@
   font-weight: 400;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 310px;
   height: 16px;
   padding: 10px;
   outline: none;
   border-radius: 10px;
 }
 
-.input-lastname {
+.input-lastname1 {
+  margin: 1px;
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 320px;
+  height: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.input-lastname2 {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 320px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.user-info-lastname-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.edit-lastname-button {
+  margin-bottom: 5px;
 }
 
 .input-bio1 {
@@ -198,8 +231,8 @@
   resize: none;
   margin: 1px;
   font-size: 16px;
-  width: 340px;
-  height: 78px;
+  width: 320px;
+  height: 130px;
   padding: 10px;
   outline: none;
   border-radius: 10px;
@@ -210,7 +243,7 @@
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 320px;
   height: 78px;
   padding: 10px;
   outline: none;
@@ -228,7 +261,7 @@
   border: none;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 320px;
   height: 16px;
   padding: 10px;
   outline: none;
@@ -243,7 +276,7 @@
   border: none;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 320px;
   height: 16px;
   padding: 10px;
   outline: none;

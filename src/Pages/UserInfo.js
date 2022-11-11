@@ -267,7 +267,7 @@ const UserInfo = () => {
           <img
             src={require("../picture/editButton.png")}
             alt="edit-button"
-            width="27px"
+            width="30px"
             className="edit-profile-button"
           />
           <div className="profile-pic-setup">Set up display</div>
@@ -385,8 +385,8 @@ const UserInfo = () => {
             />
           )}
         </section>
-        <section className="lastname">
-          Last name
+        <section className="user-info-lastname">
+          <p className="user-info-lastname-titile">Last name</p>
           <img
             src={require("../picture/editButton.png")}
             alt="edit-button"
@@ -397,7 +397,7 @@ const UserInfo = () => {
           <br />
           {inputArray[3] ? (
             <input
-              class="input-lastname"
+              class="input-lastname1"
               type="text"
               placeholder="Lastname"
               rows="1"
@@ -415,7 +415,7 @@ const UserInfo = () => {
             ></input>
           ) : (
             <input
-              class="input-lastname"
+              class="input-lastname2"
               type="text"
               placeholder="Lastname"
               rows="1"
