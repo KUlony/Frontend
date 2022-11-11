@@ -288,7 +288,7 @@
 }
 
 .profile-bottom {
-  background-color: #e7db73;
+  background-color: transparent;
   width: 300px;
   position: relative;
   left: 250px;
@@ -301,8 +301,8 @@
   position: relative;
   text-decoration: none;
   color: black;
-  top: 44px;
-  left: 190px;
+  top: 66px;
+  left: 237px;
   /* margin-left: 180px; */
   /* margin-top: 54px; */
   width: 150px;
@@ -313,8 +313,8 @@
   position: relative;
   border-radius: 25px;
   padding: 10px 10px;
-  top: 0px;
-  left: 319px;
+  top: 22px;
+  left: 395px;
   /* background-color: #339c64; */
   border: none;
   cursor: pointer;

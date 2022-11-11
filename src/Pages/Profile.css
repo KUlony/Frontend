@@ -74,11 +74,15 @@
   font-size: 25px;
   font-weight: 600;
   color: #339c64;
-  background-color: white;
+  background-color: transparent;
+  /* width: 20px; */
   border: none;
   cursor: pointer;
   margin-top: 30%;
   margin-left: 20%;
+  position: relative;
+  top: -48px;
+  left: 20px;
 }
 
 .g1020 {
@@ -89,10 +93,6 @@
   margin-top: -180px;
 }
 
-.logout-button {
-  position: relative;
-  top: -72px;
-}
 .logout-text {
   position: relative;
   left: 20px;
