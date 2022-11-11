@@ -26,7 +26,6 @@ import report from "../picture/reportmini.png";
 import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 
 function View_post() {
-  localStorage.setItem("test", 1);
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
   const [imgurl, setImgurl] = useState("");

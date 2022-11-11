@@ -95,6 +95,10 @@
   cursor: pointer;
 }
 
+.comment_box_value:active {
+  opacity: 0.6;
+}
+
 .like_box_value {
   position: relative;
   margin-top: -4px;
