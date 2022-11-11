@@ -1,32 +1,48 @@
-import React, { useEffect, useState } from 'react'
-import './Favorite.css'
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "./Favorite.css";
 
-import Favoritebox from './Favoritebox'
+import Favoritebox from "./Favoritebox";
 
 function Favorite() {
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token");
 
-  const [postarray, setPostarray] = useState([])
-  const [loading, setLoading] = useState(true)
+  const [postarray, setPostarray] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const fetchuserlikepost = async () => {
     try {
-      const response = await fetch(`/api/user/user_like_post`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      })
-      const json = await response.json()
-      setPostarray(json)
-      setLoading(true)
+      console.log("json");
+
+      const response = await axios.get(
+        "http://kulony-backend.herokuapp.com/api/user/user_like_post",
+        {
+          headers: {
+            Authorization: token,
+          },
+        }
+      );
+
+      // const response = await fetch(`/api/user/user_like_post`, {
+      //   headers: {
+      //     Authorization: `${token}`,
+      //   },
+      // });
+      console.log(response);
+      // const json = await response.json();
+      // console.log("json", json);
+      setPostarray(response.data);
+      setLoading(true);
     } catch (err) {
-      console.error(err)
+      console.error(err);
     }
-  }
+  };
+
+  // fetchuserlikepost();
 
   useEffect(() => {
-    fetchuserlikepost()
-  }, [])
+    fetchuserlikepost();
+  }, []);
 
   return (
     <div>
@@ -34,7 +50,7 @@ function Favorite() {
         ? postarray.map((data, idx) => <Favoritebox data={data} />)
         : null}
     </div>
-  )
+  );
 }
 
-export default Favorite
+export default Favorite;

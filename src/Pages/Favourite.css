@@ -1,0 +1,40 @@
+.Favourite_main_box2 {
+  position: relative;
+  top: 90px;
+  left: 0px;
+  width: 700px;
+  height: 520px;
+  overflow-y: scroll;
+  margin: 0 auto;
+  padding-right: 20px;
+}
+
+.Favourite_main_box2::-webkit-scrollbar-track {
+  background: #d6ebe0; /* color of the tracking area */
+  border-radius: 20px;
+}
+
+.Favourite_main_title {
+  position: relative;
+  top: 70px;
+  left: 50px;
+}
+
+.Favourite_main_box {
+  height: 640px;
+  width: 800px;
+  margin: 0 auto;
+}
+
+.Favourite_main {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #f8f5d5;
+}
+
+.Favourite_main_back_to_home {
+  position: relative;
+  top: 120px;
+  left: 580px;
+}
