@@ -5,8 +5,9 @@
 
 .contentreportpost {
   width: 80%;
-  height: 500px;
+  height: auto;
   padding: 10px;
+  padding-bottom: 30px;
   margin: 0px auto;
   margin-bottom: 40px;
   border-radius: 15px;
@@ -62,4 +63,11 @@
 
 .deletebtnpost:hover {
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
+}
+
+.reporttype {
+  font-size: 16px;
+  font-weight: 600;
+  margin-left: 5%;
+  margin-top: 30px;
 }
