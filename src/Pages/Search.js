@@ -95,7 +95,6 @@ function Search() {
           }
         );
         const datajson = await data.json();
-        console.log(datajson);
         setReturntotop(true);
         setDisplayload(true);
         setSearchOutPutData(datajson);

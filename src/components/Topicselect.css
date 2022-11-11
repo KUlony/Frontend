@@ -65,6 +65,20 @@
   /* border-style: solid; */
 }
 
+.scrollnews {
+  display: flex;
+  height: 220px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.scrollmarket {
+  display: flex;
+  height: 220px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
 .comleft {
   /* border-style: solid; */
   width: 50%;
@@ -136,20 +150,45 @@
   color: #2a8052;
 }
 
-/* .comleft input[type="checkbox"],.comright input[type="checkbox"] {
-  removing default appearance
-  -webkit-appearance: none;
-  appearance: none;
-  creating a custom design
-  width: 1.6em;
-  height: 1.6em;
-  border-radius: 0.15em;
-  margin-left: 3em;
-  border: 0.15em solid gray;
-  outline: none;
+.newsC {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
   cursor: pointer;
 }
-*/
+
+.newstog {
+  color: #2a8052;
+}
+
+.newsC:hover {
+  color: #2a8052;
+}
+
+.marketC {
+  width: 100%;
+  font-weight: bolder;
+  font-size: 23px;
+  background-color: white;
+  width: 100px;
+  height: 40px;
+  border: none;
+  transition-duration: 0.2s;
+  cursor: pointer;
+}
+
+.markettog {
+  color: #2a8052;
+}
+
+.marketC:hover {
+  color: #2a8052;
+}
 
 .checkbox-wrapper {
   margin-bottom: 3%;

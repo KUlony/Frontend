@@ -2,13 +2,13 @@ import React, { useEffect, useState } from "react"
 import Navbar from "../components/NavBar"
 import "./ReqtopicAdmin.css"
 import reqtopicpic from "../picture/0710 1.png"
-import picuser from "../picture/Image.png"
 import axios from "axios"
 import Addtopic_admin from "../components/Addtopic_admin"
 
 function ReqtopicAdmin() {
-  const [postdata, setPostdata] = useState([])
+  const [postdata, setPostdata] = useState(null)
   const [cataname, setcataname] = useState([])
+  const [nametopic, setNametopic] = useState(null)
   const [edittopicheck, seteditTopicCheck] = useState(true)
 
   const topicselect = () => {
@@ -18,71 +18,35 @@ function ReqtopicAdmin() {
 
   const token = localStorage.getItem("token")
 
-  const gentopic = () => {
-    axios
-      .get(`https://kulony-backend.herokuapp.com/api/admin/get_all_request_topic`, {
+  const gentopic = async () => {
+    try {
+      const respone = await axios.get(`/api/admin/get_all_request_topic`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
         },
       })
-      .then((res) => {
-        const data = res.data
-        // console.log(data)
-        setPostdata(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setPostdata(respone.data)
 
-    axios
-      .get(`https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic`, {
+      const response2 = await axios.get(`/api/topic/get_all_catagory_topic`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
         },
       })
-      .then((res) => {
-        const data = res.data
-        // console.log(data)
-        setcataname(data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+      setcataname(response2.data)
+
+      // console.log(response2.data);
+    } catch {}
   }
 
   useEffect(() => {
     gentopic()
   }, [])
 
-  const addtopic = (e) => {
-    console.log(e.request_id)
-    // axios
-    //   .post(
-    //     `https://kulony-backend.herokuapp.com/api/admin/accept_request_topic/${e.request_id}`,
-    //     {
-    //       catagory_id: "any",
-    //       topic_name: "any",
-    //     },
-    //     {
-    //       headers: {
-    //         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
-    //       },
-    //     }
-    //   )
-    //   .then((res) => {
-    //     const data = res.data
-    //     console.log(data)
-    //   })
-    //   .catch((err) => {
-    //     console.log(err)
-    //   })
-  }
-
-  const deletetopic = () => {
+  const deletetopic = (e) => {
     axios
-      .delete(`https://kulony-backend.herokuapp.com/api/admin/remove_request_topic/{request_id}`, {
+      .delete(`/api/admin/remove_request_topic/${e.request_id}`, {
         headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
         },
       })
       .then((res) => {
@@ -102,37 +66,56 @@ function ReqtopicAdmin() {
           <div className="namepagereq">Requested Topics</div>
           <img alt="" src={reqtopicpic} className="topicpic"></img>
         </div>
-        <div className="bodyreq">
-          {postdata.map((item, index) => (
-            <div className="topiccard" key={index} id={item.request_id}>
-              <div className="headcardreq">
-                <img alt="" src={picuser} className="picuser"></img>
-                <p className="nametopicreq">{item.request_topic}</p>
+        {postdata && (
+          <div className="bodyreq">
+            {postdata.map((item, index) => (
+              <div className="topiccard" key={index} id={item.request_id}>
+                <div className="headcardreq">
+                  <img
+                    alt=""
+                    src={item.profile_pic_url}
+                    className="picuser"
+                  ></img>
+                  <p className="nametopicreq">{item.request_topic}</p>
+                </div>
+                <div className="buttonreqtopic">
+                  <p className="datecardreq">
+                    {item.year}-{item.month}-{item.day}
+                  </p>
+                  <button
+                    className="btnaddtopic"
+                    onClick={() => {
+                      topicselect()
+                      setNametopic(item)
+                    }}
+                  >
+                    Add Topic <i class="bi bi-check-lg"></i>
+                  </button>
+                  <h2
+                    className="trashreq"
+                    onClick={() => {
+                      deletetopic(item)
+                      window.location.reload()
+                    }}
+                  >
+                    <i class="bi bi-trash"></i>
+                  </h2>
+                </div>
               </div>
-              <div className="buttonreqtopic">
-                <p className="datecardreq">{item.requset_time}</p>
-                <button
-                  className="btnaddtopic"
-                  onClick={(() => addtopic(item), topicselect)}
-                >
-                  Add Topic <i class="bi bi-check-lg"></i>
-                </button>
-                <h2 className="trashreq">
-                  <i class="bi bi-trash"></i>
-                </h2>
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
-      <div className={`addtopiccss ${edittopicheck ? "nothing" : ""}`}>
-        <Addtopic_admin />
-        <div className="cancleconfirm">
-          <p className="cancleaddtopic" onClick={topicselect}>
-            CANCLE
-          </p>
+      {nametopic && (
+        <div className={`addtopiccss ${edittopicheck ? "nothing" : ""}`}>
+          <Addtopic_admin cata={cataname} datatopic={nametopic} />
+          <div className="cancleconfirm">
+            <p className="cancleaddtopic" onClick={topicselect}>
+              CANCEL
+            </p>
+          </div>
         </div>
-      </div>
+      )}
       {!edittopicheck && <div className="displayback"></div>}
     </div>
   )
