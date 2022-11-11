@@ -217,11 +217,13 @@ function Post(props) {
     min = (min + ".00").split(".");
   }
 
+  inttime += 7;
+
   if (inttime >= 12 && inttime < 24) {
     if (inttime === 12) {
       datetime = "12:00 PM, " + day;
     } else {
-      inttime -= 5;
+      inttime -= 12;
 
       const date = inttime.toString().split(".");
       // console.log(date);
@@ -231,7 +233,6 @@ function Post(props) {
     if (inttime === 24) {
       datetime = "12:00 AM, " + day;
     } else {
-      inttime += 7;
       const date = inttime.toString().split(".");
       if (min[1].length === 1) {
         datetime = date[0] + ":" + min[1] + "0 AM, " + day;
