@@ -4,48 +4,44 @@ import Post from "../components/Post"
 // import Post from "../components/Post"
 import "./PostreportAdmin.css"
 
-function PostreportAdmin() {
+function PostreportAdmin({ datasort }) {
   const [postdata, setPostdata] = useState([])
   const [postiddata, setPostiddata] = useState([])
 
+  console.log(datasort)
+
+  useEffect(() => {
+    if (datasort === "reported") {
+      window.location.reload()
+    } else if (datasort === "lasted") {
+      window.location.reload()
+    }
+  }, [])
+
   const token = localStorage.getItem("token")
-
-  // const genpost = (e) => {
-  //   axios
-  //     .get(`/api/post/${e}`, {
-  //       headers: {
-  //         Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
-  //       },
-  //     })
-  //     .then((res) => {
-  //       // setPostiddata((iditemed) => [...iditemed, res.data])
-  //       setPostiddata(res.data)
-  //       console.log(postiddata)
-  //     })
-  //     .catch((err) => {
-  //       console.log(err)
-  //     })
-  // }
-
-  // console.log(postiddata)
 
   const gendata = () => {
     setPostiddata([])
+    console.log(1, datasort)
+
     axios
-      .get(`/api/admin/get_post_report`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDY4OTIzLCJleHAiOjE2NjgxNTUzMjN9.sFV9mFX51mo1n0-w49Dr8f52FyjgJ9FtqW6E_b1_AGE`,
-        },
-      })
+      .get(
+        `https://kulony-backend.herokuapp.com/api/admin/get_post_report?sortby${datasort}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+          },
+        }
+      )
       .then((res) => {
         const data = res.data
         setPostdata(data)
         // console.log(data)
         data.map((item, index) =>
           axios
-            .get(`/api/post/${item._id}`, {
+            .get(`https://kulony-backend.herokuapp.com/api/post/${item._id}`, {
               headers: {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDY4OTIzLCJleHAiOjE2NjgxNTUzMjN9.sFV9mFX51mo1n0-w49Dr8f52FyjgJ9FtqW6E_b1_AGE`,
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
               },
             })
             .then((res) => {
@@ -70,13 +66,16 @@ function PostreportAdmin() {
   console.log(postdata)
   console.log(postiddata)
 
-  const discarddata = () => {
+  const discarddata = (e) => {
     axios
-      .delete(`/api/admin/delete_report/{report_id}`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
-        },
-      })
+      .delete(
+        `https://kulony-backend.herokuapp.com/api/admin/delete_report/${e._id}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+          },
+        }
+      )
       .then((res) => {
         const data = res.data
         console.log(data)
@@ -86,13 +85,16 @@ function PostreportAdmin() {
       })
   }
 
-  const deletedata = () => {
+  const deletedata = (e) => {
     axios
-      .delete(`/api/admin/delete_reported_entity/{report_id}`, {
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
-        },
-      })
+      .put(
+        `https://kulony-backend.herokuapp.com/api/admin/delete_reported_entity/${e._id}`,
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+          },
+        }
+      )
       .then((res) => {
         const data = res.data
         console.log(data)
@@ -101,6 +103,12 @@ function PostreportAdmin() {
         console.log(err)
       })
   }
+
+  // const checkedItems = items.length
+  //   ? items.reduce((total, item) => {
+  //       return total + ", " + item
+  //     })
+  //   : ""
 
   return (
     <div className="allpostreport">
@@ -114,15 +122,26 @@ function PostreportAdmin() {
                 {item.year}-{item.month}-{item.day}
               </span>
             </p>
-            <button className="discardbtnpost">
+            <button
+              className="discardbtnpost"
+              onClick={() => {
+                discarddata(item)
+                window.location.reload()
+              }}
+            >
               Discard Report <i class="bi bi-x"></i>
             </button>
-            <button className="deletebtnpost">
+            <button
+              className="deletebtnpost"
+              onClick={() => {
+                deletedata(item)
+                window.location.reload()
+              }}
+            >
               Delete Post <i class="bi bi-trash"></i>
             </button>
           </div>
-          {/* <p className="">Report Type : {item.report_type}</p> */}
-          {/* {postiddata.map((item2, index2) =>
+          {postiddata.map((item2, index2) =>
             index === index2 ? (
               <div key={index2}>
                 <Post
@@ -142,7 +161,13 @@ function PostreportAdmin() {
                 />
               </div>
             ) : null
-          )} */}
+          )}
+          <p className="reporttype">
+            Report Type :{" "}
+            {item.report_type.map((item3, index) =>
+              index >= 1 ? "," + item3 : item3
+            )}
+          </p>
         </div>
       ))}
     </div>
