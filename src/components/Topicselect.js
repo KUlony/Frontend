@@ -22,13 +22,15 @@ function Topicselect(props) {
   const [itemmarketleft, setitemmarketleft] = useState([])
   const [itemmarketright, setitemmarketright] = useState([])
 
+  const token = localStorage.getItem("token")
+
   const getdata = () => {
     axios
       .get(
         "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
+            Authorization: token,
           },
         }
       )
