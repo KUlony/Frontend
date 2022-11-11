@@ -4,6 +4,7 @@ import "./ReqtopicAdmin.css"
 import reqtopicpic from "../picture/0710 1.png"
 import axios from "axios"
 import Addtopic_admin from "../components/Addtopic_admin"
+import Checklogin from "../components/Checklogin"
 
 function ReqtopicAdmin() {
   const [postdata, setPostdata] = useState(null)
@@ -62,6 +63,7 @@ function ReqtopicAdmin() {
     <div>
       <div className="allreqpage">
         <Navbar />
+        <Checklogin />
         <div className="headnamereq">
           <div className="namepagereq">Requested Topics</div>
           <img alt="" src={reqtopicpic} className="topicpic"></img>

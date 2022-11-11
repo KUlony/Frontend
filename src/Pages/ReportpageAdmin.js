@@ -4,6 +4,7 @@ import "./ReportpageAdmin.css"
 import bad from "../picture/n0404 1.png"
 import PostreportAdmin from "./PostreportAdmin"
 import ComreportAdmin from "./ComreportAdmin"
+import Checklogin from "../components/Checklogin"
 
 function ReportpageAdmin() {
   const [togpost, setTogpost] = useState(true)
@@ -22,6 +23,7 @@ function ReportpageAdmin() {
   return (
     <div className="allpage">
       <Navbar />
+      <Checklogin />
       <div className="headname">
         <div className="namepage">Reported By User</div>
         <img alt="" src={bad} className="picbad" />
