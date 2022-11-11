@@ -116,11 +116,14 @@ function Comment(props) {
   const replydata_fetch = async () => {
     try {
       if (loading) {
-        const response_replydata = await fetch(`https://kulony-backend.herokuapp.com/api/reply/${comment_id}`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        const response_replydata = await fetch(
+          `https://kulony-backend.herokuapp.com/api/reply/${comment_id}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
         if (!response_replydata.ok) {
           throw new Error("error");
         }
@@ -144,47 +147,59 @@ function Comment(props) {
     }
   }, [replydata]);
 
+  const [replyposting, setReplyposting] = useState(false);
+
   const comment_reply = async (e) => {
     try {
       e.preventDefault();
-      const response_reply = await fetch(`https://kulony-backend.herokuapp.com/api/reply/create`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `${token}`,
-        },
-        body: JSON.stringify({
-          comment_id: comment_id,
-          reply_content: replyinput,
-        }),
-      });
-      if (!response_reply.ok) {
-        throw new Error("fail");
-      }
-      const json_reply = await response_reply.json();
-      // console.log("json_reply", json_reply);
-      const userdata = await fetch(`https://kulony-backend.herokuapp.com/api/user/${json_reply.user_id}/profile`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
-      const jsonuserdata = await userdata.json();
-      const replyform = {
-        author: {
-          user_id: json_reply.user_id,
-          username: jsonuserdata.user_name,
-          profile_pic_url: jsonuserdata.profile_pic_url,
-        },
-        reply_id: json_reply._id,
-        reply_content: json_reply.reply_content,
-        reply_like_count: 0,
-        reply_time: json_reply.reply_time,
-      };
+      if (!replyposting) {
+        setReplyposting(true);
+        const response_reply = await fetch(
+          `https://kulony-backend.herokuapp.com/api/reply/create`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `${token}`,
+            },
+            body: JSON.stringify({
+              comment_id: comment_id,
+              reply_content: replyinput,
+            }),
+          }
+        );
+        if (!response_reply.ok) {
+          throw new Error("fail");
+        }
+        const json_reply = await response_reply.json();
+        // console.log("json_reply", json_reply);
+        const userdata = await fetch(
+          `https://kulony-backend.herokuapp.com/api/user/${json_reply.user_id}/profile`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const jsonuserdata = await userdata.json();
+        const replyform = {
+          author: {
+            user_id: json_reply.user_id,
+            username: jsonuserdata.user_name,
+            profile_pic_url: jsonuserdata.profile_pic_url,
+          },
+          reply_id: json_reply._id,
+          reply_content: json_reply.reply_content,
+          reply_like_count: 0,
+          reply_time: json_reply.reply_time,
+        };
 
-      updatecommentdata(replyform);
-      setNumberofchild(numberofchild + 1);
-      setDisplayshowreply(false);
-      setReplyinput("");
+        updatecommentdata(replyform);
+        setNumberofchild(numberofchild + 1);
+        setDisplayshowreply(false);
+        setReplyinput("");
+        setReplyposting(false);
+      }
     } catch (err) {
       console.error(err);
     }
@@ -210,6 +225,10 @@ function Comment(props) {
     if (comment_delete(comment_id)) {
       setVisible(true);
     }
+  };
+
+  const updatereplycount = () => {
+    setNumberofchild(numberofchild - 1);
   };
 
   return (
@@ -288,6 +307,7 @@ function Comment(props) {
                       display_profile={display_profile}
                       reply_data={data}
                       display_report={display_report}
+                      updatereplycount={updatereplycount}
                     />
                   ))}
                 </div>

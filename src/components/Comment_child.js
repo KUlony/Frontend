@@ -5,7 +5,9 @@ import profileimg from "../picture/profile.png";
 import reportgreen from "../picture/reportgreenimg.png";
 import x from "../picture/x.png";
 function Comment_child(props) {
-  const { display_profile, reply_data, display_report } = props;
+  const { display_profile, reply_data, display_report, updatereplycount } =
+    props;
+
   // console.log(reply_data);
   const userid = localStorage.getItem("user_id");
   const [possession, setPossession] = useState(
@@ -15,6 +17,7 @@ function Comment_child(props) {
   const profile_pic_url = reply_data.author.profile_pic_url;
   const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
   const containerRef = useRef(null);
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     // console.log(containerRef.current);
@@ -75,65 +78,100 @@ function Comment_child(props) {
     }
   }, 1000);
 
-  return (
-    <div className="comment_child_mainbox">
-      <div className="comment_child_content">
-        <div className="comment_main">
-          <div className="comment_parent">
-            <div
-              className="comment_profile"
-              onClick={() => display_profile(reply_data.author.user_id)}
-            >
-              {profile_pic_url ? (
-                <img
-                  src={profile_pic_url}
-                  alt="profile_img"
-                  className="comment_profile_pic"
-                />
-              ) : (
-                <img
-                  src={profileimg}
-                  alt="profile_img"
-                  className="comment_profile_pic"
-                />
-              )}
-            </div>
-            {/* <h5 className="comment_name">{reply_data.author.username}</h5> */}
-            <h5 className="comment_name">
-              {reply_data.author.username
-                ? reply_data.author.username
-                : "anonymous"}
-            </h5>
-            {!possession && (
-              <img
-                src={reportgreen}
-                className="comment_report_button"
-                onClick={() => display_report("Reply", reply_data.reply_id)}
-              />
-            )}
-            {possession && <img src={x} className="comment_x_button" />}
+  const [visible, setVisible] = useState(true);
 
-            <div className="test" ref={containerRef}>
-              <p
-                className={`comment_breakline reply_content ${
-                  textHidden ? "comment_text" : null
-                }`}
-              >
-                {reply_data.reply_content}
-              </p>
+  const deletereply = async () => {
+    try {
+      const respone = await fetch(
+        `https://kulony-backend.herokuapp.com/api/reply/${reply_data.reply_id}/delete`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      if (!respone.ok) {
+        throw new Error("fail to delete");
+      }
+      updatereplycount();
+      setVisible(false);
+    } catch (err) {
+      return false;
+      console.error(err);
+    }
+  };
+
+  // /api/reply/{reply_id}/delete
+  return (
+    <div>
+      {visible && (
+        <div className="comment_child_mainbox">
+          <div className="comment_child_content">
+            <div className="comment_main">
+              <div className="comment_parent">
+                <div
+                  className="comment_profile"
+                  onClick={() => display_profile(reply_data.author.user_id)}
+                >
+                  {profile_pic_url ? (
+                    <img
+                      src={profile_pic_url}
+                      alt="profile_img"
+                      className="comment_profile_pic"
+                    />
+                  ) : (
+                    <img
+                      src={profileimg}
+                      alt="profile_img"
+                      className="comment_profile_pic"
+                    />
+                  )}
+                </div>
+                {/* <h5 className="comment_name">{reply_data.author.username}</h5> */}
+                <h5 className="comment_name">
+                  {reply_data.author.username
+                    ? reply_data.author.username
+                    : "anonymous"}
+                </h5>
+                {!possession && (
+                  <img
+                    src={reportgreen}
+                    className="comment_report_button"
+                    onClick={() => display_report("Reply", reply_data.reply_id)}
+                  />
+                )}
+                {possession && (
+                  <img
+                    src={x}
+                    className="comment_x_button"
+                    onClick={deletereply}
+                  />
+                )}
+
+                <div className="test" ref={containerRef}>
+                  <p
+                    className={`comment_breakline reply_content ${
+                      textHidden ? "comment_text" : null
+                    }`}
+                  >
+                    {reply_data.reply_content}
+                  </p>
+                </div>
+                <button
+                  className={`comment_viewmore ${
+                    displayviewmorecm ? "display_none" : null
+                  }`}
+                  onClick={() => settextHidden(!textHidden)}
+                >
+                  {textHidden ? "show more" : "show less"}
+                </button>
+                <div className="date_time_diff">{replytimeago}</div>
+              </div>
             </div>
-            <button
-              className={`comment_viewmore ${
-                displayviewmorecm ? "display_none" : null
-              }`}
-              onClick={() => settextHidden(!textHidden)}
-            >
-              {textHidden ? "show more" : "show less"}
-            </button>
-            <div className="date_time_diff">{replytimeago}</div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }

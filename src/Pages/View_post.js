@@ -111,61 +111,68 @@ function View_post() {
       fetchcomment();
     }
   }, []);
+
   const [commentinput, setCommentinput] = useState("");
+  const [commentposting, setCommentposting] = useState(false);
+
   const comment = async (e) => {
     try {
       e.preventDefault();
-      if (commentinput !== "") {
-        const comment_input_value = document.querySelector(
-          ".view_post_comment_input"
-        );
+      if (!commentposting) {
+        setCommentposting(true);
+        if (commentinput !== "") {
+          const comment_input_value = document.querySelector(
+            ".view_post_comment_input"
+          );
 
-        const response_comment = await fetch(
-          `https://kulony-backend.herokuapp.com/api/comment/create`,
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `${token}`,
-            },
-            body: JSON.stringify({
-              post_id: post_id.id,
-              comment_content: commentinput,
-            }),
+          const response_comment = await fetch(
+            `https://kulony-backend.herokuapp.com/api/comment/create`,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `${token}`,
+              },
+              body: JSON.stringify({
+                post_id: post_id.id,
+                comment_content: commentinput,
+              }),
+            }
+          );
+          if (!response_comment.ok) {
+            throw new Error("fail");
           }
-        );
-        if (!response_comment.ok) {
-          throw new Error("fail");
+
+          const json_comment = await response_comment.json();
+          // console.log(`json_comment `, json_comment);
+
+          const userdata = await fetch(
+            `https://kulony-backend.herokuapp.com/api/user/${json_comment.user_id}/profile`,
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+          const jsonuserdata = await userdata.json();
+          console.log(json_comment);
+          const datainput = {
+            comment_content: commentinput,
+            comment_id: json_comment._id,
+            comment_reply_count: 0,
+            comment_time: json_comment.comment_time,
+            author: {
+              user_id: json_comment.user_id,
+              username: jsonuserdata.user_name,
+              profile_pic_url: jsonuserdata.profile_pic_url,
+            },
+          };
+          updatecommentdata(datainput);
+          setCommentcount(commentcount + 1);
+          comment_input_value.value = "";
+          setCommentinput("");
+          setCommentposting(false);
         }
-
-        const json_comment = await response_comment.json();
-        // console.log(`json_comment `, json_comment);
-
-        const userdata = await fetch(
-          `https://kulony-backend.herokuapp.com/api/user/${json_comment.user_id}/profile`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-        const jsonuserdata = await userdata.json();
-        console.log(json_comment);
-        const datainput = {
-          comment_content: commentinput,
-          comment_id: json_comment._id,
-          comment_reply_count: 0,
-          comment_time: json_comment.comment_time,
-          author: {
-            user_id: json_comment.user_id,
-            username: jsonuserdata.user_name,
-            profile_pic_url: jsonuserdata.profile_pic_url,
-          },
-        };
-        updatecommentdata(datainput);
-        setCommentcount(commentcount + 1);
-        comment_input_value.value = "";
-        setCommentinput("");
       }
     } catch (err) {
       console.error(err);
