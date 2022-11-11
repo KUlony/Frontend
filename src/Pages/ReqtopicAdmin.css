@@ -54,6 +54,9 @@
 
 .picuser {
   margin: auto 4% auto 1%;
+  height: 40px;
+  width: 40px;
+  border-radius: 100%;
 }
 
 .nametopicreq {

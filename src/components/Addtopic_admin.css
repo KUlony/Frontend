@@ -90,6 +90,7 @@
   border: none;
   border-radius: 8px;
   outline: none;
+  box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
 }
 
 .bottomaddtopic {
@@ -114,4 +115,17 @@
   box-shadow: 0 3px 3px 0 rgba(0,0,0,0.24), 0 3px 3px 0 rgba(0,0,0,0.19);
   font-size: 28px;
   background-color: #E7DB73;
+}
+
+.dis {
+  margin-left: 65%;
+  position: relative;
+  font-weight: 600;
+  font-size: 24px;
+  background-color: gray;
+  width: 200px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  transition-duration: 0.2s;
 }
