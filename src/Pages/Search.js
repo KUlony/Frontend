@@ -65,6 +65,13 @@ function Search() {
   }, [pagecount]);
 
   const updatesearchselect = (position) => {
+    if (displayload) {
+      setSearchOutPutData([])
+      setSearchtype((prev) =>
+        prev.map((data, idx) => (idx === position ? true : false))
+      )
+    }
+  }
     setSearchOutPutData([]);
     setSearchtype((prev) =>
       prev.map((data, idx) => (idx === position ? true : false))
