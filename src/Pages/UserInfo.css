@@ -1,129 +1,35 @@
 .user-info {
-  /* margin-left: 70px; */
+  margin-left: 70px;
+  top: -214px;
   position: relative;
-  /* top: -53px; */
-  left: 0px;
-  width: 100%;
-  height: 100vh;
-  background-color: #9ab6a7;
-  /* height: 100%; */
+
+  /* height: 600px; */
   /* width: 100%; */
   /* background-color: black; */
 }
-
-.user-info-main {
-  position: relative;
-  top: 55px;
-  background-color: aqua;
-  margin: 0 auto;
-  width: 700px;
-  height: 550px;
-}
-
 .profile-pic {
-  width: 190px;
-  height: 175px;
-  position: absolute;
-  left: -67px;
-  /* position: relative; */
-  margin-left: 57px;
-  margin-top: -9px;
   padding: 20px;
-  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
-  border-radius: 2%;
-  background-color: white;
-}
-
-.profile-pic-setup {
   position: relative;
-  top: 2px;
-  font-weight: 700;
-  font-size: 16px;
+  margin-left: 34px;
+  margin-top: 0px;
+  top: 241px;
+  border: 1px solid #000000;
+  width: 160px;
+  height: 160px;
+}
+.profile-pic-setup {
   text-align: center;
 }
-
-.edit-profile-button {
-  position: absolute;
-  top: 123px;
-  right: 43px;
-}
-
-.user-info-profile-box {
-  width: 150px;
-  height: 150px;
-  border-radius: 100%;
-  overflow: hidden;
+.username {
   position: relative;
-  top: -4px;
-  left: 21.5px;
+  margin-left: 312px;
+  margin-top: 53px;
 }
 
-.user-info-username {
+.bio {
   position: relative;
-  top: -17px;
-  left: 360px;
-}
-
-.edit-username-button {
-  position: relative;
-  left: 5px;
-}
-
-.edit-profile-button,
-.edit-username-button,
-.edit-bio-button,
-.edit-firstname-button {
-  cursor: pointer;
-}
-.edit-profile-button:active,
-.edit-username-button:active,
-.edit-bio-button:active,
-.edit-firstname-button:active {
-  opacity: 0.6;
-}
-
-.edit-bio-button,
-.edit-firstname-button {
-  position: relative;
-  left: 5px;
-}
-
-.user-info-username-titile {
-  float: left;
-  font-weight: 700;
-  size: 16px;
-}
-
-.user-info-firstname {
-  position: relative;
-  margin-top: 55px;
-  left: 60px;
-}
-
-.user-info-lastname {
-  position: relative;
-  margin-top: 55px;
-  left: 60px;
-}
-
-.user-info-firstname-titile {
-  float: left;
-  font-weight: 700;
-  size: 16px;
-}
-
-.user-info-bio-titile {
-  float: left;
-  font-weight: 700;
-  size: 16px;
-}
-
-.user-info-bio {
-  position: relative;
-  top: 0px;
-  left: 360px;
-  /* background-color: aquamarine; */
-  width: 340px;
+  margin-left: 312px;
+  margin-top: 10px;
 }
 
 .firstname {
@@ -149,35 +55,17 @@
   margin-top: 18px;
 }
 
-.input-firstname1 {
-  margin: 1px;
-  position: relative;
-  top: 6px;
+.input-firstname {
   background: #f8f5d5;
   border: 0px solid #000000;
   font-weight: 400;
   resize: none;
   font-size: 16px;
-  width: 340px;
-  height: 16px;
+  width: 210px;
+  height: 18px;
   padding: 10px;
   outline: none;
-  border-radius: 10px;
-}
-
-.input-firstname2 {
-  position: relative;
-  top: 6px;
-  background: #f8f5d5;
-  border: 0px solid #000000;
-  font-weight: 400;
-  resize: none;
-  font-size: 16px;
-  width: 340px;
-  height: 16px;
-  padding: 10px;
-  outline: none;
-  border-radius: 10px;
+  border-radius: 5px;
 }
 
 .input-lastname {
@@ -192,71 +80,34 @@
   border-radius: 5px;
 }
 
-.input-bio1 {
-  background: #f8f5d5;
-  border: 0px solid #000000;
-  resize: none;
-  margin: 1px;
-  font-size: 16px;
-  width: 340px;
-  height: 78px;
-  padding: 10px;
-  outline: none;
-  border-radius: 10px;
-}
-
-.input-bio2 {
+.input-bio {
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 340px;
+  width: 300px;
   height: 78px;
   padding: 10px;
   outline: none;
-  border-radius: 10px;
-  overflow-y: scroll;
-  word-wrap: break-word;
+  border-radius: 5px;
 }
 
-.input-username1 {
-  position: relative;
-  top: 4px;
+.input-username {
   background: #f8f5d5;
-  margin: 1px;
-  /* border: 0px solid #000000; */
-  border: none;
+  border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 340px;
-  height: 16px;
+  width: 210px;
+  height: 18px;
   padding: 10px;
   outline: none;
-  border-radius: 10px;
-}
-
-.input-username2 {
-  position: relative;
-  top: 4px;
-  background: #f8f5d5;
-  /* border: 0px solid #000000; */
-  border: none;
-  resize: none;
-  font-size: 16px;
-  width: 340px;
-  height: 16px;
-  padding: 10px;
-  outline: none;
-  border-radius: 10px;
-}
-
-.input-username:focus {
-  border: none;
+  border-radius: 5px;
 }
 
 .profile-bottom {
   position: relative;
-  left: 200px;
+  margin-left: 200px;
+  margin-top: 0px;
   list-style-type: none;
 }
 
@@ -264,23 +115,30 @@
   position: relative;
   text-decoration: none;
   color: black;
-  left: 180px;
-  top: 54px;
+  top: 44px;
+  left: 190px;
+  /* margin-left: 180px; */
+  /* margin-top: 54px; */
   width: 150px;
   cursor: pointer;
+  z-index: 5px;
 }
-
 .save-button {
   position: relative;
-  left: 362px;
   border-radius: 25px;
   padding: 10px 10px;
-  top: 10px;
-  left: 323px;
+  top: 0px;
+  left: 319px;
   /* background-color: #339c64; */
   border: none;
   cursor: pointer;
   width: 135px;
+}
+.save {
+  position: relative;
+  margin-top: 0px;
+  width: 0px;
+  z-index: 0;
 }
 /* Add Education */
 .education-content {

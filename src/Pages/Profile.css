@@ -19,9 +19,11 @@
 
 .profile-content {
   width: 67%;
-  /* border-style: solid; */
-}
+  height: 900px;
+  overflow-y: auto;
 
+  overflow-x: hidden;
+}
 .user_profile {
   margin-left: 20%;
   margin-top: 50px;

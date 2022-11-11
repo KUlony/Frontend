@@ -5,20 +5,7 @@ import { FiTrash } from 'react-icons/fi'
 import DeleteEducation from './DeleteEducation'
 const EditEducation = (props) => {
   const { onBgEditClick, educationInfo, index, updateEducation } = props
-  const [isDeleteEducation, setIsDeleteEducation] = useState(null)
-  //DeleteEducation Page
-  function onDeleteEducationClick() {
-    setIsDeleteEducation(true)
-  }
-  function onBgEducationClick() {
-    setIsDeleteEducation(null)
-  }
-  let deleteEducation = null
-  if (!!isDeleteEducation) {
-    deleteEducation = (
-      <DeleteEducation onBgEducationClick={onBgEducationClick} />
-    )
-  }
+
   const [editSchool, setEditSchool] = useState(educationInfo.school)
   const [editDegree, setEditDegree] = useState(educationInfo.degree)
   const [editField, setEditField] = useState(educationInfo.field_of_study)
@@ -27,6 +14,7 @@ const EditEducation = (props) => {
   const [editEndMonth, setEditEndMonth] = useState(educationInfo.end_date)
   const [editEndYear, setEditEndYear] = useState(educationInfo.end_date)
 
+  //--------------------updating---------------------
   const addTwo = (editStartMonth, editStartYear) => {
     let startMonthAddYear = ''
     if (editStartMonth) {
@@ -38,10 +26,9 @@ const EditEducation = (props) => {
     }
     return startMonthAddYear
   }
-  const updatingEducation = (e) => {
+  const updatingEducation = () => {
     const startMonthAddYear = addTwo(editStartMonth, editStartYear)
     const endMonthAddYear = addTwo(editEndMonth, editEndYear)
-    e.preventDefault()
     const educationInfoUpdated = {
       school: editSchool,
       degree: editDegree,
@@ -51,11 +38,35 @@ const EditEducation = (props) => {
     }
     console.log('newdata', educationInfoUpdated)
     updateEducation(educationInfoUpdated, index)
+  }
+
+  //--------------------deleting---------------------
+  const deletingEducation = () => {
+    const educationInfoUpdated = null
+    console.log('newdata', educationInfoUpdated)
+    console.log('index', index)
+    updateEducation(educationInfoUpdated, index)
     // .then(onBgEditClick)
   }
 
-  //delete
+  const [isDeleteEducation, setIsDeleteEducation] = useState(null)
 
+  function onDeleteEducationClick() {
+    setIsDeleteEducation(true)
+  }
+  function onBgEducationClick() {
+    setIsDeleteEducation(null)
+  }
+  let deleteEducation = null
+  if (!!isDeleteEducation) {
+    deleteEducation = (
+      <DeleteEducation
+        onBgEducationClick={onBgEducationClick}
+        deletingEducation={deletingEducation}
+        onBgEditClick={onBgEditClick}
+      />
+    )
+  }
   return (
     <main>
       <form className="add-education">
@@ -89,7 +100,7 @@ const EditEducation = (props) => {
             <input
               class="input-school"
               type="text"
-              placeholder="Kasetsart University"
+              placeholder="Ex. Kasetsart University"
               rows="1"
               cols="20"
               name="school"
@@ -106,7 +117,7 @@ const EditEducation = (props) => {
             <input
               class="input-degree"
               type="text"
-              placeholder="Bachelor's degree"
+              placeholder="Ex. Bachelor's degree"
               rows="1"
               cols="20"
               name="degree"
@@ -122,7 +133,7 @@ const EditEducation = (props) => {
             <input
               class="input-field"
               type="text"
-              placeholder="Computer engineering"
+              placeholder="Ex. Computer engineering"
               rows="1"
               cols="20"
               name="field"
@@ -203,11 +214,14 @@ const EditEducation = (props) => {
               onClick={onDeleteEducationClick}
             >
               <div className="edit-edu-delete-text">Delete Education</div>
-              <FiTrash size={18}></FiTrash>
+              <FiTrash size={18} className="edit-edu-trash"></FiTrash>
             </div>
             <button
               className="edit-edu-save-button"
-              onClick={updatingEducation}
+              onClick={() => {
+                onBgEditClick()
+                updatingEducation()
+              }}
             >
               SAVE
             </button>
