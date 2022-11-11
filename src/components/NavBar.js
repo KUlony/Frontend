@@ -1,30 +1,32 @@
-import React, { useEffect, useState } from "react"
-import "./NavBar.css"
-import logo from "../picture/Logo.png"
-import { BsPersonCircle } from "react-icons/bs"
-import { Link } from "react-router-dom"
-import ReqTopic from "./ReqTopic"
-import Notification from "./Notification"
-import CreateTopic from "./CreateTopic"
+import React, { useEffect, useState } from 'react';
+import './NavBar.css';
+import logo from '../picture/Logo.png';
+import { BsPersonCircle } from 'react-icons/bs';
+import { Link } from 'react-router-dom';
+import ReqTopic from './ReqTopic';
+import Notification from './Notification';
+import CreateTopic from './CreateTopic';
 
 function Navbar() {
-  const [show, setShow] = useState(false)
-  const [showCreateTopic, setShowCreateTopic] = useState(false)
+  const [show, setShow] = useState(false);
+  const [showCreateTopic, setShowCreateTopic] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleReq = (e) => {
-    e.preventDefault()
-  }
-  console.log(show)
+    e.preventDefault();
+  };
+  console.log(show);
   const handleShow = (e) => {
-    e.preventDefault()
-    setShow(!show)
-  }
+    e.preventDefault();
+    setShow(!show);
+  };
   const handleShow2 = (e) => {
-    e.preventDefault()
-    setShowCreateTopic(!showCreateTopic)
-  }
-
-  const isAdmin = localStorage.getItem("admin")
+    e.preventDefault();
+    setShowCreateTopic(!showCreateTopic);
+  };
+  useEffect(() => {
+    setIsAdmin(localStorage.getItem('admin'));
+  }, []);
 
   return (
     <ul className="Nav">
@@ -49,7 +51,7 @@ function Navbar() {
         </Link>
       </li>
       <li>
-        {isAdmin ? (
+        {isAdmin === 'true' ? (
           <div>
             <Link to="/admin/reportpost" className="reportpost-nav">
               <span>REPORT</span>
@@ -57,11 +59,13 @@ function Navbar() {
             </Link>
           </div>
         ) : (
-          <div className="search-nav">SEARCH</div>
+          <Link to="/search" className="search-nav">
+            SEARCH
+          </Link>
         )}
       </li>
       <li>
-        {isAdmin ? (
+        {isAdmin === 'true' ? (
           <Link to="/admin/requesttopic" className="topic-req-nav">
             <span>TOPIC REQUEST</span>
             <div className="num-noti">3</div>
@@ -72,7 +76,7 @@ function Navbar() {
           </Link>
         )}
       </li>
-      {isAdmin ? (
+      {isAdmin === 'true' ? (
         <div className="free-box"></div>
       ) : (
         <li className="request-topic" onClick={handleShow}>
@@ -81,7 +85,7 @@ function Navbar() {
       )}
       <li className="space"> </li>
       <li className="create-new-post">
-        {isAdmin ? (
+        {isAdmin === 'true' ? (
           <div className="border-create-post" onClick={handleShow2}>
             <p className="create-post-name">Create new topic +</p>
           </div>
@@ -103,7 +107,7 @@ function Navbar() {
         </Link>
       </li>
     </ul>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

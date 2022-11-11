@@ -2,7 +2,7 @@ import { React, useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 function NotificationList(props) {
-  const { item } = props;
+  const { item, clickNoti } = props;
   const [datenow, setdatenow] = useState('');
   const [likeTime, setLikeTime] = useState('');
   // const [delay, setDelay] = useState(!false);
@@ -50,13 +50,18 @@ function NotificationList(props) {
     }
   }, 0);
   return (
-    <Link to="/home" className={item.readed ? 'read' : 'unread'}>
+    <Link
+      to={`/viewpost/${item.entity_id}`}
+      className={item.readed ? 'read' : 'unread'}
+      onClick={clickNoti}
+    >
       <div className="action-container">
         <div className="action-user-pic">
           <img src={item.action_user.action_user_pic} alt="" />
         </div>
         <div className="action-content">
-          {item.action_user.action_user_name} {item.notice_type} your post
+          {item.action_user.action_user_name} {item.notice_type}{' '}
+          {item.notice_type === 'reply' ? 'your comment' : 'your post'}
         </div>
       </div>
 

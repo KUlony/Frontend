@@ -1,16 +1,16 @@
-import { React, useState, useEffect } from "react"
-import "./Notification.css"
-import { FaRegBell } from "react-icons/fa"
-import axios from "axios"
-import NotificationList from "./NotificationList"
+import { React, useState, useEffect } from 'react';
+import './Notification.css';
+import { FaRegBell } from 'react-icons/fa';
+import axios from 'axios';
+import NotificationList from './NotificationList';
 
 function Notification() {
-  const [showNoti, setShowNoti] = useState("dropdown_hide")
+  const [showNoti, setShowNoti] = useState('dropdown_hide');
   // const [showNotiAll, setShowNotiAll] = useState(false);
 
-  const token = localStorage.getItem("token")
+  const token = localStorage.getItem('token');
 
-  const [data, setData] = useState([])
+  const [data, setData] = useState([]);
   useEffect(() => {
     axios
       .get(`/api/notification`, {
@@ -19,16 +19,16 @@ function Notification() {
         },
       })
       .then((res) => {
-        console.log(res.data)
-        setData(res.data.reverse())
+        console.log(res.data);
+        setData(res.data.reverse());
       })
       .catch((err) => {
-        console.log(err)
-      })
-  }, [])
+        console.log(err);
+      });
+  }, []);
   const clickNoti = () => {
-    if (showNoti === "dropdown_hide") {
-      setShowNoti("dropdown_show")
+    if (showNoti === 'dropdown_hide') {
+      setShowNoti('dropdown_show');
     } else {
       data.map((i) => {
         axios
@@ -41,18 +41,18 @@ function Notification() {
               },
             }
           )
-          .then((res) => console.log("Updated read", res.data))
-          .catch((err) => console.error(err))
-        return console.log(i.notic_id)
-      })
-      setShowNoti("dropdown_hide")
+          .then((res) => console.log('Updated read', res.data))
+          .catch((err) => console.error(err));
+        return console.log(i.notic_id);
+      });
+      setShowNoti('dropdown_hide');
     }
-    console.log(showNoti)
-  }
+    console.log(showNoti);
+  };
 
   const notiAll = data.map((item) => {
-    return <NotificationList item={item} />
-  })
+    return <NotificationList item={item} clickNoti={clickNoti} />;
+  });
 
   return (
     <div className={showNoti} onClick={clickNoti}>
@@ -67,7 +67,7 @@ function Notification() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Notification
+export default Notification;
