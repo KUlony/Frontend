@@ -103,11 +103,11 @@
 }
 
 .home-button {
-  position: absolute;
+  position: relative;
   text-decoration: none;
   color: black;
-  left: 192px;
-  top: 10px;
+  left: 180px;
+  top: 54px;
   width: 150px;
   cursor: pointer;
 }
@@ -117,9 +117,12 @@
   left: 362px;
   border-radius: 25px;
   padding: 10px 10px;
-  background-color: #339c64;
+  top: 10px;
+  left: 323px;
+  /* background-color: #339c64; */
   border: none;
   cursor: pointer;
+  width: 135px;
 }
 /* Add Education */
 .education-content {

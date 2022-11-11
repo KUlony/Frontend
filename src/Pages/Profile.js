@@ -1,17 +1,19 @@
 import React, { useState } from 'react'
 import './Profile.css'
 import UserInfo from './UserInfo'
-import Favourite from './Favourite'
+// import Favourite from './Favorite'
 import FollowTopic from './FollowTopic'
 import Setting from './Setting'
 import Navbar from '../components/NavBar'
 import logoutpic from '../picture/logout.png'
 import g1020 from '../picture/g1020.png'
+import UserFavorite from './UserFavorite'
 
 function Profile() {
   const componentsUserProfile = [
     <UserInfo />,
-    <Favourite />,
+    // <Favourite />,
+    <UserFavorite />,
     <FollowTopic />,
     <Setting />,
   ]

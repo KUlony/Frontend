@@ -1,42 +1,42 @@
-import axios from "axios";
-import React, { useEffect, useRef, useState } from "react";
-import AddEducation from "./AddEducation";
-import EditEducation from "./EditEducation";
-import "./UserInfo.css";
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
+import AddEducation from './AddEducation'
+import EditEducation from './EditEducation'
+import './UserInfo.css'
 
 const UserInfo = () => {
   //api
-  const [userData, setUserData] = useState("");
+  const [userData, setUserData] = useState('')
   useEffect(() => {
     axios
-      .get("/api/user/6345767f2b95ee9f9c0a663d/profile", {
+      .get('/api/user/636ca2126173d813e9e38cab/profile', {
         headers: {
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8",
+            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4',
         },
       })
       .then((res) => {
-        setUserData(res.data);
-        setAllEduForm(res.data.education);
-        setEducationUpdated(res.data.education);
+        setUserData(res.data)
+        setAllEduForm(res.data.education)
+        setEducationUpdated(res.data.education)
         // console.log(res.data.user_name)
       })
       .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+        console.log(error)
+      })
+  }, [])
 
   //edit
-  const username = useRef();
-  const bio = useRef();
-  const firstname = useRef();
-  const lastname = useRef();
-  const instagram = useRef();
-  const facebook = useRef();
+  const username = useRef()
+  const bio = useRef()
+  const firstname = useRef()
+  const lastname = useRef()
+  const instagram = useRef()
+  const facebook = useRef()
 
   const editstyles = {
-    border: "1px solid rgba(0, 0, 0, 1)",
-  };
+    border: '1px solid rgba(0, 0, 0, 1)',
+  }
 
   const [inputArray, setInputArray] = useState([
     true,
@@ -45,114 +45,114 @@ const UserInfo = () => {
     true,
     true,
     true,
-  ]);
+  ])
 
   const editInputArray = (index) => {
     setInputArray((oldarray) =>
       oldarray.map((data, idx) => (idx === index ? !data : data))
-    );
-  };
+    )
+  }
 
   const onClickSave = async () => {
     try {
       // console.log('hello try')
       axios
         .put(
-          "/api/user/edit_profile",
+          '/api/user/edit_profile',
           {
             user_name: username.current.value,
             user_firstname: firstname.current.value,
             user_lastname: lastname.current.value,
             user_bio: bio.current.value,
-            education: [
-              {
-                school: "kaset",
-                degree: "best bachelor",
-                field_of_study: null,
-                start_date: null,
-                end_date: null,
-                _id: "634adc85e5a0f50a0041c393",
-              },
-              {
-                school: "deb",
-                degree: null,
-                field_of_study: null,
-                start_date: null,
-                end_date: null,
-                _id: "634adc85e5a0f50a0041c394",
-              },
-            ],
+            education: educationUpdated,
+            // [
+            // {
+            //   school: 'kaset',
+            //   degree: 'best bachelor',
+            //   field_of_study: null,
+            //   start_date: null,
+            //   end_date: null,
+            //   _id: '634adc85e5a0f50a0041c393',
+            // },
+            // {
+            //   school: 'deb',
+            //   degree: null,
+            //   field_of_study: null,
+            //   start_date: null,
+            //   end_date: null,
+            //   _id: '634adc85e5a0f50a0041c394',
+            // },
+
+            // ],
             contact: {
               facebook: facebook.current.value,
               ig: instagram.current.value,
-              _id: "634adc85e5a0f50a0041c392",
+              _id: '634adc85e5a0f50a0041c392',
             },
             profile_pic_url:
-              "https://cdn.myanimelist.net/images/characters/12/451497.jpg",
-            gender: "male",
+              'https://cdn.myanimelist.net/images/characters/12/451497.jpg',
+            gender: 'male',
           },
           {
             headers: {
               Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8",
+                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4',
             },
           }
         )
         .then((res) => {
-          console.log(res);
+          console.log(res)
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   //AddEducation Page
-  const [isAddEducation, setIsAddEducation] = useState(null);
+  const [isAddEducation, setIsAddEducation] = useState(null)
 
   function onAddEducationClick() {
-    setIsAddEducation(true);
+    setIsAddEducation(true)
   }
   function onBgClick() {
-    setIsAddEducation(null);
+    setIsAddEducation(null)
   }
-  let addEducation = null;
+  let addEducation = null
   if (!!isAddEducation) {
-    addEducation = <AddEducation onBgClick={onBgClick} />;
-  }
-  //check if local not defined
-  if (localStorage.getItem("allEducation") === null) {
-    localStorage.setItem("allEducation", JSON.stringify([]));
-  }
-  function checkIsConnect(a, b) {
-    if (a != null && b != null) {
-      return true;
-    }
+    addEducation = <AddEducation onBgClick={onBgClick} />
   }
 
   //edit Education
-  const [isEditEducation, setIsEditEducation] = useState(null);
-  const [educationInfo, setEducationInfo] = useState(null);
-  const [educationUpdated, setEducationUpdated] = useState([]);
-  const [indexEdit, setIndexEdit] = useState();
+  function checkIsConnect(a, b) {
+    if (a != null && b != null) {
+      return true
+    }
+  }
+
+  const [isEditEducation, setIsEditEducation] = useState(null)
+  const [educationInfo, setEducationInfo] = useState(null)
+  const [educationUpdated, setEducationUpdated] = useState([])
+  const [indexEdit, setIndexEdit] = useState()
   const updateEducation = (data, index) => {
-    console.log("data", data);
+    console.log('data', data)
     setEducationUpdated((olddata) =>
       olddata.map((tmp, idx) => (idx === index ? data : tmp))
-    );
-  };
+    )
+  }
+  console.log('educationUpdate', educationUpdated)
   function onEditEducationClick(theEdu, index) {
-    setIsEditEducation(true);
-    setEducationInfo(theEdu);
-    setIndexEdit(index);
+    setIsEditEducation(true)
+    setEducationInfo(theEdu)
+    setIndexEdit(index)
   }
-  function onBgEditClick() {
-    setIsEditEducation(null);
-    setEducationInfo(null);
+  const onBgEditClick = () => {
+    setIsEditEducation(null)
+    setEducationInfo(null)
   }
-  let editEducation = null;
+  let editEducation = null
   if (!!isEditEducation) {
     editEducation = (
       <EditEducation
@@ -161,25 +161,12 @@ const UserInfo = () => {
         index={indexEdit}
         updateEducation={updateEducation}
       />
-    );
+    )
   }
 
-  // {dateYear.map((option, index) => (
-  //   <option
-  //     key={index}
-  //     // value={option.value}
-  //   >
-  //     {option.text}
-  //   </option>
-  // ))}
-
-  // const allEduForm = JSON.parse(localStorage.getItem('allEducation'))
-  // const allEduForm = userData.education
-
-  //noting func
-  // function
-  const [allEduForm, setAllEduForm] = useState([{}]);
+  const [allEduForm, setAllEduForm] = useState([{}])
   const eduElements = allEduForm.map((theEdu, index) => {
+    // console.log('theEdu', theEdu)
     return (
       <div>
         {allEduForm[0].school ? (
@@ -188,31 +175,56 @@ const UserInfo = () => {
               className="education-school"
               // style={{ display: 'inline', whiteSpace: 'nowrap' }}
             >
-              <span>{theEdu.school ? theEdu.school : ""}</span>
+              <span>{theEdu.school ? theEdu.school : ''}</span>
               <img
-                src={require("../picture/editButton.png")}
+                src={require('../picture/editButton.png')}
                 alt="edit-button"
                 width="20px"
                 className="edit-education-button"
                 onClick={() => {
-                  onEditEducationClick(theEdu, index);
+                  onEditEducationClick(theEdu, index)
                 }}
               />
             </article>
 
             <article className="education-degree-field">
-              {theEdu.degree ? theEdu.degree : ""}
-              {checkIsConnect(theEdu.degree, theEdu.field) ? ", " : ""}
-              {theEdu.field ? theEdu.field : ""}
-              {checkIsConnect(theEdu.field, theEdu.startMonth) ? ", " : ""}
+              {theEdu.degree ? theEdu.degree : ''}
+              {checkIsConnect(theEdu.degree, theEdu.field_of_study) ? ', ' : ''}
+              {theEdu.field_of_study ? theEdu.field_of_study : ''}
+              {checkIsConnect(theEdu.field_of_study, theEdu.start_date)
+                ? ', '
+                : ''}
               <span className="education-all-date">
-                {theEdu.startMonth ? theEdu.startMonth : ""}
-                {checkIsConnect(theEdu.startMonth, theEdu.startYear) ? " " : ""}
-                {theEdu.startYear ? theEdu.startYear : ""}
-                {checkIsConnect(theEdu.startYear, theEdu.endMonth) ? " - " : ""}
-                {theEdu.endMonth ? theEdu.endMonth : ""}
-                {checkIsConnect(theEdu.endMonth, theEdu.endYear) ? " " : ""}
-                {theEdu.endYear ? theEdu.endMonth : ""}
+                {theEdu.start_date.split('-')[0]
+                  ? theEdu.start_date.split('-')[0]
+                  : ''}
+                {checkIsConnect(
+                  theEdu.start_date.split('-')[0],
+                  theEdu.start_date.split('-')[1]
+                )
+                  ? ' '
+                  : ''}
+                {theEdu.start_date.split('-')[1]
+                  ? theEdu.start_date.split('-')[1]
+                  : ''}
+                {checkIsConnect(
+                  theEdu.start_date.split('-')[1],
+                  theEdu.end_date.split('-')[0]
+                )
+                  ? ' - '
+                  : ''}
+                {theEdu.end_date.split('-')[0]
+                  ? theEdu.end_date.split('-')[0]
+                  : ''}
+                {checkIsConnect(
+                  theEdu.end_date.split('-')[0],
+                  theEdu.end_date.split('-')[1]
+                )
+                  ? ' '
+                  : ''}
+                {theEdu.end_date.split('-')[1]
+                  ? theEdu.end_date.split('-')[1]
+                  : ''}
               </span>
             </article>
             <br />
@@ -221,8 +233,8 @@ const UserInfo = () => {
           <div></div>
         )}
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <main className="user-info">
@@ -231,10 +243,10 @@ const UserInfo = () => {
           // src={require('../picture/temp-profile.png')}
           src={
             !userData
-              ? require("../picture/temp-profile.png")
+              ? require('../picture/temp-profile.png')
               : userData.profile_pic_url
               ? userData.profile_pic_url
-              : ""
+              : ''
           }
           alt="profileExample"
           width="150"
@@ -244,7 +256,13 @@ const UserInfo = () => {
       </section>
       <section className="username">
         Username
-        <button onClick={() => editInputArray(0)}> edit </button>
+        <img
+          src={require('../picture/editButton.png')}
+          alt="edit-button"
+          width="20px"
+          className="edit-username-button"
+          onClick={() => editInputArray(0)}
+        />
         <br />
         {inputArray[0] ? (
           <input
@@ -257,7 +275,7 @@ const UserInfo = () => {
             ref={username}
             // value={userData.user_name}
             value={
-              !userData ? "" : userData.user_name ? userData.user_name : ""
+              !userData ? '' : userData.user_name ? userData.user_name : ''
             }
           />
         ) : (
@@ -274,7 +292,13 @@ const UserInfo = () => {
       </section>
       <section className="bio">
         Bio
-        <button onClick={() => editInputArray(1)}> edit </button>
+        <img
+          src={require('../picture/editButton.png')}
+          alt="edit-button"
+          width="20px"
+          className="edit-bio-button"
+          onClick={() => editInputArray(1)}
+        />
         <br />
         {inputArray[1] ? (
           <input
@@ -286,7 +310,7 @@ const UserInfo = () => {
             disabled={true}
             ref={bio}
             // value={userData.user_bio}
-            value={!userData ? "" : userData.user_bio ? userData.user_bio : ""}
+            value={!userData ? '' : userData.user_bio ? userData.user_bio : ''}
           />
         ) : (
           <input
@@ -303,7 +327,13 @@ const UserInfo = () => {
       <section className="firstname">
         <div>
           First name
-          <button onClick={() => editInputArray(2)}> edit </button>
+          <img
+            src={require('../picture/editButton.png')}
+            alt="edit-button"
+            width="20px"
+            className="edit-firstname-button"
+            onClick={() => editInputArray(2)}
+          />
         </div>
         {inputArray[2] ? (
           <input
@@ -317,10 +347,10 @@ const UserInfo = () => {
             // value={userData.user_firstname}
             value={
               !userData
-                ? ""
+                ? ''
                 : userData.user_firstname
                 ? userData.user_firstname
-                : ""
+                : ''
             }
           />
         ) : (
@@ -337,7 +367,13 @@ const UserInfo = () => {
       </section>
       <section className="lastname">
         Last name
-        <button onClick={() => editInputArray(3)}> edit </button>
+        <img
+          src={require('../picture/editButton.png')}
+          alt="edit-button"
+          width="20px"
+          className="edit-lastname-button"
+          onClick={() => editInputArray(3)}
+        />
         <br />
         {inputArray[3] ? (
           <input
@@ -351,10 +387,10 @@ const UserInfo = () => {
             // value={userData.user_lastname}
             value={
               !userData
-                ? ""
+                ? ''
                 : userData.user_lastname
                 ? userData.user_lastname
-                : ""
+                : ''
             }
           ></input>
         ) : (
@@ -372,7 +408,7 @@ const UserInfo = () => {
 
       <section
         className="education"
-        style={{ display: "inline", whiteSpace: "nowrap" }}
+        style={{ display: 'inline', whiteSpace: 'nowrap' }}
       >
         Education
         <button onClick={onAddEducationClick}>add more</button>
@@ -383,16 +419,16 @@ const UserInfo = () => {
         <article className="instagram">
           <div
             className="ig-box"
-            style={{ display: "inline", whiteSpace: "nowrap" }}
+            style={{ display: 'inline', whiteSpace: 'nowrap' }}
           >
             <img
               className="ig-img"
-              src={require("../picture/ig-icon.png")}
+              src={require('../picture/ig-icon.png')}
               alt="instagram"
               width="20"
               height="20"
-              style={{ "vertical-align": "middle" }}
-            />{" "}
+              style={{ 'vertical-align': 'middle' }}
+            />{' '}
             {inputArray[4] ? (
               <input
                 type="text"
@@ -402,11 +438,11 @@ const UserInfo = () => {
                 disabled={true}
                 ref={instagram}
                 value={
-                  !userData
-                    ? ""
+                  !userData.contact
+                    ? ''
                     : userData.contact.ig
                     ? userData.contact.ig
-                    : ""
+                    : ''
                 }
               />
             ) : (
@@ -419,7 +455,13 @@ const UserInfo = () => {
                 style={editstyles}
               />
             )}
-            <button onClick={() => editInputArray(4)}> edit </button>
+            <img
+              src={require('../picture/editButton.png')}
+              alt="edit-button"
+              width="20px"
+              className="edit-i-button"
+              onClick={() => editInputArray(4)}
+            />
           </div>
         </article>
         <article className="facebook">
@@ -429,11 +471,11 @@ const UserInfo = () => {
           >
             <img
               className="fb-img"
-              src={require("../picture/fb-icon.png")}
+              src={require('../picture/fb-icon.png')}
               alt="facebook"
               width="20"
-              style={{ "vertical-align": "middle" }}
-            />{" "}
+              style={{ 'vertical-align': 'middle' }}
+            />{' '}
             {inputArray[5] ? (
               <input
                 type="text"
@@ -443,11 +485,11 @@ const UserInfo = () => {
                 disabled={true}
                 ref={facebook}
                 value={
-                  !userData
-                    ? ""
+                  !userData.contact
+                    ? ''
                     : userData.contact.facebook
                     ? userData.contact.facebook
-                    : ""
+                    : ''
                 }
               />
             ) : (
@@ -460,24 +502,33 @@ const UserInfo = () => {
                 style={editstyles}
               />
             )}
-            <button onClick={() => editInputArray(5)}> edit </button>
+            <img
+              src={require('../picture/editButton.png')}
+              alt="edit-button"
+              width="20px"
+              className="edit-fb-button"
+              onClick={() => editInputArray(5)}
+            />
           </div>
         </article>
       </section>
       <section className="profile-bottom">
         <article className="back-to-home">
-          <div className="home-button"> BACK TO HOME </div>
+          <b className="home-button"> BACK TO HOME </b>
         </article>
         <article className="save">
-          <button className="save-button" onClick={onClickSave}>
-            SAVE
-          </button>
+          <img
+            src={require('../picture/savebtn.png')}
+            alt="savebtn"
+            className="save-button"
+            onClick={onClickSave}
+          />
         </article>
       </section>
       {addEducation}
       {editEducation}
     </main>
-  );
-};
+  )
+}
 
-export default UserInfo;
+export default UserInfo
