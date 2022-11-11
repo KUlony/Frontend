@@ -303,11 +303,13 @@ function Post(props) {
                 <div className={reportpost_drop}>
                   {possession ? (
                     <div className="my_post_button">
-                      <div className="edit_hover_box">
-                        {" "}
-                        Edit post
-                        <img src={edit} />
-                      </div>
+                      <Link to={`/editpost/${post_id}`} className="edit_link">
+                        <div className="edit_hover_box">
+                          {" "}
+                          Edit post
+                          <img src={edit} />
+                        </div>
+                      </Link>
                       {/* <div className="edit_button">
                         Edit post
                         <img src={edit} />
@@ -395,7 +397,11 @@ function Post(props) {
               </div>
               <div
                 className="share_box"
-                onClick={() => navigator.clipboard.writeText("bra bra")}
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    `http://localhost:3000/viewpost/${post_id}`
+                  )
+                }
               >
                 <AiOutlineShareAlt className="Share" size={30} />
               </div>

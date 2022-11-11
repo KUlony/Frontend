@@ -13,12 +13,17 @@ function MyPost() {
 
   const mypostfetch = async () => {
     try {
-      const response = await fetch(`https://kulony-backend.herokuapp.com/api/user/mypost`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://kulony-backend.herokuapp.com/api/user/mypost`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
+      console.log(response);
       const json = await response.json();
+      console.log(json);
       setUserinfo(json.author);
       setMypostdata(json.post);
       // console.log("mypost ", json);
