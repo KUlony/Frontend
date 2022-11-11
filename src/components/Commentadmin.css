@@ -1,0 +1,45 @@
+.commentbody {
+  background-color: white;
+  border: solid;
+  border-radius: 16px;
+  height: auto;
+  width: 80%;
+  padding: 20px;
+  margin: auto auto;
+}
+
+.insidecomment {
+  display: flex;
+  width: 100%;
+}
+
+.userpicincomment {
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+}
+
+.contentcomment {
+  margin-left: 3%;
+  /* border: solid; */
+  width: 90%;
+}
+
+.commentnameuser {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.commentcententuser {
+  word-wrap: break-word;
+  font-size: 18px;
+  /* border: solid; */
+  width: 100%;
+}
+
+.timeday {
+  margin-top: 5px;
+  color: #339c64;
+  text-align: right;
+}

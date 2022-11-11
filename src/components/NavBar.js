@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import "./NavBar.css"
 import logo from "../picture/Logo.png"
 import { BsPersonCircle } from "react-icons/bs"
@@ -10,6 +10,7 @@ import CreateTopic from "./CreateTopic"
 function Navbar() {
   const [show, setShow] = useState(false)
   const [showCreateTopic, setShowCreateTopic] = useState(false)
+
   const handleReq = (e) => {
     e.preventDefault()
   }
@@ -23,7 +24,8 @@ function Navbar() {
     setShowCreateTopic(!showCreateTopic)
   }
 
-  const isAdmin = false;
+  const isAdmin = localStorage.getItem("admin")
+
   return (
     <ul className="Nav">
       <ReqTopic handleShow={handleShow} handleReq={handleReq} show={show} />

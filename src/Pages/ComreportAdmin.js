@@ -1,20 +1,11 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
+import Commentadmin from "../components/Commentadmin"
 import "./ComreportAdmin.css"
 
 function ComreportAdmin() {
   const [commentdata, setcommentdata] = useState([])
   const [commentiddata, setcommentiddata] = useState([])
-
-  // console.log(datasort)
-
-  // useEffect(() => {
-  //   if (datasort === "reported") {
-  //     window.location.reload()
-  //   } else if (datasort === "lasted") {
-  //     window.location.reload()
-  //   }
-  // }, [])
 
   const token = localStorage.getItem("token")
 
@@ -24,7 +15,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/get_comment_report`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
           },
         }
       )
@@ -37,17 +28,17 @@ function ComreportAdmin() {
         data.map((item, index) =>
           axios
             .get(
-              `https://kulony-backend.herokuapp.com/api/comment/${item._id}`,
+              `https://kulony-backend.herokuapp.com/api/comment/get_comment_data/${item._id}`,
               {
                 headers: {
-                  Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+                  Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
                 },
               }
             )
             .then((res) => {
               setcommentiddata((iditemed) => [...iditemed, res.data])
               // setPostiddata(res.data)
-              console.log(res.data)
+              // console.log(res.data)
             })
             .catch((err) => {
               console.log(err)
@@ -72,7 +63,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/delete_report/${e._id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
           },
         }
       )
@@ -91,7 +82,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/delete_reported_entity/${e._id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTU0MTU2LCJleHAiOjE2NjgyNDA1NTZ9.JgM_yBd-_mCvMMv8hlo4Yl1zy7G0tsC8j9bpB9LYd9s`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
           },
         }
       )
@@ -119,20 +110,56 @@ function ComreportAdmin() {
               </p>
             </div>
             <div className="buttondis">
-              <button className="discardbtncom">
+              <button
+                className="discardbtncom"
+                onClick={() => {
+                  discarddata(item)
+                  window.location.reload()
+                }}
+              >
                 Discard Report <i class="bi bi-x"></i>
               </button>
-              <button className="deletebtncom">
+              <button
+                className="deletebtncom"
+                onClick={() => {
+                  deletedata(item)
+                  window.location.reload()
+                }}
+              >
                 Delete Comment <i class="bi bi-trash"></i>
               </button>
             </div>
           </div>
-          {/* <div>
-            <a href={`/viewpost/:${item._id}`} className="viewpost">
-              View post <i class="bi bi-eye-fill"></i>
-            </a>
-          </div> */}
-          {/* {console.log(item)} */}
+          {commentiddata.map((item2, index2) =>
+            index === index2 ? (
+              <div key={index2}>
+                <Commentadmin
+                  user_url={item2.author.profile_pic_url}
+                  user_username={item2.author.username}
+                  comment_content={item2.comment_content}
+                  comment_time={item2.comment_time}
+                />
+                <div className="viewpostcomment">
+                  <div className="typecomment">
+                    <p className="reporttypecom">
+                      Report Type :{" "}
+                      {item.report_type.map((item3, index) =>
+                        index >= 1 ? "," + item3 : item3
+                      )}
+                    </p>
+                  </div>
+                  <div className="view">
+                    <a
+                      href={`/viewpost/:${item2.post_id}`}
+                      className="viewpost"
+                    >
+                      View post <i class="bi bi-eye-fill"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            ) : null
+          )}
         </div>
       ))}
     </div>
