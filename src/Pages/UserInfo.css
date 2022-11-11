@@ -327,14 +327,6 @@
   /* z-index: 0; */
 }
 /* Add Education */
-.education-content {
-  /* background-color: #e7db73; */
-  /* opacity: 0.5; */
-  /* display: inline-block; */
-  /* border: 1px solid rgba(0, 0, 0, 1); */
-  /* width: 75%; */
-  /* margin-left: 47px; */
-}
 
 .education-all-date {
   color: #339c64;
@@ -374,10 +366,6 @@
   display: flex;
   flex-direction: column;
   /* background-color: #339c64; */
-}
-
-.user-data {
-  /* display: inline-block; */
 }
 
 .user-info-onboard4-edu-header {
