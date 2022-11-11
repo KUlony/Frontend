@@ -1,58 +1,58 @@
-import React, { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
-import Navbar from '../components/NavBar';
-import './View_post.css';
-import { IoIosArrowBack } from 'react-icons/io';
-import Comment from '../components/Comment';
+import React, { useEffect, useState } from "react";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
+import Navbar from "../components/NavBar";
+import "./View_post.css";
+import { IoIosArrowBack } from "react-icons/io";
+import Comment from "../components/Comment";
 
-import { FcLikePlaceholder } from 'react-icons/fc';
-import profileimg from '../picture/profile.png';
+import { FcLikePlaceholder } from "react-icons/fc";
+import profileimg from "../picture/profile.png";
 import {
   MdOutlineModeComment,
   MdTitle,
   MdReport,
   MdSend,
-} from 'react-icons/md';
-import { BsFillHeartFill } from 'react-icons/bs';
-import Reportpost_popup from '../components/Reportpost_popup';
-import Miniprofile from '../components/Miniprofile';
-import Comment_generator from '../components/Comment_generator';
-import Showimg from '../components/Showimg';
-import Checklogin from '../components/Checklogin';
-import { RiArrowDropDownLine } from 'react-icons/ri';
-import bin from '../picture/bin.png';
-import edit from '../picture/edit.png';
-import report from '../picture/reportmini.png';
-import { AiOutlineShareAlt, AiOutlineClose } from 'react-icons/ai';
+} from "react-icons/md";
+import { BsFillHeartFill } from "react-icons/bs";
+import Reportpost_popup from "../components/Reportpost_popup";
+import Miniprofile from "../components/Miniprofile";
+import Comment_generator from "../components/Comment_generator";
+import Showimg from "../components/Showimg";
+import Checklogin from "../components/Checklogin";
+import { RiArrowDropDownLine } from "react-icons/ri";
+import bin from "../picture/bin.png";
+import edit from "../picture/edit.png";
+import report from "../picture/reportmini.png";
+import { AiOutlineShareAlt, AiOutlineClose } from "react-icons/ai";
 
 function View_post() {
   const [displayReport, setdisplayReport] = useState(true);
   const [displayProfile, setdisplayProfile] = useState(true);
-  const [imgurl, setImgurl] = useState('');
+  const [imgurl, setImgurl] = useState("");
   const [displaypostimg, setDisplayposting] = useState(false);
   const [likepost, setLikepost] = useState(false);
   const [likecount, setLikecount] = useState(0);
   const post_id = useParams();
   const [postdataarray, setPostdataarray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [title, setTitle] = useState('');
-  const [commentcount, setCommentcount] = useState('');
-  const [post_content, setPost_content] = useState('');
-  const [photo, setPhoto] = useState('');
-  const [profilepic, setProfilepic] = useState('');
-  const [username, setUsername] = useState('');
+  const [title, setTitle] = useState("");
+  const [commentcount, setCommentcount] = useState("");
+  const [post_content, setPost_content] = useState("");
+  const [photo, setPhoto] = useState("");
+  const [profilepic, setProfilepic] = useState("");
+  const [username, setUsername] = useState("");
   const [post_photo_url, setPost_photo_url] = useState([]);
   const [loadingcomment, setLoadingcomment] = useState(true);
   const [user_like_status, setUser_like_status] = useState(false);
-  const [userminiprofile, setUserminiprofile] = useState('');
+  const [userminiprofile, setUserminiprofile] = useState("");
   const [commentdata, setCommentdata] = useState([]);
-  const token = localStorage.getItem('token');
-  const [timedata, setTimedate] = useState('');
+  const token = localStorage.getItem("token");
+  const [timedata, setTimedate] = useState("");
   // console.log(post_id.id);
-  const [reportid, setReportid] = useState('');
-  const [reporttype, setRepottype] = useState('');
+  const [reportid, setReportid] = useState("");
+  const [reporttype, setRepottype] = useState("");
   const [possession, setPossesstion] = useState(false);
-  const userid = localStorage.getItem('user_id');
+  const userid = localStorage.getItem("user_id");
 
   const postfetch = async () => {
     try {
@@ -99,6 +99,7 @@ function View_post() {
         }
       );
       const comment_json = await comment_fetch_respone.json();
+      console.log(comment_json);
       setCommentdata(comment_json);
       setLoadingcomment(false);
     } catch (err) {
@@ -111,7 +112,7 @@ function View_post() {
     }
   }, []);
 
-  const [commentinput, setCommentinput] = useState('');
+  const [commentinput, setCommentinput] = useState("");
   const [commentposting, setCommentposting] = useState(false);
 
   const comment = async (e) => {
@@ -119,17 +120,17 @@ function View_post() {
       e.preventDefault();
       if (!commentposting) {
         setCommentposting(true);
-        if (commentinput !== '') {
+        if (commentinput !== "") {
           const comment_input_value = document.querySelector(
-            '.view_post_comment_input'
+            ".view_post_comment_input"
           );
 
           const response_comment = await fetch(
             `https://kulony-backend.herokuapp.com/api/comment/create`,
             {
-              method: 'POST',
+              method: "POST",
               headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 Authorization: `${token}`,
               },
               body: JSON.stringify({
@@ -139,7 +140,7 @@ function View_post() {
             }
           );
           if (!response_comment.ok) {
-            throw new Error('fail');
+            throw new Error("fail");
           }
 
           const json_comment = await response_comment.json();
@@ -168,8 +169,8 @@ function View_post() {
           };
           updatecommentdata(datainput);
           setCommentcount(commentcount + 1);
-          comment_input_value.value = '';
-          setCommentinput('');
+          comment_input_value.value = "";
+          setCommentinput("");
           setCommentposting(false);
         }
       }
@@ -183,7 +184,7 @@ function View_post() {
   };
   const display_report = (type, id) => {
     setdisplayReport(!displayReport);
-    if (id !== 'close') {
+    if (id !== "close") {
       setReportid(id);
       setRepottype(type);
     }
@@ -198,7 +199,7 @@ function View_post() {
     //   setdisplayProfile(!displayProfile);
     // }
     setdisplayProfile(!displayProfile);
-    if (user_id !== 'close') {
+    if (user_id !== "close") {
       setUserminiprofile(user_id);
     }
   };
@@ -220,7 +221,7 @@ function View_post() {
           const remove = await fetch(
             `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id.id}`,
             {
-              method: 'DELETE',
+              method: "DELETE",
               headers: {
                 Authorization: `${token}`,
               },
@@ -230,7 +231,7 @@ function View_post() {
           const add = await fetch(
             `https://kulony-backend.herokuapp.com/api/post/like/${post_id.id}`,
             {
-              method: 'POST',
+              method: "POST",
               headers: {
                 Authorization: `${token}`,
               },
@@ -248,42 +249,42 @@ function View_post() {
   };
 
   const navigate = useNavigate();
-  const [datetime, setDatetime] = useState('');
+  const [datetime, setDatetime] = useState("");
 
   useEffect(() => {
     if (!loading) {
-      const timepost = timedata.split('T');
-      const day = timepost[0].split('-').reverse().join('/');
-      const timearray = timepost[1].split('.');
+      const timepost = timedata.split("T");
+      const day = timepost[0].split("-").reverse().join("/");
+      const timearray = timepost[1].split(".");
       const time = timearray[0];
 
-      let inttime = parseFloat(time.split(':').join('.'));
+      let inttime = parseFloat(time.split(":").join("."));
 
-      let min = inttime.toString().split('.');
-      if (!inttime.toString().includes('.')) {
-        min = (min + '.00').split('.');
+      let min = inttime.toString().split(".");
+      if (!inttime.toString().includes(".")) {
+        min = (min + ".00").split(".");
       }
 
       if (inttime >= 12 && inttime < 24) {
         if (inttime === 12) {
-          setDatetime('12:00 PM, ' + day);
+          setDatetime("12:00 PM, " + day);
         } else {
           inttime -= 5;
 
-          const date = inttime.toString().split('.');
+          const date = inttime.toString().split(".");
           // console.log(date);
-          setDatetime(date[0] + ':' + min[1] + ' PM, ' + day);
+          setDatetime(date[0] + ":" + min[1] + " PM, " + day);
         }
       } else {
         if (inttime === 24) {
-          setDatetime('12:00 AM, ' + day);
+          setDatetime("12:00 AM, " + day);
         } else {
           inttime += 7;
-          const date = inttime.toString().split('.');
+          const date = inttime.toString().split(".");
           if (min[1].length === 1) {
-            setDatetime(date[0] + ':' + min[1] + '0 AM, ' + day);
+            setDatetime(date[0] + ":" + min[1] + "0 AM, " + day);
           } else {
-            setDatetime(date[0] + ':' + min[1] + ' AM, ' + day);
+            setDatetime(date[0] + ":" + min[1] + " AM, " + day);
           }
         }
       }
@@ -295,14 +296,14 @@ function View_post() {
       const respone = await fetch(
         `https://kulony-backend.herokuapp.com/api/comment/${id}/delete`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
             Authorization: `${token}`,
           },
         }
       );
       if (!respone.ok) {
-        throw new Error('fail to delete');
+        throw new Error("fail to delete");
       }
       setCommentcount(commentcount - 1);
       return true;
@@ -317,7 +318,7 @@ function View_post() {
       const respone = await fetch(
         `https://kulony-backend.herokuapp.com/api/post/${post_id.id}/delete`,
         {
-          method: 'PUT',
+          method: "PUT",
           headers: {
             Authorization: `${token}`,
           },
@@ -329,13 +330,13 @@ function View_post() {
     }
   };
 
-  const [reportpost_drop, setreportpost_drop] = useState('btn_where');
+  const [reportpost_drop, setreportpost_drop] = useState("btn_where");
 
   const report_dropdown = () => {
-    if (reportpost_drop === 'btn_where') {
-      setreportpost_drop('btn_report_show');
+    if (reportpost_drop === "btn_where") {
+      setreportpost_drop("btn_report_show");
     } else {
-      setreportpost_drop('btn_where');
+      setreportpost_drop("btn_where");
     }
   };
 
@@ -358,7 +359,7 @@ function View_post() {
                 navigate(-1, { state: { back: true } });
               }}
             >
-              <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{' '}
+              <IoIosArrowBack className="view_post_fullpost_backtohome_arrow" />{" "}
               Go Back
             </button>
           </div>
@@ -386,7 +387,7 @@ function View_post() {
 
             {username ? (
               <div className="view_post_fullpost_profile_username">
-                {username ? username : 'anonymous'}
+                {username ? username : "anonymous"}
               </div>
             ) : (
               <div className="view_post_fullpost_profile_username">
@@ -425,7 +426,7 @@ function View_post() {
             <div className="view_post_likebox" onClick={likepost_update}>
               <BsFillHeartFill className="likeshadowdrop1" size={28} />
               <BsFillHeartFill
-                className={`${user_like_status ? 'like' : 'unlike'}`}
+                className={`${user_like_status ? "like" : "unlike"}`}
                 size={22}
               />
               <p className="view_post_text">
@@ -438,7 +439,7 @@ function View_post() {
             </div>
             <div
               className="view_post_share"
-              onClick={() => navigator.clipboard.writeText('test')}
+              onClick={() => navigator.clipboard.writeText("test")}
             >
               <AiOutlineShareAlt className="share_icon" />
               <p className="view_post_text">Share</p>
@@ -446,7 +447,7 @@ function View_post() {
             {!possession && (
               <div
                 className="view_post_reportbox"
-                onClick={() => display_report('Post', post_id.id)}
+                onClick={() => display_report("Post", post_id.id)}
               >
                 <MdReport size={30} className="view_post_report_icon" />
                 <p className="view_post_text">Report post</p>
@@ -463,11 +464,13 @@ function View_post() {
                 <div className={reportpost_drop}>
                   {possession ? (
                     <div className="my_post_button">
-                      <div className="edit_hover_box">
-                        {' '}
-                        Edit post
-                        <img src={edit} />
-                      </div>
+                      <Link to={`/editpost/${post_id}`} className="edit_link">
+                        <div className="edit_hover_box">
+                          {" "}
+                          Edit post
+                          <img src={edit} />
+                        </div>
+                      </Link>
                       {/* <div className="edit_button">
                         Edit post
                         <img src={edit} />
@@ -481,7 +484,7 @@ function View_post() {
                   ) : (
                     <div
                       className="report_button"
-                      onClick={() => display_report('Post', post_id)}
+                      onClick={() => display_report("Post", post_id)}
                     >
                       Report post
                       <img src={report} />
@@ -521,18 +524,18 @@ function View_post() {
       {!loading && (
         <div
           className={`viewpost_miniprofile_popup ${
-            displayProfile ? 'display_none' : null
+            displayProfile ? "display_none" : null
           }`}
         >
           <Miniprofile display={display_profile} user_id={userminiprofile} />
         </div>
       )}
       {!displayProfile && (
-        <div className="cover" onClick={() => display_profile('close')}></div>
+        <div className="cover" onClick={() => display_profile("close")}></div>
       )}
       <div
         className={`viewpost_report_popup ${
-          displayReport ? 'display_none' : null
+          displayReport ? "display_none" : null
         }`}
       >
         <Reportpost_popup

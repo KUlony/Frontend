@@ -216,8 +216,12 @@ function Post(props) {
   if (!inttime.toString().includes(".")) {
     min = (min + ".00").split(".");
   }
-
+  let count = 0;
   inttime += 7;
+  if (inttime > 24) {
+    inttime -= 24;
+    count = 1;
+  }
 
   if (inttime >= 12 && inttime < 24) {
     if (inttime === 12) {
