@@ -65,7 +65,7 @@ function Post(props) {
 
   const gettopicname = async (topicid) => {
     try {
-      const response = await fetch(`/api/topic/get_topic_data?id=${topicid}`, {
+      const response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic_data?id=${topicid}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -120,14 +120,14 @@ function Post(props) {
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(`/api/post/unlike/${post_id}`, {
+        const remove = await fetch(`https://kulony-backend.herokuapp.com/api/post/unlike/${post_id}`, {
           method: "DELETE",
           headers: {
             Authorization: `${token}`,
           },
         });
       } else {
-        const add = await fetch(`/api/post/like/${post_id}`, {
+        const add = await fetch(`https://kulony-backend.herokuapp.com/api/post/like/${post_id}`, {
           method: "POST",
           headers: {
             Authorization: `${token}`,
@@ -144,7 +144,7 @@ function Post(props) {
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(`/api/comment/${post_id}`, {
+      const comment_fetch_respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${post_id}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -163,7 +163,7 @@ function Post(props) {
 
   const delete_post = async () => {
     try {
-      const respone = await fetch(`/api/post/${post_id}/delete`, {
+      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/post/${post_id}/delete`, {
         method: "PUT",
         headers: {
           Authorization: `${token}`,
@@ -213,7 +213,7 @@ function Post(props) {
 
   const comment_delete = async (id) => {
     try {
-      const respone = await fetch(`/api/comment/${id}/delete`, {
+      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${id}/delete`, {
         method: "PUT",
         headers: {
           Authorization: `${token}`,

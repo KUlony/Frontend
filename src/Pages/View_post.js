@@ -57,7 +57,7 @@ function View_post() {
 
   const postfetch = async () => {
     try {
-      const response = await fetch(`/api/post/${post_id.id}`, {
+      const response = await fetch(`https://kulony-backend.herokuapp.com/api/post/${post_id.id}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -88,7 +88,7 @@ function View_post() {
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(`/api/comment/${post_id.id}`, {
+      const comment_fetch_respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${post_id.id}`, {
         headers: {
           Authorization: `${token}`,
         },
@@ -114,7 +114,7 @@ function View_post() {
           ".view_post_comment_input"
         );
 
-        const response_comment = await fetch(`/api/comment/create`, {
+        const response_comment = await fetch(`https://kulony-backend.herokuapp.com/api/comment/create`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -133,7 +133,7 @@ function View_post() {
         // console.log(`json_comment `, json_comment);
 
         const userdata = await fetch(
-          `/api/user/${json_comment.user_id}/profile`,
+          `https://kulony-backend.herokuapp.com/api/user/${json_comment.user_id}/profile`,
           {
             headers: {
               Authorization: `${token}`,
@@ -198,14 +198,14 @@ function View_post() {
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(`/api/post/unlike/${post_id.id}`, {
+        const remove = await fetch(`https://kulony-backend.herokuapp.com/api/post/unlike/${post_id.id}`, {
           method: "DELETE",
           headers: {
             Authorization: `${token}`,
           },
         });
       } else {
-        const add = await fetch(`/api/post/like/${post_id.id}`, {
+        const add = await fetch(`https://kulony-backend.herokuapp.com/api/post/like/${post_id.id}`, {
           method: "POST",
           headers: {
             Authorization: `${token}`,
@@ -262,7 +262,7 @@ function View_post() {
 
   const comment_delete = async (id) => {
     try {
-      const respone = await fetch(`/api/comment/${id}/delete`, {
+      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${id}/delete`, {
         method: "PUT",
         headers: {
           Authorization: `${token}`,
@@ -281,7 +281,7 @@ function View_post() {
 
   const delete_post = async () => {
     try {
-      const respone = await fetch(`/api/post/${post_id.id}/delete`, {
+      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/post/${post_id.id}/delete`, {
         method: "PUT",
         headers: {
           Authorization: `${token}`,

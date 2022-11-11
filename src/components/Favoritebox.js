@@ -15,7 +15,7 @@ function Favoritebox(props) {
   const likepost_update = async () => {
     try {
       if (status) {
-        const remove = await fetch(`/api/post/unlike/${data.post_id}`, {
+        const remove = await fetch(`https://kulony-backend.herokuapp.com/api/post/unlike/${data.post_id}`, {
           method: "DELETE",
           headers: {
             Authorization: `${token}`,
@@ -23,7 +23,7 @@ function Favoritebox(props) {
         });
         setStatus(false);
       } else {
-        const add = await fetch(`/api/post/like/${data.post_id}`, {
+        const add = await fetch(`https://kulony-backend.herokuapp.com/api/post/like/${data.post_id}`, {
           method: "POST",
           headers: {
             Authorization: `${token}`,

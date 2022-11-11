@@ -15,18 +15,21 @@ function Miniprofile(props) {
     try {
       if (user_id !== "") {
         setLoading(true);
-        const userdata = await fetch(`/api/user/${user_id}/profile`, {
+        // console.log("user_id", user_id);
+        const userdata = await fetch(`https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`, {
           headers: {
             Authorization: `${token}`,
           },
         });
         const jsonuserdata = await userdata.json();
+
         console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
         if (jsonuserdata.user_firstname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
             `${jsonuserdata.user_firstname} ${jsonuserdata.user_lastname}`
+
           );
         }
       }
@@ -84,7 +87,7 @@ function Miniprofile(props) {
                   <p className="miniprofile_contact">Contact:</p>
                   {userdata.contact && userdata.contact.facebook ? (
                     <p className="miniprofile_inline">
-                      <FaFacebookSquare className="facebook_icon" />
+                      <FaFacebookSquare className="instagram_icon" />
                       {userdata.contact.facebook}
                     </p>
                   ) : null}

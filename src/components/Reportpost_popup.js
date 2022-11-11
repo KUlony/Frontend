@@ -69,7 +69,7 @@ function Reportpost_popup(props) {
         reporttype = reportOther;
       }
       const reportsent = await fetch(
-        `/api/${lowertype}/${post_id}/report`,
+        `https://kulony-backend.herokuapp.com/api/${lowertype}/${post_id}/report`,
 
         {
           method: "POST",

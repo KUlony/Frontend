@@ -9,6 +9,9 @@ import View_post from "./Pages/View_post";
 import Search from "./Pages/Search";
 import Login from "./Pages/Login";
 import Register from "./Pages/Register";
+import Createpost from "./Pages/Createpost";
+import ReportpageAdmin from "./Pages/ReportpageAdmin";
+import ReqtopicAdmin from "./Pages/ReqtopicAdmin";
 
 // import ScrollRestoration from "react-scroll-restoration";
 function App() {
@@ -53,6 +56,10 @@ function App() {
           <Route path="/search" element={<Search />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/createnewpost" element={<Createpost />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/admin/reportpost" element={<ReportpageAdmin />} />
+          <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Routes>
       </BrowserRouter>

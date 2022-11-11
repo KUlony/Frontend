@@ -11,7 +11,7 @@ function Favorite() {
 
   const fetchuserlikepost = async () => {
     try {
-      const response = await fetch(`/api/user/user_like_post`, {
+      const response = await fetch(`https://kulony-backend.herokuapp.com/api/user/user_like_post`, {
         headers: {
           Authorization: `${token}`,
         },

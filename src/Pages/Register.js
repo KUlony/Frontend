@@ -24,35 +24,38 @@ function Register() {
 
   const [display5, setdisplay5] = useState(true);
   const display_checked = () => {
-    if (display5 === false) {
-      setdisplay5(!display5);
-    }
+    setdisplay5(!display5);
   };
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
 
+  const [error, setError] = useState("");
+
   const register = async (e) => {
     try {
       e.preventDefault();
-      const postdata = await fetch(
-        "http://localhost:4000/api/sing-up/register/email",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            confirm_password: confirmpassword,
-          }),
-        }
-      );
+      setError("");
+      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/register/email", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+          confirm_password: confirmpassword,
+        }),
+      });
 
-      // const json = await postdata.json()
-      // console.log(postdata)
+      const json = await postdata.json();
+      console.log(json);
+
+      if (!json.success) {
+        setError(json.message);
+      }
+
       if (!postdata.ok) {
         throw new Error("error");
       }
@@ -67,8 +70,9 @@ function Register() {
     <div className="register_row">
       <div className="register_column">
         <h1 className="register_header">SIGN-UP</h1>
+
         <input
-          className="register_input"
+          className="register_input_email"
           type="email"
           placeholder="EMAIL"
           value={email}
@@ -77,7 +81,7 @@ function Register() {
           }}
         ></input>
         <input
-          className="register_input"
+          className="register_input_password"
           type="password"
           placeholder="PASSWORD"
           value={password}
@@ -86,7 +90,7 @@ function Register() {
           }}
         ></input>
         <input
-          className="register_input"
+          className="register_input_password"
           type="password"
           placeholder="CONFIRM PASSWORD"
           value={confirmpassword}
@@ -106,15 +110,27 @@ function Register() {
           <p className={`register_link`} onClick={display_terms}>
             term of service
           </p>
-          <div className={`register_checked  ${display5 ? "none" : null}`}>
-            Plese confirm you have read the term of service
-          </div>
+          {/* <div className={`register_checked  ${display5? null:'none' }`}>
+          Plese confirm you have read the term of service
+          </div> */}
         </div>
 
-        {/* <button className="register_button" onClick={display_verify}>SIGN UP</button>    */}
-        <button className="register_button" onClick={register}>
+        <div className="register_noti">
+          {error && <div className="register_error">{error}</div>}
+        </div>
+
+        <button
+          className={`register_button_before  ${display5 ? null : "none"}`}
+        >
           SIGN UP
         </button>
+        <button
+          className={`register_button_after  ${display5 ? "none" : null}`}
+          onClick={register}
+        >
+          SIGN UP
+        </button>
+
         <div className="register_qa">
           Already have an account?{" "}
           <Link className="register_link" to="/login">
@@ -135,7 +151,7 @@ function Register() {
       </div>
 
       <div className={`register_verify  ${display2 ? "none" : null}`}>
-        <Verify display={display_verify} email={email} />
+        <Verify display_ve={display_verify} email={email} isForgot={false} />
       </div>
 
       {(!display1 || !display2) && <div className="register_cover"></div>}

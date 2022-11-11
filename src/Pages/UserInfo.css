@@ -1,0 +1,134 @@
+.user-info {
+  margin-left: 70px;
+}
+.profile-pic {
+  position: absolute;
+  margin-left: 57px;
+  margin-top: -9px;
+  padding: 20px;
+  border: 1px solid #000000;
+}
+
+.username {
+  position: relative;
+  margin-left: 312px;
+  margin-top: 53px;
+}
+
+.bio {
+  position: relative;
+  margin-left: 312px;
+  margin-top: 10px;
+}
+
+.firstname {
+  position: relative;
+  margin-left: 48px;
+  margin-top: 10px;
+}
+
+.lastname {
+  position: relative;
+  margin-left: 312px;
+  margin-top: -59px;
+}
+
+.education {
+  position: relative;
+  margin-left: 48px;
+}
+
+.contact {
+  position: relative;
+  margin-left: 48px;
+  margin-top: 18px;
+}
+
+.input-firstname {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  font-weight: 400;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-lastname {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-bio {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 300px;
+  height: 78px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.input-username {
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  resize: none;
+  font-size: 16px;
+  width: 210px;
+  height: 18px;
+  padding: 10px;
+  outline: none;
+  border-radius: 5px;
+}
+
+.profile-bottom {
+  position: relative;
+  left: 200px;
+  list-style-type: none;
+}
+
+.home-button {
+  position: absolute;
+  text-decoration: none;
+  color: black;
+  left: 192px;
+  top: 10px;
+  width: 150px;
+}
+
+.save-button {
+  position: relative;
+  left: 362px;
+  border-radius: 25px;
+  padding: 10px 10px;
+  background-color: #339c64;
+  border: none;
+  cursor: pointer;
+}
+/* Add Education */
+.education-content {
+  border: 1px solid rgba(0, 0, 0, 1);
+  width: 70%;
+  margin-left: 47px;
+}
+
+.education-all-date {
+  color: #339c64;
+}
+
+.input-ig {
+  width: 200px;
+  height: 100px;
+}
