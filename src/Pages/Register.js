@@ -33,32 +33,38 @@ function Register() {
 
   const [error,setError] = useState('')
 
+  const [work,setWork] = useState(true);
+
   const register = async (e)=>{
     try{
-      e.preventDefault()
-      setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/register/email',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-      "email": email,
-      "password": password,
-      "confirm_password": confirmpassword}),
-      })
+      if (work){
+        setWork(false)
+        e.preventDefault()
+        setError('')
+        const postdata = await fetch('http://localhost:4000/api/sing-up/register/email',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+        "email": email,
+        "password": password,
+        "confirm_password": confirmpassword}),
+        })
 
-      const json = await postdata.json()
-      console.log(json)
+        const json = await postdata.json()
+        console.log(json)
 
-      if (!json.success){
-        setError(json.message)
+        if (!json.success){
+          setError(json.message)
+        }
+
+        if (!postdata.ok){
+          throw new Error("error")
+        }
+        display_verify()
+        setWork(true)
       }
-
-      if (!postdata.ok){
-        throw new Error("error")
-      }
-      display_verify()
     }
     catch(err){
       // console.log("catch")
