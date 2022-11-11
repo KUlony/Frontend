@@ -84,9 +84,29 @@ function View_post() {
       console.log(err);
     }
   };
+
+  const init = () => {
+    setLoading(true);
+    setPostdataarray([]);
+    setLikecount(0);
+    setCommentcount(0);
+    setTitle("");
+    setPost_content("");
+    setPhoto("");
+    setProfilepic("");
+    setUsername("");
+    setPost_photo_url("");
+    setUser_like_status("");
+    setUserminiprofile("");
+    setTimedate("");
+    setPossesstion(false);
+    setLoadingcomment(true);
+  };
+
   useEffect(() => {
+    init();
     postfetch();
-  }, []);
+  }, [post_id.id]);
 
   const fetchcomment = async () => {
     try {
@@ -110,7 +130,7 @@ function View_post() {
     if (loadingcomment) {
       fetchcomment();
     }
-  }, []);
+  }, [loadingcomment]);
 
   const [commentinput, setCommentinput] = useState("");
   const [commentposting, setCommentposting] = useState(false);

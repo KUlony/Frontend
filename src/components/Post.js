@@ -161,6 +161,9 @@ function Post(props) {
 
   const fetchcomment = async () => {
     try {
+      if (havedata) {
+        display_comment();
+      }
       if (!loadingcom) {
         setLoadingcom(true);
         const comment_fetch_respone = await fetch(
