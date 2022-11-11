@@ -21,9 +21,6 @@ function PostreportAdmin({ datasort }) {
   const token = localStorage.getItem("token")
 
   const gendata = () => {
-    setPostiddata([])
-    console.log(1, datasort)
-
     axios
       .get(
         `https://kulony-backend.herokuapp.com/api/admin/get_post_report?sortby${datasort}`,
@@ -36,6 +33,8 @@ function PostreportAdmin({ datasort }) {
       .then((res) => {
         const data = res.data
         setPostdata(data)
+        setPostiddata([])
+
         // console.log(data)
         data.map((item, index) =>
           axios
