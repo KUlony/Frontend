@@ -67,8 +67,17 @@
   color: #2a8052;
 }
 
+.newstog {
+  color: #2a8052;
+}
+
+.markettog {
+  color: #2a8052;
+}
+
 .inbtn {
-  margin: 0px 5%;
+  /* margin: 0px 8%; */
+  width: 20%;
 }
 
 .greentab {
@@ -104,6 +113,20 @@
 }
 
 .scrollfacultyfol {
+  display: flex;
+  height: 260px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.scrollnewsfol {
+  display: flex;
+  height: 260px;
+  overflow-y: scroll;
+  /* border-style: solid; */
+}
+
+.scrollmarketfol {
   display: flex;
   height: 260px;
   overflow-y: scroll;

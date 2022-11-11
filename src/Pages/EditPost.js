@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import './Createpost.css';
-import storage from '../components/FirebaseConfig';
-import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
-import Topicselect from '../components/Topicselect';
-import Sheetpost from '../picture/Sheetpost.png';
-import uploadicon from '../picture/uploadicon.png';
-import { IoIosArrowBack } from 'react-icons/io';
-import Navbar from '../components/NavBar';
-import axios from 'axios';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import React, { useEffect, useState } from "react"
+import "./Createpost.css"
+import storage from "../components/FirebaseConfig"
+import { getDownloadURL, ref, uploadBytesResumable } from "firebase/storage"
+import Topicselect from "../components/Topicselect"
+import Sheetpost from "../picture/Sheetpost.png"
+import uploadicon from "../picture/uploadicon.png"
+import { IoIosArrowBack } from "react-icons/io"
+import Navbar from "../components/NavBar"
+import axios from "axios"
+import { Link, useNavigate, useParams } from "react-router-dom"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function onlyUnique(value, index, self) {
-  return self.indexOf(value) === index;
+  return self.indexOf(value) === index
 }
 
 function EditPost() {
-  const post_id = useParams().id;
-  const dummy_id = '636b7aef7543399b24c2d4a0';
-  const [postData, setPostData] = useState([]);
+  const post_id = useParams().id
+  const dummy_id = "636b7aef7543399b24c2d4a0"
+  const [postData, setPostData] = useState([])
   useEffect(() => {
     async function fetchData() {
       await axios
@@ -28,18 +28,18 @@ function EditPost() {
           },
         })
         .then((res) => {
-          const data = res.data;
-          console.log(data);
-          setPostData(data);
-          setUrl(data.cover_photo_url);
-          setUrls(data.post_photo_url);
-          setIditem(data.post_topic);
-          setStr(data.post_title);
-          setStr2(data.post_content);
-          console.log(urlcover);
-          console.log(urls);
-          console.log(iditem);
-          setItems([]);
+          const data = res.data
+          console.log(data)
+          setPostData(data)
+          setUrl(data.cover_photo_url)
+          setUrls(data.post_photo_url)
+          setIditem(data.post_topic)
+          setStr(data.post_title)
+          setStr2(data.post_content)
+          console.log(urlcover)
+          console.log(urls)
+          console.log(iditem)
+          setItems([])
           data.post_topic.map(async (i) => {
             await axios
               .get(
@@ -52,58 +52,58 @@ function EditPost() {
               )
               .then((res) => {
                 if (items.length < 5) {
-                  setItems((items) => [...items, res.data.topic_name]);
+                  setItems((items) => [...items, res.data.topic_name])
                 }
               })
-              .catch((err) => console.log(err));
-          });
+              .catch((err) => console.log(err))
+          })
         })
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err))
     }
-    fetchData();
+    fetchData()
     if (items.length > 5) {
-      console.log('uniqued');
-      setItems((items) => items.filter(onlyUnique));
+      console.log("uniqued")
+      setItems((items) => items.filter(onlyUnique))
     }
-  }, []);
-  const [edittopicheck, seteditTopicCheck] = useState(true);
-  const [discomferm, setdiscomferm] = useState(false);
-  const [reqtitle, setreqtitle] = useState(true);
-  const [reqcontent, setreqcontent] = useState(true);
-  const [reqtopic, setreqtopic] = useState(true);
-  const [items, setItems] = useState([]);
-  const [iditem, setIditem] = useState([]);
-  const [urlcover, setUrl] = useState('');
-  const [str, setStr] = useState('');
-  const [str2, setStr2] = useState('');
+  }, [])
+  const [edittopicheck, seteditTopicCheck] = useState(true)
+  const [discomferm, setdiscomferm] = useState(false)
+  const [reqtitle, setreqtitle] = useState(true)
+  const [reqcontent, setreqcontent] = useState(true)
+  const [reqtopic, setreqtopic] = useState(true)
+  const [items, setItems] = useState([])
+  const [iditem, setIditem] = useState([])
+  const [urlcover, setUrl] = useState("")
+  const [str, setStr] = useState("")
+  const [str2, setStr2] = useState("")
 
   const asd = (e) => {
-    console.log(e.target.value);
-    setStr(e.target.value);
-  };
+    console.log(e.target.value)
+    setStr(e.target.value)
+  }
 
   const wasd = (e) => {
-    console.log(e.target.value);
-    setStr2(e.target.value);
-  };
+    console.log(e.target.value)
+    setStr2(e.target.value)
+  }
 
   const topicselect = () => {
-    seteditTopicCheck(!edittopicheck);
-    console.log(edittopicheck);
-  };
+    seteditTopicCheck(!edittopicheck)
+    console.log(edittopicheck)
+  }
   const topicselectsend = () => {
-    seteditTopicCheck(!edittopicheck);
-    const items = JSON.parse(localStorage.getItem('itemed'));
-    const iditem = JSON.parse(localStorage.getItem('iditemed'));
+    seteditTopicCheck(!edittopicheck)
+    const items = JSON.parse(localStorage.getItem("itemed"))
+    const iditem = JSON.parse(localStorage.getItem("iditemed"))
     if (items) {
-      console.log(items);
-      console.log(iditem);
-      setItems(items);
-      setIditem(iditem);
+      console.log(items)
+      console.log(iditem)
+      setItems(items)
+      setIditem(iditem)
     }
-  };
+  }
 
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token")
 
   // const checkedItems = items.length
   //   ? items.reduce((total, item) => {
@@ -113,203 +113,203 @@ function EditPost() {
 
   useEffect(() => {
     if (items.length) {
-      setreqtopic(false);
+      setreqtopic(false)
     } else {
-      setreqtopic(true);
+      setreqtopic(true)
     }
-  });
+  })
 
   useEffect(() => {
-    let textArea = document.getElementById('inputT');
-    let characterCounter = document.getElementById('char_count_title');
+    let textArea = document.getElementById("inputT")
+    let characterCounter = document.getElementById("char_count_title")
 
     const countCharacters = () => {
-      let numOfEnteredChars = textArea.value.length;
-      characterCounter.textContent = numOfEnteredChars + '/200';
+      let numOfEnteredChars = textArea.value.length
+      characterCounter.textContent = numOfEnteredChars + "/200"
 
       if (numOfEnteredChars >= 195) {
-        characterCounter.style.color = 'red';
+        characterCounter.style.color = "red"
       } else if (numOfEnteredChars >= 180) {
-        characterCounter.style.color = 'orange';
+        characterCounter.style.color = "orange"
       } else {
-        characterCounter.style.color = '#339C64';
+        characterCounter.style.color = "#339C64"
       }
-    };
+    }
 
-    textArea.addEventListener('input', countCharacters);
-  });
+    textArea.addEventListener("input", countCharacters)
+  })
 
   useEffect(() => {
-    let textArea = document.getElementById('inputC');
-    let characterCounter = document.getElementById('char_count_content');
+    let textArea = document.getElementById("inputC")
+    let characterCounter = document.getElementById("char_count_content")
 
     const countCharacters = () => {
-      let numOfEnteredChars = str2.length;
-      characterCounter.textContent = numOfEnteredChars + '/25000';
+      let numOfEnteredChars = str2.length
+      characterCounter.textContent = numOfEnteredChars + "/25000"
 
       if (numOfEnteredChars >= 24995) {
-        characterCounter.style.color = 'red';
+        characterCounter.style.color = "red"
       } else if (numOfEnteredChars >= 24950) {
-        characterCounter.style.color = 'orange';
+        characterCounter.style.color = "orange"
       } else {
-        characterCounter.style.color = '#339C64';
+        characterCounter.style.color = "#339C64"
       }
-    };
+    }
 
-    textArea.addEventListener('input', countCharacters);
-  });
+    textArea.addEventListener("input", countCharacters)
+  })
 
   const handlereqT = (e) => {
     if (e.target.value.trim().length) {
-      setreqtitle(false);
+      setreqtitle(false)
     } else {
-      setreqtitle(true);
+      setreqtitle(true)
     }
-  };
+  }
   // console.log("title", reqtitle)
 
   const handlereqC = (e) => {
     if (e.target.value.trim().length) {
-      setreqcontent(false);
+      setreqcontent(false)
     } else {
-      setreqcontent(true);
+      setreqcontent(true)
     }
-  };
+  }
   // console.log("content", reqcontent)
 
   // State to store uploaded file
-  const [file, setFile] = useState('');
-  const [filemult, setFileMult] = useState([]);
+  const [file, setFile] = useState("")
+  const [filemult, setFileMult] = useState([])
 
   // progress
-  const [percent, setPercent] = useState(0);
-  const [percentmult, setPercentMult] = useState(0);
+  const [percent, setPercent] = useState(0)
+  const [percentmult, setPercentMult] = useState(0)
 
-  const [urls, setUrls] = useState([]);
+  const [urls, setUrls] = useState([])
 
   // Handle file upload event and update state
   function handleChange(event) {
-    setFile(event.target.files[0]);
+    setFile(event.target.files[0])
   }
 
   function handleChangemult(event) {
-    setFileMult([]);
+    setFileMult([])
     if (event.target.files.length > 10) {
-      alert('Can upload up to 10 pics!!');
-      setFileMult([]);
-      return;
+      alert("Can upload up to 10 pics!!")
+      setFileMult([])
+      return
     }
     for (let i = 0; i < event.target.files.length; i++) {
-      const newImage = event.target.files[i];
+      const newImage = event.target.files[i]
       // newImage["id"] = Math.random()
-      setFileMult((prevState) => [...prevState, newImage]);
+      setFileMult((prevState) => [...prevState, newImage])
     }
   }
 
-  const [statec, setStateC] = useState(false);
+  const [statec, setStateC] = useState(false)
 
   const handleUpload = () => {
     if (!file) {
-      alert('Please upload an image first!');
-      return;
+      alert("Please upload an image first!")
+      return
     } else if (statec) {
-      alert('Already Upload!!');
-      return;
+      alert("Already Upload!!")
+      return
     }
 
-    const storageRef = ref(storage, `/files/${file.name}`);
+    const storageRef = ref(storage, `/files/${file.name}`)
 
     // progress can be paused and resumed. It also exposes progress updates.
     // Receives the storage reference and the file to upload.
-    const uploadTask = uploadBytesResumable(storageRef, file);
+    const uploadTask = uploadBytesResumable(storageRef, file)
 
     uploadTask.on(
-      'state_changed',
+      "state_changed",
       (snapshot) => {
         const percent = Math.round(
           (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
+        )
 
         // update progress
-        setPercent(percent);
+        setPercent(percent)
       },
       (err) => console.log(err),
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref)
           .then((url) => {
-            setUrl(url);
-            console.log(url);
+            setUrl(url)
+            console.log(url)
           })
-          .then(() => alert('Images uploaded'));
+          .then(() => alert("Images uploaded"))
       }
-    );
-    setStateC(true);
-  };
+    )
+    setStateC(true)
+  }
 
-  const [statem, setStateM] = useState(false);
+  const [statem, setStateM] = useState(false)
 
   const handleUploadmult = () => {
     // console.log(filemult)
     if (filemult.length === 0) {
-      alert('Please upload an image first!');
-      return;
+      alert("Please upload an image first!")
+      return
     } else if (filemult != null && statem) {
-      alert('Already Upload!!');
-      return;
+      alert("Already Upload!!")
+      return
     }
 
-    const promises = [];
+    const promises = []
     filemult.map((file) => {
-      const storageRef = ref(storage, `/files/${file.name}`);
+      const storageRef = ref(storage, `/files/${file.name}`)
 
       // progress can be paused and resumed. It also exposes progress updates.
       // Receives the storage reference and the file to upload.
-      const uploadTask = uploadBytesResumable(storageRef, file);
+      const uploadTask = uploadBytesResumable(storageRef, file)
 
-      promises.push(uploadTask);
+      promises.push(uploadTask)
       uploadTask.on(
-        'state_changed',
+        "state_changed",
         (snapshot) => {
           const percentmult = Math.round(
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-          );
+          )
 
           // update progress
-          setPercentMult(percentmult);
+          setPercentMult(percentmult)
         },
         (err) => console.log(err),
         async () => {
           // download url
           await getDownloadURL(uploadTask.snapshot.ref).then((urls) => {
-            setUrls((prevState) => [...prevState, urls]);
+            setUrls((prevState) => [...prevState, urls])
             // console.log(urls)
-          });
+          })
         }
-      );
-    });
+      )
+    })
     Promise.all(promises)
-      .then(() => alert('ALL images uploaded'))
-      .catch((err) => console.log(err));
-    setStateM(true);
-    console.log('image:', filemult);
-    console.log('url', urls);
-  };
+      .then(() => alert("ALL images uploaded"))
+      .catch((err) => console.log(err))
+    setStateM(true)
+    console.log("image:", filemult)
+    console.log("url", urls)
+  }
 
-  console.log('image:', filemult);
+  console.log("image:", filemult)
   // console.log("url", urls)
 
   function btncondis(e) {
-    setdiscomferm(e);
+    setdiscomferm(e)
   }
 
   // console.log()
-  let navigate = useNavigate();
+  let navigate = useNavigate()
 
   const senddata = () => {
-    console.log('send');
-    let title = document.getElementById('inputT');
-    let content = document.getElementById('inputC');
+    console.log("send")
+    let title = document.getElementById("inputT")
+    let content = document.getElementById("inputC")
 
     axios
       .put(
@@ -328,14 +328,14 @@ function EditPost() {
         }
       )
       .then((res) => {
-        console.log(res.data);
-        navigate('/mypost');
+        console.log(res.data)
+        navigate("/mypost")
       })
-      .catch((err) => console.log(err));
-  };
+      .catch((err) => console.log(err))
+  }
   if (items.length > 5) {
-    console.log('uniqued');
-    setItems((items) => items.filter(onlyUnique));
+    console.log("uniqued")
+    setItems((items) => items.filter(onlyUnique))
   }
   return (
     <div>
@@ -352,9 +352,9 @@ function EditPost() {
           <img src={Sheetpost} alt="picsheet" className="picsheet"></img>
         </div>
         <div className="allcontent">
-          <div className="title">
+          <div className="titlecreate">
             <div className="titlespan">
-              <p className={`namet ${reqtitle ? 'nametreq' : ''}`}>
+              <p className={`namet ${reqtitle ? "nametreq" : ""}`}>
                 Title
                 {/* <span className={`${!reqtitle ? "noting" : ""}`}>*</span> */}
               </p>
@@ -373,8 +373,8 @@ function EditPost() {
               cols="50"
               maxLength="200"
               onChange={(e) => {
-                handlereqT(e);
-                asd(e);
+                handlereqT(e)
+                asd(e)
               }}
               value={str}
             ></textarea>
@@ -382,7 +382,7 @@ function EditPost() {
           <br></br>
           <div className="conbody">
             <div className="contentspan">
-              <p className={`content ${reqcontent ? 'contentreq' : ''}`}>
+              <p className={`contentcreate ${reqcontent ? "contentreq" : ""}`}>
                 Content
                 {/* <span className={`${!reqcontent ? "noting" : ""}`}>*</span> */}
               </p>
@@ -401,8 +401,8 @@ function EditPost() {
               cols="100"
               maxLength="25000"
               onChange={(e) => {
-                handlereqC(e);
-                wasd(e);
+                handlereqC(e)
+                wasd(e)
               }}
               value={str2}
             ></textarea>
@@ -431,18 +431,18 @@ function EditPost() {
                   </label>
                   <div
                     className={`filename ${
-                      filemult.length !== 0 ? '' : 'noting'
+                      filemult.length !== 0 ? "" : "noting"
                     }`}
                   >
                     {filemult.map((item, index) => (
                       <div key={index}>
-                        {filemult.length !== 0 ? item.name : ''}
+                        {filemult.length !== 0 ? item.name : ""}
                       </div>
                     ))}
                   </div>
                   <div
                     className={`filename ${
-                      filemult.length !== 0 ? 'noting' : ''
+                      filemult.length !== 0 ? "noting" : ""
                     }`}
                   >
                     no file chosen
@@ -480,7 +480,7 @@ function EditPost() {
                     Browse File <i class="bi bi-file-earmark-plus-fill"></i>
                   </label>
                   <div className="filename">
-                    {file.name != null ? file.name : 'no file chosen'}
+                    {file.name != null ? file.name : "no file chosen"}
                   </div>
                 </div>
               </div>
@@ -497,7 +497,7 @@ function EditPost() {
               </div>
             </div>
             <div className="bottom">
-              <p className={`topicname ${reqtopic ? 'topicnamereq' : ''}`}>
+              <p className={`topicname ${reqtopic ? "topicnamereq" : ""}`}>
                 Add Topic
                 {/* <span className={`${!reqtopic ? "noting" : ""}`}>*</span> */}
               </p>
@@ -519,7 +519,7 @@ function EditPost() {
           <div className="btnbottom">
             <button
               type="button"
-              className={`${str || str2 || iditem ? 'postbtn' : 'dispost'}`}
+              className={`${str || str2 || iditem ? "postbtn" : "dispost"}`}
               id="buttonpost"
               onClick={senddata}
             >
@@ -528,7 +528,7 @@ function EditPost() {
           </div>
         </div>
       </div>
-      <div className={`topicselectcss ${edittopicheck ? 'noting' : null}`}>
+      <div className={`topicselectcss ${edittopicheck ? "noting" : null}`}>
         <h1 className="close" onClick={topicselect}>
           <i class="bi bi-x"></i>
         </h1>
@@ -536,7 +536,7 @@ function EditPost() {
         <div className="btnconfirm">
           <button
             type="button"
-            className={`${discomferm ? 'discon' : 'confirm'}`}
+            className={`${discomferm ? "discon" : "confirm"}`}
             id="buttonconfirm"
             onClick={topicselectsend}
             disabled={discomferm}
@@ -547,7 +547,7 @@ function EditPost() {
       </div>
       {!edittopicheck && <div className="displayback"></div>}
     </div>
-  );
+  )
 }
 
-export default EditPost;
+export default EditPost

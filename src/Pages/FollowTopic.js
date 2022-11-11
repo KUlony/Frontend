@@ -1,6 +1,6 @@
-import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import './FollowTopic.css'
+import axios from "axios"
+import React, { useEffect, useState } from "react"
+import "./FollowTopic.css"
 
 const FollowTopic = () => {
   const [itemed, setItemed] = useState([])
@@ -9,100 +9,179 @@ const FollowTopic = () => {
   const [itemgeneralleft, setitemgeneralleft] = useState([])
   const [itemgeneralright, setitemgeneralright] = useState([])
 
-  const [itemstudyleft, setitemstudyleft] = useState([])
-  const [itemstudyright, setitemstudyright] = useState([])
+  const [itemLearningleft, setitemLearningleft] = useState([])
+  const [itemLearningright, setitemLearningright] = useState([])
 
   const [itemfacultyleft, setitemfacultyleft] = useState([])
   const [itemfacultyright, setitemfacultyright] = useState([])
 
-  const getdata = () => {
-    axios
-      .get('https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic')
-      .then((res) => {
-        // console.log(res.data)
-        const getarray = res.data
-        console.log(getarray)
-        for (let i = 0; i < getarray.length; i++) {
-          let isinlist = true
-          if (getarray[i].catagory_name === 'general') {
-            // edit this
-            setitemgeneralleft([])
-            setitemgeneralright([])
-            for (let j = 0; j < getarray[i].all_topic.length; j++) {
-              if (j < getarray[i].all_topic.length && isinlist) {
-                setitemgeneralleft((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = false
-              } else {
-                setitemgeneralright((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = true
+  const [itemnewsleft, setitemnewsleft] = useState([])
+  const [itemnewsright, setitemnewsright] = useState([])
+
+  const [itemmarketleft, setitemmarketleft] = useState([])
+  const [itemmarketright, setitemmarketright] = useState([])
+
+  const [ninit, setNinit] = useState(null)
+
+  const getdata = async () => {
+    try {
+      await axios
+        .get(
+          "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
+          {
+            headers: {
+              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+            },
+          }
+        )
+        .then((res) => {
+          // console.log(res.data)
+          const getarray = res.data
+          console.log(getarray)
+          for (let i = 0; i < getarray.length; i++) {
+            let isinlist = true
+            if (getarray[i].catagory_name === "General") {
+              // edit this
+              setitemgeneralleft([])
+              setitemgeneralright([])
+              for (let j = 0; j < getarray[i].all_topic.length; j++) {
+                if (j < getarray[i].all_topic.length && isinlist) {
+                  setitemgeneralleft((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = false
+                } else {
+                  setitemgeneralright((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = true
+                }
               }
-            }
-          } else if (getarray[i].catagory_name === 'study') {
-            // edit this
-            setitemstudyleft([])
-            setitemstudyright([])
-            for (let j = 0; j < getarray[i].all_topic.length; j++) {
-              if (j < getarray[i].all_topic.length && isinlist) {
-                setitemstudyleft((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = false
-              } else {
-                setitemstudyright((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = true
+            } else if (getarray[i].catagory_name === "Learning") {
+              // edit this
+              setitemLearningleft([])
+              setitemLearningright([])
+              for (let j = 0; j < getarray[i].all_topic.length; j++) {
+                if (j < getarray[i].all_topic.length && isinlist) {
+                  setitemLearningleft((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = false
+                } else {
+                  setitemLearningright((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = true
+                }
               }
-            }
-          } else if (getarray[i].catagory_name === 'faculty') {
-            // edit this
-            setitemfacultyleft([])
-            setitemfacultyright([])
-            for (let j = 0; j < getarray[i].all_topic.length; j++) {
-              if (j < getarray[i].all_topic.length && isinlist) {
-                setitemfacultyleft((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = false
-              } else {
-                setitemfacultyright((prevState) => [
-                  ...prevState,
-                  [
-                    getarray[i].all_topic[j].topic_id,
-                    getarray[i].all_topic[j].topic_name,
-                  ],
-                ])
-                isinlist = true
+            } else if (getarray[i].catagory_name === "Faculty") {
+              // edit this
+              setitemfacultyleft([])
+              setitemfacultyright([])
+              for (let j = 0; j < getarray[i].all_topic.length; j++) {
+                if (j < getarray[i].all_topic.length && isinlist) {
+                  setitemfacultyleft((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = false
+                } else {
+                  setitemfacultyright((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = true
+                }
+              }
+            } else if (getarray[i].catagory_name === "News") {
+              // edit this
+              setitemnewsleft([])
+              setitemnewsright([])
+              for (let j = 0; j < getarray[i].all_topic.length; j++) {
+                if (j < getarray[i].all_topic.length && isinlist) {
+                  setitemnewsleft((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = false
+                } else {
+                  setitemnewsright((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = true
+                }
+              }
+            } else if (getarray[i].catagory_name === "Market") {
+              // edit this
+              setitemmarketleft([])
+              setitemmarketright([])
+              for (let j = 0; j < getarray[i].all_topic.length; j++) {
+                if (j < getarray[i].all_topic.length && isinlist) {
+                  setitemmarketleft((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = false
+                } else {
+                  setitemmarketright((prevState) => [
+                    ...prevState,
+                    [
+                      getarray[i].all_topic[j].topic_id,
+                      getarray[i].all_topic[j].topic_name,
+                    ],
+                  ])
+                  isinlist = true
+                }
               }
             }
           }
-        }
-      })
-      .catch((err) => console.log(err))
+        })
+        .catch((err) => console.log(err))
+
+      await axios
+        .get("https://kulony-backend.herokuapp.com/api/user/following_topic", {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data)
+          setNinit(res.data)
+        })
+        .catch((err) => console.log(err))
+    } catch {}
   }
 
   // console.log(itemgeneralleft, itemgeneralright)
@@ -129,41 +208,79 @@ const FollowTopic = () => {
   }
 
   var isChecked = (item) =>
-    itemed.includes(item) ? 'checked-itemfol' : 'not-checked-itemfol'
+    itemed.includes(item) ? "checked-itemfol" : "not-checked-itemfol"
 
   console.log(iditemed, itemed)
 
   useEffect(() => {
-    if (itemed.length <= 5) {
-      localStorage.setItem('itemed', JSON.stringify(itemed))
-      localStorage.setItem('iditemed', JSON.stringify(iditemed))
-    } else if (itemed.length > 5) {
-    }
-  }, [itemed])
+    localStorage.setItem("itemed", JSON.stringify(itemed))
+    localStorage.setItem("iditemed", JSON.stringify(iditemed))
+  }, [])
 
   const [general, setgeneral] = useState(true)
   const [study, setstudy] = useState(false)
   const [faculty, setfaculty] = useState(false)
+  const [news, setnews] = useState(false)
+  const [market, setmarket] = useState(false)
 
   const togglegeneral = () => {
     setgeneral(true)
     setstudy(false)
     setfaculty(false)
+    setnews(false)
+    setmarket(false)
   }
 
   const togglestudy = () => {
     setgeneral(false)
     setstudy(true)
     setfaculty(false)
+    setnews(false)
+    setmarket(false)
   }
 
   const togglefaculty = () => {
     setgeneral(false)
     setstudy(false)
     setfaculty(true)
+    setnews(false)
+    setmarket(false)
   }
 
-  // console.log(general, study, faculty)
+  const togglenews = () => {
+    setgeneral(false)
+    setstudy(false)
+    setfaculty(false)
+    setnews(true)
+    setmarket(false)
+  }
+
+  const togglemarket = () => {
+    setgeneral(false)
+    setstudy(false)
+    setfaculty(false)
+    setnews(false)
+    setmarket(true)
+  }
+
+  console.log(general, study, faculty, news, market)
+
+  const senddata = () => {
+    axios
+      .post(
+        "https://kulony-backend.herokuapp.com/api/user/follow_topic",
+        { topic_id: iditemed },
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data)
+      })
+      .catch((err) => console.log(err))
+  }
 
   return (
     <div className="page">
@@ -177,118 +294,225 @@ const FollowTopic = () => {
         <div className="seltopicfollow">
           <div className="inbtn">
             <button
-              className={`followbtn ${general ? 'generaltog' : ''}`}
+              className={`followbtn ${general ? "generaltog" : ""}`}
               onClick={togglegeneral}
             >
               General
             </button>
-            <div className={`${general ? 'greentab' : 'noting'}`}></div>
+            <div className={`${general ? "greentab" : "noting"}`}></div>
           </div>
           <div className="inbtn">
             <button
-              className={`followbtn ${study ? 'studytog' : ''}`}
+              className={`followbtn ${study ? "studytog" : ""}`}
               onClick={togglestudy}
             >
-              Study
+              Learning
             </button>
-            <div className={`${study ? 'greentab' : 'noting'}`}></div>
+            <div className={`${study ? "greentab" : "noting"}`}></div>
           </div>
           <div className="inbtn">
             <button
-              className={`followbtn ${faculty ? 'facultytog' : ''}`}
+              className={`followbtn ${faculty ? "facultytog" : ""}`}
               onClick={togglefaculty}
             >
               Faculty
             </button>
-            <div className={`${faculty ? 'greentab' : 'noting'}`}></div>
+            <div className={`${faculty ? "greentab" : "noting"}`}></div>
+          </div>
+          <div className="inbtn">
+            <button
+              className={`followbtn ${news ? "newstog" : ""}`}
+              onClick={togglenews}
+            >
+              news
+            </button>
+            <div className={`${news ? "greentab" : "noting"}`}></div>
+          </div>
+          <div className="inbtn">
+            <button
+              className={`followbtn ${market ? "markettog" : ""}`}
+              onClick={togglemarket}
+            >
+              market
+            </button>
+            <div className={`${market ? "greentab" : "noting"}`}></div>
           </div>
         </div>
-        <div className="selcomfol">
-          <div className={`${general ? 'scrollgeneralfol' : 'noting'}`}>
-            <div className="comleft">
-              {itemgeneralleft.map((item, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={item[1]}
-                    id={item[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(item[1])}>{item[1]}</span>
-                </div>
-              ))}
+        {ninit && (
+          <div className="selcomfol">
+            <div className={`${general ? "scrollgeneralfol" : "noting"}`}>
+              <div className="comleft">
+                {itemgeneralleft.map((item, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={item[1]}
+                      id={item[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={ninit[index].user_follow_status}
+                    />
+                    <span className={isChecked(item[1])}>{item[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="comright">
+                {itemgeneralright.map((items, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={items[1]}
+                      id={items[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={ninit[index].user_follow_status}
+                    />
+                    <span className={isChecked(items[1])}>{items[1]}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="comright">
-              {itemgeneralright.map((items, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={items[1]}
-                    id={items[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(items[1])}>{items[1]}</span>
-                </div>
-              ))}
+            <div className={`${study ? "scrollstudyfol" : "noting"}`}>
+              <div className="comleft">
+                {itemLearningleft.map((item, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={item[1]}
+                      id={item[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].user_follow_status &&
+                      //   ninit[index].topic_id === item[0]
+                      // }
+                    />
+                    <span className={isChecked(item[1])}>{item[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="comright">
+                {itemLearningright.map((items, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={items[1]}
+                      id={items[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].user_follow_status &&
+                      //   ninit[index].topic_id === items[0]
+                      // }
+                    />
+                    <span className={isChecked(items[1])}>{items[1]}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={`${faculty ? "scrollfacultyfol" : "noting"}`}>
+              <div className="comleft">
+                {itemfacultyleft.map((item, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={item[1]}
+                      id={item[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === item[0] ? true : false
+                      // }
+                    />
+                    <span className={isChecked(item[1])}>{item[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="comright">
+                {itemfacultyright.map((items, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={items[1]}
+                      id={items[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === items[0] ? true : false
+                      // }
+                    />
+                    <span className={isChecked(items[1])}>{items[1]}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={`${news ? "scrollnewsfol" : "noting"}`}>
+              <div className="comleft">
+                {itemnewsleft.map((item, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={item[1]}
+                      id={item[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === item[0] ? true : false
+                      // }
+                    />
+                    <span className={isChecked(item[1])}>{item[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="comright">
+                {itemnewsright.map((items, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={items[1]}
+                      id={items[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === items[0] ? true : false
+                      // }
+                    />
+                    <span className={isChecked(items[1])}>{items[1]}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className={`${market ? "scrollmarketfol" : "noting"}`}>
+              <div className="comleft">
+                {itemmarketleft.map((item, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={item[1]}
+                      id={item[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === item[0] ? true : false
+                      // }
+                      // defaultChecked={true}
+                    />
+                    <span className={isChecked(item[1])}>{item[1]}</span>
+                  </div>
+                ))}
+              </div>
+              <div className="comright">
+                {itemmarketright.map((items, index) => (
+                  <div key={index} className="checkbox-wrapper-fol">
+                    <input
+                      value={items[1]}
+                      id={items[0]}
+                      type="checkbox"
+                      onChange={handleCheck}
+                      // defaultChecked={
+                      //   ninit[index].topic_id === items[0] ? true : false
+                      // }
+                      // defaultChecked={true}
+                    />
+                    <span className={isChecked(items[1])}>{items[1]}</span>
+                    {/* {console.log(ninit[index].user_follow_status)} */}
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
-          <div className={`${study ? 'scrollstudyfol' : 'noting'}`}>
-            <div className="comleft">
-              {itemstudyleft.map((item, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={item[1]}
-                    id={item[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(item[1])}>{item[1]}</span>
-                </div>
-              ))}
-            </div>
-            <div className="comright">
-              {itemstudyright.map((items, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={items[1]}
-                    id={items[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(items[1])}>{items[1]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div className={`${faculty ? 'scrollfacultyfol' : 'noting'}`}>
-            <div className="comleft">
-              {itemfacultyleft.map((item, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={item[1]}
-                    id={item[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(item[1])}>{item[1]}</span>
-                </div>
-              ))}
-            </div>
-            <div className="comright">
-              {itemfacultyright.map((items, index) => (
-                <div key={index} className="checkbox-wrapper-fol">
-                  <input
-                    value={items[1]}
-                    id={items[0]}
-                    type="checkbox"
-                    onChange={handleCheck}
-                  />
-                  <span className={isChecked(items[1])}>{items[1]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
+        )}
       </div>
       <div className="btnbottomfol">
         <div className="bthfol">
@@ -300,7 +524,7 @@ const FollowTopic = () => {
           type="button"
           className="postbtnfol"
           id="buttonpostfol"
-          // onClick={senddata}
+          onClick={senddata}
         >
           SAVE
         </button>
