@@ -5,7 +5,7 @@ import EditEducation from './EditEducation'
 import './UserInfo.css'
 
 const UserInfo = () => {
-  //api
+  //----------------------api_get-------------------------
   const [userData, setUserData] = useState('')
   useEffect(() => {
     axios
@@ -26,7 +26,7 @@ const UserInfo = () => {
       })
   }, [])
 
-  //edit
+  //----------------------edit-------------------------
   const username = useRef()
   const bio = useRef()
   const firstname = useRef()
@@ -52,6 +52,7 @@ const UserInfo = () => {
       oldarray.map((data, idx) => (idx === index ? !data : data))
     )
   }
+  //----------------------send_api-------------------------
 
   const onClickSave = async () => {
     try {
@@ -92,7 +93,7 @@ const UserInfo = () => {
     }
   }
 
-  //AddEducation Page
+  //-------------AddEducation_Page-------------
   const [educationInfo, setEducationInfo] = useState(null)
 
   const [isAddEducation, setIsAddEducation] = useState(null)
@@ -105,9 +106,6 @@ const UserInfo = () => {
   function onBgClick() {
     setIsAddEducation(null)
   }
-  // const addingEducation =()=>{
-  //   setEducationUpdated()
-  // }
   let addEducation = null
   if (!!isAddEducation) {
     addEducation = (
@@ -115,7 +113,7 @@ const UserInfo = () => {
     )
   }
 
-  //edit Education
+  //-------------Update_Education(edit or delete)-------------
   function checkIsConnect(a, b) {
     if (a !== '') {
       if (b !== '') {
@@ -131,13 +129,6 @@ const UserInfo = () => {
     console.log(5)
 
     if (data === null) {
-      //delete
-      // console.log(
-      //   'education20',
-      //   educationUpdated
-      //     .splice(0, index)
-      //     .concat(educationUpdated.splice(index + 1, educationUpdated.length))
-      // )
       const st = educationUpdated.splice(0, index)
       const ed = educationUpdated.splice(index + 1, educationUpdated.length)
       const stShowAllEdu = allEduForm.splice(0, index)
@@ -155,6 +146,8 @@ const UserInfo = () => {
     }
   }
   // console.log('educationUpdate', educationUpdated)
+  //-------------Edit_Education-------------
+
   function onEditEducationClick(theEdu, index) {
     setIsEditEducation(true)
     setEducationInfo(theEdu)
@@ -175,13 +168,12 @@ const UserInfo = () => {
       />
     )
   }
+  //-------------Edit_Education_Template-------------
 
   const [allEduForm, setAllEduForm] = useState([])
   console.log('allEdu 197', allEduForm)
 
   const eduElements = educationUpdated.map((theEdu, index) => {
-    // console.log('theEdu', theEdu)
-
     return (
       <div>
         {allEduForm[0].school ? (

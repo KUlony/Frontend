@@ -138,7 +138,7 @@
   position: relative;
   margin-top: 0px;
   width: 0px;
-  /* z-index: 0; */
+  z-index: 0;
 }
 /* Add Education */
 .education-content {
