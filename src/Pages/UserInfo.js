@@ -90,8 +90,6 @@ const UserInfo = () => {
         )
         .then((res) => {
           console.log(res)
-          setTimeout(3000)
-          window.location.reload()
         })
         .catch((err) => {
           console.log(err)
@@ -230,7 +228,7 @@ const UserInfo = () => {
   const eduElements = educationUpdated.map((theEdu, index) => {
     return (
       <div className="user-data">
-        {allEduForm[0].school ? (
+        {educationUpdated[0].school ? (
           <section className="education-content">
             <article
               className="education-school"
