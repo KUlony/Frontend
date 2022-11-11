@@ -24,21 +24,24 @@ function Search() {
 
   const loadmore = async (e) => {
     try {
-      setDisplayload(false);
-      const loadmoredata = await fetch(
-        `https://kulony-backend.herokuapp.com/api/search/post?text=${keepresult}&page=${pagecount}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const loadmoredatajson = await loadmoredata.json();
-      setDisplayload(true);
-      setSearchOutPutData([...searchOutPutData, ...loadmoredatajson]);
+      if (displayload) {
+        setDisplayload(false);
+        const loadmoredata = await fetch(
+          `https://kulony-backend.herokuapp.com/api/search/post?text=${keepresult}&page=${pagecount}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const loadmoredatajson = await loadmoredata.json();
 
-      if (loadmoredatajson.length === 0) {
-        setHavemore(false);
+        setSearchOutPutData([...searchOutPutData, ...loadmoredatajson]);
+
+        if (loadmoredatajson.length === 0) {
+          setHavemore(false);
+        }
+        setDisplayload(true);
       }
     } catch {
       console.error("fail to load more");
@@ -79,45 +82,48 @@ function Search() {
   const searchsubmit = async (e) => {
     try {
       e.preventDefault();
-      setReturntotop(false);
+      if (displayload) {
+        setDisplayload(false);
+        setReturntotop(false);
 
-      if (searchtype[0]) {
-        setHavemore(true);
-        setPageCount(1);
-        setSearchOutPutData([]);
-        setDisplayload(false);
-        const data = await fetch(
-          `https://kulony-backend.herokuapp.com/api/search/post?text=${searchResult}&page=1`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-        const datajson = await data.json();
-        setReturntotop(true);
-        setDisplayload(true);
-        setSearchOutPutData(datajson);
-        console.log(datajson);
-        setKeepresult(searchResult);
-        setSearchresult("");
-      } else if (searchtype[1]) {
-        setDisplayload(false);
-        setSearchOutPutData([]);
-        const data = await fetch(
-          `https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-        const datajson = await data.json();
-        console.log(datajson);
-        setReturntotop(true);
-        setSearchOutPutData(datajson);
-        setDisplayload(true);
-        setSearchresult("");
+        if (searchtype[0]) {
+          setHavemore(true);
+          setPageCount(1);
+          setSearchOutPutData([]);
+
+          const data = await fetch(
+            `https://kulony-backend.herokuapp.com/api/search/post?text=${searchResult}&page=1`,
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+          const datajson = await data.json();
+          setReturntotop(true);
+          setSearchOutPutData(datajson);
+          console.log(datajson);
+          setKeepresult(searchResult);
+          setSearchresult("");
+          setDisplayload(true);
+        } else if (searchtype[1]) {
+          setDisplayload(false);
+          setSearchOutPutData([]);
+          const data = await fetch(
+            `https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`,
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+          const datajson = await data.json();
+          console.log(datajson);
+          setReturntotop(true);
+          setSearchOutPutData(datajson);
+          setSearchresult("");
+          setDisplayload(true);
+        }
       }
     } catch {
       console.error("fail");
