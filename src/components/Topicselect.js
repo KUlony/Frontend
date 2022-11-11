@@ -10,15 +10,28 @@ function Topicselect(props) {
   const [itemgeneralleft, setitemgeneralleft] = useState([])
   const [itemgeneralright, setitemgeneralright] = useState([])
 
-  const [itemstudyleft, setitemstudyleft] = useState([])
-  const [itemstudyright, setitemstudyright] = useState([])
+  const [itemLearningleft, setitemLearningleft] = useState([])
+  const [itemLearningright, setitemLearningright] = useState([])
 
   const [itemfacultyleft, setitemfacultyleft] = useState([])
   const [itemfacultyright, setitemfacultyright] = useState([])
 
+  const [itemnewsleft, setitemnewsleft] = useState([])
+  const [itemnewsright, setitemnewsright] = useState([])
+
+  const [itemmarketleft, setitemmarketleft] = useState([])
+  const [itemmarketright, setitemmarketright] = useState([])
+
   const getdata = () => {
     axios
-      .get("https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic")
+      .get(
+        "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
+          },
+        }
+      )
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data
@@ -50,13 +63,13 @@ function Topicselect(props) {
                 isinlist = true
               }
             }
-          } else if (getarray[i].catagory_name === "Study") {
+          } else if (getarray[i].catagory_name === "Learning") {
             // edit this
-            setitemstudyleft([])
-            setitemstudyright([])
+            setitemLearningleft([])
+            setitemLearningright([])
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
-                setitemstudyleft((prevState) => [
+                setitemLearningleft((prevState) => [
                   ...prevState,
                   [
                     getarray[i].all_topic[j].topic_id,
@@ -65,7 +78,7 @@ function Topicselect(props) {
                 ])
                 isinlist = false
               } else {
-                setitemstudyright((prevState) => [
+                setitemLearningright((prevState) => [
                   ...prevState,
                   [
                     getarray[i].all_topic[j].topic_id,
@@ -91,6 +104,56 @@ function Topicselect(props) {
                 isinlist = false
               } else {
                 setitemfacultyright((prevState) => [
+                  ...prevState,
+                  [
+                    getarray[i].all_topic[j].topic_id,
+                    getarray[i].all_topic[j].topic_name,
+                  ],
+                ])
+                isinlist = true
+              }
+            }
+          } else if (getarray[i].catagory_name === "News") {
+            // edit this
+            setitemnewsleft([])
+            setitemnewsright([])
+            for (let j = 0; j < getarray[i].all_topic.length; j++) {
+              if (j < getarray[i].all_topic.length && isinlist) {
+                setitemnewsleft((prevState) => [
+                  ...prevState,
+                  [
+                    getarray[i].all_topic[j].topic_id,
+                    getarray[i].all_topic[j].topic_name,
+                  ],
+                ])
+                isinlist = false
+              } else {
+                setitemnewsright((prevState) => [
+                  ...prevState,
+                  [
+                    getarray[i].all_topic[j].topic_id,
+                    getarray[i].all_topic[j].topic_name,
+                  ],
+                ])
+                isinlist = true
+              }
+            }
+          } else if (getarray[i].catagory_name === "Market") {
+            // edit this
+            setitemmarketleft([])
+            setitemmarketright([])
+            for (let j = 0; j < getarray[i].all_topic.length; j++) {
+              if (j < getarray[i].all_topic.length && isinlist) {
+                setitemmarketleft((prevState) => [
+                  ...prevState,
+                  [
+                    getarray[i].all_topic[j].topic_id,
+                    getarray[i].all_topic[j].topic_name,
+                  ],
+                ])
+                isinlist = false
+              } else {
+                setitemmarketright((prevState) => [
                   ...prevState,
                   [
                     getarray[i].all_topic[j].topic_id,
@@ -147,26 +210,50 @@ function Topicselect(props) {
   const [general, setgeneral] = useState(true)
   const [study, setstudy] = useState(false)
   const [faculty, setfaculty] = useState(false)
+  const [news, setnews] = useState(false)
+  const [market, setmarket] = useState(false)
 
   const togglegeneral = () => {
     setgeneral(true)
     setstudy(false)
     setfaculty(false)
+    setnews(false)
+    setmarket(false)
   }
 
   const togglestudy = () => {
     setgeneral(false)
     setstudy(true)
     setfaculty(false)
+    setnews(false)
+    setmarket(false)
   }
 
   const togglefaculty = () => {
     setgeneral(false)
     setstudy(false)
     setfaculty(true)
+    setnews(false)
+    setmarket(false)
   }
 
-  console.log(general, study, faculty)
+  const togglenews = () => {
+    setgeneral(false)
+    setstudy(false)
+    setfaculty(false)
+    setnews(true)
+    setmarket(false)
+  }
+
+  const togglemarket = () => {
+    setgeneral(false)
+    setstudy(false)
+    setfaculty(false)
+    setnews(false)
+    setmarket(true)
+  }
+
+  console.log(general, study, faculty, news, market)
 
   return (
     <div className="topic">
@@ -181,21 +268,35 @@ function Topicselect(props) {
             className={`generalC ${general ? "generaltog" : ""}`}
             onClick={togglegeneral}
           >
-            general
+            General
           </button>
           <br></br>
           <button
             className={`studyC ${study ? "studytog" : ""}`}
             onClick={togglestudy}
           >
-            study
+            Learning
           </button>
           <br></br>
           <button
             className={`facultyC ${faculty ? "facultytog" : ""}`}
             onClick={togglefaculty}
           >
-            faculty
+            Faculty
+          </button>
+          <br></br>
+          <button
+            className={`newsC ${news ? "newtog" : ""}`}
+            onClick={togglenews}
+          >
+            News
+          </button>
+          <br></br>
+          <button
+            className={`marketC ${market ? "markettog" : ""}`}
+            onClick={togglemarket}
+          >
+            Market
           </button>
         </div>
         <div className="selcom">
@@ -229,7 +330,7 @@ function Topicselect(props) {
           </div>
           <div className={`${study ? "scrollstudy" : "noting"}`}>
             <div className="comleft">
-              {itemstudyleft.map((item, index) => (
+              {itemLearningleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
                   <input
                     value={item[1]}
@@ -242,7 +343,7 @@ function Topicselect(props) {
               ))}
             </div>
             <div className="comright">
-              {itemstudyright.map((items, index) => (
+              {itemLearningright.map((items, index) => (
                 <div key={index} className="checkbox-wrapper">
                   <input
                     value={items[1]}
@@ -271,6 +372,62 @@ function Topicselect(props) {
             </div>
             <div className="comright">
               {itemfacultyright.map((items, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input
+                    value={items[1]}
+                    id={items[0]}
+                    type="checkbox"
+                    onChange={handleCheck}
+                  />
+                  <span className={isChecked(items[1])}>{items[1]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={`${news ? "scrollnews" : "noting"}`}>
+            <div className="comleft">
+              {itemnewsleft.map((item, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input
+                    value={item[1]}
+                    id={item[0]}
+                    type="checkbox"
+                    onChange={handleCheck}
+                  />
+                  <span className={isChecked(item[1])}>{item[1]}</span>
+                </div>
+              ))}
+            </div>
+            <div className="comright">
+              {itemnewsright.map((items, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input
+                    value={items[1]}
+                    id={items[0]}
+                    type="checkbox"
+                    onChange={handleCheck}
+                  />
+                  <span className={isChecked(items[1])}>{items[1]}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+          <div className={`${market ? "scrollmarket" : "noting"}`}>
+            <div className="comleft">
+              {itemmarketleft.map((item, index) => (
+                <div key={index} className="checkbox-wrapper">
+                  <input
+                    value={item[1]}
+                    id={item[0]}
+                    type="checkbox"
+                    onChange={handleCheck}
+                  />
+                  <span className={isChecked(item[1])}>{item[1]}</span>
+                </div>
+              ))}
+            </div>
+            <div className="comright">
+              {itemmarketright.map((items, index) => (
                 <div key={index} className="checkbox-wrapper">
                   <input
                     value={items[1]}
