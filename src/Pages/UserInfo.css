@@ -1,27 +1,129 @@
 .user-info {
-  margin-left: 70px;
+  /* margin-left: 70px; */
+  position: relative;
+  /* top: -53px; */
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  background-color: #9ab6a7;
   /* height: 100%; */
   /* width: 100%; */
   /* background-color: black; */
 }
+
+.user-info-main {
+  position: relative;
+  top: 55px;
+  background-color: aqua;
+  margin: 0 auto;
+  width: 700px;
+  height: 550px;
+}
+
 .profile-pic {
+  width: 190px;
+  height: 175px;
   position: absolute;
+  left: -67px;
+  /* position: relative; */
   margin-left: 57px;
   margin-top: -9px;
   padding: 20px;
-  border: 1px solid #000000;
+  box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 2%;
+  background-color: white;
 }
 
-.username {
+.profile-pic-setup {
   position: relative;
-  margin-left: 312px;
-  margin-top: 53px;
+  top: 2px;
+  font-weight: 700;
+  font-size: 16px;
+  text-align: center;
 }
 
-.bio {
+.edit-profile-button {
+  position: absolute;
+  top: 123px;
+  right: 43px;
+}
+
+.user-info-profile-box {
+  width: 150px;
+  height: 150px;
+  border-radius: 100%;
+  overflow: hidden;
   position: relative;
-  margin-left: 312px;
-  margin-top: 10px;
+  top: -4px;
+  left: 21.5px;
+}
+
+.user-info-username {
+  position: relative;
+  top: -17px;
+  left: 360px;
+}
+
+.edit-username-button {
+  position: relative;
+  left: 5px;
+}
+
+.edit-profile-button,
+.edit-username-button,
+.edit-bio-button,
+.edit-firstname-button {
+  cursor: pointer;
+}
+.edit-profile-button:active,
+.edit-username-button:active,
+.edit-bio-button:active,
+.edit-firstname-button:active {
+  opacity: 0.6;
+}
+
+.edit-bio-button,
+.edit-firstname-button {
+  position: relative;
+  left: 5px;
+}
+
+.user-info-username-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-firstname {
+  position: relative;
+  margin-top: 55px;
+  left: 60px;
+}
+
+.user-info-lastname {
+  position: relative;
+  margin-top: 55px;
+  left: 60px;
+}
+
+.user-info-firstname-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-bio-titile {
+  float: left;
+  font-weight: 700;
+  size: 16px;
+}
+
+.user-info-bio {
+  position: relative;
+  top: 0px;
+  left: 360px;
+  /* background-color: aquamarine; */
+  width: 340px;
 }
 
 .firstname {
@@ -47,17 +149,35 @@
   margin-top: 18px;
 }
 
-.input-firstname {
+.input-firstname1 {
+  margin: 1px;
+  position: relative;
+  top: 6px;
   background: #f8f5d5;
   border: 0px solid #000000;
   font-weight: 400;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 340px;
+  height: 16px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
+}
+
+.input-firstname2 {
+  position: relative;
+  top: 6px;
+  background: #f8f5d5;
+  border: 0px solid #000000;
+  font-weight: 400;
+  resize: none;
+  font-size: 16px;
+  width: 340px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
 }
 
 .input-lastname {
@@ -72,28 +192,66 @@
   border-radius: 5px;
 }
 
-.input-bio {
+.input-bio1 {
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
+  margin: 1px;
   font-size: 16px;
-  width: 300px;
+  width: 340px;
   height: 78px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
 }
 
-.input-username {
+.input-bio2 {
   background: #f8f5d5;
   border: 0px solid #000000;
   resize: none;
   font-size: 16px;
-  width: 210px;
-  height: 18px;
+  width: 340px;
+  height: 78px;
   padding: 10px;
   outline: none;
-  border-radius: 5px;
+  border-radius: 10px;
+  overflow-y: scroll;
+  word-wrap: break-word;
+}
+
+.input-username1 {
+  position: relative;
+  top: 4px;
+  background: #f8f5d5;
+  margin: 1px;
+  /* border: 0px solid #000000; */
+  border: none;
+  resize: none;
+  font-size: 16px;
+  width: 340px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-username2 {
+  position: relative;
+  top: 4px;
+  background: #f8f5d5;
+  /* border: 0px solid #000000; */
+  border: none;
+  resize: none;
+  font-size: 16px;
+  width: 340px;
+  height: 16px;
+  padding: 10px;
+  outline: none;
+  border-radius: 10px;
+}
+
+.input-username:focus {
+  border: none;
 }
 
 .profile-bottom {
