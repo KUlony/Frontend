@@ -14,6 +14,7 @@ const EditEducation = (props) => {
   const [editEndMonth, setEditEndMonth] = useState(educationInfo.end_date)
   const [editEndYear, setEditEndYear] = useState(educationInfo.end_date)
 
+  //--------------------updating---------------------
   const addTwo = (editStartMonth, editStartYear) => {
     let startMonthAddYear = ''
     if (editStartMonth) {
@@ -28,7 +29,6 @@ const EditEducation = (props) => {
   const updatingEducation = () => {
     const startMonthAddYear = addTwo(editStartMonth, editStartYear)
     const endMonthAddYear = addTwo(editEndMonth, editEndYear)
-    // e.preventDefault()
     const educationInfoUpdated = {
       school: editSchool,
       degree: editDegree,
@@ -37,21 +37,11 @@ const EditEducation = (props) => {
       end_date: endMonthAddYear,
     }
     console.log('newdata', educationInfoUpdated)
-    // console.log('newdatainfo', educationInfo)
     updateEducation(educationInfoUpdated, index)
-    // .then(onBgEditClick)
   }
 
-  //delete
+  //--------------------deleting---------------------
   const deletingEducation = () => {
-    // e.preventDefault()
-    // const educationInfoUpdated = {
-    //   school: null,
-    //   degree: null,
-    //   field_of_study: null,
-    //   start_date: null,
-    //   end_date: null,
-    // }
     const educationInfoUpdated = null
     console.log('newdata', educationInfoUpdated)
     console.log('index', index)
@@ -110,7 +100,7 @@ const EditEducation = (props) => {
             <input
               class="input-school"
               type="text"
-              placeholder="Kasetsart University"
+              placeholder="Ex. Kasetsart University"
               rows="1"
               cols="20"
               name="school"
@@ -127,7 +117,7 @@ const EditEducation = (props) => {
             <input
               class="input-degree"
               type="text"
-              placeholder="Bachelor's degree"
+              placeholder="Ex. Bachelor's degree"
               rows="1"
               cols="20"
               name="degree"
@@ -143,7 +133,7 @@ const EditEducation = (props) => {
             <input
               class="input-field"
               type="text"
-              placeholder="Computer engineering"
+              placeholder="Ex. Computer engineering"
               rows="1"
               cols="20"
               name="field"
