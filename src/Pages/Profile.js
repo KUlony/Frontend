@@ -1,60 +1,58 @@
-import React, { useState } from "react";
-import "./Profile.css";
-import UserInfo from "./UserInfo";
+import React, { useState } from 'react'
+import './Profile.css'
+import UserInfo from './UserInfo'
 // import Favourite from './Favorite'
-import FollowTopic from "./FollowTopic";
-import Setting from "./Setting";
-import Navbar from "../components/NavBar";
-import logoutpic from "../picture/logout.png";
-import g1020 from "../picture/g1020.png";
-import UserFavorite from "./UserFavorite";
-import Favourite from "./Favourite.js";
+import FollowTopic from './FollowTopic'
+import Setting from './Setting'
+import Navbar from '../components/NavBar'
+import logoutpic from '../picture/logout.png'
+import g1020 from '../picture/g1020.png'
+import Favourite from './Favourite.js'
 
 function Profile() {
   const componentsUserProfile = [
     <UserInfo />,
     <Favourite />,
-    <UserFavorite />,
     <FollowTopic />,
     <Setting />,
-  ];
-  const [isShowProfile, setIsProfile] = useState(componentsUserProfile[0]);
+  ]
+  const [isShowProfile, setIsProfile] = useState(componentsUserProfile[0])
   function onClickProfile(theProfile) {
-    setIsProfile(theProfile);
+    setIsProfile(theProfile)
   }
 
-  const [userinfo, setuserinfo] = useState(true); //set true
-  const [favourites, setfavourites] = useState(false);
-  const [following, setfollowing] = useState(false);
-  const [setting, setsetting] = useState(false);
+  const [userinfo, setuserinfo] = useState(true) //set true
+  const [favourites, setfavourites] = useState(false)
+  const [following, setfollowing] = useState(false)
+  const [setting, setsetting] = useState(false)
 
   const toggleuserinfo = () => {
-    setuserinfo(true);
-    setfavourites(false);
-    setfollowing(false);
-    setsetting(false);
-  };
+    setuserinfo(true)
+    setfavourites(false)
+    setfollowing(false)
+    setsetting(false)
+  }
 
   const togglefavourites = () => {
-    setuserinfo(false);
-    setfavourites(true);
-    setfollowing(false);
-    setsetting(false);
-  };
+    setuserinfo(false)
+    setfavourites(true)
+    setfollowing(false)
+    setsetting(false)
+  }
 
   const togglefollowing = () => {
-    setuserinfo(false);
-    setfavourites(false);
-    setfollowing(true);
-    setsetting(false);
-  };
+    setuserinfo(false)
+    setfavourites(false)
+    setfollowing(true)
+    setsetting(false)
+  }
 
   const togglesetting = () => {
-    setuserinfo(false);
-    setfavourites(false);
-    setfollowing(false);
-    setsetting(true);
-  };
+    setuserinfo(false)
+    setfavourites(false)
+    setfollowing(false)
+    setsetting(true)
+  }
 
   return (
     <div className="profile">
@@ -67,59 +65,59 @@ function Profile() {
           <div className="button_sidebar">
             <div className="buttonstyle">
               <button
-                className={`btn_click ${userinfo ? "setgreen" : ""}`}
+                className={`btn_click ${userinfo ? 'setgreen' : ''}`}
                 onClick={() => {
-                  onClickProfile(componentsUserProfile[0]);
-                  toggleuserinfo();
+                  onClickProfile(componentsUserProfile[0])
+                  toggleuserinfo()
                 }}
               >
                 User info
               </button>
-              <div className={`${userinfo ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${userinfo ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${favourites ? "setgreen" : ""}`}
+                className={`btn_click ${favourites ? 'setgreen' : ''}`}
                 onClick={() => {
-                  onClickProfile(componentsUserProfile[1]);
-                  togglefavourites();
+                  onClickProfile(componentsUserProfile[1])
+                  togglefavourites()
                 }}
               >
                 Favorites
               </button>
               <div
-                className={`${favourites ? "setdeepgreen" : "noting"}`}
+                className={`${favourites ? 'setdeepgreen' : 'noting'}`}
               ></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${following ? "setgreen" : ""}`}
+                className={`btn_click ${following ? 'setgreen' : ''}`}
                 onClick={() => {
-                  onClickProfile(componentsUserProfile[2]);
-                  togglefollowing();
+                  onClickProfile(componentsUserProfile[2])
+                  togglefollowing()
                 }}
               >
                 Following topics
               </button>
-              <div className={`${following ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${following ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
             <br></br>
             <br></br>
             <div className="buttonstyle">
               <button
-                className={`btn_click ${setting ? "setgreen" : ""}`}
+                className={`btn_click ${setting ? 'setgreen' : ''}`}
                 onClick={() => {
-                  onClickProfile(componentsUserProfile[3]);
-                  togglesetting();
+                  onClickProfile(componentsUserProfile[3])
+                  togglesetting()
                 }}
               >
                 Setting
               </button>
-              <div className={`${setting ? "setdeepgreen" : "noting"}`}></div>
+              <div className={`${setting ? 'setdeepgreen' : 'noting'}`}></div>
             </div>
           </div>
           <br></br>
@@ -134,7 +132,7 @@ function Profile() {
         <div className="profile-content">{isShowProfile}</div>
       </div>
     </div>
-  );
+  )
 }
 
-export default Profile;
+export default Profile

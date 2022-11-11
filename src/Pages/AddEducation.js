@@ -1,45 +1,77 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './AddEducation.css'
 import { dateMonth, dateYear } from './data/monthYear'
 const AddEducation = (props) => {
-  const { onBgClick } = props
+  const { onBgClick, educationUpdated } = props
 
-  const [eduForm, setEduForm] = useState({
-    school: '',
-    degree: '',
-    field: '',
-    startMonth: '',
-    startYear: '',
-    endMonth: '',
-    endYear: '',
-  })
-  //check if local not defined
-  if (localStorage.getItem('allEducation') === null) {
-    localStorage.setItem('allEducation', JSON.stringify([]))
-  }
+  const [editSchool, setEditSchool] = useState('')
+  const [editDegree, setEditDegree] = useState('')
+  const [editField, setEditField] = useState('')
+  const [editStartMonth, setEditStartMonth] = useState('')
+  const [editStartYear, setEditStartYear] = useState('')
+  const [editEndMonth, setEditEndMonth] = useState('')
+  const [editEndYear, setEditEndYear] = useState('')
 
-  const objInLocalStorage = JSON.parse(localStorage.getItem('allEducation'))
-  const [allEduForm, setallEduForm] = useState(objInLocalStorage)
-  useEffect(() => {
-    localStorage.setItem('allEducation', JSON.stringify(allEduForm))
-  }, [allEduForm])
-
-  function onEduFormChange(event) {
-    const { name, value } = event.target
-    setEduForm((prevEduForm) => {
-      return {
-        ...prevEduForm,
-        [name]: value,
+  const addTwo = (editStartMonth, editStartYear) => {
+    let startMonthAddYear = ''
+    if (editStartMonth) {
+      if (editStartYear) {
+        startMonthAddYear = editStartMonth + '-' + editStartYear
+      } else {
+        startMonthAddYear = editStartMonth
       }
-    })
+    }
+    return startMonthAddYear
   }
+  const addingEducation = (e) => {
+    if (editSchool !== '') {
+      const startMonthAddYear = addTwo(editStartMonth, editStartYear)
+      const endMonthAddYear = addTwo(editEndMonth, editEndYear)
+      e.preventDefault()
+      const educationAdded = {
+        school: editSchool,
+        degree: editDegree,
+        field_of_study: editField,
+        start_date: startMonthAddYear,
+        end_date: endMonthAddYear,
+      }
+      console.log('newdata', educationAdded)
+      educationUpdated.push(educationAdded)
+      // .then(onBgEditClick)
+    }
+  }
+  // const [eduForm, setEduForm] = useState({
+  //   school: '',
+  //   degree: '',
+  //   field: '',
+  //   startMonth: '',
+  //   startYear: '',
+  //   endMonth: '',
+  //   endYear: '',
+  // })
 
-  function onEduFormSubmit(event) {
-    event.preventDefault()
-    setallEduForm((prevAllEduForm) => {
-      return [...prevAllEduForm, eduForm]
-    })
-  }
+  // const objInLocalStorage = JSON.parse(localStorage.getItem('allEducation'))
+  // const [allEduForm, setallEduForm] = useState(objInLocalStorage)
+  // useEffect(() => {
+  //   localStorage.setItem('allEducation', JSON.stringify(allEduForm))
+  // }, [allEduForm])
+
+  // function onEduFormChange(event) {
+  //   const { name, value } = event.target
+  //   setEduForm((prevEduForm) => {
+  //     return {
+  //       ...prevEduForm,
+  //       [name]: value,
+  //     }
+  //   })
+  // }
+
+  // function onEduFormSubmit(event) {
+  //   event.preventDefault()
+  //   setallEduForm((prevAllEduForm) => {
+  //     return [...prevAllEduForm, eduForm]
+  //   })
+  // }
 
   return (
     <main>
@@ -78,8 +110,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="school"
-              value={eduForm.school}
-              onChange={onEduFormChange}
+              value={editSchool}
+              onChange={(e) => setEditSchool(e.target.value)}
               required
             />
           </section>
@@ -95,8 +127,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="degree"
-              value={eduForm.degree}
-              onChange={onEduFormChange}
+              value={editDegree}
+              onChange={(e) => setEditDegree(e.target.value)}
             />
           </section>
           <section className="field-of-study">
@@ -111,8 +143,8 @@ const AddEducation = (props) => {
               rows="1"
               cols="20"
               name="field"
-              value={eduForm.field}
-              onChange={onEduFormChange}
+              value={editField}
+              onChange={(e) => setEditField(e.target.value)}
             />
           </section>
           <section className="start-date">
@@ -123,8 +155,7 @@ const AddEducation = (props) => {
             <select
               className="start-month"
               name="startMonth"
-              value={eduForm.startMonth}
-              onChange={onEduFormChange}
+              onChange={(e) => setEditStartMonth(e.target.value)}
             >
               {dateMonth.map((option, index) => (
                 <option
@@ -138,8 +169,7 @@ const AddEducation = (props) => {
             <select
               className="start-year"
               name="startYear"
-              value={eduForm.startYear}
-              onChange={onEduFormChange}
+              onChange={(e) => setEditStartYear(e.target.value)}
             >
               {dateYear.map((option, index) => (
                 <option key={index}>{option.text}</option>
@@ -154,8 +184,7 @@ const AddEducation = (props) => {
             <select
               className="end-month"
               name="endMonth"
-              value={eduForm.endMonth}
-              onChange={onEduFormChange}
+              onChange={(e) => setEditEndMonth(e.target.value)}
             >
               {dateMonth.map((option, index) => (
                 <option
@@ -169,8 +198,7 @@ const AddEducation = (props) => {
             <select
               name="endYear"
               className="end-year"
-              value={eduForm.endYear}
-              onChange={onEduFormChange}
+              onChange={(e) => setEditEndYear(e.target.value)}
             >
               {dateYear.map((option, index) => (
                 <option
@@ -185,8 +213,8 @@ const AddEducation = (props) => {
           <div className="footer-box">
             <button
               className="add-edu-save-button"
-              type="submit"
-              onClick={onEduFormSubmit}
+              // type="submit"
+              onClick={addingEducation}
             >
               SAVE
             </button>

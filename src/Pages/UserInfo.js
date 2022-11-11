@@ -65,25 +65,6 @@ const UserInfo = () => {
             user_lastname: lastname.current.value,
             user_bio: bio.current.value,
             education: educationUpdated,
-            // [
-            // {
-            //   school: 'kaset',
-            //   degree: 'best bachelor',
-            //   field_of_study: null,
-            //   start_date: null,
-            //   end_date: null,
-            //   _id: '634adc85e5a0f50a0041c393',
-            // },
-            // {
-            //   school: 'deb',
-            //   degree: null,
-            //   field_of_study: null,
-            //   start_date: null,
-            //   end_date: null,
-            //   _id: '634adc85e5a0f50a0041c394',
-            // },
-
-            // ],
             contact: {
               facebook: facebook.current.value,
               ig: instagram.current.value,
@@ -112,7 +93,11 @@ const UserInfo = () => {
   }
 
   //AddEducation Page
+  const [educationInfo, setEducationInfo] = useState(null)
+
   const [isAddEducation, setIsAddEducation] = useState(null)
+
+  const [educationUpdated, setEducationUpdated] = useState([])
 
   function onAddEducationClick() {
     setIsAddEducation(true)
@@ -120,29 +105,56 @@ const UserInfo = () => {
   function onBgClick() {
     setIsAddEducation(null)
   }
+  // const addingEducation =()=>{
+  //   setEducationUpdated()
+  // }
   let addEducation = null
   if (!!isAddEducation) {
-    addEducation = <AddEducation onBgClick={onBgClick} />
+    addEducation = (
+      <AddEducation onBgClick={onBgClick} educationUpdated={educationUpdated} />
+    )
   }
 
   //edit Education
   function checkIsConnect(a, b) {
-    if (a != null && b != null) {
-      return true
+    if (a !== '') {
+      if (b !== '') {
+        return true
+      }
     }
   }
 
   const [isEditEducation, setIsEditEducation] = useState(null)
-  const [educationInfo, setEducationInfo] = useState(null)
-  const [educationUpdated, setEducationUpdated] = useState([])
   const [indexEdit, setIndexEdit] = useState()
   const updateEducation = (data, index) => {
     console.log('data', data)
-    setEducationUpdated((olddata) =>
-      olddata.map((tmp, idx) => (idx === index ? data : tmp))
-    )
+    console.log(5)
+
+    if (data === null) {
+      //delete
+      // console.log(
+      //   'education20',
+      //   educationUpdated
+      //     .splice(0, index)
+      //     .concat(educationUpdated.splice(index + 1, educationUpdated.length))
+      // )
+      const st = educationUpdated.splice(0, index)
+      const ed = educationUpdated.splice(index + 1, educationUpdated.length)
+      const stShowAllEdu = allEduForm.splice(0, index)
+      const edShowAllEdu = allEduForm.splice(index + 1, educationUpdated.length)
+      // console.log('allEdu 164', allEduForm)
+      setEducationUpdated(st.concat(ed))
+      setAllEduForm(stShowAllEdu.concat(edShowAllEdu))
+    } else {
+      //edit
+      // educationUpdated
+      setEducationUpdated((olddata) =>
+        olddata.map((tmp, idx) => (idx === index ? data : tmp))
+      )
+      console.log('educationupdated 154', educationUpdated)
+    }
   }
-  console.log('educationUpdate', educationUpdated)
+  // console.log('educationUpdate', educationUpdated)
   function onEditEducationClick(theEdu, index) {
     setIsEditEducation(true)
     setEducationInfo(theEdu)
@@ -164,9 +176,12 @@ const UserInfo = () => {
     )
   }
 
-  const [allEduForm, setAllEduForm] = useState([{}])
-  const eduElements = allEduForm.map((theEdu, index) => {
+  const [allEduForm, setAllEduForm] = useState([])
+  console.log('allEdu 197', allEduForm)
+
+  const eduElements = educationUpdated.map((theEdu, index) => {
     // console.log('theEdu', theEdu)
+
     return (
       <div>
         {allEduForm[0].school ? (
@@ -227,7 +242,6 @@ const UserInfo = () => {
                   : ''}
               </span>
             </article>
-            <br />
           </section>
         ) : (
           <div></div>
@@ -301,7 +315,7 @@ const UserInfo = () => {
         />
         <br />
         {inputArray[1] ? (
-          <input
+          <textarea
             class="input-bio"
             type="text"
             placeholder="Bio"
@@ -313,7 +327,7 @@ const UserInfo = () => {
             value={!userData ? '' : userData.user_bio ? userData.user_bio : ''}
           />
         ) : (
-          <input
+          <textarea
             class="input-bio"
             type="text"
             placeholder="Bio"
@@ -513,17 +527,15 @@ const UserInfo = () => {
         </article>
       </section>
       <section className="profile-bottom">
-        <article className="back-to-home">
-          <b className="home-button"> BACK TO HOME </b>
-        </article>
-        <article className="save">
+        <b className="home-button"> BACK TO HOME </b>
+        <div className="save">
           <img
             src={require('../picture/savebtn.png')}
             alt="savebtn"
-            className="save-button"
             onClick={onClickSave}
+            className="save-button"
           />
-        </article>
+        </div>
       </section>
       {addEducation}
       {editEducation}

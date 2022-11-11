@@ -1,17 +1,25 @@
 .user-info {
   margin-left: 70px;
-  /* height: 100%; */
+  top: -214px;
+  position: relative;
+
+  /* height: 600px; */
   /* width: 100%; */
   /* background-color: black; */
 }
 .profile-pic {
-  position: absolute;
-  margin-left: 57px;
-  margin-top: -9px;
   padding: 20px;
+  position: relative;
+  margin-left: 34px;
+  margin-top: 0px;
+  top: 241px;
   border: 1px solid #000000;
+  width: 160px;
+  height: 160px;
 }
-
+.profile-pic-setup {
+  text-align: center;
+}
 .username {
   position: relative;
   margin-left: 312px;
@@ -98,7 +106,8 @@
 
 .profile-bottom {
   position: relative;
-  left: 200px;
+  margin-left: 200px;
+  margin-top: 0px;
   list-style-type: none;
 }
 
@@ -106,23 +115,30 @@
   position: relative;
   text-decoration: none;
   color: black;
-  left: 180px;
-  top: 54px;
+  top: 44px;
+  left: 190px;
+  /* margin-left: 180px; */
+  /* margin-top: 54px; */
   width: 150px;
   cursor: pointer;
+  z-index: 5px;
 }
-
 .save-button {
   position: relative;
-  left: 362px;
   border-radius: 25px;
   padding: 10px 10px;
-  top: 10px;
-  left: 323px;
+  top: 0px;
+  left: 319px;
   /* background-color: #339c64; */
   border: none;
   cursor: pointer;
   width: 135px;
+}
+.save {
+  position: relative;
+  margin-top: 0px;
+  width: 0px;
+  /* z-index: 0; */
 }
 /* Add Education */
 .education-content {

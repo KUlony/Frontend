@@ -45,3 +45,10 @@
   z-index: 7;
   font-weight: 700;
 } */
+
+.delete-cancel {
+  cursor: pointer;
+}
+.delete-delete-btn {
+  cursor: pointer;
+}
