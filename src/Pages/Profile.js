@@ -8,6 +8,7 @@ import Navbar from '../components/NavBar'
 import logoutpic from '../picture/logout.png'
 import g1020 from '../picture/g1020.png'
 import Favourite from './Favourite.js'
+import axios from 'axios'
 
 function Profile() {
   const componentsUserProfile = [
@@ -53,7 +54,22 @@ function Profile() {
     setfollowing(false)
     setsetting(true)
   }
-
+  //--------------api----------------
+  // const token =
+  //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxOTgxOTgsImV4cCI6MTY2ODI4NDU5OH0.jw2oLJwwXXlSad2TvkR7s67CWWrxDU1ByleI8S67Hos'
+  const token = localStorage.getItem('token')
+  const logoutClick = async () => {
+    try {
+      const response = await axios.get('/api/sing-up/logout', {
+        headers: {
+          Authorization: token,
+        },
+      })
+      console.log('response is', response)
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
   return (
     <div className="profile">
       <Navbar />
@@ -124,7 +140,9 @@ function Profile() {
           <br></br>
           <button className="logout-button">
             <img src={logoutpic} alt="logout" className="logout-img" />
-            <span className="logout-text">Log Out</span>
+            <span className="logout-text" onClick={logoutClick}>
+              Log Out
+            </span>
           </button>
           <br></br>
           <img src={g1020} alt="" className="g1020" />

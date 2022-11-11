@@ -12,7 +12,7 @@ const Setting = () => {
     newPassword.current.value = ''
     confirmPassword.current.value = ''
   }
-  //popup
+  //-------------popup-------------------
   const [isChangePassword, setIsChangePassword] = useState(null)
   let changePasswordPopup = null
   const [isSuccess, setIsSuccess] = useState(false)
@@ -22,6 +22,9 @@ const Setting = () => {
   function timeoutPopup(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms))
   }
+  const token = localStorage.getItem('token')
+  // const token =
+  //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgwNzU2MTEsImV4cCI6MTY2ODE2MjAxMX0.XnPansFtdZVQm4AT7IZBJ9hD4sSYDdz8itjWfc1kSoc'
   const onClickChangePassword = async () => {
     try {
       const response = await axios.post(
@@ -33,8 +36,7 @@ const Setting = () => {
         },
         {
           headers: {
-            Authorization:
-              'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgwNzU2MTEsImV4cCI6MTY2ODE2MjAxMX0.XnPansFtdZVQm4AT7IZBJ9hD4sSYDdz8itjWfc1kSoc',
+            Authorization: token,
           },
         }
       )

@@ -3,24 +3,29 @@ import React, { useEffect, useRef, useState } from 'react'
 import AddEducation from './AddEducation'
 import EditEducation from './EditEducation'
 import './UserInfo.css'
+import { storage } from './FirebaseConfig'
 
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage'
 import { IoMdAddCircle } from 'react-icons/io'
 
 const UserInfo = () => {
   //----------------------api_get-------------------------
+  const token = localStorage.getItem('token')
+  // const token =
+  //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxOTgxOTgsImV4cCI6MTY2ODI4NDU5OH0.jw2oLJwwXXlSad2TvkR7s67CWWrxDU1ByleI8S67Hos'
   const [userData, setUserData] = useState('')
   useEffect(() => {
     axios
       .get('/api/user/636ca2126173d813e9e38cab/profile', {
         headers: {
-          Authorization:
-            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4',
+          Authorization: token,
         },
       })
       .then((res) => {
         setUserData(res.data)
         setAllEduForm(res.data.education)
         setEducationUpdated(res.data.education)
+        setUrlProfile(res.data.profile_pic_url)
         // console.log(res.data.user_name)
       })
       .catch((error) => {
@@ -35,6 +40,7 @@ const UserInfo = () => {
   const lastname = useRef()
   const instagram = useRef()
   const facebook = useRef()
+  const [urlProfile, setUrlProfile] = useState('')
 
   const editstyles = {
     border: '1px solid rgba(0, 0, 0, 1)',
@@ -73,19 +79,19 @@ const UserInfo = () => {
               ig: instagram.current.value,
               _id: '634adc85e5a0f50a0041c392',
             },
-            profile_pic_url:
-              'https://cdn.myanimelist.net/images/characters/12/451497.jpg',
+            profile_pic_url: urlProfile,
             gender: 'male',
           },
           {
             headers: {
-              Authorization:
-                'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4',
+              Authorization: token,
             },
           }
         )
         .then((res) => {
           console.log(res)
+          setTimeout(3000)
+          window.location.reload()
         })
         .catch((err) => {
           console.log(err)
@@ -170,10 +176,56 @@ const UserInfo = () => {
       />
     )
   }
+
+  //-------------Edit_Picture_Profile-------------
+  const [file, setFile] = useState('')
+
+  // progress
+  const [percent, setPercent] = useState(0)
+
+  // Handle file upload event and update state
+  function handleChange(event) {
+    // event.preventDefault()
+    setFile(event.target.files[0])
+  }
+
+  const handleUpload = () => {
+    if (!file) {
+      alert('Please upload an image first!')
+    }
+
+    const storageRef = ref(storage, `/files/${file.name}`)
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      'state_changed',
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        // update progress
+        setPercent(percent)
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log(url)
+          setUrlProfile(url)
+          alert('Upload Done!!')
+        })
+      }
+    )
+  }
+
   //-------------Edit_Education_Template-------------
 
   const [allEduForm, setAllEduForm] = useState([])
-  console.log('allEdu 197', allEduForm)
+  // console.log('allEdu 197', allEduForm)
 
   const eduElements = educationUpdated.map((theEdu, index) => {
     return (
@@ -260,16 +312,47 @@ const UserInfo = () => {
               alt="profileExample"
               width="150"
               height="150"
-              className="user-info-profile"
+              className={
+                !userData
+                  ? 'user-info-profile-temp'
+                  : 'user-info-profile'
+                  ? 'user-info-profile'
+                  : ''
+              }
             />
           </div>
-          <img
-            src={require('../picture/editButton.png')}
-            alt="edit-button"
-            width="30px"
-            className="edit-profile-button"
-          />
-          <div className="profile-pic-setup">Set up display</div>
+          <label for="input-image">
+            <img
+              src={require('../picture/editButton.png')}
+              alt="edit-button"
+              width="30px"
+              className="edit-profile-button"
+            />
+          </label>
+          <label for="upload-image">
+            <div className="profile-pic-setup">Set up display</div>
+          </label>
+
+          {/* <label for="input-image">
+            <img src="../picture/editButton.png" />{' '}
+          </label> */}
+          <div classname="input-box-upload">
+            <input
+              type="file"
+              onChange={handleChange}
+              accept="/image/*"
+              id="input-image"
+              className="choose-image"
+            />
+            <button
+              onClick={handleUpload}
+              id="upload-image"
+              className="choose-image"
+            >
+              Upload to Firebase
+            </button>
+            <p className="choose-image">{percent} "% done"</p>
+          </div>
         </section>
         <section className="user-info-username">
           <p className="user-info-username-titile">Username</p>
