@@ -17,6 +17,7 @@
 }
 
 .card_user {
+  width: 140px;
   font-family: "Quicksand";
   font-style: normal;
   font-weight: 700;
@@ -25,6 +26,9 @@
   text-align: center;
   letter-spacing: 0.02em;
   color: #339c64;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  margin: 0 auto;
 }
 
 .card_info {
@@ -45,7 +49,11 @@
 }
 
 .card_name {
+  width: 140px;
   text-align: center;
+  overflow: hidden;
+  margin: 0 auto;
+  text-overflow: ellipsis;
 }
 
 .card_profile {
