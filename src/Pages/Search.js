@@ -128,6 +128,7 @@ function Search() {
       setDisplayprofile(false);
     } else if (user_id !== carduserid) {
       setCarduserid(user_id);
+      setDisplayprofile(true);
     } else {
       setDisplayprofile(!displayprofile);
     }
