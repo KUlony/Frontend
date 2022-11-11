@@ -22,13 +22,14 @@ function Miniprofile(props) {
           },
         });
         const jsonuserdata = await userdata.json();
-        // console.log(jsonuserdata);
+
+        console.log(jsonuserdata);
         await setUserdata(jsonuserdata);
         setLoading(false);
-        console.log(jsonuserdata);
-        if (jsonuserdata.user_firtname || jsonuserdata.user_lastname) {
+        if (jsonuserdata.user_firstname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
-            `${jsonuserdata.user_firtname} ${userdata.user_lastname}`
+            `${jsonuserdata.user_firstname} ${jsonuserdata.user_lastname}`
+
           );
         }
       }
@@ -72,16 +73,18 @@ function Miniprofile(props) {
             </header>
             <p className="inputbox">{userdata.user_bio}</p>
             <p className="miniprofile_info_miniheader">Education:</p>
-            <p className="miniprofile_info_university">
-              {/* รอมีข้อมูลจริง */}
-              <strong></strong>
-              <br />
-              {/* {userdata.education} */}
-            </p>
+            {userdata.education[0] ? (
+              <p className="miniprofile_info_university">
+                {/* รอมีข้อมูลจริง */}
+                <strong>{userdata.education[0].school}</strong>
+                <br />
+                {userdata.education[0].degree}
+              </p>
+            ) : null}
             {userdata.contact && (
               <footer>
                 <p>
-                  Contact:
+                  <p className="miniprofile_contact">Contact:</p>
                   {userdata.contact && userdata.contact.facebook ? (
                     <p className="miniprofile_inline">
                       <FaFacebookSquare className="instagram_icon" />

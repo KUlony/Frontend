@@ -238,7 +238,6 @@ function Home() {
 
       const currenttopic = topicIdArrayy[idxoftopic];
       if (currenttopic) {
-        // console.log(currenttopic);
         const response = await fetch(
           `https://kulony-backend.herokuapp.com/api/search/post/topic?text=${currenttopic}&page=1`,
           {
@@ -248,7 +247,6 @@ function Home() {
           }
         );
         const json = await response.json();
-        // console.log(json);
         setPost_data(json);
         setDisplayload(true);
         setApipath(`search/post/topic?text=${currenttopic}&`);

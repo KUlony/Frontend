@@ -20,6 +20,7 @@ function Search() {
   const [searchtype, setSearchtype] = useState([true, false]);
   const [displayprofile, setDisplayprofile] = useState(false);
   const [carduserid, setCarduserid] = useState("");
+  const [returntotop, setReturntotop] = useState(false);
 
   const loadmore = async (e) => {
     try {
@@ -70,9 +71,16 @@ function Search() {
     );
   };
 
+  const scrollup = () => {
+    console.log(window.scrollY);
+    window.scrollTo(0, 0);
+  };
+
   const searchsubmit = async (e) => {
     try {
       e.preventDefault();
+      setReturntotop(false);
+
       if (searchtype[0]) {
         setHavemore(true);
         setPageCount(1);
@@ -87,9 +95,10 @@ function Search() {
           }
         );
         const datajson = await data.json();
-
+        setReturntotop(true);
         setDisplayload(true);
         setSearchOutPutData(datajson);
+        console.log(datajson);
         setKeepresult(searchResult);
         setSearchresult("");
       } else if (searchtype[1]) {
@@ -102,6 +111,7 @@ function Search() {
         });
         const datajson = await data.json();
         console.log(datajson);
+        setReturntotop(true);
         setSearchOutPutData(datajson);
         setDisplayload(true);
         setSearchresult("");
@@ -116,20 +126,24 @@ function Search() {
       setDisplayprofile(false);
     } else if (user_id !== carduserid) {
       setCarduserid(user_id);
+      setDisplayprofile(true);
     } else {
       setDisplayprofile(!displayprofile);
     }
   };
 
+  const scrollbox = useRef();
+
   return (
     <div className="search_page">
       <Checklogin />
-      <div className="search_page_scoll">
+      <div className="search_page_scoll" ref={scrollbox}>
         <div className="search_page_navkulony">
           <Navbar />
         </div>
         <div className="search_page_navbar">
           <nav className="search_page_topic_nav">
+            {/* <button onClick={scrollup}>scroll</button> */}
             <form onSubmit={searchsubmit}>
               <input
                 type="text"
@@ -161,15 +175,35 @@ function Search() {
             </div>
           </nav>
         </div>
-        <div className="search_page_content">
-          {/* <Post_generator data={testdata} /> */}
+        {returntotop ? (
+          <div className="search_page_content">
+            {/* <Post_generator data={testdata} /> */}
 
-          {searchtype[0] && (
-            <div>
-              {searchOutPutData.map((element, index) => {
-                if (searchOutPutData.length === index + 1) {
-                  return (
-                    <div ref={lastSearchelement}>
+            {searchtype[0] && (
+              <div>
+                {searchOutPutData.map((element, index) => {
+                  if (searchOutPutData.length === index + 1) {
+                    return (
+                      <div ref={lastSearchelement}>
+                        <Post
+                          title={element.post_title}
+                          like={element.post_like_count}
+                          post_content={element.post_content}
+                          photo={element.cover_photo_url}
+                          comment={element.post_comment_count}
+                          profilepic={element.author.profile_pic_url}
+                          post_photo_url={element.post_photo_url}
+                          post_topic={element.post_topic}
+                          username={element.author.username}
+                          post_time={element.post_time}
+                          post_id={element.post_id}
+                          user_id={element.author.user_id}
+                          user_like_status_post={element.user_like_status}
+                        />
+                      </div>
+                    );
+                  } else {
+                    return (
                       <Post
                         title={element.post_title}
                         like={element.post_like_count}
@@ -185,48 +219,34 @@ function Search() {
                         user_id={element.author.user_id}
                         user_like_status_post={element.user_like_status}
                       />
-                    </div>
-                  );
-                } else {
-                  return (
-                    <Post
-                      title={element.post_title}
-                      like={element.post_like_count}
-                      post_content={element.post_content}
-                      photo={element.cover_photo_url}
-                      comment={element.post_comment_count}
-                      profilepic={element.author.profile_pic_url}
-                      post_photo_url={element.post_photo_url}
-                      post_topic={element.post_topic}
-                      username={element.author.username}
-                      post_time={element.post_time}
-                      post_id={element.post_id}
-                      user_id={element.author.user_id}
-                      user_like_status_post={element.user_like_status}
-                    />
-                  );
-                }
-              })}{" "}
-            </div>
-          )}
-          {searchtype[1] && (
-            <div className="search_user_content">
-              {searchOutPutData.map((e) => (
-                <Card
-                  username={e.user_name}
-                  profile_url={e.profile_pic_url}
-                  user_id={e._id}
-                  user_firstname={e.user_firstname}
-                  user_lastname={e.user_lastname}
-                  display_profile={display_profile}
-                />
-              ))}
-            </div>
-          )}
+                    );
+                  }
+                })}{" "}
+              </div>
+            )}
+            {searchtype[1] && (
+              <div className="search_user_content">
+                {searchOutPutData.map((e) => (
+                  <Card
+                    username={e.user_name}
+                    profile_url={e.profile_pic_url}
+                    user_id={e._id}
+                    user_firstname={e.user_firstname}
+                    user_lastname={e.user_lastname}
+                    display_profile={display_profile}
+                  />
+                ))}
+              </div>
+            )}
+            <div
+              className={`loadersearch ${displayload ? "display_none" : null}`}
+            ></div>
+          </div>
+        ) : (
           <div
             className={`loadersearch ${displayload ? "display_none" : null}`}
           ></div>
-        </div>
+        )}
       </div>
 
       {displayprofile && (

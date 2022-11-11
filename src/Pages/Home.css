@@ -1,8 +1,8 @@
 .home_search {
-  position: sticky;
+  position: relative;
   height: 250px;
   width: 100%;
-  top: 70px;
+  top: 0px;
   background-color: white;
   z-index: 3;
   overflow: hidden;
@@ -165,7 +165,7 @@
 }
 .Nav_topic {
   position: sticky;
-  top: 320px;
+  top: 70px;
   text-align: center;
   height: 50px;
   background-color: #f8f5d5;

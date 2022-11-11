@@ -89,6 +89,18 @@
   color: #000000;
 }
 
+.miniprofile_contact {
+  font-family: "Quicksand";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 6px;
+  letter-spacing: 0.02em;
+  display: inline-block;
+  color: #000000;
+}
+
 .miniprofile_info_university {
   color: #339c64;
   height: 45px;
