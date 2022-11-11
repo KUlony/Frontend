@@ -1,11 +1,11 @@
-import "./App.css"
+import './App.css';
 // import { GoogleLogin, GoogleLogout } from "react-google-login"
 // import { gapi } from "gapi-script"
 // import { useState, useEffect } from "react"
-
-import Login from "./Pages/Login"
-import Register from "./Pages/Register"
-import { Route, Routes, Navigate } from 'react-router-dom'
+import OnBoard4 from './Pages/OnBoard4';
+import Login from './Pages/Login';
+import Register from './Pages/Register';
+import { Route, Routes, Navigate } from 'react-router-dom';
 
 function App() {
   // const clientId =
@@ -64,12 +64,13 @@ function App() {
     // </div>
     <div>
       <Routes>
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/home' element={<></>} />
+        <Route path="/onboard4" element={<OnBoard4 />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/home" element={<></>} />
       </Routes>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
