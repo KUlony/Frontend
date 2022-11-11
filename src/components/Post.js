@@ -120,54 +120,66 @@ function Post(props) {
     setdisplayImg(!displayImg);
   };
 
+  const [liking, setLiking] = useState(false);
+
   const likepost_update = async () => {
     try {
-      if (user_like_status) {
-        const remove = await fetch(
-          `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-      } else {
-        const add = await fetch(
-          `https://kulony-backend.herokuapp.com/api/post/like/${post_id}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-      }
+      if (!liking) {
+        setLiking(true);
+        if (user_like_status) {
+          const remove = await fetch(
+            `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+        } else {
+          const add = await fetch(
+            `https://kulony-backend.herokuapp.com/api/post/like/${post_id}`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+        }
 
-      setLikecount(user_like_status ? likecount - 1 : likecount + 1);
-      setUser_like_status(!user_like_status);
+        setLikecount(user_like_status ? likecount - 1 : likecount + 1);
+        setUser_like_status(!user_like_status);
+        setLiking(false);
+      }
     } catch (err) {
       console.log(err);
     }
   };
 
+  const [loadingcom, setLoadingcom] = useState(false);
+
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(
-        `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      );
-      const comment_json = await comment_fetch_respone.json();
-      console.log(comment_json);
-      console.log("as");
-      setCommentdata(comment_json);
-      setHavedata(true);
-      setLoadingcomment(false);
-      display_comment();
+      if (!loadingcom) {
+        setLoadingcom(true);
+        const comment_fetch_respone = await fetch(
+          `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
+        const comment_json = await comment_fetch_respone.json();
+        console.log(comment_json);
+        console.log("as");
+        setCommentdata(comment_json);
+        setHavedata(true);
+        setLoadingcomment(false);
+        display_comment();
+        setLoadingcom(false);
+      }
     } catch (err) {
       console.error(err);
     }

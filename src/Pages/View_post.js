@@ -211,32 +211,38 @@ function View_post() {
   const updatecommentdata = (data) =>
     setCommentdata((commentdata) => [...commentdata, data]);
 
+  const [liking, setLiking] = useState(false);
+
   const likepost_update = async () => {
     try {
-      if (user_like_status) {
-        const remove = await fetch(
-          `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id.id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-      } else {
-        const add = await fetch(
-          `https://kulony-backend.herokuapp.com/api/post/like/${post_id.id}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
-      }
+      if (!liking) {
+        setLiking(true);
+        if (user_like_status) {
+          const remove = await fetch(
+            `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id.id}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+        } else {
+          const add = await fetch(
+            `https://kulony-backend.herokuapp.com/api/post/like/${post_id.id}`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
+        }
 
-      setLikecount(user_like_status ? likecount - 1 : likecount + 1);
-      setUser_like_status(!user_like_status);
+        setLikecount(user_like_status ? likecount - 1 : likecount + 1);
+        setUser_like_status(!user_like_status);
+        setLiking(false);
+      }
     } catch (err) {
       console.log(err);
     }
