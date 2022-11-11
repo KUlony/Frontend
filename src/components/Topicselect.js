@@ -1,47 +1,47 @@
-import axios from "axios"
-import React, { useEffect, useState } from "react"
-import "./Topicselect.css"
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
+import './Topicselect.css';
 
 function Topicselect(props) {
-  const [itemed, setItemed] = useState([])
-  const [iditemed, setIditemed] = useState([])
-  const { sendbtn } = props
+  const [itemed, setItemed] = useState([]);
+  const [iditemed, setIditemed] = useState([]);
+  const { sendbtn } = props;
 
-  const [itemgeneralleft, setitemgeneralleft] = useState([])
-  const [itemgeneralright, setitemgeneralright] = useState([])
+  const [itemgeneralleft, setitemgeneralleft] = useState([]);
+  const [itemgeneralright, setitemgeneralright] = useState([]);
 
-  const [itemLearningleft, setitemLearningleft] = useState([])
-  const [itemLearningright, setitemLearningright] = useState([])
+  const [itemLearningleft, setitemLearningleft] = useState([]);
+  const [itemLearningright, setitemLearningright] = useState([]);
 
-  const [itemfacultyleft, setitemfacultyleft] = useState([])
-  const [itemfacultyright, setitemfacultyright] = useState([])
+  const [itemfacultyleft, setitemfacultyleft] = useState([]);
+  const [itemfacultyright, setitemfacultyright] = useState([]);
 
-  const [itemnewsleft, setitemnewsleft] = useState([])
-  const [itemnewsright, setitemnewsright] = useState([])
+  const [itemnewsleft, setitemnewsleft] = useState([]);
+  const [itemnewsright, setitemnewsright] = useState([]);
 
-  const [itemmarketleft, setitemmarketleft] = useState([])
-  const [itemmarketright, setitemmarketright] = useState([])
+  const [itemmarketleft, setitemmarketleft] = useState([]);
+  const [itemmarketright, setitemmarketright] = useState([]);
 
   const getdata = () => {
     axios
       .get(
-        "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
+        'https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic',
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
           },
         }
       )
       .then((res) => {
         // console.log(res.data)
-        const getarray = res.data
-        console.log(getarray)
+        const getarray = res.data;
+        console.log(getarray);
         for (let i = 0; i < getarray.length; i++) {
-          let isinlist = true
-          if (getarray[i].catagory_name === "General") {
+          let isinlist = true;
+          if (getarray[i].catagory_name === 'General') {
             // edit this
-            setitemgeneralleft([])
-            setitemgeneralright([])
+            setitemgeneralleft([]);
+            setitemgeneralright([]);
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
                 setitemgeneralleft((prevState) => [
@@ -50,8 +50,8 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = false
+                ]);
+                isinlist = false;
               } else {
                 setitemgeneralright((prevState) => [
                   ...prevState,
@@ -59,14 +59,14 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = true
+                ]);
+                isinlist = true;
               }
             }
-          } else if (getarray[i].catagory_name === "Learning") {
+          } else if (getarray[i].catagory_name === 'Learning') {
             // edit this
-            setitemLearningleft([])
-            setitemLearningright([])
+            setitemLearningleft([]);
+            setitemLearningright([]);
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
                 setitemLearningleft((prevState) => [
@@ -75,8 +75,8 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = false
+                ]);
+                isinlist = false;
               } else {
                 setitemLearningright((prevState) => [
                   ...prevState,
@@ -84,14 +84,14 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = true
+                ]);
+                isinlist = true;
               }
             }
-          } else if (getarray[i].catagory_name === "Faculty") {
+          } else if (getarray[i].catagory_name === 'Faculty') {
             // edit this
-            setitemfacultyleft([])
-            setitemfacultyright([])
+            setitemfacultyleft([]);
+            setitemfacultyright([]);
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
                 setitemfacultyleft((prevState) => [
@@ -100,8 +100,8 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = false
+                ]);
+                isinlist = false;
               } else {
                 setitemfacultyright((prevState) => [
                   ...prevState,
@@ -109,14 +109,14 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = true
+                ]);
+                isinlist = true;
               }
             }
-          } else if (getarray[i].catagory_name === "News") {
+          } else if (getarray[i].catagory_name === 'News') {
             // edit this
-            setitemnewsleft([])
-            setitemnewsright([])
+            setitemnewsleft([]);
+            setitemnewsright([]);
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
                 setitemnewsleft((prevState) => [
@@ -125,8 +125,8 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = false
+                ]);
+                isinlist = false;
               } else {
                 setitemnewsright((prevState) => [
                   ...prevState,
@@ -134,14 +134,14 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = true
+                ]);
+                isinlist = true;
               }
             }
-          } else if (getarray[i].catagory_name === "Market") {
+          } else if (getarray[i].catagory_name === 'Market') {
             // edit this
-            setitemmarketleft([])
-            setitemmarketright([])
+            setitemmarketleft([]);
+            setitemmarketright([]);
             for (let j = 0; j < getarray[i].all_topic.length; j++) {
               if (j < getarray[i].all_topic.length && isinlist) {
                 setitemmarketleft((prevState) => [
@@ -150,8 +150,8 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = false
+                ]);
+                isinlist = false;
               } else {
                 setitemmarketright((prevState) => [
                   ...prevState,
@@ -159,101 +159,101 @@ function Topicselect(props) {
                     getarray[i].all_topic[j].topic_id,
                     getarray[i].all_topic[j].topic_name,
                   ],
-                ])
-                isinlist = true
+                ]);
+                isinlist = true;
               }
             }
           }
         }
       })
-      .catch((err) => console.log(err))
-  }
+      .catch((err) => console.log(err));
+  };
 
   // console.log(itemgeneralleft, itemgeneralright)
   // console.log(itemstudyleft, itemstudyright)
   // console.log(itemfacultyleft, itemfacultyright)
 
   useEffect(() => {
-    getdata()
-  }, [])
+    getdata();
+  }, []);
 
   const handleCheck = (event) => {
-    var updatedList = [...itemed]
-    var updatedIdList = [...iditemed]
+    var updatedList = [...itemed];
+    var updatedIdList = [...iditemed];
 
     if (event.target.checked) {
-      updatedList = [...itemed, event.target.value]
-      updatedIdList = [...iditemed, event.target.id]
+      updatedList = [...itemed, event.target.value];
+      updatedIdList = [...iditemed, event.target.id];
     } else {
-      updatedList.splice(itemed.indexOf(event.target.value), 1)
-      updatedIdList.splice(iditemed.indexOf(event.target.id), 1)
+      updatedList.splice(itemed.indexOf(event.target.value), 1);
+      updatedIdList.splice(iditemed.indexOf(event.target.id), 1);
     }
-    setItemed(updatedList)
-    setIditemed(updatedIdList)
-  }
+    setItemed(updatedList);
+    setIditemed(updatedIdList);
+  };
 
   var isChecked = (item) =>
-    itemed.includes(item) ? "checked-item" : "not-checked-item"
+    itemed.includes(item) ? 'checked-item' : 'not-checked-item';
 
   // console.log(itemed.length)
 
   useEffect(() => {
     if (itemed.length <= 5) {
-      localStorage.setItem("itemed", JSON.stringify(itemed))
-      localStorage.setItem("iditemed", JSON.stringify(iditemed))
-      sendbtn(false)
+      localStorage.setItem('itemed', JSON.stringify(itemed));
+      localStorage.setItem('iditemed', JSON.stringify(iditemed));
+      sendbtn(false);
     } else if (itemed.length > 5) {
-      sendbtn(true)
+      sendbtn(true);
     }
-  }, [itemed])
+  }, [itemed]);
 
-  const [general, setgeneral] = useState(true)
-  const [study, setstudy] = useState(false)
-  const [faculty, setfaculty] = useState(false)
-  const [news, setnews] = useState(false)
-  const [market, setmarket] = useState(false)
+  const [general, setgeneral] = useState(true);
+  const [study, setstudy] = useState(false);
+  const [faculty, setfaculty] = useState(false);
+  const [news, setnews] = useState(false);
+  const [market, setmarket] = useState(false);
 
   const togglegeneral = () => {
-    setgeneral(true)
-    setstudy(false)
-    setfaculty(false)
-    setnews(false)
-    setmarket(false)
-  }
+    setgeneral(true);
+    setstudy(false);
+    setfaculty(false);
+    setnews(false);
+    setmarket(false);
+  };
 
   const togglestudy = () => {
-    setgeneral(false)
-    setstudy(true)
-    setfaculty(false)
-    setnews(false)
-    setmarket(false)
-  }
+    setgeneral(false);
+    setstudy(true);
+    setfaculty(false);
+    setnews(false);
+    setmarket(false);
+  };
 
   const togglefaculty = () => {
-    setgeneral(false)
-    setstudy(false)
-    setfaculty(true)
-    setnews(false)
-    setmarket(false)
-  }
+    setgeneral(false);
+    setstudy(false);
+    setfaculty(true);
+    setnews(false);
+    setmarket(false);
+  };
 
   const togglenews = () => {
-    setgeneral(false)
-    setstudy(false)
-    setfaculty(false)
-    setnews(true)
-    setmarket(false)
-  }
+    setgeneral(false);
+    setstudy(false);
+    setfaculty(false);
+    setnews(true);
+    setmarket(false);
+  };
 
   const togglemarket = () => {
-    setgeneral(false)
-    setstudy(false)
-    setfaculty(false)
-    setnews(false)
-    setmarket(true)
-  }
+    setgeneral(false);
+    setstudy(false);
+    setfaculty(false);
+    setnews(false);
+    setmarket(true);
+  };
 
-  console.log(general, study, faculty, news, market)
+  console.log(general, study, faculty, news, market);
 
   return (
     <div className="topic">
@@ -265,42 +265,42 @@ function Topicselect(props) {
       <div className="contenttopic">
         <div className="seltopic">
           <button
-            className={`generalC ${general ? "generaltog" : ""}`}
+            className={`generalC ${general ? 'generaltog' : ''}`}
             onClick={togglegeneral}
           >
             General
           </button>
           <br></br>
           <button
-            className={`studyC ${study ? "studytog" : ""}`}
+            className={`studyC ${study ? 'studytog' : ''}`}
             onClick={togglestudy}
           >
             Learning
           </button>
           <br></br>
           <button
-            className={`facultyC ${faculty ? "facultytog" : ""}`}
+            className={`facultyC ${faculty ? 'facultytog' : ''}`}
             onClick={togglefaculty}
           >
             Faculty
           </button>
           <br></br>
           <button
-            className={`newsC ${news ? "newtog" : ""}`}
+            className={`newsC ${news ? 'newtog' : ''}`}
             onClick={togglenews}
           >
             News
           </button>
           <br></br>
           <button
-            className={`marketC ${market ? "markettog" : ""}`}
+            className={`marketC ${market ? 'markettog' : ''}`}
             onClick={togglemarket}
           >
             Market
           </button>
         </div>
         <div className="selcom">
-          <div className={`${general ? "scrollgeneral" : "noting"}`}>
+          <div className={`${general ? 'scrollgeneral' : 'noting'}`}>
             <div className="comleft">
               {itemgeneralleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
@@ -328,7 +328,7 @@ function Topicselect(props) {
               ))}
             </div>
           </div>
-          <div className={`${study ? "scrollstudy" : "noting"}`}>
+          <div className={`${study ? 'scrollstudy' : 'noting'}`}>
             <div className="comleft">
               {itemLearningleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
@@ -356,7 +356,7 @@ function Topicselect(props) {
               ))}
             </div>
           </div>
-          <div className={`${faculty ? "scrollfaculty" : "noting"}`}>
+          <div className={`${faculty ? 'scrollfaculty' : 'noting'}`}>
             <div className="comleft">
               {itemfacultyleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
@@ -384,7 +384,7 @@ function Topicselect(props) {
               ))}
             </div>
           </div>
-          <div className={`${news ? "scrollnews" : "noting"}`}>
+          <div className={`${news ? 'scrollnews' : 'noting'}`}>
             <div className="comleft">
               {itemnewsleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
@@ -412,7 +412,7 @@ function Topicselect(props) {
               ))}
             </div>
           </div>
-          <div className={`${market ? "scrollmarket" : "noting"}`}>
+          <div className={`${market ? 'scrollmarket' : 'noting'}`}>
             <div className="comleft">
               {itemmarketleft.map((item, index) => (
                 <div key={index} className="checkbox-wrapper">
@@ -443,7 +443,7 @@ function Topicselect(props) {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Topicselect
+export default Topicselect;
