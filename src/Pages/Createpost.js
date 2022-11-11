@@ -8,7 +8,7 @@ import uploadicon from "../picture/uploadicon.png"
 import { IoIosArrowBack } from "react-icons/io"
 import Navbar from "../components/NavBar"
 import axios from "axios"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 // import "bootstrap/dist/css/bootstrap.min.css"
 
 function Createpost() {
@@ -36,6 +36,8 @@ function Createpost() {
       setIditem(iditem)
     }
   }
+
+  const token = localStorage.getItem("token")
 
   // const checkedItems = items.length
   //   ? items.reduce((total, item) => {
@@ -236,21 +238,31 @@ function Createpost() {
   }
 
   // console.log()
+  let navigate = useNavigate()
 
   const senddata = () => {
     let title = document.getElementById("inputT")
     let content = document.getElementById("inputC")
 
     axios
-      .post("//localhost:4000/api/post/create", {
-        topic_id: iditem,
-        post_title: title.value,
-        post_content: content.value,
-        cover_photo_url: urlcover,
-        post_photo_url: urls,
-      })
+      .post(
+        "https://kulony-backend.herokuapp.com/api/post/create",
+        {
+          topic_id: iditem,
+          post_title: title.value,
+          post_content: content.value,
+          cover_photo_url: urlcover,
+          post_photo_url: urls,
+        },
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTAyMTM0LCJleHAiOjE2NjgxODg1MzR9.oIbRkgrR4b7tSaEySHYyVig26NBFTdSYdsLBteNdfKg`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data)
+        navigate("/mypost")
       })
       .catch((err) => console.log(err))
   }
