@@ -95,6 +95,7 @@ function Search() {
           }
         );
         const datajson = await data.json();
+        console.log(datajson);
         setReturntotop(true);
         setDisplayload(true);
         setSearchOutPutData(datajson);
@@ -104,11 +105,14 @@ function Search() {
       } else if (searchtype[1]) {
         setDisplayload(false);
         setSearchOutPutData([]);
-        const data = await fetch(`https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        const data = await fetch(
+          `https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
         const datajson = await data.json();
         console.log(datajson);
         setReturntotop(true);

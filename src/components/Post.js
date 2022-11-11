@@ -65,11 +65,14 @@ function Post(props) {
 
   const gettopicname = async (topicid) => {
     try {
-      const response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic_data?id=${topicid}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://kulony-backend.herokuapp.com/api/topic/get_topic_data?id=${topicid}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
       // console.log(response);
       const json = await response.json();
       // console.log("json topic", json);
@@ -120,19 +123,25 @@ function Post(props) {
   const likepost_update = async () => {
     try {
       if (user_like_status) {
-        const remove = await fetch(`https://kulony-backend.herokuapp.com/api/post/unlike/${post_id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        const remove = await fetch(
+          `https://kulony-backend.herokuapp.com/api/post/unlike/${post_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       } else {
-        const add = await fetch(`https://kulony-backend.herokuapp.com/api/post/like/${post_id}`, {
-          method: "POST",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        const add = await fetch(
+          `https://kulony-backend.herokuapp.com/api/post/like/${post_id}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       }
 
       setLikecount(user_like_status ? likecount - 1 : likecount + 1);
@@ -144,11 +153,14 @@ function Post(props) {
 
   const fetchcomment = async () => {
     try {
-      const comment_fetch_respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${post_id}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const comment_fetch_respone = await fetch(
+        `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
       const comment_json = await comment_fetch_respone.json();
       console.log(comment_json);
       console.log("as");
@@ -163,12 +175,15 @@ function Post(props) {
 
   const delete_post = async () => {
     try {
-      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/post/${post_id}/delete`, {
-        method: "PUT",
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const respone = await fetch(
+        `https://kulony-backend.herokuapp.com/api/post/${post_id}/delete`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
 
       setDeletedone(true);
     } catch (err) {
@@ -185,11 +200,15 @@ function Post(props) {
 
   let datetime = "";
 
+  let min = inttime.toString().split(".");
+  if (!inttime.toString().includes(".")) {
+    min = (min + ".00").split(".");
+  }
+
   if (inttime >= 12 && inttime < 24) {
     if (inttime === 12) {
       datetime = "12:00 PM, " + day;
     } else {
-      const min = inttime.toString().split(".");
       inttime -= 5;
 
       const date = inttime.toString().split(".");
@@ -200,7 +219,6 @@ function Post(props) {
     if (inttime === 24) {
       datetime = "12:00 AM, " + day;
     } else {
-      const min = inttime.toString().split(".");
       inttime += 7;
       const date = inttime.toString().split(".");
       if (min[1].length === 1) {
@@ -213,12 +231,15 @@ function Post(props) {
 
   const comment_delete = async (id) => {
     try {
-      const respone = await fetch(`https://kulony-backend.herokuapp.com/api/comment/${id}/delete`, {
-        method: "PUT",
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const respone = await fetch(
+        `https://kulony-backend.herokuapp.com/api/comment/${id}/delete`,
+        {
+          method: "PUT",
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
       if (!respone.ok) {
         throw new Error("fail");
       }
