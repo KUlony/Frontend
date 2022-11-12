@@ -9,6 +9,8 @@ import Checklogin from "../components/Checklogin"
 function ReportpageAdmin() {
   const [togpost, setTogpost] = useState(true)
   const [togcom, setTogcom] = useState(false)
+  const [numpost, setNumpost] = useState("")
+  const [numcom, setNumcom] = useState("")
 
   const distogpost = () => {
     setTogpost(true)
@@ -18,6 +20,14 @@ function ReportpageAdmin() {
   const distogcom = () => {
     setTogpost(false)
     setTogcom(true)
+  }
+
+  const sendnumpost = (e) => {
+    setNumpost(e)
+  }
+
+  const sendnumcom = (e) => {
+    setNumcom(e)
   }
 
   return (
@@ -39,7 +49,7 @@ function ReportpageAdmin() {
             </button>
             {togpost && <div className="baseline"></div>}
           </div>
-          <p className="noti">10</p>
+          <p className={`${numpost ? "noti" : "nothing"}`}>{numpost}</p>
         </div>
         <div className="butn">
           <div>
@@ -51,12 +61,12 @@ function ReportpageAdmin() {
             </button>
             {togcom && <div className="baseline"></div>}
           </div>
-          <p className="noti">10</p>
+          <p className={`${numcom ? "noti" : "nothing"}`}>{numcom}</p>
         </div>
       </div>
       <br></br>
-      {togpost && <PostreportAdmin />}
-      {togcom && <ComreportAdmin />}
+      {togpost && <PostreportAdmin send={sendnumpost} />}
+      {togcom && <ComreportAdmin send={sendnumcom} />}
     </div>
   )
 }

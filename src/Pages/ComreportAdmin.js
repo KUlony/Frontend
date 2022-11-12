@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react"
 import Commentadmin from "../components/Commentadmin"
 import "./ComreportAdmin.css"
 
-function ComreportAdmin() {
+function ComreportAdmin({ send }) {
   const [commentdata, setcommentdata] = useState([])
   const [commentiddata, setcommentiddata] = useState([])
 
@@ -54,6 +54,8 @@ function ComreportAdmin() {
     gendata()
   }, [])
 
+  send(commentdata.length)
+
   console.log(commentdata)
   console.log(commentiddata)
 
@@ -97,71 +99,78 @@ function ComreportAdmin() {
 
   return (
     <div className="allcomreport">
-      {commentdata.map((item, index) => (
-        <div className="contentreportcom" key={index}>
-          <div className="headcardcom">
-            <div className="deteil">
-              <p className="topnamecom">
-                Reported by <span className="greenspan">{item.count_user}</span>{" "}
-                users, Lastest report on{" "}
-                <span className="greenspan">
-                  {item.year}-{item.month}-{item.day}
-                </span>
-              </p>
+      {!commentdata.length ? (
+        <div className="contentreportcom">
+          <p className="donthave">dont have report comment</p>
+        </div>
+      ) : (
+        commentdata.map((item, index) => (
+          <div className="contentreportcom" key={index}>
+            <div className="headcardcom">
+              <div className="deteil">
+                <p className="topnamecom">
+                  Reported by{" "}
+                  <span className="greenspan">{item.count_user}</span> users,
+                  Lastest report on{" "}
+                  <span className="greenspan">
+                    {item.year}-{item.month}-{item.day}
+                  </span>
+                </p>
+              </div>
+              <div className="buttondis">
+                <button
+                  className="discardbtncom"
+                  onClick={() => {
+                    discarddata(item)
+                    window.location.reload()
+                  }}
+                >
+                  Discard Report <i class="bi bi-x"></i>
+                </button>
+                <button
+                  className="deletebtncom"
+                  onClick={() => {
+                    deletedata(item)
+                    window.location.reload()
+                  }}
+                >
+                  Delete Comment <i class="bi bi-trash"></i>
+                </button>
+              </div>
             </div>
-            <div className="buttondis">
-              <button
-                className="discardbtncom"
-                onClick={() => {
-                  discarddata(item)
-                  window.location.reload()
-                }}
-              >
-                Discard Report <i class="bi bi-x"></i>
-              </button>
-              <button
-                className="deletebtncom"
-                onClick={() => {
-                  deletedata(item)
-                  window.location.reload()
-                }}
-              >
-                Delete Comment <i class="bi bi-trash"></i>
-              </button>
-            </div>
-          </div>
-          {commentiddata.map((item2, index2) =>
-            index === index2 ? (
-              <div key={index2}>
-                <Commentadmin
-                  user_url={item2.author.profile_pic_url}
-                  user_username={item2.author.username}
-                  comment_content={item2.comment_content}
-                  comment_time={item2.comment_time}
-                />
-                <div className="viewpostcomment">
-                  <div className="typecomment">
-                    <p className="reporttypecom">
-                      Report Type :{" "}
-                      {item.report_type.map((item3, index) =>
-                        index >= 1 ? "," + item3 : item3
-                      )}
-                    </p>
-                  </div>
-                  <div className="view">
-                    <a
-                      href={`/viewpost/:${item2.post_id}`}
-                      className="viewpost"
-                    >
-                      View post <i class="bi bi-eye-fill"></i>
-                    </a>
+            {commentiddata.map((item2, index2) =>
+              index === index2 ? (
+                <div key={index2}>
+                  <Commentadmin
+                    user_url={item2.author.profile_pic_url}
+                    user_username={item2.author.username}
+                    comment_content={item2.comment_content}
+                    comment_time={item2.comment_time}
+                  />
+                  <div className="viewpostcomment">
+                    <div className="typecomment">
+                      <p className="reporttypecom">
+                        Report Type :{" "}
+                        {item.report_type.map((item3, index) =>
+                          index >= 1 ? "," + item3 : item3
+                        )}
+                      </p>
+                    </div>
+                    <div className="view">
+                      <a
+                        href={`/viewpost/:${item2.post_id}`}
+                        className="viewpost"
+                      >
+                        View post <i class="bi bi-eye-fill"></i>
+                      </a>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : null
-          )}
-        </div>
-      ))}
+              ) : null
+            )}
+          </div>
+        ))
+      )}
     </div>
   )
 }

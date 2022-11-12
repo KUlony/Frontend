@@ -4,7 +4,7 @@ import Post from "../components/Post"
 // import Post from "../components/Post"
 import "./PostreportAdmin.css"
 
-function PostreportAdmin({ datasort }) {
+function PostreportAdmin({ datasort, send }) {
   const [postdata, setPostdata] = useState([])
   const [postiddata, setPostiddata] = useState([])
 
@@ -62,6 +62,8 @@ function PostreportAdmin({ datasort }) {
     gendata()
   }, [])
 
+  send(postdata.length)
+
   console.log(postdata)
   console.log(postiddata)
 
@@ -111,68 +113,75 @@ function PostreportAdmin({ datasort }) {
 
   return (
     <div className="allpostreport">
-      {postdata.map((item, index) => (
-        <div className="contentreportpost" key={index}>
-          <div className="headcard">
-            <div className="headnamecom">
-              <p className="topname">
-                Reported by <span className="greenspan">{item.count_user}</span>{" "}
-                users, Lastest report on{" "}
-                <span className="greenspan">
-                  {item.year}-{item.month}-{item.day}
-                </span>
-              </p>
-            </div>
-            <div className="btnpost">
-              <button
-                className="discardbtnpost"
-                onClick={() => {
-                  discarddata(item)
-                  window.location.reload()
-                }}
-              >
-                Discard Report <i class="bi bi-x"></i>
-              </button>
-              <button
-                className="deletebtnpost"
-                onClick={() => {
-                  deletedata(item)
-                  window.location.reload()
-                }}
-              >
-                Delete Post <i class="bi bi-trash"></i>
-              </button>
-            </div>
-          </div>
-          {postiddata.map((item2, index2) =>
-            index === index2 ? (
-              <div key={index2}>
-                <Post
-                  title={item2.post_title}
-                  like={item2.post_like_count}
-                  post_content={item2.post_content}
-                  photo={item2.cover_photo_url}
-                  comment={item2.post_comment_count}
-                  profilepic={item2.author.profile_pic_url}
-                  post_photo_url={item2.post_photo_url}
-                  post_topic={item2.post_topic}
-                  username={item2.author.username}
-                  post_time={item2.post_time}
-                  post_id={item2.post_id}
-                  user_id={item2.author.user_id}
-                  user_like_status_post={item2.user_like_status}
-                />
-              </div>
-            ) : null
-          )}
-          <p className="reporttype">
-            Report Type :{" "}
-            {item.report_type.map((item3, index) =>
-              index >= 1 ? "," + item3 : item3
-            )}
-          </p>
+      {!postdata.length ? (
+        <div className="contentreportpost">
+          <p className="donthave">dont have report post</p>
         </div>
-      ))}
+      ) : (
+        postdata.map((item, index) => (
+          <div className="contentreportpost" key={index}>
+            <div className="headcard">
+              <div className="headnamecom">
+                <p className="topname">
+                  Reported by{" "}
+                  <span className="greenspan">{item.count_user}</span> users,
+                  Lastest report on{" "}
+                  <span className="greenspan">
+                    {item.year}-{item.month}-{item.day}
+                  </span>
+                </p>
+              </div>
+              <div className="btnpost">
+                <button
+                  className="discardbtnpost"
+                  onClick={() => {
+                    discarddata(item)
+                    window.location.reload()
+                  }}
+                >
+                  Discard Report <i class="bi bi-x"></i>
+                </button>
+                <button
+                  className="deletebtnpost"
+                  onClick={() => {
+                    deletedata(item)
+                    window.location.reload()
+                  }}
+                >
+                  Delete Post <i class="bi bi-trash"></i>
+                </button>
+              </div>
+            </div>
+            {postiddata.map((item2, index2) =>
+              index === index2 ? (
+                <div key={index2}>
+                  <Post
+                    title={item2.post_title}
+                    like={item2.post_like_count}
+                    post_content={item2.post_content}
+                    photo={item2.cover_photo_url}
+                    comment={item2.post_comment_count}
+                    profilepic={item2.author.profile_pic_url}
+                    post_photo_url={item2.post_photo_url}
+                    post_topic={item2.post_topic}
+                    username={item2.author.username}
+                    post_time={item2.post_time}
+                    post_id={item2.post_id}
+                    user_id={item2.author.user_id}
+                    user_like_status_post={item2.user_like_status}
+                  />
+                </div>
+              ) : null
+            )}
+            <p className="reporttype">
+              Report Type :{" "}
+              {item.report_type.map((item3, index) =>
+                index >= 1 ? "," + item3 : item3
+              )}
+            </p>
+          </div>
+        ))
+      )}
     </div>
   )
 }
