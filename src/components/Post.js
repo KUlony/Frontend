@@ -17,6 +17,7 @@ import profileimg from "../picture/profile.png";
 import bin from "../picture/bin.png";
 import edit from "../picture/edit.png";
 import report from "../picture/reportmini.png";
+import axios from "axios";
 
 function Post(props) {
   const {
@@ -166,18 +167,29 @@ function Post(props) {
       }
       if (!loadingcom) {
         setLoadingcom(true);
-        const comment_fetch_respone = await fetch(
+        // const comment_fetch_respone = await fetch(
+        //   `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
+        //   {
+        //     headers: {
+        //       Authorization: `${token}`,
+        //     },
+        //   }
+        // );
+        const response = await axios.get(
           `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
           {
             headers: {
-              Authorization: `${token}`,
+              Authorization: token,
             },
           }
         );
-        const comment_json = await comment_fetch_respone.json();
-        console.log(comment_json);
-        console.log("as");
-        setCommentdata(comment_json);
+        console.log(response);
+        // const comment_json = await comment_fetch_respone.json();
+        // console.log(comment_json);
+        // console.log("as");
+
+        // setCommentdata(comment_json);
+        setCommentdata(response.data);
         setHavedata(true);
         setLoadingcomment(false);
         display_comment();

@@ -3,6 +3,7 @@ import Favorite from "../components/Favorite";
 import Navbar from "../components/NavBar";
 import Post from "../components/Post";
 import Post_generator from "../components/Post_generator";
+import axios from "axios";
 import "./MyPost.css";
 
 function MyPost() {
@@ -13,19 +14,29 @@ function MyPost() {
 
   const mypostfetch = async () => {
     try {
-      const response = await fetch(
-        `https://kulony-backend.herokuapp.com/api/user/mypost`,
+      // const response = await fetch(
+      //   `https://kulony-backend.herokuapp.com/api/user/mypost`,
+      //   {
+      //     headers: {
+      //       Authorization: `${token}`,
+      //     },
+      //   }
+      // );
+      const response = await axios.get(
+        "https://kulony-backend.herokuapp.com/api/user/mypost",
         {
           headers: {
-            Authorization: `${token}`,
+            Authorization: token,
           },
         }
       );
       console.log(response);
-      const json = await response.json();
-      console.log(json);
-      setUserinfo(json.author);
-      setMypostdata(json.post);
+      // const json = await response.json();
+      console.log(response.data);
+      setUserinfo(response.data.author);
+      setMypostdata(response.data.post);
+      // setUserinfo(json.author);
+      // setMypostdata(json.post);
       // console.log("mypost ", json);
       setLoading(false);
     } catch (err) {
