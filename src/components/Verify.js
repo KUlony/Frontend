@@ -38,7 +38,7 @@ function Verify(probs) {
     try {
       e.preventDefault();
       const postdata = await fetch(
-        'http://localhost:4000/api/sing-up/register/email/checkOTP',
+        'https://kulony-backend.herokuapp.com/api/sing-up/register/email/checkOTP',
         {
           method: 'POST',
           headers: {
@@ -70,7 +70,7 @@ function Verify(probs) {
         setWork1(false);
         e.preventDefault();
         const postdata = await fetch(
-          'http://localhost:4000/api/sing-up/newotp/verify/email',
+          'https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/email',
           {
             method: 'POST',
             headers: {
@@ -97,7 +97,7 @@ function Verify(probs) {
     try {
       e.preventDefault();
       const postdata = await fetch(
-        'http://localhost:4000/api/sing-up/forgotpassword/checkOTP',
+        'https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/checkOTP',
         {
           method: 'POST',
           headers: {
@@ -129,7 +129,7 @@ function Verify(probs) {
         setWork2(false);
         e.preventDefault();
         const postdata = await fetch(
-          'http://localhost:4000/api/sing-up/newotp/verify/forgotpassword',
+          'https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/forgotpassword',
           {
             method: 'POST',
             headers: {
@@ -256,3 +256,4 @@ function Verify(probs) {
   );
 }
 export default Verify;
+

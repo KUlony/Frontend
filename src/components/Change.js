@@ -19,7 +19,7 @@ function Change(probs) {
     try{
       e.preventDefault()
       setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/forgotpassword/resetpassword',{
+      const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/resetpassword',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -35,6 +35,8 @@ function Change(probs) {
 
       if (!json.success){
         setError(json.message)
+        setPassword('')
+        setConfirmpassword('')
       }
 
       if (!postdata.ok){

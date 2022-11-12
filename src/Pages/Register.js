@@ -41,7 +41,7 @@ function Register() {
         setWork(false)
         e.preventDefault()
         setError('')
-        const postdata = await fetch('http://localhost:4000/api/sing-up/register/email',{
+        const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/register/email',{
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,6 +57,9 @@ function Register() {
 
         if (!json.success){
           setError(json.message)
+          setPassword('')
+          setConfirmpassword('')
+          setWork(true)
         }
 
         if (!postdata.ok){
@@ -68,7 +71,7 @@ function Register() {
     }
     catch(err){
       // console.log("catch")
-      console.log(err.message)
+      // console.log(err.message)
     }
   }
 

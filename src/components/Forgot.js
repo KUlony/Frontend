@@ -20,7 +20,7 @@ function Forgot(probs) {
     try{
       e.preventDefault()
       setError('')
-      const postdata = await fetch('http://localhost:4000/api/sing-up/forgotpassword',{
+      const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword',{
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
