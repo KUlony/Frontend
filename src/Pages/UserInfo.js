@@ -90,6 +90,7 @@ const UserInfo = () => {
         )
         .then((res) => {
           console.log(res)
+          window.location.reload()
         })
         .catch((err) => {
           console.log(err)
@@ -212,9 +213,12 @@ const UserInfo = () => {
       () => {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-          console.log(url)
+          console.log('url is', url)
+          console.log(file)
           setUrlProfile(url)
-          alert('Upload Done!!')
+          if (file !== '') {
+            alert('Upload Done!!')
+          }
         })
       }
     )
