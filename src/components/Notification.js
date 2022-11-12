@@ -4,28 +4,46 @@ import { FaRegBell } from 'react-icons/fa';
 import axios from 'axios';
 import NotificationList from './NotificationList';
 
-function Notification() {
+function Notification(props) {
+  const { data } = props;
   const [showNoti, setShowNoti] = useState('dropdown_hide');
   // const [showNotiAll, setShowNotiAll] = useState(false);
-
+  
   const token = localStorage.getItem('token');
+  
+  const [count, setCount] = useState(0);
 
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    axios
-      .get(`/api/notification`, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((res) => {
-        console.log(res.data);
-        setData(res.data.reverse());
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
+  // useEffect(() => {
+  //   if (havedata) {
+  //     console.log("data", data);
+  //     data.map((data1) =>
+  //       data1.map((data) => (data.readed ? null : setCount(count + 1)))
+  //     );
+  //     console.log(count);
+  //   }
+  // }, [data]);
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`/api/notification`, {
+  //       headers: {
+  //         Authorization: token,
+  //       },
+  //     })
+  //     .then((res) => {
+  //       console.log(res.data);
+  //       // setCount(count + 1)
+  //       const array = res.data.map((data2) =>
+  //         !data2.readed ? null : data2.readed
+  //       );
+  //       setCount(array);
+  //       setData(res.data.reverse());
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
   const clickNoti = () => {
     if (showNoti === 'dropdown_hide') {
       setShowNoti('dropdown_show');

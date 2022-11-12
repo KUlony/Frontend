@@ -6,12 +6,51 @@ import { Link } from 'react-router-dom';
 import ReqTopic from './ReqTopic';
 import Notification from './Notification';
 import CreateTopic from './CreateTopic';
+import axios from 'axios';
 
 function Navbar() {
   const [show, setShow] = useState(false);
   const [showCreateTopic, setShowCreateTopic] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
+  // const [isAdmin, setIsAdmin] = useState('false');
+  const [countunread, setCountunread] = useState(0);
+  const [data, setData] = useState([]);
+  const token = localStorage.getItem('token');
+  const [count, setCount] = useState(0);
+  const [countReq, setCountReq] = useState(0);
+  const [countReport, setCountReport] = useState(0);
+  const [profile, setProfile] = useState([]);
+  const replycount = (e) => {
+    setCountunread(e);
+  };
+  const userid = localStorage.getItem('user_id');
+  const isAdmin = localStorage.getItem('admin');
+  console.log(isAdmin);
+  console.log('user id: ', userid);
+  // useEffect(() => {
+  //   console.log(isAdmin);
+  // }, []);
 
+  const getalltopic = async () => {
+    try {
+      if (localStorage.getItem('admin') === 'true') {
+        const response = await axios.get(
+          `http://localhost:4000/api/admin/get_all_request_topic`,
+          {
+            headers: { Authorization: token },
+          }
+        );
+
+        console.log('hi', response.data);
+        setCountReq(response.data.length);
+      }
+    } catch (error) {
+      getalltopic();
+    }
+  };
+
+  useEffect(() => {
+    getalltopic();
+  }, []);
   const handleReq = (e) => {
     e.preventDefault();
   };
@@ -24,9 +63,67 @@ function Navbar() {
     e.preventDefault();
     setShowCreateTopic(!showCreateTopic);
   };
+
   useEffect(() => {
-    setIsAdmin(localStorage.getItem('admin'));
+    axios
+      .get(`http://localhost:4000/api/user/${userid}/profile`, {
+        headers: { Authorization: token },
+      })
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((err) => console.log(err));
+  });
+
+  useEffect(() => {
+    if (localStorage.getItem('admin') === 'true') {
+      axios
+        .get(`http://localhost:4000/api/admin/get_comment_report`, {
+          headers: { Authorization: token },
+        })
+        .then((res) => {
+          setCountReport((countReport) => countReport + res.data.length);
+        })
+        .catch((err) => console.log(err));
+    }
   }, []);
+  useEffect(() => {
+    if (localStorage.getItem('admin') === 'true') {
+      axios
+        .get(`http://localhost:4000/api/admin/get_post_report`, {
+          headers: { Authorization: token },
+        })
+        .then((res) => {
+          setCountReport((countReport) => countReport + res.data.length);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:4000/api/notification`, {
+        headers: {
+          Authorization: token,
+        },
+      })
+      .then((res) => {
+        console.log('resdata', res.data);
+        // setCount(count + 1)
+        const array = res.data.filter((data2) => !data2.readed);
+        // console.log(array.length);
+        setCountunread(array.length);
+        setData(res.data.reverse());
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   console.log("lenght", count.lenght);
+  //   setCountunread(count.lenght);
+  // }, [data]);
 
   return (
     <ul className="Nav">
@@ -55,7 +152,7 @@ function Navbar() {
           <div>
             <Link to="/admin/reportpost" className="reportpost-nav">
               <span>REPORT</span>
-              <div className="num-noti">3</div>
+              <div className="num-noti">{countReport}</div>
             </Link>
           </div>
         ) : (
@@ -68,7 +165,7 @@ function Navbar() {
         {isAdmin === 'true' ? (
           <Link to="/admin/requesttopic" className="topic-req-nav">
             <span>TOPIC REQUEST</span>
-            <div className="num-noti">3</div>
+            <div className="num-noti">{countReq}</div>
           </Link>
         ) : (
           <Link to="/mypost" className="my-post">
@@ -96,15 +193,25 @@ function Navbar() {
         )}
       </li>
       <li className="bell">
-        <Notification />
-        <div className="num-noti">3</div>
+        <Notification data={data} />
+        <div className="num-noti">{countunread}</div>
       </li>
       {/* <div><Notification /></div> */}
       {/* <li className='vector'><img src={vector} width='40px' height='40px' alt=""/></li> */}
       <li>
-        <Link to="/profile" className="vector">
-          <BsPersonCircle size={25} className="vector-icon" />
-        </Link>
+        {profile.profile_pic_url ? (
+          <Link to="/profile" className="nav-profile">
+            <img
+              src={profile.profile_pic_url}
+              alt=""
+              className="nav-profile-img"
+            ></img>
+          </Link>
+        ) : (
+          <Link to="/profile" className="vector">
+            <BsPersonCircle size={25} className="vector-icon" />
+          </Link>
+        )}
       </li>
     </ul>
   );
