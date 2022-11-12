@@ -22,14 +22,11 @@ function PostreportAdmin({ datasort, send }) {
 
   const gendata = () => {
     axios
-      .get(
-        `https://kulony-backend.herokuapp.com/api/admin/get_post_report?sortby${datasort}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      )
+      .get(`//localhost:4000/api/admin/get_post_report/`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
       .then((res) => {
         const data = res.data
         setPostdata(data)
@@ -38,7 +35,7 @@ function PostreportAdmin({ datasort, send }) {
         // console.log(data)
         data.map((item, index) =>
           axios
-            .get(`https://kulony-backend.herokuapp.com/api/post/${item._id}`, {
+            .get(`//localhost:4000/api/post/${item._id}`, {
               headers: {
                 Authorization: `${token}`,
               },
@@ -69,14 +66,11 @@ function PostreportAdmin({ datasort, send }) {
 
   const discarddata = (e) => {
     axios
-      .delete(
-        `https://kulony-backend.herokuapp.com/api/admin/delete_report/${e._id}`,
-        {
-          headers: {
-            Authorization: `${token}`,
-          },
-        }
-      )
+      .delete(`//localhost:4000/api/admin/delete_report/${e._id}`, {
+        headers: {
+          Authorization: `${token}`,
+        },
+      })
       .then((res) => {
         const data = res.data
         console.log(data)
@@ -88,8 +82,8 @@ function PostreportAdmin({ datasort, send }) {
 
   const deletedata = (e) => {
     axios
-      .put(
-        `https://kulony-backend.herokuapp.com/api/admin/delete_reported_entity/${e._id}`,
+      .delete(
+        `//localhost:4000/api/admin/delete_report_entity/${e.report_id[0]}`,
         {
           headers: {
             Authorization: `${token}`,
@@ -136,7 +130,7 @@ function PostreportAdmin({ datasort, send }) {
                   className="discardbtnpost"
                   onClick={() => {
                     discarddata(item)
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                 >
                   Discard Report <i class="bi bi-x"></i>
@@ -145,7 +139,7 @@ function PostreportAdmin({ datasort, send }) {
                   className="deletebtnpost"
                   onClick={() => {
                     deletedata(item)
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                 >
                   Delete Post <i class="bi bi-trash"></i>
@@ -166,7 +160,7 @@ function PostreportAdmin({ datasort, send }) {
                     post_topic={item2.post_topic}
                     username={item2.author.username}
                     post_time={item2.post_time}
-                    post_id={item2.post_id}
+                    post_id={item._id}
                     user_id={item2.author.user_id}
                     user_like_status_post={item2.user_like_status}
                   />

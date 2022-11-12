@@ -1,26 +1,26 @@
-import React, { useState } from "react";
-import "./Change.css";
+import React, { useState } from "react"
+import "./Change.css"
 // import xmark_img from "../picture/Xmark.png"
 
 function Change(probs) {
-  const { display_ch, display_ve, display_fg, email } = probs;
+  const { display_ch, display_ve, display_fg, email } = probs
 
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [password, setPassword] = useState("")
+  const [confirmpassword, setConfirmpassword] = useState("")
 
   const display_close = () => {
-    display_ch();
-    display_ve();
-    display_fg();
-  };
+    display_ch()
+    display_ve()
+    display_fg()
+  }
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState("")
   const confirm = async (e) => {
     try {
-      e.preventDefault();
-      setError("");
+      e.preventDefault()
+      setError("")
       const postdata = await fetch(
-        "https://kulony-backend.herokuapp.comhttps://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/resetpassword",
+        "//localhost:4000/api/sing-up/forgotpassword/resetpassword",
         {
           method: "POST",
           headers: {
@@ -32,24 +32,24 @@ function Change(probs) {
             confirm_password: confirmpassword,
           }),
         }
-      );
+      )
 
-      const json = await postdata.json();
-      console.log(json);
+      const json = await postdata.json()
+      console.log(json)
 
       if (!json.success) {
-        setError(json.message);
+        setError(json.message)
       }
 
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
-      display_close();
+      display_close()
     } catch (err) {
       // console.log("catch")
-      console.log(err.message);
+      console.log(err.message)
     }
-  };
+  }
 
   return (
     <div className="change_container">
@@ -62,7 +62,7 @@ function Change(probs) {
         placeholder="NEW PASSWORD"
         value={password}
         onChange={(e) => {
-          setPassword(e.target.value);
+          setPassword(e.target.value)
         }}
       ></input>
 
@@ -73,7 +73,7 @@ function Change(probs) {
         placeholder="CONFIRM PASSWORD"
         value={confirmpassword}
         onChange={(e) => {
-          setConfirmpassword(e.target.value);
+          setConfirmpassword(e.target.value)
         }}
       ></input>
 
@@ -84,6 +84,6 @@ function Change(probs) {
         CONFIRM
       </button>
     </div>
-  );
+  )
 }
-export default Change;
+export default Change

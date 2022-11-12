@@ -1,32 +1,32 @@
-import React, { useEffect, useState } from "react";
-import "./Favorite.css";
+import React, { useEffect, useState } from "react"
+import "./Favorite.css"
 
-import Favoritebox from "./Favoritebox";
+import Favoritebox from "./Favoritebox"
 
 function Favorite() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token")
 
-  const [postarray, setPostarray] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [postarray, setPostarray] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const fetchuserlikepost = async () => {
     try {
-      const response = await fetch(`https://kulony-backend.herokuapp.com/api/user/user_like_post`, {
+      const response = await fetch(`//localhost:4000/api/user/user_like_post`, {
         headers: {
           Authorization: `${token}`,
         },
-      });
-      const json = await response.json();
-      setPostarray(json);
-      setLoading(true);
+      })
+      const json = await response.json()
+      setPostarray(json)
+      setLoading(true)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
-    fetchuserlikepost();
-  }, []);
+    fetchuserlikepost()
+  }, [])
 
   return (
     <div>
@@ -34,7 +34,7 @@ function Favorite() {
         ? postarray.map((data, idx) => <Favoritebox data={data} />)
         : null}
     </div>
-  );
+  )
 }
 
-export default Favorite;
+export default Favorite

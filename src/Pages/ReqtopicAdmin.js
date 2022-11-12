@@ -22,7 +22,7 @@ function ReqtopicAdmin() {
   const gentopic = async () => {
     try {
       const respone = await axios.get(
-        `https://kulony-backend.herokuapp.com/api/admin/get_all_request_topic`,
+        `//localhost:4000/api/admin/get_all_request_topic`,
         {
           headers: {
             Authorization: `${token}`,
@@ -32,7 +32,7 @@ function ReqtopicAdmin() {
       setPostdata(respone.data)
 
       const response2 = await axios.get(
-        `https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic`,
+        `//localhost:4000/api/topic/get_all_catagory_topic`,
         {
           headers: {
             Authorization: `${token}`,
@@ -52,7 +52,7 @@ function ReqtopicAdmin() {
   const deletetopic = (e) => {
     axios
       .delete(
-        `https://kulony-backend.herokuapp.com/api/admin/remove_request_topic/${e.request_id}`,
+        `//localhost:4000/api/admin/remove_request_topic/${e.request_id}`,
         {
           headers: {
             Authorization: `${token}`,

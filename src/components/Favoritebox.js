@@ -1,44 +1,50 @@
-import React, { useEffect, useState } from "react";
-import "./Favorite.css";
-import { BsFillHeartFill } from "react-icons/bs";
-import profileimg from "../picture/profile.png";
-import { Link } from "react-router-dom";
-import Miniprofile from "./Miniprofile";
+import React, { useEffect, useState } from "react"
+import "./Favorite.css"
+import { BsFillHeartFill } from "react-icons/bs"
+import profileimg from "../picture/profile.png"
+import { Link } from "react-router-dom"
+import Miniprofile from "./Miniprofile"
 
 function Favoritebox(props) {
-  const { data } = props;
-  console.log(data);
-  const [status, setStatus] = useState(true);
-  const [displayProfile, setdisplayProfile] = useState(true);
-  const token = localStorage.getItem("token");
+  const { data } = props
+  console.log(data)
+  const [status, setStatus] = useState(true)
+  const [displayProfile, setdisplayProfile] = useState(true)
+  const token = localStorage.getItem("token")
 
   const likepost_update = async () => {
     try {
       if (status) {
-        const remove = await fetch(`https://kulony-backend.herokuapp.com/api/post/unlike/${data.post_id}`, {
-          method: "DELETE",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setStatus(false);
+        const remove = await fetch(
+          `//localhost:4000/api/post/unlike/${data.post_id}`,
+          {
+            method: "DELETE",
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        )
+        setStatus(false)
       } else {
-        const add = await fetch(`https://kulony-backend.herokuapp.com/api/post/like/${data.post_id}`, {
-          method: "POST",
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
-        setStatus(true);
+        const add = await fetch(
+          `//localhost:4000/api/post/like/${data.post_id}`,
+          {
+            method: "POST",
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        )
+        setStatus(true)
       }
     } catch (err) {
-      console.log(err);
+      console.log(err)
     }
-  };
+  }
 
   const display_profile = () => {
-    setdisplayProfile(!displayProfile);
-  };
+    setdisplayProfile(!displayProfile)
+  }
 
   return (
     <div className="favorite_box">
@@ -82,7 +88,7 @@ function Favoritebox(props) {
         </div>
       ) : null}
     </div>
-  );
+  )
 }
 
-export default Favoritebox;
+export default Favoritebox

@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
-import './Favorite.css'
-import { BsFillHeartFill } from 'react-icons/bs'
+import React, { useState } from "react"
+import "./Favorite.css"
+import { BsFillHeartFill } from "react-icons/bs"
 // import profileimg from '../picture/profile.png'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom"
 // import Miniprofile from './Miniprofile'
 
 function Favoritebox(props) {
@@ -10,15 +10,15 @@ function Favoritebox(props) {
   console.log(data)
   const [status, setStatus] = useState(true)
   const [displayProfile, setdisplayProfile] = useState(true)
-  const token = localStorage.getItem('token')
+  const token = localStorage.getItem("token")
 
   const likepost_update = async () => {
     try {
       if (status) {
         const remove = await fetch(
-          `http://kulony-backend.herokuapp.com/api/post/unlike/${data.post_id}`,
+          `//localhost:4000/api/post/unlike/${data.post_id}`,
           {
-            method: 'DELETE',
+            method: "DELETE",
             headers: {
               Authorization: `${token}`,
             },
@@ -27,9 +27,9 @@ function Favoritebox(props) {
         setStatus(false)
       } else {
         const add = await fetch(
-          `http://kulony-backend.herokuapp.com/api/post/like/${data.post_id}`,
+          `//localhost:4000/api/post/like/${data.post_id}`,
           {
-            method: 'POST',
+            method: "POST",
             headers: {
               Authorization: `${token}`,
             },
@@ -65,18 +65,18 @@ function Favoritebox(props) {
       </div>
       <div className="favorite_box_title">{data.post_title}</div>
       <div className="favorite_box_like">
-        {' '}
+        {" "}
         <div className="favorite_likebox" onClick={likepost_update}>
           <BsFillHeartFill className="likeshadowdrop1" size={32} />
           <BsFillHeartFill
-            className={`${status ? 'like' : 'unlike'}`}
+            className={`${status ? "like" : "unlike"}`}
             size={26}
           />
         </div>
       </div>
       <div className="favorite_viewmorebox">
         <Link to={`/viewpost/${data.post_id}`} className="favorite_viewmore">
-          View post{' '}
+          View post{" "}
         </Link>
       </div>
       {/* {!displayProfile ? (

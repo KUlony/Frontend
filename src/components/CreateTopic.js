@@ -20,7 +20,7 @@ function CreateTopic(props) {
   const sendCreateTopic = () => {
     axios
       .post(
-        `http://kulony-backend.herokuapp.com/api/topic/create_topic/`,
+        `//localhost:4000/api/topic/create_topic/`,
         { catagory_id: category, topic_name: createTopic },
         {
           headers: {
@@ -28,9 +28,11 @@ function CreateTopic(props) {
           },
         }
       )
-      .then((res) => console.log("Posting data", res.data))
+      .then((res) => {
+        console.log("Posting data", res.data)
+        handleShow2()
+      })
       .catch((err) => console.error(err))
-    handleShow2()
   }
   console.log(createTopic)
   console.log(category)

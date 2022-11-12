@@ -1,45 +1,45 @@
-import React, { useEffect, useState } from "react";
-import "./Miniprofile.css";
-import { AiOutlineClose } from "react-icons/ai";
-import { FaFacebookSquare } from "react-icons/fa";
-import profileimg from "../picture/miniprofileimg.png";
-import { BsInstagram } from "react-icons/bs";
+import React, { useEffect, useState } from "react"
+import "./Miniprofile.css"
+import { AiOutlineClose } from "react-icons/ai"
+import { FaFacebookSquare } from "react-icons/fa"
+import profileimg from "../picture/miniprofileimg.png"
+import { BsInstagram } from "react-icons/bs"
 function Miniprofile(props) {
-  const { display, user_id } = props;
-  const [userdata, setUserdata] = useState();
-  const [loading, setLoading] = useState(true);
-  const token = localStorage.getItem("token");
-  const [userfirstandlastname, setUserfirstandlastname] = useState("Anonymous");
+  const { display, user_id } = props
+  const [userdata, setUserdata] = useState()
+  const [loading, setLoading] = useState(true)
+  const token = localStorage.getItem("token")
+  const [userfirstandlastname, setUserfirstandlastname] = useState("Anonymous")
 
   const user_info = async () => {
     try {
       if (user_id !== "") {
-        setLoading(true);
+        setLoading(true)
         // console.log("user_id", user_id);
         const userdata = await fetch(
-          `https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`,
+          `//localhost:4000/api/user/${user_id}/profile`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
-        const jsonuserdata = await userdata.json();
+        )
+        const jsonuserdata = await userdata.json()
 
-        console.log(jsonuserdata);
-        await setUserdata(jsonuserdata);
-        setLoading(false);
+        console.log(jsonuserdata)
+        await setUserdata(jsonuserdata)
+        setLoading(false)
         if (jsonuserdata.user_firstname || jsonuserdata.user_lastname) {
           setUserfirstandlastname(
             `${jsonuserdata.user_firstname} ${jsonuserdata.user_lastname}`
-          );
+          )
         }
       }
     } catch (err) {}
-  };
+  }
   useEffect(() => {
-    user_info();
-  }, [user_id]);
+    user_info()
+  }, [user_id])
 
   return (
     <article className="home_post_profile">
@@ -120,7 +120,7 @@ function Miniprofile(props) {
         </div>
       )}
     </article>
-  );
+  )
 }
 
-export default Miniprofile;
+export default Miniprofile

@@ -32,6 +32,8 @@
   box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.25);
   border-radius: 2%;
   background-color: white;
+  
+ 
 }
 
 .profile-pic-setup {
@@ -50,10 +52,9 @@
 }
 
 .user-info-profile {
-  width: 200%;
+  width: 100%;
   height: auto;
-  left: -88px;
-  position: relative;
+ 
 }
 
 .user-info-profile-temp {
@@ -70,6 +71,9 @@
   top: -4px;
   left: 21.5px;
   background-color: aqua;
+  display: flex;
+  align-items: center;
+ 
 }
 
 .user-info-username {

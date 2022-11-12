@@ -1,117 +1,71 @@
-import React, { useState } from "react";
-import "./Verify.css";
+import React, { useState } from "react"
+import "./Verify.css"
 // import xmark_img from "../picture/Xmark.png"
-import Success from "./Success";
-import Unsuccess from "./Unsuccess";
-import Change from "./Change";
+import Success from "./Success"
+import Unsuccess from "./Unsuccess"
+import Change from "./Change"
 
 function Verify(probs) {
-  const { display_ve, email, isForgot, display_fg } = probs;
+  const { display_ve, email, isForgot, display_fg } = probs
 
-  const [display3, setdisplay3] = useState(true);
+  const [display3, setdisplay3] = useState(true)
   const display_success = () => {
-    setdisplay3(!display3);
-  };
+    setdisplay3(!display3)
+  }
 
-  const [display4, setdisplay4] = useState(true);
+  const [display4, setdisplay4] = useState(true)
   const display_unsuccess = () => {
-    setdisplay4(!display4);
-  };
+    setdisplay4(!display4)
+  }
 
-  const [display5, setdisplay5] = useState(true);
+  const [display5, setdisplay5] = useState(true)
   const display_change = () => {
-    setdisplay5(!display5);
-  };
+    setdisplay5(!display5)
+  }
 
-  const [otp, setOTP] = useState([0, 0, 0, 0, 0, 0]);
+  const [otp, setOTP] = useState([0, 0, 0, 0, 0, 0])
 
   const setArrayOTP = (value, index) => {
-    setOTP((preotp) => preotp.map((v, i) => (i === index ? value : v)));
+    setOTP((preotp) => preotp.map((v, i) => (i === index ? value : v)))
     // otp.join('')
     // console.log(otp)
-  };
+  }
 
   const verify_register = async (e) => {
     try {
-      e.preventDefault();
-      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/register/email/checkOTP", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          otp: `${otp.join("")}`,
-        }),
-      });
+      e.preventDefault()
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/register/email/checkOTP",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            otp: `${otp.join("")}`,
+          }),
+        }
+      )
 
-      const json = await postdata.json();
-      console.log(json);
+      const json = await postdata.json()
+      console.log(json)
 
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
-      display_success();
+      display_success()
     } catch (err) {
-      console.log(err.message);
-      display_unsuccess();
+      console.log(err.message)
+      display_unsuccess()
     }
-  };
+  }
 
   const resend_register = async (e) => {
     try {
-      e.preventDefault();
-      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-        }),
-      });
-      const json = await postdata.json();
-      console.log(json);
-      if (!postdata.ok) {
-        throw new Error("error");
-      }
-    } catch (err) {
-      console.log(err.message);
-    }
-  };
-
-  const verify_change = async (e) => {
-    try {
-      e.preventDefault();
-      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/checkOTP", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          otp: `${otp.join("")}`,
-        }),
-      });
-
-      const json = await postdata.json();
-      console.log(json);
-
-      if (!postdata.ok) {
-        throw new Error("error");
-      }
-      display_change();
-    } catch (err) {
-      console.log(err.message);
-      display_unsuccess();
-    }
-  };
-
-  const resend_change = async (e) => {
-    try {
-      e.preventDefault();
+      e.preventDefault()
       const postdata = await fetch(
-        "https://kulony-backend.herokuapp.com/api/sing-up/newotp/verify/forgotpassword",
+        "//localhost:4000/api/sing-up/newotp/verify/email",
         {
           method: "POST",
           headers: {
@@ -121,16 +75,71 @@ function Verify(probs) {
             email: email,
           }),
         }
-      );
-      const json = await postdata.json();
-      console.log(json);
+      )
+      const json = await postdata.json()
+      console.log(json)
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
     } catch (err) {
-      console.log(err.message);
+      console.log(err.message)
     }
-  };
+  }
+
+  const verify_change = async (e) => {
+    try {
+      e.preventDefault()
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/forgotpassword/checkOTP",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            otp: `${otp.join("")}`,
+          }),
+        }
+      )
+
+      const json = await postdata.json()
+      console.log(json)
+
+      if (!postdata.ok) {
+        throw new Error("error")
+      }
+      display_change()
+    } catch (err) {
+      console.log(err.message)
+      display_unsuccess()
+    }
+  }
+
+  const resend_change = async (e) => {
+    try {
+      e.preventDefault()
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/newotp/verify/forgotpassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      )
+      const json = await postdata.json()
+      console.log(json)
+      if (!postdata.ok) {
+        throw new Error("error")
+      }
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
 
   return (
     <div className="verify_container">
@@ -146,7 +155,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 0);
+            setArrayOTP(e.target.value, 0)
           }}
         ></input>
         <input
@@ -157,7 +166,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 1);
+            setArrayOTP(e.target.value, 1)
           }}
         ></input>
         <input
@@ -168,7 +177,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 2);
+            setArrayOTP(e.target.value, 2)
           }}
         ></input>
         <input
@@ -179,7 +188,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 3);
+            setArrayOTP(e.target.value, 3)
           }}
         ></input>
         <input
@@ -190,7 +199,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 4);
+            setArrayOTP(e.target.value, 4)
           }}
         ></input>
         <input
@@ -201,7 +210,7 @@ function Verify(probs) {
           required
           maxlength="1"
           onChange={(e) => {
-            setArrayOTP(e.target.value, 5);
+            setArrayOTP(e.target.value, 5)
           }}
         ></input>
       </div>
@@ -245,6 +254,6 @@ function Verify(probs) {
         />
       </div>
     </div>
-  );
+  )
 }
-export default Verify;
+export default Verify

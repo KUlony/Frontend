@@ -23,7 +23,7 @@ function EditPost() {
   useEffect(() => {
     async function fetchData() {
       await axios
-        .get(`https://kulony-backend.herokuapp.com/api/post/${post_id}`, {
+        .get(`//localhost:4000/api/post/${post_id}`, {
           headers: {
             Authorization: token,
           },
@@ -43,14 +43,11 @@ function EditPost() {
           setItems([])
           data.post_topic.map(async (i) => {
             await axios
-              .get(
-                `https://kulony-backend.herokuapp.com/api/topic/get_topic_data?id=${i}`,
-                {
-                  headers: {
-                    Authorization: token,
-                  },
-                }
-              )
+              .get(`//localhost:4000/api/topic/get_topic_data?id=${i}`, {
+                headers: {
+                  Authorization: token,
+                },
+              })
               .then((res) => {
                 if (items.length < 5) {
                   setItems((items) => [...items, res.data.topic_name])
@@ -314,7 +311,7 @@ function EditPost() {
 
     axios
       .put(
-        `https://kulony-backend.herokuapp.com/api/post/${post_id}/edit`,
+        `//localhost:4000/api/post/${post_id}/edit`,
         {
           topic_id: iditem,
           post_title: title.value,

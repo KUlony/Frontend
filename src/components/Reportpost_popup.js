@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import "./Reportpost_popup.css";
-import { AiOutlineClose } from "react-icons/ai";
-import smile from "../picture/smile.png";
-import fail from "../picture/fail.png";
+import React, { useState } from "react"
+import "./Reportpost_popup.css"
+import { AiOutlineClose } from "react-icons/ai"
+import smile from "../picture/smile.png"
+import fail from "../picture/fail.png"
 
 function Reportpost_popup(props) {
-  const [position, setPosition] = useState(0);
-  const { display, post_id, type } = props;
-  const lowertype = type.toLowerCase();
+  const [position, setPosition] = useState(0)
+  const { display, post_id, type } = props
+  const lowertype = type.toLowerCase()
   const [checkArr, setcheckArr] = useState([
     false,
     false,
@@ -18,32 +18,32 @@ function Reportpost_popup(props) {
     false,
     false,
     false,
-  ]);
+  ])
 
-  const [reportOther, setreportOther] = useState("");
-  const token = localStorage.getItem("token");
+  const [reportOther, setreportOther] = useState("")
+  const token = localStorage.getItem("token")
   const reportcheckbox = (e) => {
-    e.preventDefault();
-    setreportOther("");
-  };
-  const [status, setStatus] = useState(false);
-  const [loading, setLoading] = useState(true);
+    e.preventDefault()
+    setreportOther("")
+  }
+  const [status, setStatus] = useState(false)
+  const [loading, setLoading] = useState(true)
   const checkreport_popup = (e) => {
     setcheckArr((prevState) =>
       prevState.map((item, idx) => {
         if (idx === Number(e.target.value)) {
           if (checkArr[idx]) {
-            return false;
+            return false
           } else {
-            setPosition(idx);
-            return true;
+            setPosition(idx)
+            return true
           }
         } else {
-          return false;
+          return false
         }
       })
-    );
-  };
+    )
+  }
 
   const arrayofreport = [
     "Nudity",
@@ -54,22 +54,22 @@ function Reportpost_popup(props) {
     "False information",
     "Hate speech",
     "Terrorism",
-  ];
+  ]
 
   function timeout(ms) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms))
   }
 
   const submit_report = async () => {
     try {
-      let reporttype = "";
+      let reporttype = ""
       if (!checkArr[8]) {
-        reporttype = arrayofreport[position];
+        reporttype = arrayofreport[position]
       } else {
-        reporttype = reportOther;
+        reporttype = reportOther
       }
       const reportsent = await fetch(
-        `https://kulony-backend.herokuapp.com/api/${lowertype}/${post_id}/report`,
+        `//localhost:4000/api/${lowertype}/${post_id}/report`,
 
         {
           method: "POST",
@@ -79,29 +79,29 @@ function Reportpost_popup(props) {
           },
           body: JSON.stringify({ report_type: reporttype }),
         }
-      );
+      )
       if (!reportsent.ok) {
-        throw new Error("fail");
+        throw new Error("fail")
       }
 
-      setcheckArr((prev) => prev.map((data) => false));
-      setLoading(false);
-      setStatus(true);
-      await timeout(1500);
-      setLoading(true);
-      setStatus(false);
-      display("close", "close");
+      setcheckArr((prev) => prev.map((data) => false))
+      setLoading(false)
+      setStatus(true)
+      await timeout(1500)
+      setLoading(true)
+      setStatus(false)
+      display("close", "close")
     } catch (err) {
-      console.error(err);
-      setLoading(false);
-      setStatus(false);
-      await timeout(1500);
-      setStatus(true);
-      setLoading(true);
-      setStatus(false);
-      display("close", "close");
+      console.error(err)
+      setLoading(false)
+      setStatus(false)
+      await timeout(1500)
+      setStatus(true)
+      setLoading(true)
+      setStatus(false)
+      display("close", "close")
     }
-  };
+  }
 
   return (
     <div>
@@ -217,7 +217,7 @@ function Reportpost_popup(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Reportpost_popup;
+export default Reportpost_popup

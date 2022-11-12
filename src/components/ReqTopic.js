@@ -15,7 +15,7 @@ function ReqTopic(props) {
   const submitReqTopic = () => {
     axios
       .post(
-        `http://kulony-backend.herokuapp.com/api/topic/request_topic/?topic=${reqTopic}`,
+        `//localhost:4000/api/topic/request_topic/?topic=${reqTopic}`,
         {
           topic: reqTopic,
         },

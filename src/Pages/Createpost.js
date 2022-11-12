@@ -246,7 +246,7 @@ function Createpost() {
 
     axios
       .post(
-        "https://kulony-backend.herokuapp.com/api/post/create",
+        "//localhost:4000/api/post/create",
         {
           topic_id: iditem,
           post_title: title.value,
@@ -262,7 +262,7 @@ function Createpost() {
       )
       .then((res) => {
         console.log(res.data)
-        navigate("/mypost")
+        navigate("/home")
       })
       .catch((err) => console.log(err))
   }

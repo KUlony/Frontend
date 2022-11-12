@@ -1,70 +1,73 @@
-import React, { useState, useRef } from "react";
-import "./Register.css";
-import register_img from "../picture/register.png";
-import { Link } from "react-router-dom";
-import Verify from "../components/Verify.js";
-import Terms from "../components/Terms.js";
+import React, { useState, useRef } from "react"
+import "./Register.css"
+import register_img from "../picture/register.png"
+import { Link } from "react-router-dom"
+import Verify from "../components/Verify.js"
+import Terms from "../components/Terms.js"
 
 function Register() {
-  const [display1, setdisplay1] = useState(true);
+  const [display1, setdisplay1] = useState(true)
   const display_terms = () => {
-    setdisplay1(!display1);
-  };
+    setdisplay1(!display1)
+  }
 
-  const [display2, setdisplay2] = useState(true);
-  const ref = useRef(null);
+  const [display2, setdisplay2] = useState(true)
+  const ref = useRef(null)
 
   const display_verify = () => {
     if (ref.current.checked) {
-      setdisplay2(!display2);
+      setdisplay2(!display2)
     } else {
-      setdisplay5(!display5);
+      setdisplay5(!display5)
     }
-  };
+  }
 
-  const [display5, setdisplay5] = useState(true);
+  const [display5, setdisplay5] = useState(true)
   const display_checked = () => {
-    setdisplay5(!display5);
-  };
+    setdisplay5(!display5)
+  }
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmpassword, setConfirmpassword] = useState("")
 
-  const [error, setError] = useState("");
+  const [error, setError] = useState("")
 
   const register = async (e) => {
     try {
-      e.preventDefault();
-      setError("");
-      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/register/email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-          confirm_password: confirmpassword,
-        }),
-      });
+      e.preventDefault()
+      setError("")
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/register/email",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+            confirm_password: confirmpassword,
+          }),
+        }
+      )
 
-      const json = await postdata.json();
-      console.log(json);
+      const json = await postdata.json()
+      console.log(json)
 
       if (!json.success) {
-        setError(json.message);
+        setError(json.message)
       }
 
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
-      display_verify();
+      display_verify()
     } catch (err) {
       // console.log("catch")
-      console.log(err.message);
+      console.log(err.message)
     }
-  };
+  }
 
   return (
     <div className="register_row">
@@ -77,7 +80,7 @@ function Register() {
           placeholder="EMAIL"
           value={email}
           onChange={(e) => {
-            setEmail(e.target.value);
+            setEmail(e.target.value)
           }}
         ></input>
         <input
@@ -86,7 +89,7 @@ function Register() {
           placeholder="PASSWORD"
           value={password}
           onChange={(e) => {
-            setPassword(e.target.value);
+            setPassword(e.target.value)
           }}
         ></input>
         <input
@@ -95,7 +98,7 @@ function Register() {
           placeholder="CONFIRM PASSWORD"
           value={confirmpassword}
           onChange={(e) => {
-            setConfirmpassword(e.target.value);
+            setConfirmpassword(e.target.value)
           }}
         ></input>
 
@@ -156,7 +159,7 @@ function Register() {
 
       {(!display1 || !display2) && <div className="register_cover"></div>}
     </div>
-  );
+  )
 }
 
-export default Register;
+export default Register

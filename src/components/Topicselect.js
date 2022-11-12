@@ -26,14 +26,11 @@ function Topicselect(props) {
 
   const getdata = () => {
     axios
-      .get(
-        "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      .get("//localhost:4000/api/topic/get_all_catagory_topic", {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         // console.log(res.data)
         const getarray = res.data

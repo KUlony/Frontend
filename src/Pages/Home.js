@@ -1,20 +1,20 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import NavBar from "../components/NavBar";
-import Post from "../components/Post";
-import "./Home.css";
-import Think from "../picture/think.png";
-import Homebackground from "../picture/home_title_background.png";
-import search from "../picture/search.png";
-import Post_generator from "../components/Post_generator";
-import PostData from "../PostData";
-import Miniprofile from "../components/Miniprofile";
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaPassport } from "react-icons/fa";
-import { HiSearch } from "react-icons/hi";
-import { BsPlusLg } from "react-icons/bs";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import Checklogin from "../components/Checklogin";
-import axios from "axios";
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import NavBar from "../components/NavBar"
+import Post from "../components/Post"
+import "./Home.css"
+import Think from "../picture/think.png"
+import Homebackground from "../picture/home_title_background.png"
+import search from "../picture/search.png"
+import Post_generator from "../components/Post_generator"
+import PostData from "../PostData"
+import Miniprofile from "../components/Miniprofile"
+import { Link, useLocation, useNavigate } from "react-router-dom"
+import { FaPassport } from "react-icons/fa"
+import { HiSearch } from "react-icons/hi"
+import { BsPlusLg } from "react-icons/bs"
+import { FiChevronDown, FiChevronUp } from "react-icons/fi"
+import Checklogin from "../components/Checklogin"
+import axios from "axios"
 
 // import ScrollRestoration from "react-scroll-restoration";
 
@@ -22,10 +22,10 @@ function Home() {
   // const [havepost]
   // localStorage.removeItem("token");
 
-  const token = localStorage.getItem("token");
-  const [post_data, setPost_data] = useState([]);
-  const [displayload, setDisplayload] = useState(true);
-  const [apipath, setApipath] = useState("post/all_post");
+  const token = localStorage.getItem("token")
+  const [post_data, setPost_data] = useState([])
+  const [displayload, setDisplayload] = useState(true)
+  const [apipath, setApipath] = useState("post/all_post")
   const [category, setCategory] = useState([
     true,
     false,
@@ -33,261 +33,243 @@ function Home() {
     false,
     false,
     false,
-  ]);
-  const [followtopic, setFollowtopic] = useState(false);
-  const [showtopic, setShowtopic] = useState(false);
-  const [topicarray, setTopicarray] = useState([]);
-  const [loadingtopic, setLoadingtopic] = useState(false);
-  const [topic, setTopic] = useState([]);
-  const [count, setCount] = useState(false);
-  const [searchresult, setSearchresult] = useState("");
-  const ref = useRef(null);
-  const observer = useRef();
-  const [pagecount, setPageCount] = useState(1);
-  const [havemore, setHavemore] = useState(true);
-  const [topicIdArrayy, setTopicIdArray] = useState([]);
+  ])
+  const [followtopic, setFollowtopic] = useState(false)
+  const [showtopic, setShowtopic] = useState(false)
+  const [topicarray, setTopicarray] = useState([])
+  const [loadingtopic, setLoadingtopic] = useState(false)
+  const [topic, setTopic] = useState([])
+  const [count, setCount] = useState(false)
+  const [searchresult, setSearchresult] = useState("")
+  const ref = useRef(null)
+  const observer = useRef()
+  const [pagecount, setPageCount] = useState(1)
+  const [havemore, setHavemore] = useState(true)
+  const [topicIdArrayy, setTopicIdArray] = useState([])
   const init = () => {
-    setPost_data([]);
-    setPageCount(1);
-    setHavemore(true);
-    setTopic([]);
-    setTopicarray([]);
-    setSearchresult("");
-  };
+    setPost_data([])
+    setPageCount(1)
+    setHavemore(true)
+    setTopic([])
+    setTopicarray([])
+    setSearchresult("")
+  }
 
   useEffect(() => {
-    componentDidMount();
-  }, [category, followtopic]);
+    componentDidMount()
+  }, [category, followtopic])
 
   const componentDidMount = async () => {
     try {
-      let response = "";
+      let response = ""
 
       if (category[0]) {
-        setDisplayload(false);
+        setDisplayload(false)
         if (!followtopic) {
-          response = await fetch(
-            `https://kulony-backend.herokuapp.com/api/post/all_post?page=1`,
-            {
-              headers: {
-                Authorization: `${token}`,
-              },
-            }
-          );
-          setApipath("post/all_post?");
+          response = await fetch(`//localhost:4000/api/post/all_post?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("post/all_post?")
         } else {
-          response = await fetch(
-            `https://kulony-backend.herokuapp.com/api/home?page=1`,
-            {
-              headers: {
-                Authorization: `${token}`,
-              },
-            }
-          );
-          setApipath("home?");
+          response = await fetch(`//localhost:4000/api/home?page=1`, {
+            headers: {
+              Authorization: `${token}`,
+            },
+          })
+          setApipath("home?")
         }
 
-        const json = await response.json();
-        setDisplayload(true);
-        setPost_data(json);
+        const json = await response.json()
+        setDisplayload(true)
+        setPost_data(json)
       } else if (category[1]) {
-        setLoadingtopic(true);
-        response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/topic/get_topic/General`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        setLoadingtopic(true)
+        response = await fetch(`//localhost:4000/api/topic/get_topic/General`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
       } else if (category[2]) {
-        setLoadingtopic(true);
+        setLoadingtopic(true)
         response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Learning`,
+          `//localhost:4000/api/topic/get_topic/Learning`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
+        )
       } else if (category[3]) {
-        setLoadingtopic(true);
-        response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/topic/get_topic/News`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        setLoadingtopic(true)
+        response = await fetch(`//localhost:4000/api/topic/get_topic/News`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
       } else if (category[4]) {
-        setLoadingtopic(true);
-        response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Market`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        setLoadingtopic(true)
+        response = await fetch(`//localhost:4000/api/topic/get_topic/Market`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
       } else if (category[5]) {
-        setLoadingtopic(true);
-        response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Faculty`,
-          {
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        );
+        setLoadingtopic(true)
+        response = await fetch(`//localhost:4000/api/topic/get_topic/Faculty`, {
+          headers: {
+            Authorization: `${token}`,
+          },
+        })
       }
 
-      const json = await response.json();
+      const json = await response.json()
 
-      setTopicIdArray(json.map((data) => data._id));
-      setTopicarray(json.map((data) => data.topic_name));
-      setLoadingtopic(false);
+      setTopicIdArray(json.map((data) => data._id))
+      setTopicarray(json.map((data) => data.topic_name))
+      setLoadingtopic(false)
     } catch {
-      console.error("fail to getpost");
+      console.error("fail to getpost")
     }
-  };
+  }
 
   const category_select = (category_number) => {
     if (displayload && !loadingtopic) {
       if (category[category_number] !== true) {
         setCategory((prevdata) =>
           prevdata.map((data, idx) => (idx === category_number ? true : false))
-        );
-        init();
+        )
+        init()
       }
     }
-  };
+  }
 
   useEffect(() => {
     setTopic(
       topicarray.map((data, idx) => {
         if (idx === 0) {
-          return true;
+          return true
         } else {
-          return false;
+          return false
         }
       })
-    );
-  }, [topicarray]);
+    )
+  }, [topicarray])
 
   const topic_select = (topic_number) => {
     if (displayload) {
       if (topic[topic_number] !== true) {
         setTopic((prevdata) =>
           prevdata.map((data, idx) => (idx === topic_number ? true : false))
-        );
+        )
       }
     }
-  };
+  }
 
   const resultinput = (e) => {
-    setSearchresult(e.target.value);
-    setCount(false);
-  };
+    setSearchresult(e.target.value)
+    setCount(false)
+  }
 
   const topic_selectbysearch = (data) => {
     if (displayload) {
-      const indexoftext = topicarray.indexOf(data);
-      topic_select(indexoftext);
-      setSearchresult(topicarray[indexoftext]);
+      const indexoftext = topicarray.indexOf(data)
+      topic_select(indexoftext)
+      setSearchresult(topicarray[indexoftext])
     }
-  };
+  }
 
   const lastSearchelement = useCallback(
     (node) => {
-      if (!displayload) return;
-      if (observer.current) observer.current.disconnect();
+      if (!displayload) return
+      if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageCount((pagecount) => pagecount + 1);
+          setPageCount((pagecount) => pagecount + 1)
         }
-      });
-      if (node) observer.current.observe(node);
+      })
+      if (node) observer.current.observe(node)
     },
     [displayload]
-  );
+  )
   const loadmore = async (e) => {
     try {
-      setDisplayload(false);
+      setDisplayload(false)
       const loadmoredata = await fetch(
-        `https://kulony-backend.herokuapp.com/api/${apipath}page=${pagecount}`,
+        `//localhost:4000/api/${apipath}page=${pagecount}`,
         {
           headers: {
             Authorization: `${token}`,
           },
         }
-      );
-      const loadmoredatajson = await loadmoredata.json();
-      setDisplayload(true);
-      setPost_data([...post_data, ...loadmoredatajson]);
+      )
+      const loadmoredatajson = await loadmoredata.json()
+      setDisplayload(true)
+      setPost_data([...post_data, ...loadmoredatajson])
 
       if (loadmoredatajson.length === 0) {
-        setHavemore(false);
+        setHavemore(false)
       }
     } catch {
-      console.error("fail to load more");
+      console.error("fail to load more")
     }
-  };
+  }
 
   useEffect(() => {
     if (pagecount !== 1 && havemore) {
-      loadmore();
+      loadmore()
     }
-  }, [pagecount]);
+  }, [pagecount])
 
   const followtopic_click = () => {
     if (displayload) {
-      setFollowtopic(!followtopic);
-      init();
+      setFollowtopic(!followtopic)
+      init()
     }
-  };
+  }
 
   // ทุกครั้งที่topicเปลี่ยนจะ fetch ใหม่่ โดยใช้ตำแหน่ง idx แล้วไปชี้ที่ topic.id
 
   const topic_fetch = async () => {
     try {
-      setPost_data([]);
-      setPageCount(1);
-      setHavemore(true);
-      setDisplayload(false);
+      setPost_data([])
+      setPageCount(1)
+      setHavemore(true)
+      setDisplayload(false)
       const idxoftopic = topic.findIndex((data) => {
         if (data) {
-          return data;
+          return data
         }
-      });
+      })
 
-      const currenttopic = topicIdArrayy[idxoftopic];
+      const currenttopic = topicIdArrayy[idxoftopic]
       if (currenttopic) {
         const response = await fetch(
-          `https://kulony-backend.herokuapp.com/api/search/post/topic?text=${currenttopic}&page=1`,
+          `//localhost:4000/api/search/post/topic?text=${currenttopic}&page=1`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
-        const json = await response.json();
-        setPost_data(json);
-        setDisplayload(true);
-        setApipath(`search/post/topic?text=${currenttopic}&`);
+        )
+        const json = await response.json()
+        setPost_data(json)
+        setDisplayload(true)
+        setApipath(`search/post/topic?text=${currenttopic}&`)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
     if (!loadingtopic && !category[0]) {
-      topic_fetch();
+      topic_fetch()
     }
-  }, [topic]);
+  }, [topic])
 
-  const dataupdate = (postid) => {};
+  const dataupdate = (postid) => {}
 
   return (
     <div className="Home_page">
@@ -416,18 +398,17 @@ function Home() {
                             .includes(searchresult.toLowerCase())
                         ) {
                           if (!count) {
-                            setCount(true);
+                            setCount(true)
                           }
-                          return data;
+                          return data
                         }
                       })
                       .map((data, idx) => {
                         const position = data
                           .toLowerCase()
-                          .indexOf(searchresult.toLowerCase());
-                        const possitionend = data.length;
-                        const position_in_topic_array =
-                          topicarray.indexOf(data);
+                          .indexOf(searchresult.toLowerCase())
+                        const possitionend = data.length
+                        const position_in_topic_array = topicarray.indexOf(data)
 
                         return (
                           <li
@@ -448,7 +429,7 @@ function Home() {
                               data.length
                             )}
                           </li>
-                        );
+                        )
                       })}
                     <p className={`${count ? "display_none" : null}`}>
                       No result found
@@ -464,7 +445,7 @@ function Home() {
                           >
                             {data}
                           </li>
-                        );
+                        )
                       } else {
                         if (idx === 12) {
                           return (
@@ -492,7 +473,7 @@ function Home() {
                                 {data}
                               </li>
                             </div>
-                          );
+                          )
                         } else if (idx === topicarray.length - 1) {
                           return (
                             <div>
@@ -519,7 +500,7 @@ function Home() {
                                 </div>
                               )}
                             </div>
-                          );
+                          )
                         }
 
                         return (
@@ -531,7 +512,7 @@ function Home() {
                           >
                             {data}
                           </li>
-                        );
+                        )
                       }
                     })}
                   </div>
@@ -565,7 +546,7 @@ function Home() {
                         user_like_status_post={element.user_like_status}
                       />
                     </div>
-                  );
+                  )
                 } else {
                   return (
                     <Post
@@ -583,7 +564,7 @@ function Home() {
                       user_id={element.author.user_id}
                       user_like_status_post={element.user_like_status}
                     />
-                  );
+                  )
                 }
               })}
               <div
@@ -595,7 +576,7 @@ function Home() {
       </div>
       <Checklogin />;
     </div>
-  );
+  )
 }
 
-export default Home;
+export default Home

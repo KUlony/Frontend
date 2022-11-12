@@ -1,147 +1,147 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import Navbar from "../components/NavBar";
-import Post_generator from "../components/Post_generator";
-import "./Search.css";
-import search from "../picture/search.png";
-import Post from "../components/Post";
-import Checklogin from "../components/Checklogin";
-import Card from "../components/Card";
-import Miniprofile from "../components/Miniprofile";
+import React, { useCallback, useEffect, useRef, useState } from "react"
+import Navbar from "../components/NavBar"
+import Post_generator from "../components/Post_generator"
+import "./Search.css"
+import search from "../picture/search.png"
+import Post from "../components/Post"
+import Checklogin from "../components/Checklogin"
+import Card from "../components/Card"
+import Miniprofile from "../components/Miniprofile"
 
 function Search() {
-  const [keepresult, setKeepresult] = useState("");
-  const [searchResult, setSearchresult] = useState("");
-  const [pagecount, setPageCount] = useState(1);
-  const [displayload, setDisplayload] = useState(true);
-  const [searchOutPutData, setSearchOutPutData] = useState([]);
-  const [havemore, setHavemore] = useState(true);
-  const observer = useRef();
-  const token = localStorage.getItem("token");
-  const [searchtype, setSearchtype] = useState([true, false]);
-  const [displayprofile, setDisplayprofile] = useState(false);
-  const [carduserid, setCarduserid] = useState("");
-  const [returntotop, setReturntotop] = useState(false);
+  const [keepresult, setKeepresult] = useState("")
+  const [searchResult, setSearchresult] = useState("")
+  const [pagecount, setPageCount] = useState(1)
+  const [displayload, setDisplayload] = useState(true)
+  const [searchOutPutData, setSearchOutPutData] = useState([])
+  const [havemore, setHavemore] = useState(true)
+  const observer = useRef()
+  const token = localStorage.getItem("token")
+  const [searchtype, setSearchtype] = useState([true, false])
+  const [displayprofile, setDisplayprofile] = useState(false)
+  const [carduserid, setCarduserid] = useState("")
+  const [returntotop, setReturntotop] = useState(false)
 
   const loadmore = async (e) => {
     try {
       if (displayload) {
-        setDisplayload(false);
+        setDisplayload(false)
         const loadmoredata = await fetch(
-          `https://kulony-backend.herokuapp.com/api/search/post?text=${keepresult}&page=${pagecount}`,
+          `//localhost:4000/api/search/post?text=${keepresult}&page=${pagecount}`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
-        const loadmoredatajson = await loadmoredata.json();
+        )
+        const loadmoredatajson = await loadmoredata.json()
 
-        setSearchOutPutData([...searchOutPutData, ...loadmoredatajson]);
+        setSearchOutPutData([...searchOutPutData, ...loadmoredatajson])
 
         if (loadmoredatajson.length === 0) {
-          setHavemore(false);
+          setHavemore(false)
         }
-        setDisplayload(true);
+        setDisplayload(true)
       }
     } catch {
-      console.error("fail to load more");
+      console.error("fail to load more")
     }
-  };
+  }
   const lastSearchelement = useCallback(
     (node) => {
-      if (!displayload) return;
-      if (observer.current) observer.current.disconnect();
+      if (!displayload) return
+      if (observer.current) observer.current.disconnect()
       observer.current = new IntersectionObserver((entries) => {
         if (entries[0].isIntersecting) {
-          setPageCount((pagecount) => pagecount + 1);
+          setPageCount((pagecount) => pagecount + 1)
         }
-      });
-      if (node) observer.current.observe(node);
+      })
+      if (node) observer.current.observe(node)
     },
     [displayload]
-  );
+  )
 
   useEffect(() => {
     if (pagecount !== 1 && havemore) {
-      loadmore();
+      loadmore()
     }
-  }, [pagecount]);
+  }, [pagecount])
 
   const updatesearchselect = (position) => {
-    setSearchOutPutData([]);
+    setSearchOutPutData([])
     setSearchtype((prev) =>
       prev.map((data, idx) => (idx === position ? true : false))
-    );
-  };
+    )
+  }
 
   const scrollup = () => {
-    console.log(window.scrollY);
-    window.scrollTo(0, 0);
-  };
+    console.log(window.scrollY)
+    window.scrollTo(0, 0)
+  }
 
   const searchsubmit = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       if (displayload) {
-        setDisplayload(false);
-        setReturntotop(false);
+        setDisplayload(false)
+        setReturntotop(false)
 
         if (searchtype[0]) {
-          setHavemore(true);
-          setPageCount(1);
-          setSearchOutPutData([]);
+          setHavemore(true)
+          setPageCount(1)
+          setSearchOutPutData([])
 
           const data = await fetch(
-            `https://kulony-backend.herokuapp.com/api/search/post?text=${searchResult}&page=1`,
+            `//localhost:4000/api/search/post?text=${searchResult}&page=1`,
             {
               headers: {
                 Authorization: `${token}`,
               },
             }
-          );
-          const datajson = await data.json();
-          setReturntotop(true);
-          setSearchOutPutData(datajson);
-          console.log(datajson);
-          setKeepresult(searchResult);
-          setSearchresult("");
-          setDisplayload(true);
+          )
+          const datajson = await data.json()
+          setReturntotop(true)
+          setSearchOutPutData(datajson)
+          console.log(datajson)
+          setKeepresult(searchResult)
+          setSearchresult("")
+          setDisplayload(true)
         } else if (searchtype[1]) {
-          setDisplayload(false);
-          setSearchOutPutData([]);
+          setDisplayload(false)
+          setSearchOutPutData([])
           const data = await fetch(
-            `https://kulony-backend.herokuapp.com/api/searchtopic/user?text=${searchResult}`,
+            `//localhost:4000/api/searchtopic/user?text=${searchResult}`,
             {
               headers: {
                 Authorization: `${token}`,
               },
             }
-          );
-          const datajson = await data.json();
-          console.log(datajson);
-          setReturntotop(true);
-          setSearchOutPutData(datajson);
-          setSearchresult("");
-          setDisplayload(true);
+          )
+          const datajson = await data.json()
+          console.log(datajson)
+          setReturntotop(true)
+          setSearchOutPutData(datajson)
+          setSearchresult("")
+          setDisplayload(true)
         }
       }
     } catch {
-      console.error("fail");
+      console.error("fail")
     }
-  };
+  }
 
   const display_profile = (user_id) => {
     if (user_id === "close") {
-      setDisplayprofile(false);
+      setDisplayprofile(false)
     } else if (user_id !== carduserid) {
-      setCarduserid(user_id);
-      setDisplayprofile(true);
+      setCarduserid(user_id)
+      setDisplayprofile(true)
     } else {
-      setDisplayprofile(!displayprofile);
+      setDisplayprofile(!displayprofile)
     }
-  };
+  }
 
-  const scrollbox = useRef();
+  const scrollbox = useRef()
 
   return (
     <div className="search_page">
@@ -210,7 +210,7 @@ function Search() {
                           user_like_status_post={element.user_like_status}
                         />
                       </div>
-                    );
+                    )
                   } else {
                     return (
                       <Post
@@ -228,7 +228,7 @@ function Search() {
                         user_id={element.author.user_id}
                         user_like_status_post={element.user_like_status}
                       />
-                    );
+                    )
                   }
                 })}{" "}
               </div>
@@ -264,7 +264,7 @@ function Search() {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Search;
+export default Search

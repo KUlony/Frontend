@@ -38,7 +38,7 @@ const Addtopic_admin = ({ cata, datatopic }) => {
     console.log(sendtopic)
     axios
       .post(
-        `https://kulony-backend.herokuapp.com/api/admin/accept_request_topic/${datatopic.request_id}`,
+        `//localhost:4000/api/admin/accept_request_topic/${datatopic.request_id}`,
         {
           catagory_id: sendtopic,
           topic_name: nametopic.value,

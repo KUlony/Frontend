@@ -30,7 +30,7 @@ const Setting = () => {
   const onClickChangePassword = async () => {
     try {
       const response = await axios.post(
-        "https://kulony-backend.herokuapp.com/api/sing-up/changepassword",
+        "//localhost:4000/api/sing-up/changepassword",
         {
           currentpassword: currentPassword.current.value,
           newpassword: newPassword.current.value,

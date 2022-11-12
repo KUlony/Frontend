@@ -1,50 +1,53 @@
-import React, { useState } from "react";
-import "./Forgot.css";
-import xmark_img from "../picture/Xmark.png";
-import Verify from "./Verify";
+import React, { useState } from "react"
+import "./Forgot.css"
+import xmark_img from "../picture/Xmark.png"
+import Verify from "./Verify"
 // import Change from "./Change";
 
 function Forgot(probs) {
-  const { display_fg } = probs;
+  const { display_fg } = probs
 
-  const [display2, setdisplay2] = useState(true);
+  const [display2, setdisplay2] = useState(true)
   const display_verify = () => {
-    setdisplay2(!display2);
-  };
+    setdisplay2(!display2)
+  }
 
-  const [email, setEmail] = useState("");
-  const [error, setError] = useState("");
+  const [email, setEmail] = useState("")
+  const [error, setError] = useState("")
 
   const forgot = async (e) => {
     try {
-      e.preventDefault();
-      setError("");
-      const postdata = await fetch("https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-        }),
-      });
+      e.preventDefault()
+      setError("")
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/forgotpassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      )
 
-      const json = await postdata.json();
-      console.log(json);
+      const json = await postdata.json()
+      console.log(json)
 
       if (!json.success) {
-        setError(json.message);
+        setError(json.message)
       }
 
       if (!postdata.ok) {
-        throw new Error("error");
+        throw new Error("error")
       }
-      display_verify();
+      display_verify()
     } catch (err) {
       // console.log("catch")
-      console.log(err.message);
+      console.log(err.message)
     }
-  };
+  }
 
   return (
     <div className="forgot_container">
@@ -62,7 +65,7 @@ function Forgot(probs) {
         placeholder="EMAIL"
         value={email}
         onChange={(e) => {
-          setEmail(e.target.value);
+          setEmail(e.target.value)
         }}
       ></input>
 
@@ -82,6 +85,6 @@ function Forgot(probs) {
         />
       </div>
     </div>
-  );
+  )
 }
-export default Forgot;
+export default Forgot

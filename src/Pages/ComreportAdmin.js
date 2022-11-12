@@ -11,14 +11,11 @@ function ComreportAdmin({ send }) {
 
   const gendata = () => {
     axios
-      .get(
-        `https://kulony-backend.herokuapp.com/api/admin/get_comment_report`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      .get(`//localhost:4000/api/admin/get_comment_report`, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         const data = res.data
         setcommentdata(data)
@@ -27,14 +24,11 @@ function ComreportAdmin({ send }) {
         // console.log(data)
         data.map((item, index) =>
           axios
-            .get(
-              `https://kulony-backend.herokuapp.com/api/comment/get_comment_data/${item._id}`,
-              {
-                headers: {
-                  Authorization: token,
-                },
-              }
-            )
+            .get(`//localhost:4000/api/comment/get_comment_data/${item._id}`, {
+              headers: {
+                Authorization: token,
+              },
+            })
             .then((res) => {
               setcommentiddata((iditemed) => [...iditemed, res.data])
               // setPostiddata(res.data)
@@ -61,14 +55,11 @@ function ComreportAdmin({ send }) {
 
   const discarddata = (e) => {
     axios
-      .delete(
-        `https://kulony-backend.herokuapp.com/api/admin/delete_report/${e._id}`,
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      .delete(`//localhost:4000/api/admin/delete_report/${e._id}`, {
+        headers: {
+          Authorization: token,
+        },
+      })
       .then((res) => {
         const data = res.data
         console.log(data)
@@ -80,8 +71,8 @@ function ComreportAdmin({ send }) {
 
   const deletedata = (e) => {
     axios
-      .put(
-        `https://kulony-backend.herokuapp.com/api/admin/delete_reported_entity/${e._id}`,
+      .delete(
+        `//localhost:4000/api/admin/delete_report_entity/${e.report_id[0]}`,
         {
           headers: {
             Authorization: token,
@@ -122,7 +113,7 @@ function ComreportAdmin({ send }) {
                   className="discardbtncom"
                   onClick={() => {
                     discarddata(item)
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                 >
                   Discard Report <i class="bi bi-x"></i>
@@ -131,7 +122,7 @@ function ComreportAdmin({ send }) {
                   className="deletebtncom"
                   onClick={() => {
                     deletedata(item)
-                    window.location.reload()
+                    // window.location.reload()
                   }}
                 >
                   Delete Comment <i class="bi bi-trash"></i>
@@ -158,7 +149,7 @@ function ComreportAdmin({ send }) {
                     </div>
                     <div className="view">
                       <a
-                        href={`/viewpost/:${item2.post_id}`}
+                        href={`/viewpost/${item2.post_id}`}
                         className="viewpost"
                       >
                         View post <i class="bi bi-eye-fill"></i>

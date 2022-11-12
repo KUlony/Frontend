@@ -16,7 +16,7 @@ const UserInfo = () => {
   const [userData, setUserData] = useState("")
   useEffect(() => {
     axios
-      .get(`https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`, {
+      .get(`//localhost:4000/api/user/${user_id}/profile`, {
         headers: {
           Authorization: token,
         },
@@ -67,7 +67,7 @@ const UserInfo = () => {
       // console.log('hello try')
       axios
         .put(
-          "https://kulony-backend.herokuapp.com/api/user/edit_profile",
+          "//localhost:4000/api/user/edit_profile",
           {
             user_name: username.current.value,
             user_firstname: firstname.current.value,

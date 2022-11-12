@@ -1,15 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import "./Comment.css";
-import { BiShare, BiHide, BiShow } from "react-icons/bi";
-import Miniprofile from "./Miniprofile";
-import Comment_child from "./Comment_child";
-import { MdSend } from "react-icons/md";
-import profileimg from "../picture/profile.png";
-import reportgreen from "../picture/reportgreenimg.png";
-import reply from "../picture/reply.png";
-import showmore from "../picture/showmore.png";
-import showless from "../picture/showless.png";
-import x from "../picture/x.png";
+import React, { useEffect, useRef, useState } from "react"
+import "./Comment.css"
+import { BiShare, BiHide, BiShow } from "react-icons/bi"
+import Miniprofile from "./Miniprofile"
+import Comment_child from "./Comment_child"
+import { MdSend } from "react-icons/md"
+import profileimg from "../picture/profile.png"
+import reportgreen from "../picture/reportgreenimg.png"
+import reply from "../picture/reply.png"
+import showmore from "../picture/showmore.png"
+import showless from "../picture/showless.png"
+import x from "../picture/x.png"
 
 function Comment(props) {
   const {
@@ -24,138 +24,138 @@ function Comment(props) {
     comment_time,
     display_report,
     comment_delete,
-  } = props;
+  } = props
   // console.log(comment_time);
   //2022-10-20T13:56:08.372Z
 
   function useInterval(callback, delay) {
-    const savedCallback = useRef();
+    const savedCallback = useRef()
 
     // Remember the latest callback.
     useEffect(() => {
-      savedCallback.current = callback;
-    }, [callback]);
+      savedCallback.current = callback
+    }, [callback])
 
     // Set up the interval.
     useEffect(() => {
       function tick() {
-        savedCallback.current();
+        savedCallback.current()
       }
       if (delay !== null) {
-        let id = setInterval(tick, delay);
-        return () => clearInterval(id);
+        let id = setInterval(tick, delay)
+        return () => clearInterval(id)
       }
-    }, [delay]);
+    }, [delay])
   }
 
-  const [timeago, settimeago] = useState("");
-  const [datenow, setdatenow] = useState(new Date());
+  const [timeago, settimeago] = useState("")
+  const [datenow, setdatenow] = useState(new Date())
 
   useInterval(() => {
-    setdatenow(new Date());
-  }, 1000);
+    setdatenow(new Date())
+  }, 1000)
 
   useInterval(() => {
-    let timeback = new Date("2022-10-20T12:56:08.372Z");
-    let date = new Date();
-    let time = new Date(comment_time);
+    let timeback = new Date("2022-10-20T12:56:08.372Z")
+    let date = new Date()
+    let time = new Date(comment_time)
     // console.log("time", time, "date", date);
     // console.log(Math.abs((time - datenow) / 1000)); // safe to use
 
-    let diffdatetime = Math.abs((time - datenow) / 1000);
+    let diffdatetime = Math.abs((time - datenow) / 1000)
 
     if (diffdatetime < 60) {
-      console.log(diffdatetime);
-      settimeago(`${Math.ceil(diffdatetime)} seconds ago`);
+      console.log(diffdatetime)
+      settimeago(`${Math.ceil(diffdatetime)} seconds ago`)
     } else if (diffdatetime < 3600) {
-      settimeago(`${Math.ceil(diffdatetime / 60)} minute ago`);
+      settimeago(`${Math.ceil(diffdatetime / 60)} minute ago`)
     } else if (diffdatetime < 86400) {
-      settimeago(`${Math.ceil(diffdatetime / 3600)} hour ago`);
+      settimeago(`${Math.ceil(diffdatetime / 3600)} hour ago`)
     } else if (diffdatetime < 2592000) {
-      settimeago(`${Math.ceil(diffdatetime / 86400)} days ago`);
+      settimeago(`${Math.ceil(diffdatetime / 86400)} days ago`)
     } else if (diffdatetime < 31104000) {
-      settimeago(`${Math.ceil(diffdatetime / 2592000)} month ago`);
+      settimeago(`${Math.ceil(diffdatetime / 2592000)} month ago`)
     } else {
-      settimeago(`${Math.ceil(diffdatetime / 31104000)} year ago`);
+      settimeago(`${Math.ceil(diffdatetime / 31104000)} year ago`)
     }
     // console.log(timeago);
-  }, 1000);
+  }, 1000)
 
-  const token = localStorage.getItem("token");
-  const userid = localStorage.getItem("user_id");
+  const token = localStorage.getItem("token")
+  const userid = localStorage.getItem("user_id")
   const [possession, setPossession] = useState(
     user_id === userid ? true : false
-  );
-  const containerRef = useRef(null);
-  const [replydata, setReplydata] = useState([]);
-  const [numberofchild, setNumberofchild] = useState(reply_count);
-  const [textHidden, settextHidden] = useState(false);
-  const [displayviewmorecm, setdisplayviewmorecm] = useState(false);
-  const [displayreply, setdisplayreply] = useState(display_reply);
+  )
+  const containerRef = useRef(null)
+  const [replydata, setReplydata] = useState([])
+  const [numberofchild, setNumberofchild] = useState(reply_count)
+  const [textHidden, settextHidden] = useState(false)
+  const [displayviewmorecm, setdisplayviewmorecm] = useState(false)
+  const [displayreply, setdisplayreply] = useState(display_reply)
   const [displayshowreply, setDisplayshowreply] = useState(
     reply_count === 0 ? true : false
-  );
-  const [displayreplyinput, setDisplayreplyinput] = useState(false);
-  const [displaychild, setDisplaychild] = useState(false);
-  const [replyinput, setReplyinput] = useState("");
-  const [displayanimagoback, setdisplayanimagoback] = useState(true);
-  const [replyfetch, setReplyfetch] = useState(true);
-  const [firsttimeposition, setFirsttimeposition] = useState(false);
-  const [profileopenstatus, setProfileopenstatus] = useState(false);
+  )
+  const [displayreplyinput, setDisplayreplyinput] = useState(false)
+  const [displaychild, setDisplaychild] = useState(false)
+  const [replyinput, setReplyinput] = useState("")
+  const [displayanimagoback, setdisplayanimagoback] = useState(true)
+  const [replyfetch, setReplyfetch] = useState(true)
+  const [firsttimeposition, setFirsttimeposition] = useState(false)
+  const [profileopenstatus, setProfileopenstatus] = useState(false)
 
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true)
   useEffect(() => {
     containerRef.current.clientHeight > 53
       ? setdisplayviewmorecm(false)
-      : setdisplayviewmorecm(true);
+      : setdisplayviewmorecm(true)
     // console.log(displayviewmorecm);
-    settextHidden(true);
-  }, [containerRef]);
+    settextHidden(true)
+  }, [containerRef])
   // console.log(comment_id);
-  const [commentdata, setCommentdata] = useState();
+  const [commentdata, setCommentdata] = useState()
   const replydata_fetch = async () => {
     try {
       if (loading) {
         const response_replydata = await fetch(
-          `https://kulony-backend.herokuapp.com/api/reply/${comment_id}`,
+          `//localhost:4000/api/reply/${comment_id}`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
+        )
         if (!response_replydata.ok) {
-          throw new Error("error");
+          throw new Error("error")
         }
-        const jsonresponse_replydate = await response_replydata.json();
+        const jsonresponse_replydate = await response_replydata.json()
         // console.log(jsonresponse_replydate);
 
-        setReplydata(jsonresponse_replydate);
-        setLoading(false);
-        console.log("ok");
+        setReplydata(jsonresponse_replydate)
+        setLoading(false)
+        console.log("ok")
       }
-      display_child();
+      display_child()
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
     if (!loading) {
-      setDisplayshowreply(replydata.length === 0 ? true : false);
-      setNumberofchild(replydata.length);
+      setDisplayshowreply(replydata.length === 0 ? true : false)
+      setNumberofchild(replydata.length)
     }
-  }, [replydata]);
+  }, [replydata])
 
-  const [replyposting, setReplyposting] = useState(false);
+  const [replyposting, setReplyposting] = useState(false)
 
   const comment_reply = async (e) => {
     try {
-      e.preventDefault();
+      e.preventDefault()
       if (!replyposting) {
-        setReplyposting(true);
+        setReplyposting(true)
         const response_reply = await fetch(
-          `https://kulony-backend.herokuapp.com/api/reply/create`,
+          `//localhost:4000/api/reply/create`,
           {
             method: "POST",
             headers: {
@@ -167,21 +167,21 @@ function Comment(props) {
               reply_content: replyinput,
             }),
           }
-        );
+        )
         if (!response_reply.ok) {
-          throw new Error("fail");
+          throw new Error("fail")
         }
-        const json_reply = await response_reply.json();
+        const json_reply = await response_reply.json()
         // console.log("json_reply", json_reply);
         const userdata = await fetch(
-          `https://kulony-backend.herokuapp.com/api/user/${json_reply.user_id}/profile`,
+          `//localhost:4000/api/user/${json_reply.user_id}/profile`,
           {
             headers: {
               Authorization: `${token}`,
             },
           }
-        );
-        const jsonuserdata = await userdata.json();
+        )
+        const jsonuserdata = await userdata.json()
         const replyform = {
           author: {
             user_id: json_reply.user_id,
@@ -192,44 +192,44 @@ function Comment(props) {
           reply_content: json_reply.reply_content,
           reply_like_count: 0,
           reply_time: json_reply.reply_time,
-        };
+        }
 
-        updatecommentdata(replyform);
-        setNumberofchild(numberofchild + 1);
-        setDisplayshowreply(false);
-        setReplyinput("");
-        setReplyposting(false);
+        updatecommentdata(replyform)
+        setNumberofchild(numberofchild + 1)
+        setDisplayshowreply(false)
+        setReplyinput("")
+        setReplyposting(false)
       }
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   const comment_input = (e) => {
-    setReplyinput(e.target.value);
-  };
+    setReplyinput(e.target.value)
+  }
 
   const display_child = () => {
-    setDisplaychild(!displaychild);
-    setdisplayanimagoback(!displaychild);
-    setFirsttimeposition(true);
-  };
+    setDisplaychild(!displaychild)
+    setdisplayanimagoback(!displaychild)
+    setFirsttimeposition(true)
+  }
 
   const updatecommentdata = (data) =>
-    setReplydata((replydata) => [...replydata, data]);
+    setReplydata((replydata) => [...replydata, data])
 
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(false)
 
   const deletecomment = () => {
-    comment_delete(comment_id);
+    comment_delete(comment_id)
     if (comment_delete(comment_id)) {
-      setVisible(true);
+      setVisible(true)
     }
-  };
+  }
 
   const updatereplycount = () => {
-    setNumberofchild(numberofchild - 1);
-  };
+    setNumberofchild(numberofchild - 1)
+  }
 
   return (
     <div className="comment_main">
@@ -375,7 +375,7 @@ function Comment(props) {
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default Comment;
+export default Comment

@@ -64,14 +64,11 @@ function Profile() {
 
   const logoutClick = async () => {
     try {
-      const response = await axios.get(
-        "https://kulony-backend.herokuapp.com/api/sing-up/logout",
-        {
-          headers: {
-            Authorization: token,
-          },
-        }
-      )
+      const response = await axios.get("//localhost:4000/api/sing-up/logout", {
+        headers: {
+          Authorization: token,
+        },
+      })
 
       console.log("response is", response)
       navigate("/login")

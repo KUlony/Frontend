@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
-import Favorite from "../components/Favorite";
-import Navbar from "../components/NavBar";
-import Post from "../components/Post";
-import Post_generator from "../components/Post_generator";
-import axios from "axios";
-import "./MyPost.css";
+import React, { useEffect, useState } from "react"
+import Favorite from "../components/Favorite"
+import Navbar from "../components/NavBar"
+import Post from "../components/Post"
+import Post_generator from "../components/Post_generator"
+import axios from "axios"
+import "./MyPost.css"
 
 function MyPost() {
-  const token = localStorage.getItem("token");
-  const [loading, setLoading] = useState(true);
-  const [mypostdata, setMypostdata] = useState([]);
-  const [userinfo, setUserinfo] = useState();
+  const token = localStorage.getItem("token")
+  const [loading, setLoading] = useState(true)
+  const [mypostdata, setMypostdata] = useState([])
+  const [userinfo, setUserinfo] = useState()
 
   const mypostfetch = async () => {
     try {
       // const response = await fetch(
-      //   `https://kulony-backend.herokuapp.com/api/user/mypost`,
+      //   `//localhost:4000/api/user/mypost`,
       //   {
       //     headers: {
       //       Authorization: `${token}`,
@@ -23,7 +23,7 @@ function MyPost() {
       //   }
       // );
       // const response = await axios.get(
-      //   "https://kulony-backend.herokuapp.com/api/user/mypost",
+      //   "//localhost:4000/api/user/mypost",
       //   {
       //     headers: {
       //       Authorization: token,
@@ -37,24 +37,24 @@ function MyPost() {
             Authorization: token,
           },
         }
-      );
-      console.log(response);
+      )
+      console.log(response)
       // const json = await response.json();
-      console.log(response.data);
-      setUserinfo(response.data.author);
-      setMypostdata(response.data.post);
+      console.log(response.data)
+      setUserinfo(response.data.author)
+      setMypostdata(response.data.post)
       // setUserinfo(json.author);
       // setMypostdata(json.post);
       // console.log("mypost ", json);
-      setLoading(false);
+      setLoading(false)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   useEffect(() => {
-    mypostfetch();
-  }, []);
+    mypostfetch()
+  }, [])
 
   return (
     <div className="mypost">
@@ -81,12 +81,12 @@ function MyPost() {
                 user_id={userinfo.user_id}
                 user_like_status_post={element.user_like_status}
               />
-            );
+            )
           })}
         </div>
       )}
     </div>
-  );
+  )
 }
 
-export default MyPost;
+export default MyPost

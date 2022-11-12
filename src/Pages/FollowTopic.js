@@ -28,14 +28,11 @@ const FollowTopic = () => {
   const getdata = async () => {
     try {
       await axios
-        .get(
-          "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
-          {
-            headers: {
-              Authorization: token,
-            },
-          }
-        )
+        .get("//localhost:4000/api/topic/get_all_catagory_topic", {
+          headers: {
+            Authorization: token,
+          },
+        })
         .then((res) => {
           // console.log(res.data)
           const getarray = res.data
@@ -173,7 +170,7 @@ const FollowTopic = () => {
         .catch((err) => console.log(err))
 
       await axios
-        .get("https://kulony-backend.herokuapp.com/api/user/following_topic", {
+        .get("//localhost:4000/api/user/following_topic", {
           headers: {
             Authorization: token,
           },
@@ -270,7 +267,7 @@ const FollowTopic = () => {
   const senddata = () => {
     axios
       .post(
-        "https://kulony-backend.herokuapp.com/api/user/follow_topic",
+        "//localhost:4000/api/user/follow_topic",
         { topic_id: iditemed },
         {
           headers: {
