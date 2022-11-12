@@ -23,6 +23,8 @@ const FollowTopic = () => {
 
   const [ninit, setNinit] = useState(null)
 
+  const token = localStorage.getItem("token")
+
   const getdata = async () => {
     try {
       await axios
@@ -30,7 +32,7 @@ const FollowTopic = () => {
           "https://kulony-backend.herokuapp.com/api/topic/get_all_catagory_topic",
           {
             headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+              Authorization: token,
             },
           }
         )
@@ -173,7 +175,7 @@ const FollowTopic = () => {
       await axios
         .get("https://kulony-backend.herokuapp.com/api/user/following_topic", {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+            Authorization: token,
           },
         })
         .then((res) => {
@@ -272,7 +274,7 @@ const FollowTopic = () => {
         { topic_id: iditemed },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+            Authorization: token,
           },
         }
       )

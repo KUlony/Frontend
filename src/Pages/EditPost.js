@@ -19,12 +19,13 @@ function EditPost() {
   const post_id = useParams().id
   const dummy_id = "636b7aef7543399b24c2d4a0"
   const [postData, setPostData] = useState([])
+
   useEffect(() => {
     async function fetchData() {
       await axios
         .get(`https://kulony-backend.herokuapp.com/api/post/${post_id}`, {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+            Authorization: token,
           },
         })
         .then((res) => {
@@ -46,7 +47,7 @@ function EditPost() {
                 `https://kulony-backend.herokuapp.com/api/topic/get_topic_data?id=${i}`,
                 {
                   headers: {
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+                    Authorization: token,
                   },
                 }
               )
@@ -323,7 +324,7 @@ function EditPost() {
         },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTg2MzkzLCJleHAiOjE2NjgyNzI3OTN9.6c6hN6jDEMz6fScEq0v5Jwc_-Eh5GAk-YgC8HjomgW4`,
+            Authorization: token,
           },
         }
       )

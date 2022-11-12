@@ -1,19 +1,21 @@
-import axios from 'axios';
-import React, { useState } from 'react';
-import { Modal } from 'react-bootstrap';
+import axios from "axios"
+import React, { useState } from "react"
+import { Modal } from "react-bootstrap"
 
 function CreateTopic(props) {
-  const { handleShow2, handleReq, show } = props;
-  const [createTopic, setCreateTopic] = useState('');
-  const [category, setCategory] = useState('633268f5eaac832ae2e59dbc');
+  const { handleShow2, handleReq, show } = props
+  const [createTopic, setCreateTopic] = useState("")
+  const [category, setCategory] = useState("633268f5eaac832ae2e59dbc")
 
   const newTopic = (e) => {
-    setCreateTopic(e.target.value);
-  };
+    setCreateTopic(e.target.value)
+  }
 
   const ChooseCategory = (e) => {
-    setCategory(e.target.value);
-  };
+    setCategory(e.target.value)
+  }
+
+  const token = localStorage.getItem("token")
 
   const sendCreateTopic = () => {
     axios
@@ -22,16 +24,16 @@ function CreateTopic(props) {
         { catagory_id: category, topic_name: createTopic },
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MDU4NzY3LCJleHAiOjE2NjgxNDUxNjd9.NJQU4HZ6PGXYigF-G3P5B0-zieqjl4y4jWq4qUMovG8`,
+            Authorization: token,
           },
         }
       )
-      .then((res) => console.log('Posting data', res.data))
-      .catch((err) => console.error(err));
-    handleShow2();
-  };
-  console.log(createTopic);
-  console.log(category);
+      .then((res) => console.log("Posting data", res.data))
+      .catch((err) => console.error(err))
+    handleShow2()
+  }
+  console.log(createTopic)
+  console.log(category)
   return (
     <Modal show={show} onHide={handleShow2} className="pop-up topic-con">
       <form className="create-topic-container" onSubmit={handleReq}>

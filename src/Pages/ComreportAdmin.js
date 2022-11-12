@@ -15,7 +15,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/get_comment_report`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
+            Authorization: token,
           },
         }
       )
@@ -31,7 +31,7 @@ function ComreportAdmin() {
               `https://kulony-backend.herokuapp.com/api/comment/get_comment_data/${item._id}`,
               {
                 headers: {
-                  Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
+                  Authorization: token,
                 },
               }
             )
@@ -63,7 +63,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/delete_report/${e._id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
+            Authorization: token,
           },
         }
       )
@@ -82,7 +82,7 @@ function ComreportAdmin() {
         `https://kulony-backend.herokuapp.com/api/admin/delete_reported_entity/${e._id}`,
         {
           headers: {
-            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InBhcmFtZWVub25AZ21haWwuY29tIiwiaWQiOiI2MzQ1NzY3ZjJiOTVlZTlmOWMwYTY2M2QiLCJ2ZXJpZmllZCI6dHJ1ZSwiaWF0IjoxNjY4MTY5MDQzLCJleHAiOjE2NjgyNTU0NDN9.3gqHm5QHtVx0dzm0_vtI-VPYWOveBqvVJGMECmv5vOo`,
+            Authorization: token,
           },
         }
       )

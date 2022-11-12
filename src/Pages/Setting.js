@@ -16,6 +16,9 @@ const Setting = () => {
   const [isChangePassword, setIsChangePassword] = useState(null)
   let changePasswordPopup = null
   const [isSuccess, setIsSuccess] = useState(false)
+
+  const token = localStorage.getItem("token")
+
   if (isChangePassword) {
     changePasswordPopup = <SettingChangePassword isSuccess={isSuccess} />
   }
@@ -25,7 +28,7 @@ const Setting = () => {
   const onClickChangePassword = async () => {
     try {
       const response = await axios.post(
-        "/api/sing-up/changepassword",
+        "https://kulony-backend.herokuapp.com/api/sing-up/changepassword",
         {
           currentpassword: currentPassword.current.value,
           newpassword: newPassword.current.value,
@@ -33,8 +36,7 @@ const Setting = () => {
         },
         {
           headers: {
-            Authorization:
-              "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgwNzU2MTEsImV4cCI6MTY2ODE2MjAxMX0.XnPansFtdZVQm4AT7IZBJ9hD4sSYDdz8itjWfc1kSoc",
+            Authorization: token,
           },
         }
       )

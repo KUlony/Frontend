@@ -10,12 +10,14 @@ import { MdEdit } from "react-icons/md"
 const UserInfo = () => {
   //----------------------api_get-------------------------
   const [userData, setUserData] = useState("")
+  const token = localStorage.getItem("token")
+  const user_id = localStorage.getItem("user_id")
+
   useEffect(() => {
     axios
-      .get("/api/user/636ca2126173d813e9e38cab/profile", {
+      .get(`https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`, {
         headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4",
+          Authorization: token,
         },
       })
       .then((res) => {
@@ -62,7 +64,7 @@ const UserInfo = () => {
       // console.log('hello try')
       axios
         .put(
-          "/api/user/edit_profile",
+          "https://kulony-backend.herokuapp.com/api/user/edit_profile",
           {
             user_name: username.current.value,
             user_firstname: firstname.current.value,
@@ -80,8 +82,7 @@ const UserInfo = () => {
           },
           {
             headers: {
-              Authorization:
-                "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxMTM3MTcsImV4cCI6MTY2ODIwMDExN30.M4jObJez_IQTDeThmN1lvf0pmvZkLg69PX6O-0BoSp4",
+              Authorization: token,
             },
           }
         )
