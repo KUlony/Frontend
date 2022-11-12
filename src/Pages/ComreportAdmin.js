@@ -113,7 +113,7 @@ function ComreportAdmin({ send }) {
                   className="discardbtncom"
                   onClick={() => {
                     discarddata(item)
-                    // window.location.reload()
+                    window.location.reload()
                   }}
                 >
                   Discard Report <i class="bi bi-x"></i>
@@ -122,7 +122,7 @@ function ComreportAdmin({ send }) {
                   className="deletebtncom"
                   onClick={() => {
                     deletedata(item)
-                    // window.location.reload()
+                    window.location.reload()
                   }}
                 >
                   Delete Comment <i class="bi bi-trash"></i>

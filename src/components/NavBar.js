@@ -56,11 +56,11 @@ function Navbar() {
   }
   console.log(show)
   const handleShow = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     setShow(!show)
   }
   const handleShow2 = (e) => {
-    e.preventDefault()
+    // e.preventDefault()
     setShowCreateTopic(!showCreateTopic)
   }
 

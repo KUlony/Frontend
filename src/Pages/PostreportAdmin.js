@@ -130,7 +130,7 @@ function PostreportAdmin({ datasort, send }) {
                   className="discardbtnpost"
                   onClick={() => {
                     discarddata(item)
-                    // window.location.reload()
+                    window.location.reload()
                   }}
                 >
                   Discard Report <i class="bi bi-x"></i>
@@ -139,7 +139,7 @@ function PostreportAdmin({ datasort, send }) {
                   className="deletebtnpost"
                   onClick={() => {
                     deletedata(item)
-                    // window.location.reload()
+                    window.location.reload()
                   }}
                 >
                   Delete Post <i class="bi bi-trash"></i>
