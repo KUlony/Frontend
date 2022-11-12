@@ -1,0 +1,299 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #5bd4f5;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.mixngo {
+  color: rgb(223, 148, 69);
+  padding: 50px;
+}
+
+.wern {
+  color: rgb(128, 69, 223);
+  padding: 20px;
+  background-color: #5bd4f5;
+  display: block;
+}
+
+.info {
+  color: rgb(27, 25, 25);
+  padding: 20px;
+  background-color: #be1fe680;
+}
+.hide_test {
+  color: #5bd4f5;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Prompt&family=Quicksand:wght@700&display=swap');
+
+.line {
+  background-color: #339c64;
+  width: 445.91px;
+  height: 9px;
+  border-radius: 0px 8px 8px 0px;
+  margin-top: 30px;
+}
+.big_container {
+  display: flex;
+}
+.small_container {
+  display: flex;
+  margin-top: 80px;
+}
+.right_container {
+  margin-left: 200px;
+}
+.firstname {
+  margin-top: 40px;
+  margin-bottom: 28px;
+  font-size: 24px;
+  font-family: 'Quicksand';
+  font-style: normal;
+}
+.pic_button {
+  margin: 40px 0px 40px 112px;
+  border: 1px;
+  width: 420px;
+  height: 380px;
+  border: 1px solid #dcdcdc;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.25);
+}
+.pic_inner {
+  background-color: #f8f5d5;
+  margin: 28px 67px 0px 67px;
+  width: 288px;
+  height: 288px;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+}
+.input_image {
+  display: none;
+  width: 1px;
+  /* height: 50px; */
+  /* border-radius: 50%; */
+  /* background-color: #339c64; */
+  position: absolute;
+  left: 7px;
+  top: 5px;
+}
+.edit_icon {
+  background-color: #339c64;
+  border-radius: 50%;
+  height: 59px;
+  width: 59px;
+  /* margin-top: 220px; */
+  margin-left: 228px;
+  cursor: pointer;
+  z-index: 50px;
+}
+.edit-icon {
+  color: rgb(255, 255, 255);
+  justify-content: center;
+  align-items: center;
+  margin: 11px 0px 0px 14px;
+  cursor: pointer;
+}
+.setup_display {
+  width: 182px;
+  height: 32px;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 23px;
+  margin-top: 16px;
+  margin-left: 130px;
+}
+
+.fname {
+  width: 400px;
+  height: 51px;
+  left: 711px;
+  top: 332px;
+  background: #f8f5d5;
+  border-radius: 8px;
+  border: 1px solid #180f0f;
+  margin-bottom: 40px;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.lname {
+  width: 400px;
+  height: 51px;
+  left: 711px;
+  top: 332px;
+  background: #f8f5d5;
+  border-radius: 8px;
+  border: 1px solid #180f0f;
+  margin-bottom: 40px;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.bio {
+  width: 606px;
+  height: 160px;
+  left: 712px;
+  top: 558px;
+  background: #f8f5d5;
+  border-radius: 8px;
+  border: 1px solid #180f0f;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.username {
+  width: 400px;
+  height: 51px;
+  left: 365px;
+  top: 615px;
+  background: #f8f5d5;
+  border-radius: 8px;
+  margin-left: 116px;
+  border: 1px solid #180f0f;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  padding-left: 10px;
+}
+.textleft {
+  margin-left: 116px;
+  margin-bottom: 16px;
+  font-style: normal;
+  font-family: 'Quicksand';
+  font-size: 24px;
+}
+.textright {
+  margin-bottom: 28px;
+  font-style: normal;
+  font-family: 'Quicksand';
+  font-size: 24px;
+}
+.back_button {
+  width: 75px;
+  height: 35px;
+  margin-left: 167px;
+  margin-top: -13px;
+  color: #339c64;
+  border: 0px;
+  background-color: rgb(255, 255, 255);
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  cursor: pointer;
+}
+.lookgood_button {
+  width: 271px;
+  height: 67px;
+  font-family: 'Quicksand';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 28px;
+  line-height: 35px;
+  color: #ffffff;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  background-color: #339c64;
+  border: 0px;
+  box-shadow: 4px 4px 4px rgb(0 0 0 / 25%);
+  border-radius: 32px;
+  margin-left: 793px;
+  margin-bottom: -9px;
+  cursor: pointer;
+  position: relative;
+  top: -33px;
+}
+
+.setup_display {
+  cursor: pointer;
+}
+
+.input-box-upload {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+
+.picture-profile {
+  position: absolute;
+  left: 180px;
+  top: 108px;
+  width: 288px;
+  height: 288px;
+  border-radius: 50%;
+}
+
+.picture-edit {
+  position: absolute;
+  left: 408px;
+  top: 108px;
+  width: 59px;
+  height: 59px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+.picture-edit:active {
+  opacity: 0.6;
+}
+.profile-changed {
+  /* position: absolute;
+    left: 180px;
+    top: 108px;
+    width: 288px;
+    height: 288px;
+    border-radius: 50%; */
+  width: 200%;
+  height: auto;
+  margin: 0 auto;
+  /* position: relative; */
+  /* top: 20px; */
+}
+
+.setup_display:active {
+  opacity: 0.6;
+}

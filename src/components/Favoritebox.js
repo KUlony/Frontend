@@ -12,30 +12,36 @@ function Favoritebox(props) {
   const [displayProfile, setdisplayProfile] = useState(true)
   const token = localStorage.getItem("token")
 
+  const [status1, setStatus1] = useState(true)
+
   const likepost_update = async () => {
     try {
-      if (status) {
-        const remove = await fetch(
-          `//localhost:4000/api/post/unlike/${data.post_id}`,
-          {
-            method: "DELETE",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        )
-        setStatus(false)
-      } else {
-        const add = await fetch(
-          `//localhost:4000/api/post/like/${data.post_id}`,
-          {
-            method: "POST",
-            headers: {
-              Authorization: `${token}`,
-            },
-          }
-        )
-        setStatus(true)
+      if (status1) {
+        setStatus1(false)
+        if (status) {
+          const remove = await fetch(
+            `//localhost:4000/api/post/unlike/${data.post_id}`,
+            {
+              method: "DELETE",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          )
+          setStatus(false)
+        } else {
+          const add = await fetch(
+            `//localhost:4000/api/post/like/${data.post_id}`,
+            {
+              method: "POST",
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          )
+          setStatus(true)
+        }
+        setStatus1(true)
       }
     } catch (err) {
       console.log(err)

@@ -15,49 +15,49 @@ function Login() {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  const [error,setError] = useState('')
+  const [error, setError] = useState("")
 
-  const [work,setWork] = useState(true);
-  
-  const login = async (e)=>{
-    try{
-      if (work){
+  const [work, setWork] = useState(true)
+
+  const login = async (e) => {
+    try {
+      if (work) {
         setWork(false)
         e.preventDefault()
-        setError('')
-        const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/login',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        "email": email,
-        "password": password})
+        setError("")
+        const postdata = await fetch("//localhost:4000/api/sing-up/login", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+            password: password,
+          }),
         })
         const json = await postdata.json()
 
-        if (!json.success){
+        if (!json.success) {
           setError(json.message)
           setWork(true)
-          setPassword('')
+          setPassword("")
         }
 
-        if (!postdata.ok){
+        if (!postdata.ok) {
           throw new Error("error")
         }
         console.log(json)
         const token = json.token
-        localStorage.setItem("token", token);
+        localStorage.setItem("token", token)
         // console.log(localStorage.getItem("token"))
         const user_id = json.user_id
-        localStorage.setItem("user_id", user_id);
+        localStorage.setItem("user_id", user_id)
         const admin = json.admin
-        localStorage.setItem("admin", admin);
-        navigate("/home");
+        localStorage.setItem("admin", admin)
+        navigate("/home")
         setWork(true)
       }
-    }
-    catch(err){
+    } catch (err) {
       // console.log("catch")
       // console.log(err.message)
     }

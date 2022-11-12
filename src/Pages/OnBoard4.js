@@ -1,31 +1,33 @@
-import React, { useRef, useState } from 'react';
-import './OnBoard4.css';
-import { FaFacebookSquare } from 'react-icons/fa';
-import { BsInstagram } from 'react-icons/bs';
-import { IoMdAddCircle } from 'react-icons/io';
-import { MdEdit } from 'react-icons/md';
-import axios from 'axios';
-import AddEducation from './AddEducation';
-import EditEducation from './EditEducation';
-import './AddEducation.css';
+import React, { useRef, useState } from "react"
+import "./OnBoard4.css"
+import { FaFacebookSquare } from "react-icons/fa"
+import { BsInstagram } from "react-icons/bs"
+import { IoMdAddCircle } from "react-icons/io"
+import { MdEdit } from "react-icons/md"
+import axios from "axios"
+import AddEducation from "./AddEducation"
+import EditEducation from "./EditEducation"
+import "./AddEducation.css"
+import { useNavigate } from "react-router-dom"
+import Checklogin from "../components/Checklogin"
 
 function OnBoard4() {
-  const token = localStorage.getItem('token');
+  const token = localStorage.getItem("token")
   //----------------------edit-------------------------
   // const username = useRef()
   // const bio = useRef()
   // const firstname = useRef()
   // const lastname = useRef()
-//   const username = 'asdf';
-//   const bio = 'HAHAHAH';
-//   const firstname = 'hasdfsdwe';
-//   const lastname = 'ewuwuwuwuwuwu';
-  const instagram = useRef();
-  const facebook = useRef();
+  //   const username = 'asdf';
+  //   const bio = 'HAHAHAH';
+  //   const firstname = 'hasdfsdwe';
+  //   const lastname = 'ewuwuwuwuwuwu';
+  const instagram = useRef()
+  const facebook = useRef()
 
   const editstyles = {
-    border: '1px solid rgba(0, 0, 0, 1)',
-  };
+    border: "1px solid rgba(0, 0, 0, 1)",
+  }
 
   const [inputArray, setInputArray] = useState([
     true,
@@ -34,13 +36,13 @@ function OnBoard4() {
     true,
     true,
     true,
-  ]);
+  ])
 
   const editInputArray = (index) => {
     setInputArray((oldarray) =>
       oldarray.map((data, idx) => (idx === index ? !data : data))
-    );
-  };
+    )
+  }
   //----------------------send_api-------------------------
 
   const onClickSave = async () => {
@@ -48,7 +50,7 @@ function OnBoard4() {
       // console.log('hello try')
       axios
         .put(
-          'https://kulony-backend.herokuapp.com/api/user/edit_profile',
+          "//localhost:4000/api/user/edit_profile",
           {
             // user_name: username,
             // user_firstname: firstname,
@@ -58,10 +60,10 @@ function OnBoard4() {
             contact: {
               facebook: facebook.current.value,
               ig: instagram.current.value,
-              _id: '634adc85e5a0f50a0041c392',
+              _id: "634adc85e5a0f50a0041c392",
             },
             profile_pic_url:
-              'https://img.elo7.com.br/product/zoom/2FBB20A/midoriya-my-hero-academia-poster-digital-poster-para-geeks.jpg',
+              "https://img.elo7.com.br/product/zoom/2FBB20A/midoriya-my-hero-academia-poster-digital-poster-para-geeks.jpg",
             // gender: 'male',
           },
           {
@@ -71,84 +73,81 @@ function OnBoard4() {
           }
         )
         .then((res) => {
-          console.log('data res is ', res);
+          console.log("data res is ", res)
         })
         .catch((err) => {
-          console.log(err);
-        });
+          console.log(err)
+        })
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
-  };
+  }
 
   //-------------AddEducation_Page-------------
-  const [educationInfo, setEducationInfo] = useState(null);
+  const [educationInfo, setEducationInfo] = useState(null)
 
-  const [isAddEducation, setIsAddEducation] = useState(null);
+  const [isAddEducation, setIsAddEducation] = useState(null)
 
-  const [educationUpdated, setEducationUpdated] = useState([]);
+  const [educationUpdated, setEducationUpdated] = useState([])
 
   function onAddEducationClick() {
-    setIsAddEducation(true);
+    setIsAddEducation(true)
   }
   function onBgClick() {
-    setIsAddEducation(null);
+    setIsAddEducation(null)
   }
-  let addEducation = null;
+  let addEducation = null
   if (!!isAddEducation) {
     addEducation = (
       <AddEducation onBgClick={onBgClick} educationUpdated={educationUpdated} />
-    );
+    )
   }
 
   //-------------Update_Education(edit or delete)-------------
   function checkIsConnect(a, b) {
-    if (a !== '') {
-      if (b !== '') {
-        return true;
+    if (a !== "") {
+      if (b !== "") {
+        return true
       }
     }
   }
 
-  const [isEditEducation, setIsEditEducation] = useState(null);
-  const [indexEdit, setIndexEdit] = useState();
+  const [isEditEducation, setIsEditEducation] = useState(null)
+  const [indexEdit, setIndexEdit] = useState()
   const updateEducation = (data, index) => {
-    console.log('data', data);
-    console.log(5);
+    console.log("data", data)
+    console.log(5)
 
     if (data === null) {
-      const st = educationUpdated.splice(0, index);
-      const ed = educationUpdated.splice(index + 1, educationUpdated.length);
-      const stShowAllEdu = allEduForm.splice(0, index);
-      const edShowAllEdu = allEduForm.splice(
-        index + 1,
-        educationUpdated.length
-      );
+      const st = educationUpdated.splice(0, index)
+      const ed = educationUpdated.splice(index + 1, educationUpdated.length)
+      const stShowAllEdu = allEduForm.splice(0, index)
+      const edShowAllEdu = allEduForm.splice(index + 1, educationUpdated.length)
       // console.log('allEdu 164', allEduForm)
-      setEducationUpdated(st.concat(ed));
-      setAllEduForm(stShowAllEdu.concat(edShowAllEdu));
+      setEducationUpdated(st.concat(ed))
+      setAllEduForm(stShowAllEdu.concat(edShowAllEdu))
     } else {
       //edit
       // educationUpdated
       setEducationUpdated((olddata) =>
         olddata.map((tmp, idx) => (idx === index ? data : tmp))
-      );
-      console.log('educationupdated 154', educationUpdated);
+      )
+      console.log("educationupdated 154", educationUpdated)
     }
-  };
+  }
   // console.log('educationUpdate', educationUpdated)
   //-------------Edit_Education-------------
 
   function onEditEducationClick(theEdu, index) {
-    setIsEditEducation(true);
-    setEducationInfo(theEdu);
-    setIndexEdit(index);
+    setIsEditEducation(true)
+    setEducationInfo(theEdu)
+    setIndexEdit(index)
   }
   const onBgEditClick = () => {
-    setIsEditEducation(null);
-    setEducationInfo(null);
-  };
-  let editEducation = null;
+    setIsEditEducation(null)
+    setEducationInfo(null)
+  }
+  let editEducation = null
   if (!!isEditEducation) {
     editEducation = (
       <EditEducation
@@ -157,12 +156,12 @@ function OnBoard4() {
         index={indexEdit}
         updateEducation={updateEducation}
       />
-    );
+    )
   }
 
   //-------------Edit_Education_Template-------------
 
-  const [allEduForm, setAllEduForm] = useState([]);
+  const [allEduForm, setAllEduForm] = useState([])
   // console.log('allEdu 197', allEduForm)
 
   const eduElements = educationUpdated.map((theEdu, index) => {
@@ -175,68 +174,70 @@ function OnBoard4() {
               // style={{ display: 'inline', whiteSpace: 'nowrap' }}
             >
               <span>
-                {theEdu.school ? theEdu.school : ''}
+                {theEdu.school ? theEdu.school : ""}
                 <article>
-                  {theEdu.degree ? theEdu.degree : ''}
+                  {theEdu.degree ? theEdu.degree : ""}
                   {checkIsConnect(theEdu.degree, theEdu.field_of_study)
-                    ? ', '
-                    : ''}
-                  {theEdu.field_of_study ? theEdu.field_of_study : ''}
+                    ? ", "
+                    : ""}
+                  {theEdu.field_of_study ? theEdu.field_of_study : ""}
                   {checkIsConnect(theEdu.field_of_study, theEdu.start_date)
-                    ? ', '
-                    : ''}
+                    ? ", "
+                    : ""}
                   <span className="education-all-date">
-                    {theEdu.start_date.split('-')[0]
-                      ? theEdu.start_date.split('-')[0]
-                      : ''}
+                    {theEdu.start_date.split("-")[0]
+                      ? theEdu.start_date.split("-")[0]
+                      : ""}
                     {checkIsConnect(
-                      theEdu.start_date.split('-')[0],
-                      theEdu.start_date.split('-')[1]
+                      theEdu.start_date.split("-")[0],
+                      theEdu.start_date.split("-")[1]
                     )
-                      ? ' '
-                      : ''}
-                    {theEdu.start_date.split('-')[1]
-                      ? theEdu.start_date.split('-')[1]
-                      : ''}
+                      ? " "
+                      : ""}
+                    {theEdu.start_date.split("-")[1]
+                      ? theEdu.start_date.split("-")[1]
+                      : ""}
                     {checkIsConnect(
-                      theEdu.start_date.split('-')[1],
-                      theEdu.end_date.split('-')[0]
+                      theEdu.start_date.split("-")[1],
+                      theEdu.end_date.split("-")[0]
                     )
-                      ? ' - '
-                      : ''}
-                    {theEdu.end_date.split('-')[0]
-                      ? theEdu.end_date.split('-')[0]
-                      : ''}
+                      ? " - "
+                      : ""}
+                    {theEdu.end_date.split("-")[0]
+                      ? theEdu.end_date.split("-")[0]
+                      : ""}
                     {checkIsConnect(
-                      theEdu.end_date.split('-')[0],
-                      theEdu.end_date.split('-')[1]
+                      theEdu.end_date.split("-")[0],
+                      theEdu.end_date.split("-")[1]
                     )
-                      ? ' '
-                      : ''}
-                    {theEdu.end_date.split('-')[1]
-                      ? theEdu.end_date.split('-')[1]
-                      : ''}
+                      ? " "
+                      : ""}
+                    {theEdu.end_date.split("-")[1]
+                      ? theEdu.end_date.split("-")[1]
+                      : ""}
                   </span>
                 </article>
               </span>
               <img
-                src={require('../picture/editButton.png')}
+                src={require("../picture/editButton.png")}
                 alt="edit-button"
                 width="20px"
                 className="edit-education-button"
                 onClick={() => {
-                  onEditEducationClick(theEdu, index);
+                  onEditEducationClick(theEdu, index)
                 }}
               />
             </article>
-            
           </section>
         ) : (
           <div></div>
         )}
       </div>
-    );
-  });
+    )
+  })
+
+  const navigate = useNavigate()
+
   return (
     <div className="onboard4">
       <div className="onboard4-loadbar"></div>
@@ -295,15 +296,29 @@ function OnBoard4() {
         </div>
       </div>
       <div className="onboard4-button">
-        <div className="onboard4-back-button">BACK</div>
-        <div className="onboard4-next-button" onClick={onClickSave}>
+        <div
+          className="onboard4-back-button"
+          onClick={() => {
+            navigate("/onboard3")
+          }}
+        >
+          BACK
+        </div>
+        <div
+          className="onboard4-next-button"
+          onClick={() => {
+            onClickSave()
+            navigate("/home")
+          }}
+        >
           NEXT
         </div>
       </div>
       {addEducation}
       {editEducation}
+      <Checklogin />
     </div>
-  );
+  )
 }
 
-export default OnBoard4;
+export default OnBoard4

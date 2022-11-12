@@ -33,43 +33,46 @@ function Register() {
 
   const [error, setError] = useState("")
 
-  const [work,setWork] = useState(true);
+  const [work, setWork] = useState(true)
 
-  const register = async (e)=>{
-    try{
-      if (work){
+  const register = async (e) => {
+    try {
+      if (work) {
         setWork(false)
         e.preventDefault()
-        setError('')
-        const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/register/email',{
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-        "email": email,
-        "password": password,
-        "confirm_password": confirmpassword}),
-        })
+        setError("")
+        const postdata = await fetch(
+          "//localhost:4000/api/sing-up/register/email",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email: email,
+              password: password,
+              confirm_password: confirmpassword,
+            }),
+          }
+        )
 
         const json = await postdata.json()
         console.log(json)
 
-        if (!json.success){
+        if (!json.success) {
           setError(json.message)
-          setPassword('')
-          setConfirmpassword('')
+          setPassword("")
+          setConfirmpassword("")
           setWork(true)
         }
 
-        if (!postdata.ok){
+        if (!postdata.ok) {
           throw new Error("error")
         }
         display_verify()
         setWork(true)
       }
-    }
-    catch(err){
+    } catch (err) {
       // console.log("catch")
       // console.log(err.message)
     }

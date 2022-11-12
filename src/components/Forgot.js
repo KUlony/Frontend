@@ -18,15 +18,19 @@ function Forgot(probs) {
   const forgot = async (e) => {
     try {
       e.preventDefault()
-      setError('')
-      const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword',{
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-      "email": email}),
-      })
+      setError("")
+      const postdata = await fetch(
+        "//localhost:4000/api/sing-up/forgotpassword",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        }
+      )
 
       const json = await postdata.json()
       console.log(json)

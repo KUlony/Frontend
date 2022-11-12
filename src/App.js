@@ -14,6 +14,8 @@ import ReportpageAdmin from "./Pages/ReportpageAdmin"
 import ReqtopicAdmin from "./Pages/ReqtopicAdmin"
 import EditPost from "./Pages/EditPost"
 import OnBoard4 from "./Pages/OnBoard4"
+import OnBoard3 from "./Pages/OnBoard3"
+import OnBoard2 from "./Pages/OnBoard2"
 
 // import ScrollRestoration from "react-scroll-restoration";
 function App() {
@@ -65,6 +67,8 @@ function App() {
           <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
           <Route path="*" element={<Navigate to="/home" />} />
           <Route path="/onboard4" element={<OnBoard4 />} />
+          <Route path="/onboard3" element={<OnBoard3 />} />
+          <Route path="/onboard2" element={<OnBoard2 />} />
         </Routes>
       </BrowserRouter>
     </div>
