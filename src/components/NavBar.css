@@ -137,7 +137,8 @@
 .vector,
 .reportpost-nav,
 .topic-req-nav,
-.free-box {
+.free-box,
+.nav-profile {
   float: left;
   color: #000000;
   text-decoration: none;
@@ -153,7 +154,11 @@
   /* align-items: center; */
   gap: 2px;
 }
-
+.nav-profile {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
 .kulony {
   padding-top: 20px;
 }
@@ -176,11 +181,13 @@
   cursor: pointer;
 }
 
-.vector-icon {
+.vector-icon,
+.nav-profile-img {
   cursor: pointer;
 }
 
-.vector {
+.vector,
+.nav-profile {
   cursor: default;
   padding-left: 2%;
   padding-top: 30px;

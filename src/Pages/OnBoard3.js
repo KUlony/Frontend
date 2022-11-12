@@ -48,7 +48,7 @@ function OnBoard3() {
           user_firstname: fname2.current.value,
           user_lastname: lname2.current.value,
           user_bio: bio2.current.value,
-          // profile_pic_url: pic2,
+          profile_pic_url: urlProfile,
         },
         {
           headers: {

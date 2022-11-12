@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react"
 import "./Register.css"
 import register_img from "../picture/register.png"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import Verify from "../components/Verify.js"
 import Terms from "../components/Terms.js"
 
@@ -163,7 +163,12 @@ function Register() {
       </div>
 
       <div className={`register_verify  ${display2 ? "none" : null}`}>
-        <Verify display_ve={display_verify} email={email} isForgot={false} />
+        <Verify
+          display_ve={display_verify}
+          email={email}
+          isForgot={false}
+          password={password}
+        />
       </div>
 
       {(!display1 || !display2) && <div className="register_cover"></div>}

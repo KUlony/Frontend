@@ -26,7 +26,7 @@ const UserInfo = () => {
         setAllEduForm(res.data.education)
         setEducationUpdated(res.data.education)
         setUrlProfile(res.data.profile_pic_url)
-        // console.log(res.data.user_name)
+        console.log(res.data.profile_pic_url)
       })
       .catch((error) => {
         console.log(error)

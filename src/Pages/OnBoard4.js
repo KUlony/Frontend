@@ -62,8 +62,7 @@ function OnBoard4() {
               ig: instagram.current.value,
               _id: "634adc85e5a0f50a0041c392",
             },
-            profile_pic_url:
-              "https://img.elo7.com.br/product/zoom/2FBB20A/midoriya-my-hero-academia-poster-digital-poster-para-geeks.jpg",
+
             // gender: 'male',
           },
           {

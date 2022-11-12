@@ -6,7 +6,7 @@ import Unsuccess from "./Unsuccess"
 import Change from "./Change"
 
 function Verify(probs) {
-  const { display_ve, email, isForgot, display_fg } = probs
+  const { display_ve, email, isForgot, display_fg, password } = probs
 
   const [display3, setdisplay3] = useState(true)
   const display_success = () => {
@@ -50,13 +50,22 @@ function Verify(probs) {
           }),
         }
       )
-
-      const json = await postdata.json()
-      console.log(json)
-
       if (!postdata.ok) {
         throw new Error("error")
       }
+      const json = await postdata.json()
+      console.log(json)
+      const postdata1 = await fetch("//localhost:4000/api/sing-up/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: email,
+          password: password,
+        }),
+      })
+
       display_success()
     } catch (err) {
       // console.log(err.message)
