@@ -100,3 +100,8 @@
   width: 80%;
   margin: 20px auto;
 }
+
+.miniprofile_popup {
+  position: relative;
+  z-index: 150;
+}
