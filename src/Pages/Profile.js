@@ -69,7 +69,9 @@ function Profile() {
           Authorization: token,
         },
       })
-
+    localStorage.removeItem('token')
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("admin")
       console.log("response is", response)
       navigate("/login")
     } catch (error) {
