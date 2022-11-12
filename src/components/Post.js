@@ -175,14 +175,23 @@ function Post(props) {
         //     },
         //   }
         // );
+        // const response = await axios.get(
+        //   `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
+        //   {
+        //     headers: {
+        //       Authorization: token,
+        //     },
+        //   }
+        // );
         const response = await axios.get(
-          `https://kulony-backend.herokuapp.com/api/comment/${post_id}`,
+          `http://localhost:4000/api/comment/${post_id}`,
           {
             headers: {
               Authorization: token,
             },
           }
         );
+
         console.log(response);
         // const comment_json = await comment_fetch_respone.json();
         // console.log(comment_json);

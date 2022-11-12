@@ -14,6 +14,7 @@ import { HiSearch } from "react-icons/hi";
 import { BsPlusLg } from "react-icons/bs";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import Checklogin from "../components/Checklogin";
+import axios from "axios";
 
 // import ScrollRestoration from "react-scroll-restoration";
 
@@ -65,18 +66,24 @@ function Home() {
       if (category[0]) {
         setDisplayload(false);
         if (!followtopic) {
-          response = await fetch(`https://kulony-backend.herokuapp.com/api/post/all_post?page=1`, {
-            headers: {
-              Authorization: `${token}`,
-            },
-          });
+          response = await fetch(
+            `https://kulony-backend.herokuapp.com/api/post/all_post?page=1`,
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
           setApipath("post/all_post?");
         } else {
-          response = await fetch(`https://kulony-backend.herokuapp.com/api/home?page=1`, {
-            headers: {
-              Authorization: `${token}`,
-            },
-          });
+          response = await fetch(
+            `https://kulony-backend.herokuapp.com/api/home?page=1`,
+            {
+              headers: {
+                Authorization: `${token}`,
+              },
+            }
+          );
           setApipath("home?");
         }
 
@@ -85,39 +92,54 @@ function Home() {
         setPost_data(json);
       } else if (category[1]) {
         setLoadingtopic(true);
-        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/General`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        response = await fetch(
+          `https://kulony-backend.herokuapp.com/api/topic/get_topic/General`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       } else if (category[2]) {
         setLoadingtopic(true);
-        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Learning`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        response = await fetch(
+          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Learning`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       } else if (category[3]) {
         setLoadingtopic(true);
-        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/News`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        response = await fetch(
+          `https://kulony-backend.herokuapp.com/api/topic/get_topic/News`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       } else if (category[4]) {
         setLoadingtopic(true);
-        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Market`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        response = await fetch(
+          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Market`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       } else if (category[5]) {
         setLoadingtopic(true);
-        response = await fetch(`https://kulony-backend.herokuapp.com/api/topic/get_topic/Faculty`, {
-          headers: {
-            Authorization: `${token}`,
-          },
-        });
+        response = await fetch(
+          `https://kulony-backend.herokuapp.com/api/topic/get_topic/Faculty`,
+          {
+            headers: {
+              Authorization: `${token}`,
+            },
+          }
+        );
       }
 
       const json = await response.json();
@@ -192,11 +214,14 @@ function Home() {
   const loadmore = async (e) => {
     try {
       setDisplayload(false);
-      const loadmoredata = await fetch(`https://kulony-backend.herokuapp.com/api/${apipath}page=${pagecount}`, {
-        headers: {
-          Authorization: `${token}`,
-        },
-      });
+      const loadmoredata = await fetch(
+        `https://kulony-backend.herokuapp.com/api/${apipath}page=${pagecount}`,
+        {
+          headers: {
+            Authorization: `${token}`,
+          },
+        }
+      );
       const loadmoredatajson = await loadmoredata.json();
       setDisplayload(true);
       setPost_data([...post_data, ...loadmoredatajson]);

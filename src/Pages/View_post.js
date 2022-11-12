@@ -120,8 +120,16 @@ function View_post() {
       //   }
       // )
       // const comment_json = await comment_fetch_respone.json()
+      // const response = await axios.get(
+      //   `https://kulony-backend.herokuapp.com/api/comment/${post_id.id}`,
+      //   {
+      //     headers: {
+      //       Authorization: token,
+      //     },
+      //   }
+      // );
       const response = await axios.get(
-        `https://kulony-backend.herokuapp.com/api/comment/${post_id.id}`,
+        `http://localhost:4000/api/comment/${post_id.id}`,
         {
           headers: {
             Authorization: token,

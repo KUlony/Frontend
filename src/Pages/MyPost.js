@@ -22,8 +22,16 @@ function MyPost() {
       //     },
       //   }
       // );
+      // const response = await axios.get(
+      //   "https://kulony-backend.herokuapp.com/api/user/mypost",
+      //   {
+      //     headers: {
+      //       Authorization: token,
+      //     },
+      //   }
+      // );
       const response = await axios.get(
-        "https://kulony-backend.herokuapp.com/api/user/mypost",
+        "http://localhost:4000/api/user/mypost",
         {
           headers: {
             Authorization: token,
