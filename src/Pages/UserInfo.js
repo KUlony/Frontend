@@ -3,16 +3,17 @@ import React, { useEffect, useRef, useState } from "react"
 import AddEducation from "./AddEducation"
 import EditEducation from "./EditEducation"
 import "./UserInfo.css"
-
+import { storage } from "./FirebaseConfig"
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage"
 import { IoMdAddCircle } from "react-icons/io"
-import { MdEdit } from "react-icons/md"
 
 const UserInfo = () => {
   //----------------------api_get-------------------------
-  const [userData, setUserData] = useState("")
   const token = localStorage.getItem("token")
   const user_id = localStorage.getItem("user_id")
-
+  // const token =
+  //   'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImtpdHRpcG9uZy50YW1Aa3UudGgiLCJpZCI6IjYzNmNhMjEyNjE3M2Q4MTNlOWUzOGNhYiIsInZlcmlmaWVkIjp0cnVlLCJpYXQiOjE2NjgxOTgxOTgsImV4cCI6MTY2ODI4NDU5OH0.jw2oLJwwXXlSad2TvkR7s67CWWrxDU1ByleI8S67Hos'
+  const [userData, setUserData] = useState("")
   useEffect(() => {
     axios
       .get(`https://kulony-backend.herokuapp.com/api/user/${user_id}/profile`, {
@@ -24,6 +25,7 @@ const UserInfo = () => {
         setUserData(res.data)
         setAllEduForm(res.data.education)
         setEducationUpdated(res.data.education)
+        setUrlProfile(res.data.profile_pic_url)
         // console.log(res.data.user_name)
       })
       .catch((error) => {
@@ -38,6 +40,7 @@ const UserInfo = () => {
   const lastname = useRef()
   const instagram = useRef()
   const facebook = useRef()
+  const [urlProfile, setUrlProfile] = useState("")
 
   const editstyles = {
     border: "1px solid rgba(0, 0, 0, 1)",
@@ -74,10 +77,8 @@ const UserInfo = () => {
             contact: {
               facebook: facebook.current.value,
               ig: instagram.current.value,
-              _id: "634adc85e5a0f50a0041c392",
             },
-            profile_pic_url:
-              "https://cdn.myanimelist.net/images/characters/12/451497.jpg",
+            profile_pic_url: urlProfile,
             gender: "male",
           },
           {
@@ -88,6 +89,7 @@ const UserInfo = () => {
         )
         .then((res) => {
           console.log(res)
+          window.location.reload()
         })
         .catch((err) => {
           console.log(err)
@@ -98,9 +100,9 @@ const UserInfo = () => {
   }
 
   //-------------AddEducation_Page-------------
-  const [educationInfo, setEducationInfo] = useState(null)
+  const [educationInfo, setEducationInfo] = useState("")
 
-  const [isAddEducation, setIsAddEducation] = useState(null)
+  const [isAddEducation, setIsAddEducation] = useState("")
 
   const [educationUpdated, setEducationUpdated] = useState([])
 
@@ -108,7 +110,7 @@ const UserInfo = () => {
     setIsAddEducation(true)
   }
   function onBgClick() {
-    setIsAddEducation(null)
+    setIsAddEducation("")
   }
   let addEducation = null
   if (!!isAddEducation) {
@@ -119,11 +121,19 @@ const UserInfo = () => {
 
   //-------------Update_Education(edit or delete)-------------
   function checkIsConnect(a, b) {
-    if (a !== "") {
-      if (b !== "") {
-        return true
-      }
+    if (a === "") {
+      return false
     }
+    if (b === "") {
+      return false
+    }
+    if (a === null) {
+      return false
+    }
+    if (b === null) {
+      return false
+    }
+    return true
   }
 
   const [isEditEducation, setIsEditEducation] = useState(null)
@@ -149,7 +159,7 @@ const UserInfo = () => {
       console.log("educationupdated 154", educationUpdated)
     }
   }
-  // console.log('educationUpdate', educationUpdated)
+  console.log("educationUpdate", educationUpdated)
   //-------------Edit_Education-------------
 
   function onEditEducationClick(theEdu, index) {
@@ -172,15 +182,63 @@ const UserInfo = () => {
       />
     )
   }
+
+  //-------------Edit_Picture_Profile-------------
+  const [file, setFile] = useState("")
+
+  // progress
+  const [percent, setPercent] = useState(0)
+
+  // Handle file upload event and update state
+  function handleChange(event) {
+    // event.preventDefault()
+    setFile(event.target.files[0])
+  }
+
+  const handleUpload = () => {
+    if (!file) {
+      alert("Please upload an image first!")
+    }
+
+    const storageRef = ref(storage, `/files/${file.name}`)
+
+    // progress can be paused and resumed. It also exposes progress updates.
+    // Receives the storage reference and the file to upload.
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      "state_changed",
+      (snapshot) => {
+        const percent = Math.round(
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        )
+
+        // update progress
+        setPercent(percent)
+      },
+      (err) => console.log(err),
+      () => {
+        // download url
+        getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+          console.log("url is", url)
+          console.log(file)
+          setUrlProfile(url)
+          if (file !== "") {
+            alert("Upload Done!!")
+          }
+        })
+      }
+    )
+  }
+
   //-------------Edit_Education_Template-------------
 
   const [allEduForm, setAllEduForm] = useState([])
-  console.log("allEdu 197", allEduForm)
-
+  // console.log('allEdu 197', allEduForm)
   const eduElements = educationUpdated.map((theEdu, index) => {
     return (
       <div className="user-data">
-        {allEduForm[0].school ? (
+        {educationUpdated[0].school ? (
           <section className="education-content">
             <article
               className="education-school"
@@ -200,41 +258,26 @@ const UserInfo = () => {
 
             <article>
               {theEdu.degree ? theEdu.degree : ""}
-              {checkIsConnect(theEdu.degree, theEdu.field_of_study) ? ", " : ""}
-              {theEdu.field_of_study ? theEdu.field_of_study : ""}
+              {checkIsConnect(theEdu.degree, theEdu.field_of_study)
+                ? ", " + theEdu.end_date.split("-")[0]
+                : ""}
               {checkIsConnect(theEdu.field_of_study, theEdu.start_date)
                 ? ", "
                 : ""}
               <span className="education-all-date">
-                {theEdu.start_date.split("-")[0]
-                  ? theEdu.start_date.split("-")[0]
+                {theEdu.start_date != null
+                  ? theEdu.start_date.replace("-", " ")
                   : ""}
-                {checkIsConnect(
-                  theEdu.start_date.split("-")[0],
-                  theEdu.start_date.split("-")[1]
-                )
-                  ? " "
+                {theEdu.start_date != null && theEdu.end_date != null
+                  ? checkIsConnect(
+                      theEdu.start_date.split("-")[1],
+                      theEdu.end_date.split("-")[0]
+                    )
+                    ? " - "
+                    : ""
                   : ""}
-                {theEdu.start_date.split("-")[1]
-                  ? theEdu.start_date.split("-")[1]
-                  : ""}
-                {checkIsConnect(
-                  theEdu.start_date.split("-")[1],
-                  theEdu.end_date.split("-")[0]
-                )
-                  ? " - "
-                  : ""}
-                {theEdu.end_date.split("-")[0]
-                  ? theEdu.end_date.split("-")[0]
-                  : ""}
-                {checkIsConnect(
-                  theEdu.end_date.split("-")[0],
-                  theEdu.end_date.split("-")[1]
-                )
-                  ? " "
-                  : ""}
-                {theEdu.end_date.split("-")[1]
-                  ? theEdu.end_date.split("-")[1]
+                {theEdu.end_date != null
+                  ? theEdu.end_date.replace("-", " ")
                   : ""}
               </span>
             </article>
@@ -262,16 +305,47 @@ const UserInfo = () => {
               alt="profileExample"
               width="150"
               height="150"
-              className="user-info-profile"
+              className={
+                !userData
+                  ? "user-info-profile-temp"
+                  : "user-info-profile"
+                  ? "user-info-profile"
+                  : ""
+              }
             />
           </div>
-          <img
-            src={require("../picture/editButton.png")}
-            alt="edit-button"
-            width="30px"
-            className="edit-profile-button"
-          />
-          <div className="profile-pic-setup">Set up display</div>
+          <label for="input-image">
+            <img
+              src={require("../picture/editButton.png")}
+              alt="edit-button"
+              width="30px"
+              className="edit-profile-button"
+            />
+          </label>
+          <label for="upload-image">
+            <div className="profile-pic-setup">Set up display</div>
+          </label>
+
+          {/* <label for="input-image">
+            <img src="../picture/editButton.png" />{' '}
+          </label> */}
+          <div classname="input-box-upload">
+            <input
+              type="file"
+              onChange={handleChange}
+              accept="/image/*"
+              id="input-image"
+              className="choose-image"
+            />
+            <button
+              onClick={handleUpload}
+              id="upload-image"
+              className="choose-image"
+            >
+              Upload to Firebase
+            </button>
+            <p className="choose-image">{percent} "% done"</p>
+          </div>
         </section>
         <section className="user-info-username">
           <p className="user-info-username-titile">Username</p>

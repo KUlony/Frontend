@@ -1,22 +1,22 @@
-import React, { useState } from "react"
-import "./AddEducation.css"
-import { dateMonth, dateYear } from "./data/monthYear"
+import React, { useState } from 'react'
+import './AddEducation.css'
+import { dateMonth, dateYear } from './data/monthYear'
 const AddEducation = (props) => {
   const { onBgClick, educationUpdated } = props
 
-  const [editSchool, setEditSchool] = useState("")
-  const [editDegree, setEditDegree] = useState("")
-  const [editField, setEditField] = useState("")
-  const [editStartMonth, setEditStartMonth] = useState("")
-  const [editStartYear, setEditStartYear] = useState("")
-  const [editEndMonth, setEditEndMonth] = useState("")
-  const [editEndYear, setEditEndYear] = useState("")
+  const [editSchool, setEditSchool] = useState('')
+  const [editDegree, setEditDegree] = useState('')
+  const [editField, setEditField] = useState('')
+  const [editStartMonth, setEditStartMonth] = useState('')
+  const [editStartYear, setEditStartYear] = useState('')
+  const [editEndMonth, setEditEndMonth] = useState('')
+  const [editEndYear, setEditEndYear] = useState('')
 
   const addTwo = (editStartMonth, editStartYear) => {
-    let startMonthAddYear = ""
+    let startMonthAddYear = ''
     if (editStartMonth) {
       if (editStartYear) {
-        startMonthAddYear = editStartMonth + "-" + editStartYear
+        startMonthAddYear = editStartMonth + '-' + editStartYear
       } else {
         startMonthAddYear = editStartMonth
       }
@@ -25,7 +25,7 @@ const AddEducation = (props) => {
   }
   const addingEducation = (e) => {
     e.preventDefault()
-    if (editSchool !== "") {
+    if (editSchool !== '') {
       const startMonthAddYear = addTwo(editStartMonth, editStartYear)
       const endMonthAddYear = addTwo(editEndMonth, editEndYear)
       e.preventDefault()
@@ -36,7 +36,7 @@ const AddEducation = (props) => {
         start_date: startMonthAddYear,
         end_date: endMonthAddYear,
       }
-      console.log("newdata", educationAdded)
+      console.log('newdata', educationAdded)
       educationUpdated.push(educationAdded)
       onBgClick()
       // .then(onBgEditClick)
@@ -85,19 +85,19 @@ const AddEducation = (props) => {
             <button
               onClick={onBgClick}
               style={{
-                width: "16px",
-                height: "16px",
-                border: "none",
-                background: "none",
+                width: '16px',
+                height: '16px',
+                border: 'none',
+                background: 'none',
               }}
             >
               <img
-                src={require("../picture/close.png")}
+                src={require('../picture/close.png')}
                 alt="close"
                 style={{
-                  width: "16px",
-                  height: "16px",
-                  cursor: "pointer",
+                  width: '16px',
+                  height: '16px',
+                  cursor: 'pointer',
                 }}
                 className="close-add-edu"
               />
@@ -108,7 +108,7 @@ const AddEducation = (props) => {
             <input
               class="input-school"
               type="text"
-              placeholder="Kasetsart University"
+              placeholder="Ex. Kasetsart University"
               rows="1"
               cols="20"
               name="school"
@@ -125,7 +125,7 @@ const AddEducation = (props) => {
             <input
               class="input-degree"
               type="text"
-              placeholder="Bachelor's degree"
+              placeholder="Ex. Bachelor's degree"
               rows="1"
               cols="20"
               name="degree"
@@ -141,7 +141,7 @@ const AddEducation = (props) => {
             <input
               class="input-field"
               type="text"
-              placeholder="Computer engineering"
+              placeholder="Ex. Computer engineering"
               rows="1"
               cols="20"
               name="field"
@@ -167,7 +167,7 @@ const AddEducation = (props) => {
                   {option.text}
                 </option>
               ))}
-            </select>{" "}
+            </select>{' '}
             <select
               className="start-year"
               name="startYear"
@@ -196,7 +196,7 @@ const AddEducation = (props) => {
                   {option.text}
                 </option>
               ))}
-            </select>{" "}
+            </select>{' '}
             <select
               name="endYear"
               className="end-year"
