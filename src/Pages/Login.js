@@ -15,46 +15,51 @@ function Login() {
   const [password, setPassword] = useState("")
   const navigate = useNavigate()
 
-  const [error, setError] = useState("")
+  const [error,setError] = useState('')
 
-  const login = async (e) => {
-    try {
-      e.preventDefault()
-      setError("")
-      const postdata = await fetch("//localhost:4000/api/sing-up/login", {
-        method: "POST",
+  const [work,setWork] = useState(true);
+  
+  const login = async (e)=>{
+    try{
+      if (work){
+        setWork(false)
+        e.preventDefault()
+        setError('')
+        const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/login',{
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
-      })
-      const json = await postdata.json()
+        "email": email,
+        "password": password})
+        })
+        const json = await postdata.json()
 
-      if (!json.success) {
-        setError(json.message)
+        if (!json.success){
+          setError(json.message)
+          setWork(true)
+          setPassword('')
+        }
+
+        if (!postdata.ok){
+          throw new Error("error")
+        }
+        console.log(json)
+        const token = json.token
+        localStorage.setItem("token", token);
+        // console.log(localStorage.getItem("token"))
+        const user_id = json.user_id
+        localStorage.setItem("user_id", user_id);
+        const admin = json.admin
+        localStorage.setItem("admin", admin);
+        navigate("/home");
+        setWork(true)
       }
-
-      if (!postdata.ok) {
-        throw new Error("error")
-      }
-
-      console.log(json)
-
-      const token = json.token
-      localStorage.setItem("token", token)
-      // console.log(localStorage.getItem("token"))
-      const user_id = json.user_id
-      localStorage.setItem("user_id", user_id)
-      const admin = json.admin
-      localStorage.setItem("admin", admin)
-
-      navigate("/home")
-    } catch (err) {
+    }
+    catch(err){
       // console.log("catch")
-      console.log(err.message)
+      // console.log(err.message)
     }
   }
 

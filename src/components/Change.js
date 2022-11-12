@@ -18,27 +18,25 @@ function Change(probs) {
   const confirm = async (e) => {
     try {
       e.preventDefault()
-      setError("")
-      const postdata = await fetch(
-        "//localhost:4000/api/sing-up/forgotpassword/resetpassword",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: email,
-            password: password,
-            confirm_password: confirmpassword,
-          }),
-        }
-      )
+      setError('')
+      const postdata = await fetch('https://kulony-backend.herokuapp.com/api/sing-up/forgotpassword/resetpassword',{
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+      "email": email,
+      "password": password,
+      "confirm_password": confirmpassword}),
+      })
 
       const json = await postdata.json()
       console.log(json)
 
       if (!json.success) {
         setError(json.message)
+        setPassword('')
+        setConfirmpassword('')
       }
 
       if (!postdata.ok) {

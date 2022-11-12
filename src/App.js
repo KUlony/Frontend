@@ -1,18 +1,19 @@
-import "./App.css";
+import "./App.css"
 // import NavBar from "./components/NavBar";
 
-import Home from "./Pages/Home";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import MyPost from "./Pages/MyPost";
-import Profile from "./Pages/Profile";
-import View_post from "./Pages/View_post";
-import Search from "./Pages/Search";
-import Login from "./Pages/Login";
-import Register from "./Pages/Register";
-import Createpost from "./Pages/Createpost";
-import ReportpageAdmin from "./Pages/ReportpageAdmin";
-import ReqtopicAdmin from "./Pages/ReqtopicAdmin";
-import EditPost from "./Pages/EditPost";
+import Home from "./Pages/Home"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
+import MyPost from "./Pages/MyPost"
+import Profile from "./Pages/Profile"
+import View_post from "./Pages/View_post"
+import Search from "./Pages/Search"
+import Login from "./Pages/Login"
+import Register from "./Pages/Register"
+import Createpost from "./Pages/Createpost"
+import ReportpageAdmin from "./Pages/ReportpageAdmin"
+import ReqtopicAdmin from "./Pages/ReqtopicAdmin"
+import EditPost from "./Pages/EditPost"
+import OnBoard4 from "./Pages/OnBoard4"
 
 // import ScrollRestoration from "react-scroll-restoration";
 function App() {
@@ -63,10 +64,11 @@ function App() {
           <Route path="/admin/reportpost" element={<ReportpageAdmin />} />
           <Route path="/admin/requesttopic" element={<ReqtopicAdmin />} />
           <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="/onboard4" element={<OnBoard4 />} />
         </Routes>
       </BrowserRouter>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

@@ -17,7 +17,7 @@
     "react-bootstrap": "^2.6.0",
     "react-dom": "^18.2.0",
     "react-draft-wysiwyg": "^1.15.0",
-    "react-icons": "^4.4.0",
+    "react-icons": "^4.6.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
     "react-scroll-restoration": "^1.0.10",
